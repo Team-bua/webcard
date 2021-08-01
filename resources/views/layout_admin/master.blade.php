@@ -20,6 +20,7 @@
   <link href="{{ asset('dashboard/assets/css/nucleo-svg.css') }}" rel="stylesheet" />
   <!-- CSS Files -->
   <link id="pagestyle" href="{{ asset('dashboard/assets/css/soft-ui-dashboard.css?v=1.0.3') }}" rel="stylesheet" />
+  <link rel="stylesheet"  href="{{ asset('dashboard/assets/css/soft-ui-dashboard2.min.css?v=1.0.0') }}" type="text/css">
 </head>
 <body class="g-sidenav-show  bg-gray-100">
     @include('layout_admin.slidebar')
@@ -213,6 +214,13 @@
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="{{ asset('dashboard/assets/js/soft-ui-dashboard.min.js?v=1.0.3') }}"></script>
+  <script src="{{ asset('dashboard/assets/js/plugins/datatables.js') }}" type="text/javascript"></script>
+  <script type="text/javascript">
+      const dataTableBasic = new simpleDatatables.DataTable("#datatable-basic", {
+          searchable: false,
+          fixedHeight: true
+      });
+  </script>
 </body>
 
 </html>
