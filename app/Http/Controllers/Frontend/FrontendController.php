@@ -22,7 +22,7 @@ class FrontendController extends Controller
         return view('layout_index.page.signin');
     }
     
-    public function getCard()
+    public function getCardToView()
     {
         return view('layout_index.page.card');
     }

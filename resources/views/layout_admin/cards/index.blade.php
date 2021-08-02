@@ -26,7 +26,7 @@
                         <div class="card-body px-0 pt-0 pb-2">                           
                             <div class="table-responsive p-0">
                                 <div class="card-header pb-0">
-                                    <a href="#">
+                                    <a href="{{ route('create-card') }}">
                                         <button class="btn bg-gradient-primary mt-4 w-12"
                                             style="float: right;;margin-bottom:5px;margin-left:2px;border:none; background-color:#4a4235;">
                                             <i class="fa fa-plus">&nbsp; Thêm thẻ </i></button>

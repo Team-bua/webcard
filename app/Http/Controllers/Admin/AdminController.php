@@ -12,8 +12,5 @@ class AdminController extends Controller
         return view('layout_admin.index');
     }
 
-    public function getCard()
-    {
-        return view('layout_admin.card.index');
-    }
+    
 }
