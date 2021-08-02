@@ -41,7 +41,7 @@
                             </div>
                         </div>
                         <div class="text-center">
-                            <button class="btn bg-gradient-primary mt-4 w-12">Cập nhật </button>
+                            <button class="btn bg-gradient-primary w-12">Cập nhật </button>
                         </div>
                     </div>
                 </div>
@@ -58,20 +58,20 @@
                             <div class="form-group">
                                 <label class="form-control-label" for="basic-url">Mật khẩu mới</label>
                                 <div class="input-group">
-                                  <span class="input-group-text"><i class="fa fa-quidditch"></i></span>
+                                  <span class="input-group-text"><i class="fa fa-paint-brush"></i></span>
                                   <input type="password" class="form-control" id="new_pass" name="new_pass" placeholder="Mật khẩu mới">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="form-control-label" for="basic-url">Nhập lại mật khẩu</label>
                                 <div class="input-group">
-                                  <span class="input-group-text"><i class="fa fa-phone"></i></span>
+                                  <span class="input-group-text"><i class="fa fa-paint-brush"></i></span>
                                   <input type="password" class="form-control" id="confirm_pass" name="confirm_pass" placeholder="Nhập lại mật khẩu">
                                 </div>
                             </div>
                         </div>
                         <div class="text-center">
-                            <button class="btn bg-gradient-primary mt-4 w-12">Cập nhật </button>
+                            <button class="btn bg-gradient-primary w-12">Cập nhật </button>
                         </div>
                     </div>
                 </div>
