@@ -214,11 +214,26 @@
   <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="{{ asset('dashboard/assets/js/soft-ui-dashboard.min.js?v=1.0.3') }}"></script>
   <script src="{{ asset('dashboard/assets/js/plugins/datatables.js') }}" type="text/javascript"></script>
+  <script src="{{ asset('dashboard/assets/js/plugins/jquery.min.js') }}" type="text/javascript"></script>
   <script type="text/javascript">
       const dataTableBasic = new simpleDatatables.DataTable("#datatable-basic", {
           searchable: false,
           fixedHeight: true
       });
+  </script>
+  <script>
+     function changeImg(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#img').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+                }
+            }
+        $('#img').click(function() {
+            $('#fImages').click();
+        });
   </script>
 </body>
 
