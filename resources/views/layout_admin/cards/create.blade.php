@@ -22,12 +22,6 @@
                 <div class="card mb-4">
                     <div class="card-body px-0 pt-0 pb-2">
                         <div class="content-wrapper" style="min-height: 898px;">
-                            <!-- Content Header (Page header) -->
-                            <section class="content-header">
-                                <h1 style="text-align: center">
-                                    Thêm game
-                                </h1>
-                            </section>
 
                             <!-- Main content -->
                             <section class="content">

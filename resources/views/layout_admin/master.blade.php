@@ -19,18 +19,26 @@
   <link href="{{ asset('dashboard/assets/css/nucleo-svg.css') }}" rel="stylesheet" />
   <!-- CSS Files -->
   <link id="pagestyle" href="{{ asset('dashboard/assets/css/soft-ui-dashboard.css?v=1.0.3') }}" rel="stylesheet" />
-  <link rel="stylesheet"  href="{{ asset('dashboard/assets/css/soft-ui-dashboard2.min.css?v=1.0.0') }}" type="text/css"> 
+  <link rel="stylesheet" href="{{ asset('dashboard/assets/css/soft-ui-dashboard2.min.css?v=1.0.0') }}" type="text/css">
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+  
 </head>
+
 <body class="g-sidenav-show  bg-gray-100">
-    @include('layout_admin.slidebar')
-    @yield('content')
+  @include('layout_admin.slidebar')
+  @yield('content')
   <!--   Core JS Files   -->
   <script src="{{ asset('dashboard/assets/js/core/popper.min.js') }}"></script>
   <script src="{{ asset('dashboard/assets/js/core/bootstrap.min.js') }}"></script>
   <script src="{{ asset('dashboard/assets/js/plugins/perfect-scrollbar.min.js') }}"></script>
   <script src="{{ asset('dashboard/assets/js/plugins/smooth-scrollbar.min.js') }}"></script>
   <script src="{{ asset('dashboard/assets/js/plugins/chartjs.min.js') }}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
   <script>
+    $(document).ready(function() {
+      $('#select2').select2();
+    });
+
     var ctx = document.getElementById("chart-bars").getContext("2d");
 
     new Chart(ctx, {
@@ -216,10 +224,10 @@
   <script src="{{ asset('dashboard/assets/js/plugins/datatables.js') }}" type="text/javascript"></script>
   <script src="{{ asset('dashboard/assets/js/plugins/jquery.min.js') }}" type="text/javascript"></script>
   <script type="text/javascript">
-      const dataTableBasic = new simpleDatatables.DataTable("#datatable-basic", {
-          searchable: false,
-          fixedHeight: true
-      });
+    const dataTableBasic = new simpleDatatables.DataTable("#datatable-basic", {
+      searchable: false,
+      fixedHeight: true
+    });
   </script>
   <script>
      function changeImg(input) {
