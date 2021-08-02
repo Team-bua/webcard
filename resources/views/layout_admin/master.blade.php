@@ -15,12 +15,11 @@
   <link href="{{ asset('dashboard/assets/css/nucleo-icons.css') }}" rel="stylesheet" />
   <link href="{{ asset('dashboard/assets/css/nucleo-svg.css') }}" rel="stylesheet" />
   <!-- Font Awesome Icons -->
-  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
-  
+  <script src="{{ asset('dashboard/assets/js/plugins/42d5adcbca.js') }}" crossorigin="anonymous"></script>
   <link href="{{ asset('dashboard/assets/css/nucleo-svg.css') }}" rel="stylesheet" />
   <!-- CSS Files -->
   <link id="pagestyle" href="{{ asset('dashboard/assets/css/soft-ui-dashboard.css?v=1.0.3') }}" rel="stylesheet" />
-  <link rel="stylesheet"  href="{{ asset('dashboard/assets/css/soft-ui-dashboard2.min.css?v=1.0.0') }}" type="text/css">
+  <link rel="stylesheet"  href="{{ asset('dashboard/assets/css/soft-ui-dashboard2.min.css?v=1.0.0') }}" type="text/css"> 
 </head>
 <body class="g-sidenav-show  bg-gray-100">
     @include('layout_admin.slidebar')
