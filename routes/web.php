@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Frontend\FrontendController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,6 +19,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/admin',[AdminController::class,'getAdmin'])->name('admin');
 //View card
 Route::get('/view-card',[AdminController::class,'getcard'])->name('viewcard');
+//Profile
+Route::get('/profile',[UserController::class,'getProfile'])->name('profile');
+
 //Home
 Route::get('/',[FrontendController::class,'getIndex'])->name('index');
 //Sign Up
@@ -27,7 +31,7 @@ Route::get('/sign-in',[FrontendController::class,'signIn'])->name('signin');
 //Buy card
 Route::get('/card',[FrontendController::class,'getCard'])->name('card');
 
-//Buy card
+//Test
 Route::get('/test', function(){
     return view('test');
 });
