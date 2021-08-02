@@ -2,37 +2,7 @@
 @section('content')   
     <div class="main-content position-relative bg-gray-100 max-height-vh-100 h-100">
         <!-- Navbar -->
-        <nav style="margin-top: 15px" class="navbar navbar-main navbar-expand-lg bg-transparent shadow-none position-absolute px-4 w-100 z-index-2">
-            <div class="container-fluid py-1">
-                <nav aria-label="breadcrumb">
-                    <h3 class="text-white font-weight-bolder ms-2">Thông tin</h3>
-                </nav>
-            </div>
-        </nav>
-        <!-- End Navbar -->
-        <div class="container-fluid">
-            <div class="page-header min-height-300 border-radius-xl mt-4" style="background-image: url('dashboard/assets/img/curved-images/curved0.jpg'); background-position-y: 50%;">
-                <span class="mask bg-gradient-primary opacity-6"></span>
-            </div>
-            <div class="card card-body blur shadow-blur mx-4 mt-n6 overflow-hidden" style="margin-top: 50px;">
-                <div class="row gx-4">
-                    <div class="col-auto">
-                        <div class="avatar avatar-xl position-relative">
-                            <img src="{{ asset('dashboard/assets/img/bruce-mars.jpg') }}" alt="profile_image" class="w-100 border-radius-lg shadow-sm">
-                        </div>
-                    </div>
-                    <div class="col-auto my-auto">
-                        <div class="h-100">
-                            <h5 class="mb-1">
-                                Alec Thompson
-                            </h5>
-                            {{-- <p class="mb-0 font-weight-bold text-sm">
-                                CEO / Co-Founder
-                            </p> --}}
-                        </div>
-                    </div>
-            </div>
-        </div>
+        @include('user.avatar')
         <div class="container-fluid py-4">
             <div class="row">
                 <div class="col-12 col-xl-6">
@@ -44,59 +14,64 @@
                             <div class="form-group">
                                 <label class="form-control-label" for="basic-url">Tên khách hàng</label>
                                 <div class="input-group">
-                                  <span class="input-group-text"><i class="fa fa-quidditch"></i></span>
-                                  <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                                  <span class="input-group-text"><i class="fa fa-paint-brush"></i></span>
+                                  <input type="text" class="form-control" id="name" name="name" placeholder="Tên khách hàng">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="form-control-label" for="basic-url">Số điện thoại</label>
                                 <div class="input-group">
                                   <span class="input-group-text"><i class="fa fa-phone"></i></span>
-                                  <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                                  <input type="text" class="form-control" id="phone" name="phone" placeholder="Số điện thoại">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="form-control-label" for="basic-url">Email</label>
                                 <div class="input-group">
                                   <span class="input-group-text"><i class="fa fa-envelope"></i></span>
-                                  <input type="email" class="form-control" id="basic-url" aria-describedby="basic-addon3" disabled>
+                                  <input type="email" class="form-control" id="email" name="email" disabled>
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <label class="form-control-label" for="basic-url">Ảnh đại diện</label>
+                                <div class="input-group">
+                                  <input id="fImages" type="file" name="avatar" class="form-control" style="display: none"  onchange="changeImg(this)">
+                                  <img id="img" class="img" style="width: 100px; height: 100px;" src="{{ asset('dashboard/assets/img/no_img.jpg') }}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button class="btn bg-gradient-primary mt-4 w-12">Cập nhật </button>
                         </div>
                     </div>
                 </div>
                 <div class="col-12 col-xl-6">
-                    <div class="card h-100">
+                    <div class="card h-80">
                         <div class="card-header pb-0 p-3">
                             <div class="row">
                                 <div class="col-md-8 d-flex align-items-center">
-                                    <h6 class="mb-0">Profile Information</h6>
+                                    <h6 class="mb-0">Đổi mật khẩu</h6>
                                 </div>
                             </div>
                         </div>
                         <div class="card-body p-3">
-                            <p class="text-sm">
-                                Hi, I’m Alec Thompson, Decisions: If you can’t decide, the answer is no. If two equally difficult paths, choose the one more painful in the short term (pain avoidance is creating an illusion of equality).
-                            </p>
-                            <hr class="horizontal gray-light my-4">
-                            <ul class="list-group">
-                                <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">Full Name:</strong> &nbsp; Alec M. Thompson</li>
-                                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Mobile:</strong> &nbsp; (44) 123 1234 123</li>
-                                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Email:</strong> &nbsp; alecthompson@mail.com</li>
-                                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Location:</strong> &nbsp; USA</li>
-                                <li class="list-group-item border-0 ps-0 pb-0">
-                                    <strong class="text-dark text-sm">Social:</strong> &nbsp;
-                                    <a class="btn btn-facebook btn-simple mb-0 ps-1 pe-2 py-0" href="javascript:;">
-                                        <i class="fab fa-facebook fa-lg"></i>
-                                    </a>
-                                    <a class="btn btn-twitter btn-simple mb-0 ps-1 pe-2 py-0" href="javascript:;">
-                                        <i class="fab fa-twitter fa-lg"></i>
-                                    </a>
-                                    <a class="btn btn-instagram btn-simple mb-0 ps-1 pe-2 py-0" href="javascript:;">
-                                        <i class="fab fa-instagram fa-lg"></i>
-                                    </a>
-                                </li>
-                            </ul>
+                            <div class="form-group">
+                                <label class="form-control-label" for="basic-url">Mật khẩu mới</label>
+                                <div class="input-group">
+                                  <span class="input-group-text"><i class="fa fa-quidditch"></i></span>
+                                  <input type="password" class="form-control" id="new_pass" name="new_pass" placeholder="Mật khẩu mới">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-control-label" for="basic-url">Nhập lại mật khẩu</label>
+                                <div class="input-group">
+                                  <span class="input-group-text"><i class="fa fa-phone"></i></span>
+                                  <input type="password" class="form-control" id="confirm_pass" name="confirm_pass" placeholder="Nhập lại mật khẩu">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button class="btn bg-gradient-primary mt-4 w-12">Cập nhật </button>
                         </div>
                     </div>
                 </div>
