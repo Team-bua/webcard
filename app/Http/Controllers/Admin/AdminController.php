@@ -12,5 +12,8 @@ class AdminController extends Controller
         return view('layout_admin.index');
     }
 
-    
+    public function getAllUsers()
+    {
+        return view('layout_admin.all_user.index');
+    }
 }

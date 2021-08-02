@@ -20,8 +20,16 @@ use Illuminate\Support\Facades\Route;
 Route::get('/admin',[AdminController::class,'getAdmin'])->name('admin');
 //View card
 Route::get('/view-card',[CardController::class,'GetCardToIndex'])->name('viewcard');
+//View card
+Route::get('/all-users',[AdminController::class,'getAllUsers'])->name('allusers');
+
+// Page user
 //Profile
 Route::get('/profile',[UserController::class,'getProfile'])->name('profile');
+//Order history
+Route::get('/order-history',[UserController::class,'getOrderHistory'])->name('orderhistory');
+
+
 //Home
 Route::get('/',[FrontendController::class,'getIndex'])->name('index');
 //Sign Up
