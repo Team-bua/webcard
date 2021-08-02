@@ -388,3 +388,12 @@
         </div>
     </main>
 @endsection
+@section('script')
+<script src="{{ asset('dashboard/assets/js/plugins/datatables.js') }}" type="text/javascript"></script>
+<script type="text/javascript">
+  const dataTableBasic = new simpleDatatables.DataTable("#datatable-basic", {
+    searchable: false,
+    fixedHeight: true
+  });
+</script>
+@endsection

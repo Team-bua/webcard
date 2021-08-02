@@ -33,10 +33,10 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="form-control-label" for="basic-url">Ảnh đại diện</label>
-                                <div class="input-group">
+                                <label class="form-control-label" for="basic-url">Ảnh đại diện</label> <br>
+                                <div class="avatar avatar-xl position-relative" style="margin-top: 25px; margin-left: 25px">
                                   <input id="fImages" type="file" name="avatar" class="form-control" style="display: none"  onchange="changeImg(this)">
-                                  <img id="img" class="img" style="width: 100px; height: 100px;" src="{{ asset('dashboard/assets/img/no_img.jpg') }}">
+                                  <img id="img" class="border-radius-lg shadow-sm" style="width: 120px; height: 120px;" src="{{ asset('dashboard/assets/img/no_img.jpg') }}">
                                 </div>
                             </div>
                         </div>
