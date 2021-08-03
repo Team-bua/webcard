@@ -120,24 +120,46 @@
               </div>
             </div>
             <div class="card-body">
-              <form role="form text-left">
+              <form role="form text-left" action="{{route('signup')}}" method="post">
+                @csrf
                 <div class="mb-3">
-                  <input type="text" class="form-control" placeholder="Name" aria-label="Name" aria-describedby="email-addon">
+                  <input type="text" name="name" class="form-control" placeholder="Tên" aria-label="Name" aria-describedby="email-addon">
+                  @error('name')
+                    <p style="color:red; font-size: 13px; margin-left: 10px">{{ $message }}</p>
+                  @enderror
                 </div>
                 <div class="mb-3">
-                  <input type="email" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="email-addon">
+                  <input type="email" name="email" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="email-addon">
+                  @error('email')
+                    <p style="color:red; font-size: 13px; margin-left: 10px">{{ $message }}</p>
+                  @enderror
                 </div>
                 <div class="mb-3">
-                  <input type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="password-addon">
+                  <input type="text" name="phone" class="form-control" placeholder="Số điện thoại" aria-label="Password" aria-describedby="password-addon">
+                  @error('phone')
+                    <p style="color:red; font-size: 13px; margin-left: 10px">{{ $message }}</p>
+                  @enderror
+                </div>
+                <div class="mb-3">
+                  <input type="password" name="password" class="form-control" placeholder="Mật khẩu" aria-label="Password" aria-describedby="password-addon">
+                  @error('password')
+                    <p style="color:red; font-size: 13px; margin-left: 10px">{{ $message }}</p>
+                  @enderror
+                </div>
+                <div class="mb-3">
+                  <input type="password" name="confirm_password" class="form-control" placeholder="Nhập lại mật khẩu" aria-label="Password" aria-describedby="password-addon">
+                  @error('confirm_password')
+                    <p style="color:red; font-size: 13px; margin-left: 10px">{{ $message }}</p>
+                  @enderror
                 </div>
                 <div class="form-check form-check-info text-left">
-                  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked>
+                  <input class="form-check-input" type="checkbox" value="" name="checkbox" id="flexCheckDefault" checked>
                   <label class="form-check-label" for="flexCheckDefault">
                     Tôi đồng ý với các <a href="javascript:;" class="text-dark font-weight-bolder">Điều khoản và Điều kiện</a>
                   </label>
                 </div>
                 <div class="text-center">
-                  <button type="button" class="btn bg-gradient-dark w-100 my-4 mb-2">Đăng ký</button>
+                  <button type="submit" class="btn bg-gradient-dark w-100 my-4 mb-2">Đăng ký</button>
                 </div>
                 <p class="text-sm mt-3 mb-0">Bạn đã có tài khoản? <a href="{{ route('signin') }}" class="text-dark font-weight-bolder">Đăng nhập</a></p>
               </form>

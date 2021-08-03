@@ -29,11 +29,14 @@ Route::get('/profile',[UserController::class,'getProfile'])->name('profile');
 //Order history
 Route::get('/order-history',[UserController::class,'getOrderHistory'])->name('orderhistory');
 
-
+//Login Facebook
+Route::get('/social-login/redirect/{provider}', [LoginController::class,'redirectToProvider'])->name('social.login');
+Route::get('/social-login/{provider}/callback', [LoginController::class,'handleProviderCallback'])->name('social.callback');
 //Home
 Route::get('/',[FrontendController::class,'getIndex'])->name('index');
 //Sign Up
 Route::get('/sign-up',[FrontendController::class,'signUp'])->name('signup');
+Route::post('/sign-up',[FrontendController::class,'postSignup'])->name('signup');
 //Sign In
 Route::get('/sign-in',[FrontendController::class,'signIn'])->name('signin');
 //Buy card

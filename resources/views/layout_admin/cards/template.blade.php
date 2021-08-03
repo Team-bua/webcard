@@ -23,19 +23,21 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-2">
-            <div class="form-group">
-                <label class="form-control-label" for="basic-url">Thao Tác: </label> <br>
-                <button type="button" class="btn bg-gradient-primary w-12 float-left" name="add_btn" id="add_btn"><i class="fa fa-plus"></i></button>
-            </div>
         </div>
-    </div>
-    <div id="new_chq"></div>
-    <div class="form-group">
-        <label class="form-control-label" for="basic-url">Ảnh đại diện</label>
-        <div class="input-group">
-            <input id="fImages" type="file" name="avatar" class="form-control" style="display: none" onchange="changeImg(this)">
-            <img id="img" class="img" style="width: 100px; height: 100px;" src="{{ asset('dashboard/assets/img/no_img.jpg') }}">
+        <div class="col-md-2">
+          <div class="form-group">
+            <label class="form-control-label" for="basic-url">Thao Tác: </label> <br>
+            <button type="button" class="btn bg-gradient-primary w-12 float-left" name="add_btn" id="add_btn"><i class="fa fa-plus"></i></button>
+          </div>
+        </div>
+      </div>
+        <div id="new_chq"></div>
+        <div class="form-group">
+            <label class="form-control-label" for="basic-url">Ảnh đại diện</label>
+            <div class="input-group">
+                <input id="fImages" type="file" name="avatar" class="form-control" style="display: none" onchange="changeImg(this)">
+                <img id="img" class="img" style="width: 100px; height: 100px;" src="{{ asset('dashboard/assets/img/no_img.jpg') }}">
+            </div>
         </div>
     </div>
 </div>
