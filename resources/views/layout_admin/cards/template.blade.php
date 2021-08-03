@@ -1,4 +1,3 @@
-
 <div class="card-body p-3">
     <div class="form-group" style="width: 70%;">
         <label class="form-control-label" for="basic-url">Tên thẻ</label>
