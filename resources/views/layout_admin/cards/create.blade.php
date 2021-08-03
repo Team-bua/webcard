@@ -31,7 +31,9 @@
                                     @endif
                                 </div>
                                 <div class="box box-info">
-                                    <form method="post" enctype="multipart/form-data" id="form_data">
+                                <button id="submit1" class="btn btn-primary">asdasd</button>
+                                    <form action="#"method="post" enctype="multipart/form-data" id="form_data">
+                                        
                                         @csrf
                                         @include('layout_admin.cards.template')
                                         <div class="text-center">
@@ -49,5 +51,37 @@
 </main>
 @endsection
 @section('script')
+<script type="text/javascript">
+    $(document).ready(function() {
 
+        var count = 1;
+
+        function data_form(number) {
+            var html = '<div class="input-group" id="row' + count + '">';
+            html += "<div class='col-sm-2'>";
+            html += '<label class="form-control-label" for="basic-url">Giá: </label>';
+            html += '<input name="package[]" id="package" type="text" class="form-control" placeholder="Giá. . . . . . . . ." maxlength="150" required>';
+            html += '</div>';
+            html += '<div class="col-sm-2" style="margin-left: 1%">';
+            html += '<label class="form-control-label" for="basic-url">Thao Tác: </label>';
+            html += "<br>";
+            html += '<button type="button" class="btn bg-gradient-primary btn_remove" name="remove_btn" id="'+count+'"><i class="fa fa-minus"></i></button>';
+            html += '</div>';
+            html += '</div>';
+
+            $('#new_chq').append(html);
+
+        }
+
+        $('#add_btn').click(function() {
+            count++;
+            data_form(count);
+        });
+
+        $(document).on('click', '.btn_remove', function() {
+            var button_id = $(this).attr('id');
+            $('#row' + button_id + '').remove();
+        });
+    });
+</script>
 @stop
