@@ -61,7 +61,7 @@
             html += '<div class="form-group">';
             html += '<label class="form-control-label" for="basic-url">Giá: </label>';
             html += '<div class="input-group">';
-            html += '<input name="price[]" id="price" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Giá. . . . . . . . ." maxlength="150" required>';
+            html += '<input name="price[]" id="price" type="number" class="form-control" id="exampleFormControlInput1" placeholder="Giá. . . . . . . . ." min="0" maxlength="50" required>';
             html += '<span class="input-group-text" id="basic-addon2">VNĐ</span>';
             html += "</div>";
             html += '</div>';

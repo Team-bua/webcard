@@ -44,6 +44,7 @@ Route::get('/card',[FrontendController::class,'getCardToView'])->name('card');
 //card
 Route::get('/create-card',[CardController::class,'AddCard'])->name('create-card');
 Route::post('/create-card/save',[CardController::class,'SaveCard'])->name('card_save');
+Route::get('/edit-card/{id}',[CardController::class,'EditCard'])->name('card_edit');
 
 //Test
 Route::get('/test', function(){
