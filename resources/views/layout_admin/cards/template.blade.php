@@ -21,8 +21,11 @@
         <div class="col-md-4">
           <div class="form-group">
             <label class="form-control-label" for="basic-url">Giá: </label>
-            <input name="package[]" id="package" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Giá. . . . . . . . ." maxlength="150" required>
-          </div>
+            <div class="input-group">          
+                <input name="package[]" id="package" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Giá. . . . . . . . ." maxlength="150" required>
+                <span class="input-group-text" id="basic-addon2">VNĐ</span>
+            </div>
+        </div>
         </div>
         <div class="col-md-2">
           <div class="form-group">
