@@ -57,15 +57,21 @@
         var count = 1;
 
         function data_form(number) {
-            var html = '<div class="input-group" id="row' + count + '">';
-            html += "<div class='col-sm-2'>";
+            var html = '<div class="row" style="width: 80%;" id="row'+ count +'">';
+            html += '<div class="col-md-3">';
+            html += '<div class="form-group">';
             html += '<label class="form-control-label" for="basic-url">Giá: </label>';
-            html += '<input name="package[]" id="package" type="text" class="form-control" placeholder="Giá. . . . . . . . ." maxlength="150" required>';
+            html += '<div class="input-group">';
+            html += '<input name="package[]" id="package" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Giá. . . . . . . . ." maxlength="150" required>';
+            html += '<span class="input-group-text" id="basic-addon2">VNĐ</span>';
+            html += "</div>";
             html += '</div>';
-            html += '<div class="col-sm-2" style="margin-left: 1%">';
-            html += '<label class="form-control-label" for="basic-url">Thao Tác: </label>';
-            html += "<br>";
-            html += '<button type="button" class="btn bg-gradient-primary btn_remove" name="remove_btn" id="'+count+'"><i class="fa fa-minus"></i></button>';
+            html += '</div>';
+            html += '<div class="col-md-2">';
+            html += '<div class="form-group">';
+            html += '<label class="form-control-label" for="basic-url">Thao Tác: </label> <br>';
+            html += '<button type="button" class="btn bg-gradient-primary w-12 float-left btn_remove" name="add_btn" id="'+ count +'"><i class="fa fa-minus"></i></button>';
+            html += '</div>';
             html += '</div>';
             html += '</div>';
 
