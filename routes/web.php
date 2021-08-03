@@ -40,6 +40,7 @@ Route::get('/sign-in',[FrontendController::class,'signIn'])->name('signin');
 Route::get('/card',[FrontendController::class,'getCardToView'])->name('card');
 //card
 Route::get('/create-card',[CardController::class,'AddCard'])->name('create-card');
+Route::post('/create-card/save',[CardController::class,'SaveCard'])->name('card_save');
 
 //Test
 Route::get('/test', function(){

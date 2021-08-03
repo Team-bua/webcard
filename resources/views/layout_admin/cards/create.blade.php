@@ -27,12 +27,11 @@
                             <section class="content">
                                 <div class="box-header">
                                     @if (session('information'))
-                                    <div class="alert alert-success">{{ session('information') }}</div>
+                                    <div class="alert alert-success"><b>{{ session('information') }}</b></div>
                                     @endif
                                 </div>
                                 <div class="box box-info">
-                                <button id="submit1" class="btn btn-primary">asdasd</button>
-                                    <form action="#"method="post" enctype="multipart/form-data" id="form_data">
+                                    <form action="{{ route('card_save') }}"method="post" enctype="multipart/form-data" id="form_data">
                                         
                                         @csrf
                                         @include('layout_admin.cards.template')
@@ -62,7 +61,7 @@
             html += '<div class="form-group">';
             html += '<label class="form-control-label" for="basic-url">Giá: </label>';
             html += '<div class="input-group">';
-            html += '<input name="package[]" id="package" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Giá. . . . . . . . ." maxlength="150" required>';
+            html += '<input name="price[]" id="price" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Giá. . . . . . . . ." maxlength="150" required>';
             html += '<span class="input-group-text" id="basic-addon2">VNĐ</span>';
             html += "</div>";
             html += '</div>';

@@ -3,12 +3,12 @@
         <label class="form-control-label" for="basic-url">Tên thẻ</label>
         <div class="input-group">
             <span class="input-group-text"><i class="fa fa-quidditch"></i></span>
-            <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+            <input type="text" class="form-control" id="name_card" name="name_card" aria-describedby="basic-addon3">
         </div>
     </div>
     <div class="form-group">
         <label class="form-control-label" for="basic-url">Loại thẻ</label>
-        <select class="form-control" id="exampleFormControlSelect1" style="width: 200px;">
+        <select class="form-control" id="type_card" name="type_card" style="width: 200px;">
             <option>Card</option>
             <option>Voucher</option>
         </select>
@@ -18,7 +18,7 @@
             <div class="form-group">
                 <label class="form-control-label" for="basic-url">Giá: </label>
                 <div class="input-group">
-                    <input name="package[]" id="package" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Giá. . . . . . . . ." maxlength="150" required>
+                    <input name="price[]" id="price" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Giá. . . . . . . . ." maxlength="150" required>
                     <span class="input-group-text" id="basic-addon2">VNĐ</span>
                 </div>
             </div>
