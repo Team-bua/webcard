@@ -14,9 +14,9 @@
                 <option>Voucher</option>
             </select>
     </div>
-    <div class="row">
+    <div class="row" style="width: 80%;">
         <div class="col-md-3">
-          <div class="form-group" style="width: 70%;">
+          <div class="form-group">
             <label class="form-control-label" for="basic-url">Giá: </label>
             <div class="input-group">          
                 <input name="package[]" id="package" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Giá. . . . . . . . ." maxlength="150" required>
