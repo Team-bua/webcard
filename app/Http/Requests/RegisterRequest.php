@@ -29,6 +29,7 @@ class RegisterRequest extends FormRequest
             'phone' => 'required|numeric|unique:users,phone',
             'password' =>'required|max:25|min:6',
             'confirm_password' => 'required|same:password',
+            'checkbox' => 'required',
         ];
     }
     public function messages()
@@ -49,6 +50,7 @@ class RegisterRequest extends FormRequest
             'password.min' => 'Mật khẩu ít nhất 6 ký tự',
             'confirm_password.required' => 'Vui lòng nhập lại mật khẩu',
             'confirm_password.same' => 'Xác nhận mật khẩu không chính xác',
+            'checkbox.required' => 'Vui lòng đồng ý điều khoản',
         ];
     }
 }

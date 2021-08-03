@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Repositories\FrontendRepository;
 use Illuminate\Http\Request;
@@ -46,7 +47,7 @@ class FrontendController extends Controller
         if($sign_up == true){
             $credentaials = array('email' => $request->email, 'password' => $request->password);
             if (Auth::attempt($credentaials)) {
-                return redirect()->route('index')->with('message');
+                return redirect()->route('index')->with('message', '1');
             } else {
                 return redirect()->back();
             }
@@ -56,6 +57,30 @@ class FrontendController extends Controller
     public function signIn()
     {
         return view('layout_index.page.signin');
+    }
+
+    public function postSignIn(LoginRequest $request)
+    {
+        $credentaials = array('email' => $request->email, 'password' => $request->password);
+        if (Auth::attempt($credentaials)) {
+            if(Auth::user()->banned_status == 0){
+                return redirect()->route('index')->with('message', '2');
+            }
+            else
+            {
+                Auth::logout();
+                return redirect()->back()->with('message', '4');
+            }
+            
+        } else {
+            return redirect()->back()->with('message', '3');
+        }
+    }
+
+    public function postLogout()
+    {
+        Auth::logout();
+        return redirect()->route('index');
     }
     
     public function getCardToView()

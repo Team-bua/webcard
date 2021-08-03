@@ -24,14 +24,36 @@
 	<!-- /.navbar-collapse -->
 	<div class="navbar-other ms-lg-4" style="margin-bottom:5px">
 		<ul class="navbar-nav flex-row align-items-center ms-auto" data-sm-skip="true">
-		<li class="nav-item ms-lg-0">
-			<a href="{{ route('signin') }}"><img src="{{ asset('dev/img/person-fill.svg') }}" width="20px" height="20px" alt=""></a>			
-		</li>
-		<li class="nav-item ms-lg-0" style="margin-left: 10px">
-			<a href="{{ route('admin') }}">{{ Auth::user()->name }}</a>
-			
-		</li>
-		
+		@if (Auth::check())
+			@if (Auth::user()->email == 'admin@webcard.com')
+				<li class="nav-item ms-lg-0">
+					<a href="{{ route('admin') }}"><b style="color: black; font-size: 13px; margin-left: 3px" data-toggle="tooltip" data-placement="top" title="Thông tin">{{ Auth::user()->name }}</b></a>
+					
+				</li>
+				<li class="nav-item ms-lg-0">
+					<a href="{{ route('logout') }}">
+						<img src="{{ asset('dev/img/logout.svg') }}" width="20px" height="20px" alt="" style="margin-left: 10px" data-toggle="tooltip" data-placement="top" title="Đăng xuất">
+					</a>
+				</li>			
+			@else
+				<li class="nav-item ms-lg-0">
+					<a href="{{ route('profile', Auth::user()->id) }}"><img src="{{ asset('dev/img/person-fill.svg') }}" width="20px" height="20px" alt=""></a>			
+				</li>
+				<li class="nav-item ms-lg-0">
+					<a href="{{ route('profile', Auth::user()->id) }}"><b style="color: black; font-size: 13px; margin-left: 3px" data-toggle="tooltip" data-placement="top" title="Thông tin">{{ Auth::user()->name }}</b></a>
+					
+				</li>
+				<li class="nav-item ms-lg-0">
+					<a href="{{ route('logout') }}">
+						<img src="{{ asset('dev/img/logout.svg') }}" width="20px" height="20px" alt="" style="margin-left: 10px" data-toggle="tooltip" data-placement="top" title="Đăng xuất">
+					</a>
+				</li>
+			@endif
+		@else
+			<li class="nav-item ms-lg-0">
+				<a href="{{ route('signin') }}"><img src="{{ asset('dev/img/person-fill.svg') }}" width="20px" height="20px" data-toggle="tooltip" data-placement="top" title="Đăng nhập" alt=""></a>			
+			</li>
+		@endif
 		<li class="nav-item ms-lg-0">
 			<div class="navbar-hamburger d-lg-none d-xl-none ms-auto"><button class="hamburger animate plain" data-toggle="offcanvas-nav"><span></span></button></div>
 		</li>

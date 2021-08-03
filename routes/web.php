@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Card\CardController;
 use App\Http\Controllers\Frontend\FrontendController;
+use App\Http\Controllers\Frontend\LoginController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,7 +26,7 @@ Route::get('/all-users',[AdminController::class,'getAllUsers'])->name('allusers'
 
 // Page user
 //Profile
-Route::get('/profile',[UserController::class,'getProfile'])->name('profile');
+Route::get('/profile/{id}',[UserController::class,'getProfile'])->name('profile');
 //Order history
 Route::get('/order-history',[UserController::class,'getOrderHistory'])->name('orderhistory');
 
@@ -39,6 +40,9 @@ Route::get('/sign-up',[FrontendController::class,'signUp'])->name('signup');
 Route::post('/sign-up',[FrontendController::class,'postSignup'])->name('signup');
 //Sign In
 Route::get('/sign-in',[FrontendController::class,'signIn'])->name('signin');
+Route::post('/sign-in',[FrontendController::class,'postSignIn'])->name('signin');
+//Logout
+Route::get('/logout',[FrontendController::class,'postLogout'])->name('logout');
 //Buy card
 Route::get('/card',[FrontendController::class,'getCardToView'])->name('card');
 //card

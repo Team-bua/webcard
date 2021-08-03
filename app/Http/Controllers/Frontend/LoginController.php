@@ -42,10 +42,10 @@ class LoginController extends Controller
         }
         else{
             if(Auth::user()->banned_status == 0){
-                return redirect()->route('index')->with('message', '0');
+                return redirect()->route('index')->with('message', '2');
             }else{
                 Auth::logout();
-                return redirect()->route('index')->with('message', '1');
+                return redirect()->back()->with('message', '4');
             }
             
         }

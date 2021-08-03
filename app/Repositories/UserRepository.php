@@ -19,6 +19,12 @@ class UserRepository
      *
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
+
+    public function getProfile($id)
+    {
+        return User::find($id);       
+    }
+
     public function updateInfo($request, $id)
     {
         $user = User::find($id);
@@ -48,52 +54,4 @@ class UserRepository
         $user->save();
     }
 
-    public function pointPurchase($request, $id, $type)
-    {
-        $point_purchase = new PointPurchase();
-
-        $point_purchase->user_id = $id;
-        $point_purchase->point_purchase = $request->amount_dep;
-        $point_purchase->description = 'Purchase ' . $request->amount_dep . ' point, ' . $type;
-        $point_purchase->order_id = $request->amount_dep . '' . Str::random(4);
-        $point_purchase->method = 'Purchase point';
-        $point_purchase->save();
-    }
-
-    // public function pointWithdraw($request, $id)
-    // {
-    //     $point_purchase = new PointPurchase();
-
-    //     $point_purchase->user_id = $id;
-    //     $point_purchase->point_purchase = $request->amount;
-    //     $point_purchase->description = $request->note;
-    //     $point_purchase->order_id = $request->amount . '' . Str::random(4);
-    //     $point_purchase->method = 'Withdraw point';
-    //     $point_purchase->save();
-    // }
-
-    public function getAdminInfo()
-    {
-        $admin_info = User::where('role', '1')->first();
-        return $admin_info;
-    }
-
-    public function getAdminTrans()
-    {
-        $admin_trans = AdminTransaction::where('user_id', '1')->first();
-        return $admin_trans;
-    }
-
-    public function getUserInfo($id)
-    {
-        $user_id = PointPurchase::where('id', $id)->value('user_id');
-        $user_info = User::where('id', $user_id)->first();
-        return $user_info;
-    }
-
-    public function getPointPurchase($id)
-    {
-        $point_purchase = PointPurchase::find($id);
-        return $point_purchase;
-    }
 }
