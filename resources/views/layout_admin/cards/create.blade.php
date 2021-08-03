@@ -36,7 +36,7 @@
                                         
                                         @csrf
                                         @include('layout_admin.cards.template')
-                                        <div style="margin-left: 15px">
+                                        <div class="text-center">
                                             <input type="submit" name="submit" id="submit" value="Thêm" class="btn bg-gradient-primary w-12 btnthem">
                                         </div>
                                     </form>

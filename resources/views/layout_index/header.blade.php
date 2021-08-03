@@ -25,8 +25,13 @@
 	<div class="navbar-other ms-lg-4" style="margin-bottom:5px">
 		<ul class="navbar-nav flex-row align-items-center ms-auto" data-sm-skip="true">
 		<li class="nav-item ms-lg-0">
-			<a href="{{ route('signin') }}"><img src="{{ asset('dev/img/person-fill.svg') }}" width="20px" height="20px" alt=""></a>
+			<a href="{{ route('signin') }}"><img src="{{ asset('dev/img/person-fill.svg') }}" width="20px" height="20px" alt=""></a>			
 		</li>
+		<li class="nav-item ms-lg-0" style="margin-left: 10px">
+			<a href="{{ route('admin') }}">{{ Auth::user()->name }}</a>
+			
+		</li>
+		
 		<li class="nav-item ms-lg-0">
 			<div class="navbar-hamburger d-lg-none d-xl-none ms-auto"><button class="hamburger animate plain" data-toggle="offcanvas-nav"><span></span></button></div>
 		</li>
