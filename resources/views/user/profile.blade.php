@@ -15,28 +15,28 @@
                                 <label class="form-control-label" for="basic-url">Tên khách hàng</label>
                                 <div class="input-group">
                                   <span class="input-group-text"><i class="fa fa-paint-brush"></i></span>
-                                  <input type="text" class="form-control" id="name" name="name" placeholder="Tên khách hàng">
+                                  <input type="text" class="form-control" id="name" name="name" value="{{ $user->name }}" placeholder="Tên khách hàng">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="form-control-label" for="basic-url">Số điện thoại</label>
                                 <div class="input-group">
                                   <span class="input-group-text"><i class="fa fa-phone"></i></span>
-                                  <input type="text" class="form-control" id="phone" name="phone" placeholder="Số điện thoại">
+                                  <input type="text" class="form-control" id="phone" name="phone" value="{{ $user->phone }}" placeholder="Số điện thoại">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="form-control-label" for="basic-url">Email</label>
                                 <div class="input-group">
                                   <span class="input-group-text"><i class="fa fa-envelope"></i></span>
-                                  <input type="email" class="form-control" id="email" name="email" disabled>
+                                  <input type="email" class="form-control" id="email" name="email" value="{{ $user->email }}" disabled>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="form-control-label" for="basic-url">Ảnh đại diện</label> <br>
                                 <div class="avatar avatar-xl position-relative" style="margin-top: 25px; margin-left: 25px">
                                   <input id="fImages" type="file" name="avatar" class="form-control" style="display: none"  onchange="changeImg(this)">
-                                  <img id="img" class="border-radius-lg shadow-sm" style="width: 120px; height: 120px;" src="{{ asset('dashboard/assets/img/no_img.jpg') }}">
+                                  <img id="img" class="border-radius-lg shadow-sm" style="width: 120px; height: 120px;" src="{{ asset($user->avatar ? $user->avatar :'dashboard/assets/img/no_img.jpg') }}">
                                 </div>
                             </div>
                         </div>
