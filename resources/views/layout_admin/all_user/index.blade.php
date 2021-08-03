@@ -56,10 +56,8 @@
                                             <td class="align-middle text-center text-sm">
                                                 <span class="badge badge-sm bg-gradient-success">Online</span>
                                             </td>
-                                            <td class="align-middle text-center">
-                                                <div class="form-check form-switch">
-                                                    <a href="{{ route('index') }}"><input class="form-check-input" type="checkbox" ></a>
-                                                </div>
+                                            <td class="align-middle text-center text-sm">
+                                                <a href="{{ route('index') }}"><span class="badge badge-sm bg-gradient-danger">Khóa</span></a>
                                             </td>
                                             <td class="align-middle">
                                                 <a href="javascript:;" class="text-secondary font-weight-bold text-xs"
