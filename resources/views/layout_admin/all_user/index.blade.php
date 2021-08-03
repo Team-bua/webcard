@@ -381,7 +381,7 @@
 <script type="text/javascript">
   const dataTableBasic = new simpleDatatables.DataTable("#datatable-basic", {
     searchable: false,
-    fixedHeight: true
+    fixedHeight: true,
   });
 </script>
 @endsection
