@@ -21,7 +21,7 @@
             <div class="col-12">
                 <div class="card mb-4">
                     <div class="card-body px-0 pt-0 pb-2">
-                        <div class="content-wrapper" style="min-height: 898px;">
+                        <div class="content-wrapper" >
 
                             <!-- Main content -->
                             <section class="content">
@@ -34,7 +34,7 @@
                                     <form method="post" enctype="multipart/form-data" id="form_data">
                                         @csrf
                                         @include('layout_admin.cards.template')
-                                        <div class="text-center">
+                                        <div style="margin-left: 15px">
                                             <input type="submit" name="submit" id="submit" value="Thêm" class="btn bg-gradient-primary w-12 btnthem">
                                         </div>
                                     </form>

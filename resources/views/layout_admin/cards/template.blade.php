@@ -1,6 +1,6 @@
 
 <div class="card-body p-3">
-    <div class="form-group">
+    <div class="form-group" style="width: 70%;">
         <label class="form-control-label" for="basic-url">Tên thẻ</label>
         <div class="input-group">
             <span class="input-group-text"><i class="fa fa-quidditch"></i></span>
@@ -10,16 +10,13 @@
     <div class="form-group">
         <label class="form-control-label" for="basic-url">Loại thẻ</label>
             <select class="form-control" id="exampleFormControlSelect1" style="width: 200px;">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-                </select>
+                <option>Card</option>
+                <option>Voucher</option>
+            </select>
     </div>
     <div class="row">
-        <div class="col-md-4">
-          <div class="form-group">
+        <div class="col-md-3">
+          <div class="form-group" style="width: 70%;">
             <label class="form-control-label" for="basic-url">Giá: </label>
             <div class="input-group">          
                 <input name="package[]" id="package" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Giá. . . . . . . . ." maxlength="150" required>
