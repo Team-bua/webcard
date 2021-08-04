@@ -21,9 +21,15 @@ class CardController extends Controller
         return view('layout_admin.cards.create', compact('card_types'));
     }
 
-    public function EditCard(){
+    public function deletePrice(Request $request, $id)
+    {
+        return $this->repository->AjaxDeletePrice($request, $id);
+    }
+
+    public function EditCard($id){
+        $card = $this->repository->getCardToEdit($id);
         $card_types = $this->repository->getCardTypeForCard();
-        return view('layout_admin.cards.create', compact('card_types'));
+        return view('layout_admin.cards.edit', compact('card_types', 'card'));
     }
 
     public function GetCardToIndex()
@@ -32,8 +38,13 @@ class CardController extends Controller
         return view('layout_admin.cards.index', compact('cards'));
     }
 
-    public function SaveCard(CardRequest $request){
+    public function SaveCard(Request $request){
         $this->repository->store($request);
         return redirect()->back()->with('information', 'Thêm thành công');
+    }
+
+    public function UpdateCard(Request $request, $id){
+        $this->repository->update($request, $id);
+        return redirect()->back()->with('information', 'Cập nhật thành công');
     }
 }

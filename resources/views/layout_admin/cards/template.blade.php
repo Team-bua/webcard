@@ -9,7 +9,7 @@
     <div class="form-group">
         <label class="form-control-label" for="basic-url">Loại thẻ</label>
         <select class="form-control" id="type_card" name="type_card" style="width: 200px;" required>
-            @if($card_types)
+            @if($card_types && !isset($card))
                 @foreach($card_types as $t)
                     <option>{{ $t->name }}</option>
                 @endforeach
@@ -25,7 +25,7 @@
         </select>
     </div>
     @if(isset($card) && $card->price != '')
-        @for($i == 0; $i < count(json_decode($card->price)); $i++)
+        @for($i = 0; $i < count(json_decode($card->price)); $i++)
         <div class="row" style="width: 80%;" id="row{{ $i + 1 }}">
             <div class="col-md-3">
                 <div class="form-group">
@@ -72,8 +72,8 @@
     <div class="form-group">
         <label class="form-control-label" for="basic-url">Ảnh đại diện</label>
         <div class="input-group">
-            <input id="fImages" type="file" name="avatar" class="form-control" style="display: none" onchange="changeImg(this)" required>
-            <img id="img" class="img" style="width: 100px; height: 100px;" src="{{ isset($card) ? asset('$card->avatar') : asset('dashboard/assets/img/no_img.jpg') }}">
+            <input id="fImages" type="file" name="avatar" class="form-control" style="display: none" onchange="changeImg(this)">
+            <img id="img" class="img" style="width: 100px; height: 100px;" src="{{ isset($card) ? asset($card->image) : asset('dashboard/assets/img/no_img.jpg') }}">
         </div>
     </div>
 </div>
