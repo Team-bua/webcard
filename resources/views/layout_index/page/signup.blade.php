@@ -126,8 +126,8 @@
                   </label>
                 </div>
                 @error('checkbox')
-                <p style="color:red; font-size: 13px; margin-left: 10px">{{ $message }}</p>
-              @enderror
+                  <p style="color:red; font-size: 13px; margin-left: 10px">{{ $message }}</p>
+                @enderror
                 <div class="text-center">
                   <button type="submit" class="btn bg-gradient-dark w-100 my-4 mb-2">Đăng ký</button>
                 </div>

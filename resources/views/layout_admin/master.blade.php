@@ -18,10 +18,8 @@
   <script src="{{ asset('dashboard/assets/js/plugins/42d5adcbca.js') }}" crossorigin="anonymous"></script>
   <link href="{{ asset('dashboard/assets/css/nucleo-svg.css') }}" rel="stylesheet" />
   <!-- CSS Files -->
-  {{-- <link id="pagestyle" href="{{ asset('dashboard/assets/css/soft-ui-dashboard.css?v=1.0.3') }}" rel="stylesheet" /> --}}
-  <link rel="stylesheet" href="{{ asset('dashboard/assets/css/soft-ui-dashboard2.min.css?v=1.0.0') }}" type="text/css">
-  
-
+  <link id="pagestyle" href="{{ asset('dashboard/assets/css/soft-ui-dashboard.css?v=1.0.3') }}" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ asset('dashboard/assets/css/soft-ui-dashboard2.min.css?v=1.0.0') }}">
 </head>
 
 <body class="g-sidenav-show  bg-gray-100">
@@ -218,18 +216,7 @@
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="{{ asset('dashboard/assets/js/soft-ui-dashboard.min.js?v=1.0.3') }}"></script>
-  <script src="{{ asset('dashboard/assets/js/plugins/datatables.js') }}" type="text/javascript"></script>
   
-  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-  <script type="text/javascript">
-    $(document).ready(function() {
-      $('#select2').select2();
-    });
-    const dataTableBasic = new simpleDatatables.DataTable("#datatable-basic", {
-      searchable: false,
-      fixedHeight: true
-    });
-  </script>
   <script>
     function changeImg(input) {
       if (input.files && input.files[0]) {
@@ -243,6 +230,8 @@
     $('#img').click(function() {
       $('#fImages').click();
     });
+
+    $("div.alert").delay(2000).slideUp();
   </script>
   @yield('script')
 </body>

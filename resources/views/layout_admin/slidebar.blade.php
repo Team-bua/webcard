@@ -141,7 +141,7 @@
             @endcan
         </ul>
     </div>
-    <div class="sidenav-footer mx-3 ">
+    {{-- <div class="sidenav-footer mx-3 ">
         <div class="card card-background shadow-none card-background-mask-secondary" id="sidenavCard">
             <div class="full-background"
                 style="background-image: url('dashboard/assets/img/curved-images/white-curved.jpeg')"></div>
@@ -162,5 +162,5 @@
         <a class="btn bg-gradient-primary mt-4 w-100"
             href="https://www.creative-tim.com/product/soft-ui-dashboard-pro?ref=sidebarfree" type="button">Upgrade to
             pro</a>
-    </div>
+    </div> --}}
 </aside>

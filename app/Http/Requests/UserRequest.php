@@ -24,18 +24,20 @@ class UserRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' =>'required|max:150',
-            'avatar' => 'required|mimes:jpg,jpeg,png,gif|max:2048',
+            'avatar' => 'mimes:jpg,jpeg,png,gif|max:2048',
+            'name' => 'required|max:50|regex:/(^[\pL0-9 ]+$)/u',
+            'phone' => 'required|numeric',
         ];
     }
     public function messages()
     {
         return [
-            'name.required' => 'Tên không được để trống',
-            'name.max' => 'Giới hạn 150 ký tự',
-            'avatar.required' => 'Vui lòng nhập ảnh',
-            'avatar.mimes' => 'Chỉ những hình ảnh gắn thẻ có đuôi .jpg .jpeg .png .gif mới được chấp nhận',
-            'avatar.max' => 'Giới hạn dung lượng không quá 2M',
+            'avatar.mimes' => 'Chỉ gắn thẻ hình ảnh có đuôi .jpg .jpeg .png .gif are accepted',
+            'avatar.max' => 'Giới hạn ảnh 2Mb',
+            'name.regex' => 'Tên không được có ký tự đặc biệt',
+            'name.max' => 'Tên không vượt quá 50 ký tự',
+            'phone.required' => 'Vui lòng nhập số điện thoại',
+            'phone.numeric' => 'Số điện thoại không đúng định dạng: 094382746',
         ];
     }
 }

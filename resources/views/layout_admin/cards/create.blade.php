@@ -31,8 +31,7 @@
                                     @endif
                                 </div>
                                 <div class="box box-info">
-                                    <form action="{{ route('card_save') }}"method="post" enctype="multipart/form-data" id="form_data">
-                                        
+                                    <form action="{{ route('card_save') }}"method="post" enctype="multipart/form-data" id="form_data">  
                                         @csrf
                                         @include('layout_admin.cards.template')
                                         <div class="text-center">

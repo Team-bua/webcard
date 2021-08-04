@@ -30,6 +30,8 @@ Route::group(['middleware' => 'login'], function () {
     // Page user
     //Profile
     Route::get('/profile/{id}',[UserController::class,'getProfile'])->name('profile');
+    Route::post('/profile/update/{id}',[UserController::class,'updateInfo'])->name('profile.update.info');
+    Route::post('/profile/change/{id}',[UserController::class,'changePass'])->name('profile.change_pass');
     //Order history
     Route::get('/order-history',[UserController::class,'getOrderHistory'])->name('orderhistory');
 });
