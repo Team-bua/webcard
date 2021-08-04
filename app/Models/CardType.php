@@ -14,4 +14,14 @@ class CardType extends Model
     protected $fillable = [
         'name',
     ];
+
+    public function card_type()
+    {
+        return $this->belongsTo(Card::class,'card_type', 'id');
+    }
+
+    public function card_type_bill()
+    {
+        return $this->belongsTo(CardBill::class,'card_type', 'id');
+    }
 }

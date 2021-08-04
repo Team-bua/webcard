@@ -18,4 +18,14 @@ class Card extends Model
         'price',
         'image',
     ];
+
+    public function card_type()
+    {
+        return $this->belongsTo(CardType::class,'card_type', 'id');
+    }
+
+    public function card_bill()
+    {
+        return $this->belongsTo(CardBill::class,'card_id', 'id');
+    }
 }

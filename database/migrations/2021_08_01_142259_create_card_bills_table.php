@@ -16,6 +16,7 @@ class CreateCardBillsTable extends Migration
         Schema::create('card_bills', function (Blueprint $table) {
             $table->id();
             $table->string('card_id')->nullable();
+            $table->string('user_id')->nullable();
             $table->string('order_id')->nullable();
             $table->string('card_type')->nullable();
             $table->string('card_price')->nullable();
