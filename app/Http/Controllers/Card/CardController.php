@@ -23,7 +23,7 @@ class CardController extends Controller
 
     public function EditCard(){
         $card_types = $this->repository->getCardTypeForCard();
-        return view('layout_admin.cards.create', compact('card_types'));
+        return view('layout_admin.cards.edit', compact('card_types'));
     }
 
     public function GetCardToIndex()
