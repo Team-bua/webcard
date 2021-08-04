@@ -22,9 +22,9 @@
                     <h5 class="mb-1">
                        {{ Auth::user()->name }}
                     </h5>
-                    {{-- <p class="mb-0 font-weight-bold text-sm">
-                        CEO / Co-Founder
-                    </p> --}}
+                    <p class="mb-0 font-weight-bold text-sm">
+                        Số dư : {{ Auth::user()->point }} VNĐ
+                    </p>
                 </div>
             </div>
     </div>
