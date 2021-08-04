@@ -53,7 +53,8 @@ Route::get('/card',[FrontendController::class,'getCardToView'])->name('card');
 Route::get('/create-card',[CardController::class,'AddCard'])->name('create-card');
 Route::post('/create-card/save',[CardController::class,'SaveCard'])->name('card_save');
 Route::get('/edit-card/{id}',[CardController::class,'EditCard'])->name('card_edit');
-
+Route::get('/delete-price/{id}',[CardController::class,'deletePrice'])->name('card_price_delete');
+Route::post('/edit-card/update/{id}',[CardController::class,'UpdateCard'])->name('card_update');
 //Test
 Route::get('/test', function(){
     return view('test');

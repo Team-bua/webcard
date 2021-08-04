@@ -10,7 +10,7 @@
                     </li>
                     <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Thẻ</li>
                 </ol>
-                <h6 class="font-weight-bolder mb-0">Chỉnh Sửa Thẻ</h6>
+                <h6 class="font-weight-bolder mb-0">Thêm Thẻ</h6>
             </nav>
             @include('layout_admin.info')
         </div>
@@ -31,8 +31,7 @@
                                     @endif
                                 </div>
                                 <div class="box box-info">
-                                    <form action="{{ route('card_save') }}"method="post" enctype="multipart/form-data" id="form_data">
-                                        
+                                    <form action="{{ route('card_update', $card->id) }}" method="post" enctype="multipart/form-data" id="form_data">
                                         @csrf
                                         @include('layout_admin.cards.template')
                                         <div class="text-center">
@@ -53,7 +52,13 @@
 <script type="text/javascript">
     $(document).ready(function() {
 
-        var count = 1;
+        <?php if (isset($card->price)) { ?>
+            var arr_number = '{{ count(json_decode($card->price)) }}';
+            var count = '{{ count(json_decode($card->price)) }}';
+            <?php } else { ?>
+            var arr_number = 0;
+            var count = 1;
+            <?php } ?>
 
         function data_form(number) {
             var html = '<div class="row" style="width: 80%;" id="row'+ count +'">';
@@ -84,9 +89,59 @@
         });
 
         $(document).on('click', '.btn_remove', function() {
-            var button_id = $(this).attr('id');
-            $('#row' + button_id + '').remove();
-        });
+                var button_id = $(this).attr('id');
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }   
+                });
+                Swal.fire({
+                    title: 'Bạn có chắc chắn muốn xoá?',
+                    text: "Bạn không thể hoàn tác sau khi xoá!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Xoá!',
+                    cancelButtonText: 'Huỷ'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        if (button_id == 1 && arr_number != 0) {
+                            $("#price").val('');
+                        } else {
+                            $('#row' + button_id + '').remove();
+                        }
+                        $.ajax({
+                            url: "{{ route('card_price_delete', $card->id) }}",
+                            method: 'GET',
+                            data: $('#form_data').serialize(),
+                            dataType: 'json',
+                            success: function(data) {
+                                Swal.fire(
+                                    'Deleted!',
+                                    'Your file has been deleted.',
+                                    'success'
+                                )
+                                window.location.reload();
+                            },
+                            error: function() {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Oops...',
+                                    text: 'Something went wrong!',
+                                    footer: '<a href="">Why do I have this issue?</a>'
+                                })
+                            }
+                        });
+                        // Swal.fire(
+                        // 'Deleted!',
+                        // 'Your file has been deleted.',
+                        // 'success'
+                        // )
+                        // $('#row'+button_id+'').remove();
+                    }
+                })
+            });
     });
 </script>
 @stop
