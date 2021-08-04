@@ -25,7 +25,10 @@
 	<div class="navbar-other ms-lg-4" style="margin-bottom:5px">
 		<ul class="navbar-nav flex-row align-items-center ms-auto" data-sm-skip="true">
 		@if (Auth::check())
-			@if (Auth::user()->email == 'admin@webcard.com')
+			@if (Auth::user()->role	 == 1)
+				<li class="nav-item ms-lg-0">
+					<a href="{{ route('admin')}}"><img src="{{ asset('dev/img/person-fill.svg') }}" width="20px" height="20px" alt=""></a>			
+				</li>
 				<li class="nav-item ms-lg-0">
 					<a href="{{ route('admin') }}"><b style="color: black; font-size: 13px; margin-left: 3px" data-toggle="tooltip" data-placement="top" title="Thông tin">{{ Auth::user()->name }}</b></a>
 					
