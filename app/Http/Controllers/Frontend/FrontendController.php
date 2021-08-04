@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
+use App\Models\Card;
 use App\Repositories\FrontendRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -85,6 +86,7 @@ class FrontendController extends Controller
     
     public function getCardToView()
     {
-        return view('layout_index.page.card');
+        $cards = Card::all();
+        return view('layout_index.page.card', compact('cards'));
     }
 }

@@ -47,6 +47,7 @@ class CardRepository
         $date = Carbon::now()->format('d-m-Y');
         $img = $request->avatar;
         if (isset($img)) {
+            unlink(public_path($card->image));
             $img_name = 'upload/card/img/' . $date . '/' . Str::random(10) . rand() . '.' . $img->getClientOriginalExtension();
             $destinationPath = public_path('upload/card/img/' . $date);
             $img->move($destinationPath, $img_name);
