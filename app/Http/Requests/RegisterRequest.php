@@ -36,7 +36,7 @@ class RegisterRequest extends FormRequest
     {
         return [
             'name.required' => 'Vui lòng nhập tên',
-            'name.max' => 'Tên không vượt quá 50 characters',
+            'name.max' => 'Giới hạn 50 ký tự',
             'name.regex' => 'Tên không được có ký tự đặc biệt',
             'email.required' => 'Vui lòng nhập email',
             'email.max' => 'Email không vượt quá 100 ký tự',
@@ -46,8 +46,8 @@ class RegisterRequest extends FormRequest
             'phone.numeric' => 'Số điện thoại không đúng định dạng: 094382746',
             'phone.unique' => 'Số điện thoại đã tồn tại',  
             'password.required' => 'Vui lòng nhập mật khẩu',
-            'password.max' => 'Mật khẩu không vượt quá 25 ký tự',
-            'password.min' => 'Mật khẩu ít nhất 6 ký tự',
+            'password.max' => 'Giới hạn 25 ký tự',
+            'password.min' => 'Thấp nhất 6 ký tự',
             'confirm_password.required' => 'Vui lòng nhập lại mật khẩu',
             'confirm_password.same' => 'Xác nhận mật khẩu không chính xác',
             'checkbox.required' => 'Vui lòng đồng ý điều khoản',

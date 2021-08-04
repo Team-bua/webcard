@@ -33,9 +33,9 @@ class LoginRequest extends FormRequest
         return [
             'email.required' => 'Vui lòng nhập email',
             'email.email' => 'Email không đúng định dạng',
-            'email.max' => 'Email không vượt quá 50 ký tự',
+            'email.max' => 'Giới hạn 50 ký tự',
             'password.required' => 'Vui lòng nhập mật khẩu',
-            'password.max' => 'Mật khẩu không vượt quá 25 ký tự',
+            'password.max' => 'Giới hạn 25 ký tự',
         ];
     }
 }

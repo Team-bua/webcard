@@ -32,8 +32,8 @@ class ChangePassRequest extends FormRequest
     {
         return [
             'new_password.required' => 'Vui lòng nhập mật khẩu',              
-            'new_password.min' => 'Mật khẩu ít nhất 6 ký tự',
-            'new_password.max' => 'Mật khẩu không vượt quá 25 ký tự',
+            'new_password.min' => 'Thấp nhất 6 ký tự',
+            'new_password.max' => 'Giới hạn 25 ký tự',
             'confirm_password.required' => 'Vui lòng nhập lại mật khẩu',
             'confirm_password.same' => 'Xác nhận mật khẩu không chính xác',
         ];

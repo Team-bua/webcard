@@ -62,7 +62,7 @@
                                             <ul>
                                                 @for($i = 0; $i < count(json_decode($card->price)); $i++)
                                                     <li>
-                                                        <p class="text-xs font-weight-bold mb-0">{{json_decode($card->price)[$i]}} </p>
+                                                        <p class="text-xs font-weight-bold mb-0">{{number_format(json_decode($card->price)[$i])}} VNĐ </p>
                                                     </li>
                                                     @endfor
                                             </ul>

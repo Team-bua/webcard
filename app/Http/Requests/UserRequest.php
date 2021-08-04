@@ -35,7 +35,7 @@ class UserRequest extends FormRequest
             'avatar.mimes' => 'Chỉ gắn thẻ hình ảnh có đuôi .jpg .jpeg .png .gif are accepted',
             'avatar.max' => 'Giới hạn ảnh 2Mb',
             'name.regex' => 'Tên không được có ký tự đặc biệt',
-            'name.max' => 'Tên không vượt quá 50 ký tự',
+            'name.max' => 'Giới hạn 50 ký tự',
             'phone.required' => 'Vui lòng nhập số điện thoại',
             'phone.numeric' => 'Số điện thoại không đúng định dạng: 094382746',
         ];

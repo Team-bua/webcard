@@ -24,9 +24,8 @@ class CardRequest extends FormRequest
     public function rules()
     {
         return [
-            'name_card' => 'required|max:150',
-            'type_card' => 'required',         
-            'avatar' => 'required',
+            'name_card' => 'required|max:150',        
+            'avatar' => 'required|mimes:jpg,jpeg,png,gif|max:2048',
         ];
     }
 
@@ -35,8 +34,9 @@ class CardRequest extends FormRequest
         return [
             'name_card.required' => 'Vui lòng nhập tên thẻ',
             'name_card.max' => 'Giới hạn 150 ký tự',
-            'type_card.required' => 'Vui lòng nhập loại thẻ',
             'avatar.required' => 'Vui lòng chọn ảnh game',
+            'avatar.mimes' => 'Chỉ gắn thẻ hình ảnh có đuôi .jpg .jpeg .png .gif',
+            'avatar.max' => 'Giới hạn ảnh 2Mb',
         ];
     }
 }

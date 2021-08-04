@@ -3,8 +3,11 @@
         <label class="form-control-label" for="basic-url">Tên thẻ</label>
         <div class="input-group">
             <span class="input-group-text"><i class="fa fa-quidditch"></i></span>
-            <input type="text" class="form-control" id="name_card" name="name_card" aria-describedby="basic-addon3" maxlength="150" value="{{ isset($card) ? $card->name : old('name_card') }}" required>
+            <input type="text" class="form-control" id="name_card" name="name_card" aria-describedby="basic-addon3" maxlength="150" value="{{ isset($card) ? $card->name : old('name_card') }}">
         </div>
+        @error('name_card')
+            <p style="color:red; font-size: 13px; margin-left: 10px">{{ $message }}</p>
+        @enderror
     </div>
     <div class="form-group">
         <label class="form-control-label" for="basic-url">Loại thẻ</label>
@@ -76,5 +79,8 @@
             <img id="img" class="img" style="width: 100px; height: 100px;" src="{{ isset($card) ? asset($card->image) : asset('dashboard/assets/img/no_img.jpg') }}">
         </div>
     </div>
+    @error('avatar')
+        <p style="color:red; font-size: 13px; margin-left: 10px">{{ $message }}</p>
+    @enderror
 </div>
 </div>
