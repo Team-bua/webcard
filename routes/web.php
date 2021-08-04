@@ -24,6 +24,8 @@ Route::group(['middleware' => 'user'], function () {
     Route::get('/view-card',[CardController::class,'GetCardToIndex'])->name('viewcard');
     //View card
     Route::get('/all-users',[AdminController::class,'getAllUsers'])->name('allusers');
+    Route::get('/users/banned/{id}',[AdminController::class,'banned'])->name('users.banned');
+    Route::get('/users/unbanned/{id}',[AdminController::class,'unbanned'])->name('users.unbanned');
 });
 
 Route::group(['middleware' => 'login'], function () {
