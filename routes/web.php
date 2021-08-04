@@ -18,17 +18,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 //Admin
-Route::get('/admin',[AdminController::class,'getAdmin'])->name('admin');
-//View card
-Route::get('/view-card',[CardController::class,'GetCardToIndex'])->name('viewcard');
-//View card
-Route::get('/all-users',[AdminController::class,'getAllUsers'])->name('allusers');
+Route::group(['middleware' => 'user'], function () {
+    Route::get('/admin',[AdminController::class,'getAdmin'])->name('admin');
+    //View card
+    Route::get('/view-card',[CardController::class,'GetCardToIndex'])->name('viewcard');
+    //View card
+    Route::get('/all-users',[AdminController::class,'getAllUsers'])->name('allusers');
+});
 
-// Page user
-//Profile
-Route::get('/profile/{id}',[UserController::class,'getProfile'])->name('profile');
-//Order history
-Route::get('/order-history',[UserController::class,'getOrderHistory'])->name('orderhistory');
+Route::group(['middleware' => 'login'], function () {
+    // Page user
+    //Profile
+    Route::get('/profile/{id}',[UserController::class,'getProfile'])->name('profile');
+    //Order history
+    Route::get('/order-history',[UserController::class,'getOrderHistory'])->name('orderhistory');
+});
 
 //Login Facebook
 Route::get('/social-login/redirect/{provider}', [LoginController::class,'redirectToProvider'])->name('social.login');

@@ -1,7 +1,6 @@
 @extends('layout_admin.master')
 @section('content')   
-    <div class="main-content position-relative bg-gray-100 max-height-vh-100 h-100">
-        <!-- Navbar -->
+    <main class="main-content position-relative bg-gray-100 max-height-vh-100 h-100">
         @include('user.avatar')
         <div class="container-fluid py-4">
             <div class="row">
@@ -77,5 +76,5 @@
                 </div>
             </div>
         </div>
-    </div>
+    </main>
 @endsection
