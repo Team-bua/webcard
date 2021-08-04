@@ -36,7 +36,7 @@
                             <a href="javascript:;">
                                 <em>
                                     5% </em><img class="lazyload"
-                                    data-src="https://365.vtcpay.vn/media/Upload/Images/Category/VTC-28-10-2020-16-44-34.png"
+                                    src="{{ asset('dev/img/photos/devices.png') }}"
                                     style="max-width:85px;" alt="">
                             </a>
                         </li>
