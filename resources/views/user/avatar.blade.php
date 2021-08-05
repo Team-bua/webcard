@@ -3,7 +3,19 @@
         <nav aria-label="breadcrumb">
             <h3 class="text-white font-weight-bolder ms-2">Thông tin</h3>
         </nav>
-    </div>
+        <div class="collapse navbar-collapse me-md-0 me-sm-4 mt-sm-0 mt-2" id="navbar">
+            <div class="ms-md-auto pe-md-3 d-flex align-items-center">           
+                <ul class="navbar-nav justify-content-end">
+                    <li class="nav-item d-flex align-items-center">
+                        <a href="{{ route('logout') }}" class="nav-link text-white font-weight-bold px-0">
+                            <i class="fa fa-sign-out me-sm-1"></i>
+                            <span class="d-sm-inline d-none">Đăng xuất</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>    
 </nav>
 <!-- End Navbar -->
 <div class="container-fluid">

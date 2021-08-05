@@ -71,7 +71,7 @@
                 </div>
                 <div class="clear"></div>
                 <h6 class="text_td_thegame_ud" style="margin-bottom:0;"></h6>
-                <a href="javascript:;" id="btnPayment" class="link_thanhtoan_naptien">thanh toán ngay</a>
+                <a href="javascript:;" id="btnPayment" class="link_thanhtoan_naptien">Thanh toán ngay</a>
                 <input type="hidden" id="productID" value="0" />
                 <input type="hidden" id="hfCategoryId" value="161" />
 
