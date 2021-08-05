@@ -7,37 +7,40 @@
 <div class="all_nd_themgame_ud" style="margin-top: -20px">
 
     <div class="al_chonthe_menhgia_tin">
+        <form name="form" action="" method="get">
+            <input type="text" name="subject" id="subject" value="">
+        </form>
         <div class="row">
             <div class="col-lg-12 col-md-8 col-sm-12 col-xs-12" style="margin-top: 20px">
                 <h6 class="text_td_thegame_ud" style="margin-top: 0;">chọn loại thẻ
                 </h6>
-                <ul class="list_all_the_game_udrt">
+                <div class="tab-wrapper">
+                    <ul class="list_all_the_game_udrt">
+                        @if(isset($cards))
+                        @foreach($cards as $card)
+                        <li id="cateId_{{$card->id}}" class="cateId" onclick="cate('{{ $card->id }}')">
+                            <a href="#" onclick="cate('{{ $card->id}}')" class="cate" id="{{ $card->id }}">
+                                <em>
+                                    5% </em><img class="lazyload" src="{{ asset($card->image) }}" style="max-width:85px;" alt="">
+                            </a>
+                        </li>
+                        @endforeach
+                        @endif
+                    </ul>
+                    <h6 class="text_td_thegame_ud">Chọn mệnh giá và số lượng</h6>
+                    <span class="text_td_thegame_luachon_ud" id="Provider"></span>
                     @if(isset($cards))
                     @foreach($cards as $card)
-                    <li id="cateId_{{$card->id}}" class="cateId" onclick="cate('{{ $card->id }}')">
-                        <a href="javascript:;">
-                            <em>
-                                5% </em><img class="lazyload" src="{{ asset($card->image) }}" style="max-width:85px;" alt="">
-                        </a>
-                    </li>
+                    <div class="cardInfo" id="card{{$card->id}}" style="display: none" >
+                        <ul class="list_all_menhgia_thegame_udrt" id="ul_Product">
+                            @for($i = 0; $i < count(json_decode($card->price)); $i++)
+                            <li id="proId_{{ $i }}" class="proId"><a href="#"><b>{{ json_decode($card->price)[$i] }}</b><span>Giá bán: {{ json_decode($card->price)[$i] - json_decode($card->price)[$i] * 10 / 100 }}</span></a></li>
+                            @endfor
+                        </ul>
+                    </div>
                     @endforeach
                     @endif
-                </ul>
-                <h6 class="text_td_thegame_ud">Chọn mệnh giá và số lượng</h6>
-                <span class="text_td_thegame_luachon_ud" id="Provider"></span>
-                <ul class="list_all_menhgia_thegame_udrt" id="ul_Product">
-                    <li id="proId_206" class="proId ac_chon_mg_these"><a href="javascript:;"><b>10.000đ</b><span>Giá bán: 9.500đ</span></a></li>
-                    <li id="proId_89" class="proId" ><a href="#" ><b>20.000đ</b><span>Giá bán: 19.000đ</span></a></li>
-                    <li id="proId_90" class="proId"><a href="#"><b>50.000đ</b><span>Giá bán: 47.500đ</span></a></li>
-                    <li id="proId_91" class="proId"><a href="#"><b>100.000đ</b><span>Giá bán: 95.000đ</span></a></li>
-                    <li id="proId_92" class="proId"><a href="#"><b>200.000đ</b><span>Giá bán: 190.000đ</span></a></li>
-                    <li id="proId_93" class="proId"><a href="#"><b>300.000đ</b><span>Giá bán: 285.000đ</span></a></li>
-                    <li id="proId_94" class="proId"><a href="#"><b>500.000đ</b><span>Giá bán: 475.000đ</span></a></li>
-                    <li id="proId_441" class="proId"><a href="#"><b>1.000.000đ</b><span>Giá bán: 950.000đ</span></a></li>
-                    <li id="proId_1979" class="proId"><a href="#"><b>2.000.000đ</b><span>Giá bán: 1.900.000đ</span></a></li>
-                    <li id="proId_1980" class="proId"><a href="#"><b>5.000.000đ</b><span>Giá bán: 4.750.000đ</span></a></li>
-                    <li id="proId_1989" class="proId"><a href="#"><b>10.000.000đ</b><span>Giá bán: 9.500.000đ</span></a></li>
-                </ul>
+                </div>
                 <div class="all_so_luong_the">
                     <b>Số lượng:</b>
                     <em class="subquan"><svg enable-background="new 0 0 10 10" viewBox="0 0 10 10" x="0" y="0">
@@ -66,13 +69,18 @@
 @endsection
 @section('script')
 <script>
+    $('#proId_93').on('click', function() {
+        $('.ac_chon_mg_these').removeClass('ac_chon_mg_these')
+        $('#proId_93').attr('class', 'ac_chon_mg_these')
+    });
 
-    function cate(number){
-        $('#cateId_'+ number +'').focus(function(){
-            console.log(123);
-            $('#cateId_'+ number +'').attr('style', 'border: solid 2px #0475c5;')
-        }); 
+    function cate(number) {
+        var card_id = number;     
+        $('.cate').removeAttr("style");
+        $('#' + card_id + '').attr("style", "border: solid 2px #0475c5;");
+        $('#subject').attr("value", card_id);
+        $('.cardInfo').attr("style", "display:none");
+        $('#card'+card_id+'').removeAttr("style");
     }
-    
 </script>
 @stop
