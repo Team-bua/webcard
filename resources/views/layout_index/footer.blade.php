@@ -4,7 +4,7 @@
 	<div class="col-md-4 col-lg-3">
 		<div class="widget">
 		<img class="mb-4" src="{{ asset('dev/img/logo-light.png') }}" srcset="{{ asset('dev/img/logo-light@2x.png') }} 2x" alt="" />
-		<p class="mb-4">© 2021 Sandbox. <br class="d-none d-lg-block" />All rights reserved.</p>
+		<p class="mb-4">© 2021 Sandbox </p>
 		<nav class="nav social social-white">
 			<a href="#"><i class="uil uil-twitter"></i></a>
 			<a href="#"><i class="uil uil-facebook-f"></i></a>
@@ -19,9 +19,9 @@
 	<!-- /column -->
 	<div class="col-md-4 col-lg-3">
 		<div class="widget">
-		<h4 class="widget-title text-white mb-3">Get in Touch</h4>
-		<address class="pe-xl-15 pe-xxl-17">Moonshine St. 14/05 Light City, London, United Kingdom</address>
-		<a href="mailto:#">info@email.com</a><br /> +00 (123) 456 78 90
+		<h4 class="widget-title text-white mb-3">Liện hệ</h4>
+		<address class="pe-xl-15 pe-xxl-17">295 Tân Kỳ Tân Quý, Tân Sơn Nhì, Tân Phú, Thành phố Hồ Chí Minh</address>
+		<a href="mailto:#">webcard@email.com</a><br /> 0349397157
 		</div>
 		<!-- /.widget -->
 	</div>

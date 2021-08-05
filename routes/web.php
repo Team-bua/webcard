@@ -43,6 +43,8 @@ Route::get('/social-login/redirect/{provider}', [LoginController::class,'redirec
 Route::get('/social-login/{provider}/callback', [LoginController::class,'handleProviderCallback'])->name('social.callback');
 //Home
 Route::get('/',[FrontendController::class,'getIndex'])->name('index');
+//Contact
+Route::get('/contact',[FrontendController::class,'contact'])->name('contact');
 //Sign Up
 Route::get('/sign-up',[FrontendController::class,'signUp'])->name('signup');
 Route::post('/sign-up',[FrontendController::class,'postSignup'])->name('signup');

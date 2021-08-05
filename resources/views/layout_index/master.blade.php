@@ -10,8 +10,14 @@
   <link rel="stylesheet" href="{{ asset('dev/css/style.css') }}"> 
   <link rel="stylesheet" href="{{ asset('dev/css/colors/aqua.css') }}">
   <link rel="preload" href="{{ asset('dev/css/fonts/thicccboi.css') }}" as="style" onload="this.rel='stylesheet'">
+  <!-- Swiper slider CSS -->
+  <link rel="stylesheet" href="{{ asset('dev/css/swiper.min.css') }}">
 </head>
-
+<style>
+  body{
+    font-family: Arial, Helvetica, sans-serif;
+  }
+</style>
 <body>
   <div class="content-wrapper">
     @include('layout_index.header')
