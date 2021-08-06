@@ -64,7 +64,7 @@
                                                     <li>
                                                         <p class="text-xs font-weight-bold mb-0">{{number_format(json_decode($card->price)[$i])}} VNĐ </p>
                                                     </li>
-                                                    @endfor
+                                                @endfor
                                             </ul>
                                         </td>
                                         <td class="align-middle text-center text-sm">

@@ -20,6 +20,7 @@ class CreateUserPointBillsTable extends Migration
             $table->string('point_purchase')->nullable();
             $table->string('description')->nullable();
             $table->string('method')->nullable();
+            $table->integer('status')->default(0);
             $table->timestamps();
         });
     }

@@ -50,7 +50,7 @@
                                     <img id="img" class="border-radius-lg shadow-sm" style="width: 120px; height: 120px;" src="{{ $user->avatar_orginal}}">
                                     @else   
                                     <input id="fImages" type="file" name="avatar" class="form-control" style="display: none"  onchange="changeImg(this)">
-                                    <img id="img" class="border-radius-lg shadow-sm" style="width: 120px; height: 120px;" src="{{ asset($user->avatar ? $user->avatar :'dashboard/assets/img/no_img.jpg') }}">
+                                    <img id="img" class="border-radius-lg shadow-sm" style="width: 120px; height: 120px;" src="{{ asset($user->avatar ? $user->avatar : 'dashboard/assets/img/no_img.jpg') }}">
                                     @endif                                    
                                     </div>
                                 </div>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\BillController;
 use App\Http\Controllers\Card\CardController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\LoginController;
@@ -22,10 +23,12 @@ Route::group(['middleware' => 'user'], function () {
     Route::get('/admin',[AdminController::class,'getAdmin'])->name('admin');
     //View card
     Route::get('/view-card',[CardController::class,'GetCardToIndex'])->name('viewcard');
-    //View card
+    //View user
     Route::get('/all-users',[AdminController::class,'getAllUsers'])->name('allusers');
     Route::get('/users/banned/{id}',[AdminController::class,'banned'])->name('users.banned');
     Route::get('/users/unbanned/{id}',[AdminController::class,'unbanned'])->name('users.unbanned');
+    //card bill
+    Route::get('/card-bill',[BillController::class,'cardBill'])->name('cardbill');
 });
 
 Route::group(['middleware' => 'login'], function () {
@@ -36,6 +39,9 @@ Route::group(['middleware' => 'login'], function () {
     Route::post('/profile/change/{id}',[UserController::class,'changePass'])->name('profile.change_pass');
     //Order history
     Route::get('/order-history',[UserController::class,'getOrderHistory'])->name('orderhistory');
+    //recharge
+    Route::get('/recharge',[UserController::class,'recharge'])->name('recharge');
+    Route::post('/recharge-money/{id}}',[UserController::class,'rechargeMoney'])->name('recharge.money');
 });
 
 //Login Facebook
