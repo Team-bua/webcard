@@ -61,6 +61,8 @@ Route::post('/create-card/save',[CardController::class,'SaveCard'])->name('card_
 Route::get('/edit-card/{id}',[CardController::class,'EditCard'])->name('card_edit');
 Route::get('/delete-price/{id}',[CardController::class,'deletePrice'])->name('card_price_delete');
 Route::post('/edit-card/update/{id}',[CardController::class,'UpdateCard'])->name('card_update');
+//buy card
+Route::get('/buy-card',[CardController::class,'BuyCard'])->name('buy_card');
 //Test
 Route::get('/test', function(){
     return view('test');
