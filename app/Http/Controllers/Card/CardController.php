@@ -38,6 +38,11 @@ class CardController extends Controller
         return view('layout_admin.cards.index', compact('cards'));
     }
 
+    public function BuyCard(Request $request)
+    {
+        dd($request->all());
+    }
+
     public function SaveCard(CardRequest $request){
         $this->repository->store($request);
         return redirect()->back()->with('information', 'Thêm thành công');
