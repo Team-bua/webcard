@@ -76,7 +76,7 @@
         <label class="form-control-label" for="basic-url">Ảnh đại diện</label>
         <div class="input-group">
             <input id="fImages" type="file" name="avatar" class="form-control" style="display: none" onchange="changeImg(this)">
-            <img id="img" class="img" style="width: 100px; height: 100px;" src="{{ isset($card) ? asset($card->image) : asset('dashboard/assets/img/no_img.jpg') }}">
+            <img id="img" class="img" style="width: 200px; height: 100px;" src="{{ isset($card) ? asset($card->image) : asset('dashboard/assets/img/no_img.jpg') }}">
         </div>
     </div>
     @error('avatar')

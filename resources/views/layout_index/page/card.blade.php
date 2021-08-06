@@ -21,7 +21,7 @@
                         <li id="cateId_{{$card->id}}" class="cateId" onclick="cate('{{ $card->id }}')">
                             <a href="#" onclick="cate('{{ $card->id}}')" class="cate" id="{{ $card->id }}">
                                 <em>
-                                    5% </em><img class="lazyload" src="{{ asset($card->image) }}" style="max-width:85px;" alt="">
+                                    5% </em><img class="lazyload" src="{{ asset($card->image) }}" style="max-width:85px; height: 50px;" alt="">
                             </a>
                         </li>
                         @endforeach
@@ -34,7 +34,7 @@
                     <div class="cardInfo" id="card{{$card->id}}" style="display: none" >
                         <ul class="list_all_menhgia_thegame_udrt" id="ul_Product">
                             @for($i = 0; $i < count(json_decode($card->price)); $i++)
-                            <li id="proId_{{ $i }}" class="proId"><a href="#"><b>{{ json_decode($card->price)[$i] }}</b><span>Giá bán: {{ json_decode($card->price)[$i] - json_decode($card->price)[$i] * 10 / 100 }}</span></a></li>
+                            <li id="proId_{{ $i }}" class="proId"><a href="#"><b>{{ json_decode($card->price)[$i] }}</b><span>Giá bán: {{ json_decode($card->price)[$i] - json_decode($card->price)[$i] * 5 / 100 }}</span></a></li>
                             @endfor
                         </ul>
                     </div>
