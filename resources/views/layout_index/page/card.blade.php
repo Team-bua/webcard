@@ -69,10 +69,6 @@
 @endsection
 @section('script')
 <script>
-    $('#proId_93').on('click', function() {
-        $('.ac_chon_mg_these').removeClass('ac_chon_mg_these')
-        $('#proId_93').attr('class', 'ac_chon_mg_these')
-    });
 
     function cate(number) {
         var card_id = number;     
