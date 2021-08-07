@@ -43,8 +43,7 @@ class CardRepository
     }
 
     public function storeCardCode($request)
-    {
-        
+    {    
         $card_info = new CardStore();
         $test = explode('  ',preg_replace("/\r|\n/", " ", $request->code));
         for($i = 0; $i < count($test); $i++){
@@ -52,14 +51,14 @@ class CardRepository
             $card_info = new CardStore();
             if($request->type_card == 'Card'){
                 $card_info->card_type = $request->type_card;
-                $card_info->name = $code[0];
+                $card_info->name = strtolower($code[0]);
                 $card_info->price = $code[1];
                 $card_info->seri_number = $code[2];
                 $card_info->code = $code[3];
                 $card_info->save();
             }else if ($request->type_card == 'Voucher'){
                 $card_info->card_type = $request->type_card;
-                $card_info->name = $code[0];
+                $card_info->name = strtolower($code[0]);
                 $card_info->price = $code[1];
                 $card_info->code = $code[2];
                 $card_info->save();
