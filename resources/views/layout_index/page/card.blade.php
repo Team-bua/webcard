@@ -1,10 +1,14 @@
 @extends('layout_index.master')
 @section('content')
 <link href="{{ asset('dev/css/style_all.min.20210101.css') }}" rel="stylesheet" type="text/css" />
-<link href="{{ asset('dev/css/style2.css') }}" rel="stylesheet" type="text/css" />
+<link href="{{ asset('dev/css/style.css') }}" rel="stylesheet" type="text/css" />
 <link href="{{ asset('dev/css/style3.css') }}" rel="stylesheet" type="text/css" />
 
-<div class="all_nd_themgame_ud" style="margin-top: -20px">
+<section class="wrapper bg-soft-primary" style="margin-top: -20px">
+    <figure class="position-absoute" style="bottom: 0; left: 0; z-index: 2;"><img src="{{ asset('dev/img/photos/banner_index.jpg') }}" alt=""></figure>
+    <!-- /.container -->
+  </section>
+<div class="all_nd_themgame_ud">
 
     <div class="al_chonthe_menhgia_tin">
         <form name="form" action="{{ route('buy_card') }}" method="get" id="form">
