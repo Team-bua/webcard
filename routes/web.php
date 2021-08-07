@@ -51,6 +51,12 @@ Route::get('/social-login/{provider}/callback', [LoginController::class,'handleP
 Route::get('/',[FrontendController::class,'getIndex'])->name('index');
 //Contact
 Route::get('/contact',[FrontendController::class,'contact'])->name('contact');
+//About
+Route::get('/about',[FrontendController::class,'about'])->name('about');
+//Terms of use
+Route::get('/terms-of-use',[FrontendController::class,'termOfUse'])->name('termOfUse');
+//Privacy
+Route::get('/privacy',[FrontendController::class,'privacy'])->name('privacy');
 //Sign Up
 Route::get('/sign-up',[FrontendController::class,'signUp'])->name('signup');
 Route::post('/sign-up',[FrontendController::class,'postSignup'])->name('signup');

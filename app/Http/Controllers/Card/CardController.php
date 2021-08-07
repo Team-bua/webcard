@@ -21,6 +21,11 @@ class CardController extends Controller
         return view('layout_admin.cards.create', compact('card_types'));
     }
 
+    public function AddCardCode(){
+        $card_types = $this->repository->getCardTypeForCard();
+        return view('layout_admin.cards.createcode', compact('card_types'));
+    }
+
     public function deletePrice(Request $request, $id)
     {
         return $this->repository->AjaxDeletePrice($request, $id);

@@ -26,8 +26,12 @@
                         <div class="table-responsive p-0">
                             <div class="card-header pb-0">
                                 <a href="{{ route('create-card') }}">
-                                    <button class="btn bg-gradient-primary mt-4 w-12" style="float: right;;margin-bottom:5px;margin-left:2px;border:none; background-color:#4a4235;">
+                                    <button class="btn bg-gradient-primary mt-4 w-12" style="float: right;;margin-bottom:5px;margin-left:5px;">
                                         <i class="fa fa-plus">&nbsp; Thêm thẻ </i></button>
+                                </a>
+                                <a href="#">
+                                    <button class="btn bg-gradient-primary mt-4 w-12" style="float: right;;margin-bottom:5px;margin-left:5px">
+                                        <i class="fa fa-plus">&nbsp; Thêm mã </i></button>
                                 </a>
                             </div>
                             <table class="table table-flush" id="datatable-basic">

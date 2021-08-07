@@ -35,7 +35,7 @@
                                         @csrf
                                         @include('layout_admin.cards.template')
                                         <div class="text-center">
-                                            <input type="submit" name="submit" id="submit" value="Thêm" class="btn bg-gradient-primary w-12 btnthem">
+                                            <input type="submit" name="submit" id="submit" value="Cập nhật" class="btn bg-gradient-primary w-12 btnthem">
                                         </div>
                                     </form>
                                 </div>

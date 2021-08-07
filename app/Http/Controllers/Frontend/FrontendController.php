@@ -42,6 +42,21 @@ class FrontendController extends Controller
         return view('layout_index.page.contact');
     }
 
+    public function about()
+    {
+        return view('layout_index.page.about');
+    }
+
+    public function termOfUse()
+    {
+        return view('layout_index.page.terms_of_use');
+    }
+
+    public function privacy()
+    {
+        return view('layout_index.page.privacy');
+    }
+
     public function signUp()
     {
         return view('layout_index.page.signup');

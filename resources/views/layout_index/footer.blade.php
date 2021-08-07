@@ -1,10 +1,10 @@
 <footer class="bg-dark text-inverse">
 <div class="container py-13 py-md-15">
 	<div class="row gy-6 gy-lg-0">
-	<div class="col-md-4 col-lg-3">
+	<div class="col-md-4 col-lg-4">
 		<div class="widget">
 		<img class="mb-4" src="{{ asset('dev/img/logo-light.png') }}" srcset="{{ asset('dev/img/logo-light@2x.png') }} 2x" alt="" />
-		<p class="mb-4">© 2021 Sandbox </p>
+		<p class="mb-4">© 2021 Developer </p>
 		<nav class="nav social social-white">
 			<a href="#"><i class="uil uil-twitter"></i></a>
 			<a href="#"><i class="uil uil-facebook-f"></i></a>
@@ -17,50 +17,24 @@
 		<!-- /.widget -->
 	</div>
 	<!-- /column -->
-	<div class="col-md-4 col-lg-3">
+	<div class="col-md-4 col-lg-4">
 		<div class="widget">
 		<h4 class="widget-title text-white mb-3">Liện hệ</h4>
-		<address class="pe-xl-15 pe-xxl-17">295 Tân Kỳ Tân Quý, Tân Sơn Nhì, Tân Phú, Thành phố Hồ Chí Minh</address>
-		<a href="mailto:#">webcard@email.com</a><br /> 0349397157
+		<address class="pe-xl-15 pe-xxl-17"><i class="uil uil-location-pin-alt"></i> 295 Tân Kỳ Tân Quý, Tân Sơn Nhì, Tân Phú, Thành phố Hồ Chí Minh</address>
+		<i class="uil uil-envelope"></i><a href="mailto:webcard@email.com"> webcard@email.com</a><br> <i class="uil uil-phone-volume"></i> 0349397157
 		</div>
 		<!-- /.widget -->
 	</div>
 	<!-- /column -->
-	<div class="col-md-4 col-lg-3">
+	<div class="col-md-4 col-lg-4">
 		<div class="widget">
-		<h4 class="widget-title text-white mb-3">Learn More</h4>
+		<h4 class="widget-title text-white mb-3">Tìm hiểu thêm</h4>
 		<ul class="list-unstyled mb-0">
-			<li><a href="#">About Us</a></li>
-			<li><a href="#">Our Story</a></li>
-			<li><a href="#">Projects</a></li>
-			<li><a href="#">Terms of Use</a></li>
-			<li><a href="#">Privacy Policy</a></li>
+			<li><a href="{{ route('about') }}">Về chúng tôi</a></li>
+			<li><a href="{{ route('contact') }}">Hỗ trợ 24/7</a></li>
+			<li><a href="{{ route('termOfUse') }}">Điều khoản sử dụng</a></li>
+			<li><a href="{{ route('privacy') }}">Chính sách bảo mật</a></li>
 		</ul>
-		</div>
-		<!-- /.widget -->
-	</div>
-	<!-- /column -->
-	<div class="col-md-12 col-lg-3">
-		<div class="widget">
-		<h4 class="widget-title text-white mb-3">Our Newsletter</h4>
-		<p class="mb-5">Subscribe to our newsletter to get our news & deals delivered to you.</p>
-		<div class="newsletter-wrapper">
-			<!-- Begin Mailchimp Signup Form -->
-			<div id="mc_embed_signup2">
-			<form action="https://elemisfreebies.us20.list-manage.com/subscribe/post?u=aa4947f70a475ce162057838d&amp;id=b49ef47a9a" method="post" id="mc-embedded-subscribe-form2" name="mc-embedded-subscribe-form" class="validate dark-fields" target="_blank" novalidate>
-				<div id="mc_embed_signup_scroll2">
-				<div id="mce-responses2" class="clear">
-					<div class="response" id="mce-error-response2" style="display:none"></div>
-					<div class="response" id="mce-success-response2" style="display:none"></div>
-				</div> <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-				<div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_ddc180777a163e0f9f66ee014_4b1bcfa0bc" tabindex="-1" value=""></div>
-				<div class="clear"></div>
-				</div>
-			</form>
-			</div>
-			<!--End mc_embed_signup-->
-		</div>
-		<!-- /.newsletter-wrapper -->
 		</div>
 		<!-- /.widget -->
 	</div>

@@ -3,9 +3,8 @@
     <section class="wrapper bg-soft-primary">
         <div class="container pt-10 pb-15 py-lg-17 py-xl-20 py-xxl-22 position-relative">
             <img class="position-lg-absolute col-12 col-lg-12 mt-lg-n50p mb-3 mb-md-10 mb-lg-0"
-                src="{{ asset('dev/img/photos/devices2.png') }}"
-                srcset="{{ asset('dev/img/photos/devices2@2x.png') }} 2x" data-cue="fadeIn" alt=""
-                style="top: 50%; left: -23%;" />
+                src="{{ asset('dev/img/photos/hopqua.png') }}" data-cue="fadeIn" alt=""
+                style="top: 50%; left: 5%; width: 50%; height: 80%;" />
             <div class="row gx-lg-8 gx-xl-12 align-items-center">
                 <div class="col-md-10 offset-md-1 col-lg-6 offset-lg-6 mt-md-n9 text-center text-lg-start"
                     data-cues="slideInDown" data-group="download">
@@ -121,14 +120,14 @@
         </div>
         <!-- /.container -->
     </section>
-	<section class="wrapper image-wrapper bg-image bg-overlay" data-image-src="{{ asset('dev/img/photos/bg1.jpg') }}" style="background-image: url(&quot;img/photos/bg1.jpg&quot;);">
+	<section class="wrapper image-wrapper bg-image bg-overlay" data-image-src="{{ asset('dev/img/photos/lol.jpg') }}" style="background-image: url(&quot;img/photos/bg1.jpg&quot;);">
 		<div class="container py-18">
 		  <div class="row">
-			<div class="col-lg-8">
+			{{-- <div class="col-lg-8">
 			  <h2 class="fs-16 text-uppercase text-line text-white mb-3">Join Our Community</h2>
 			  <h3 class="display-4 mb-6 text-white pe-xxl-18">We are trusted by over 5000+ clients. Join them by using our services and grow your business.</h3>
 			  <a href="#" class="btn btn-white rounded mb-0 text-nowrap">Join Us</a>
-			</div>
+			</div> --}}
 			<!-- /column -->
 		  </div>
 		  <!-- /.row -->
@@ -259,6 +258,27 @@
                             <div class="item px-5"><img src="{{ asset('dev/img/brands/c11.png') }}" alt=""></div>
                         </div>
                         <div class="owl-item active" style="width: 160px; margin-right: 30px;">
+                            <div class="item px-5"><img src="{{ asset('dev/img/brands/c1.png') }}" alt=""></div>
+                        </div>
+                        <div class="owl-item active" style="width: 160px; margin-right: 30px;">
+                            <div class="item px-5"><img src="{{ asset('dev/img/brands/c2.png') }}" alt=""></div>
+                        </div>
+                        <div class="owl-item active" style="width: 160px; margin-right: 30px;">
+                            <div class="item px-5"><img src="{{ asset('dev/img/brands/c3.png') }}" alt=""></div>
+                        </div>
+                        <div class="owl-item active" style="width: 160px; margin-right: 30px;">
+                            <div class="item px-5"><img src="{{ asset('dev/img/brands/c4.png') }}" alt=""></div>
+                        </div>
+                        <div class="owl-item active" style="width: 160px; margin-right: 30px;">
+                            <div class="item px-5"><img src="{{ asset('dev/img/brands/c5.png') }}" alt=""></div>
+                        </div>
+                        <div class="owl-item active" style="width: 160px; margin-right: 30px;">
+                            <div class="item px-5"><img src="{{ asset('dev/img/brands/c6.png') }}" alt=""></div>
+                        </div>
+                        <div class="owl-item" style="width: 160px; margin-right: 30px;">
+                            <div class="item px-5"><img src="{{ asset('dev/img/brands/c7.png') }}" alt=""></div>
+                        </div>
+						<div class="owl-item active" style="width: 160px; margin-right: 30px;">
                             <div class="item px-5"><img src="{{ asset('dev/img/brands/c1.png') }}" alt=""></div>
                         </div>
                         <div class="owl-item active" style="width: 160px; margin-right: 30px;">
