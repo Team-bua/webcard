@@ -35,7 +35,7 @@
                        {{ Auth::user()->name }}
                     </h5>
                     <p class="mb-0 font-weight-bold text-sm">
-                        Số dư : {{ Auth::user()->point }} VNĐ
+                        Số dư : {{ number_format(Auth::user()->point) }} VNĐ
                     </p>
                 </div>
             </div>

@@ -27,6 +27,9 @@ Route::group(['middleware' => 'user'], function () {
     Route::get('/all-users',[AdminController::class,'getAllUsers'])->name('allusers');
     Route::get('/users/banned/{id}',[AdminController::class,'banned'])->name('users.banned');
     Route::get('/users/unbanned/{id}',[AdminController::class,'unbanned'])->name('users.unbanned');
+    //discount
+    Route::get('/discount',[AdminController::class,'discount'])->name('discount');
+    Route::post('/discount/{id}',[AdminController::class,'updateDiscount'])->name('update.discount');
     //card bill
     Route::get('/card-bill',[BillController::class,'cardBill'])->name('cardbill');
     //recharge bill

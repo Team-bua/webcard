@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ChangePassRequest;
 use App\Http\Requests\RechargeRequest;
-use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\UserRequest;
 use App\Models\UserBill;
 use App\Repositories\UserRepository;
