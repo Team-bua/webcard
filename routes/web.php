@@ -73,6 +73,8 @@ Route::post('/create-card/save',[CardController::class,'SaveCard'])->name('card_
 Route::get('/edit-card/{id}',[CardController::class,'EditCard'])->name('card_edit');
 Route::get('/delete-price/{id}',[CardController::class,'deletePrice'])->name('card_price_delete');
 Route::post('/edit-card/update/{id}',[CardController::class,'UpdateCard'])->name('card_update');
+Route::get('/add-card-code',[CardController::class,'AddCardCode'])->name('add-card-code');
+Route::post('/add-card-code/save',[CardController::class,'StoreCardCode'])->name('card-code-save');
 //buy card
 Route::get('/buy-card',[CardController::class,'BuyCard'])->name('buy_card');
 //Test

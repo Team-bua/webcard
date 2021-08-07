@@ -31,13 +31,13 @@
                                     @endif
                                 </div>
                                 <div class="box box-info">
-                                    <form action="{{ route('card_save') }}"method="post" enctype="multipart/form-data" id="form_data">  
+                                    <form action="{{ route('card-code-save') }}"method="post" enctype="multipart/form-data" id="form_data">  
                                         @csrf
                                         <div class="card-body p-3">
                                             <div class="form-group">
                                                 <label class="form-control-label" for="basic-url">Loại thẻ</label>
                                                 <select class="form-control" id="type_card" name="type_card" style="width: 200px;" required>
-                                                    {{-- @if($card_types && !isset($card))
+                                                    @if($card_types && !isset($card))
                                                         @foreach($card_types as $t)
                                                             <option>{{ $t->name }}</option>
                                                         @endforeach
@@ -49,16 +49,16 @@
                                                                 <option value="{{ $t->name }}">{{ $t->name }}</option>
                                                             @endif
                                                         @endforeach
-                                                    @endif --}}
+                                                    @endif 
                                                 </select>
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleFormControlTextarea1">Mã thẻ</label>
-                                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" style="width: 50%"></textarea>
+                                                <textarea class="form-control" id="code" name="code" rows="3" style="width: 50%"></textarea>
                                               </div>
                                         </div>
                                         <div style="margin-left: 20px">
-                                            <input type="submit" name="submit" id="submit" value="Thêm" class="btn bg-gradient-primary w-12 btnthem">
+                                            <input type="submit" id="submit" value="Thêm" class="btn bg-gradient-primary w-12 btnthem">
                                         </div>
                                     </form>
                                 </div>

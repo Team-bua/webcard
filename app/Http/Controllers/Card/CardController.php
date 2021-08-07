@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Card;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CardRequest;
+use App\Models\CardStore;
 use App\Repositories\card\CardRepository;
 use Illuminate\Http\Request;
 
@@ -26,6 +27,11 @@ class CardController extends Controller
         return view('layout_admin.cards.createcode', compact('card_types'));
     }
 
+    public function StoreCardCode(Request $request){
+       $this->repository->storeCardCode($request);
+       return redirect()->back()->with('information', 'Thêm mã thẻ thành công!');
+    }
+
     public function deletePrice(Request $request, $id)
     {
         return $this->repository->AjaxDeletePrice($request, $id);
@@ -39,8 +45,14 @@ class CardController extends Controller
 
     public function GetCardToIndex()
     {
+        $arr = [];
         $cards = $this->repository->getAllCard();
-        return view('layout_admin.cards.index', compact('cards'));
+        foreach($cards as $card) {
+           $card_code = CardStore::where('name', strtolower($card->name))
+                                ->count();
+            $arr[$card->name] = $card_code;
+        }
+        return view('layout_admin.cards.index', compact('cards', 'arr'));
     }
 
     public function BuyCard(Request $request)

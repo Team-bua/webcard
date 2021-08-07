@@ -29,7 +29,7 @@
                                     <button class="btn bg-gradient-primary mt-4 w-12" style="float: right;;margin-bottom:5px;margin-left:5px;">
                                         <i class="fa fa-plus">&nbsp; Thêm thẻ </i></button>
                                 </a>
-                                <a href="#">
+                                <a href="{{ route('add-card-code') }}">
                                     <button class="btn bg-gradient-primary mt-4 w-12" style="float: right;;margin-bottom:5px;margin-left:5px">
                                         <i class="fa fa-plus">&nbsp; Thêm mã </i></button>
                                 </a>
@@ -72,7 +72,7 @@
                                             </ul>
                                         </td>
                                         <td class="align-middle text-center text-sm">
-                                            <span class="badge badge-sm bg-gradient-success">10000</span>
+                                            <span class="badge badge-sm bg-gradient-success">{{ isset($arr[$card->name]) ? $arr[$card->name] : 0 }}</span>
                                         </td>
                                         <td class="align-middle text-center">
                                             <span class="text-secondary text-xs font-weight-bold">{{ date('d/m/Y', strtotime(str_replace('/', '-', $card->created_at))) }}</span>
