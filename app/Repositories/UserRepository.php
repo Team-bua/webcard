@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Models\AdminTransaction;
 use App\Models\Bill;
+use App\Models\CardBill;
 use App\Models\PointPurchase;
 use App\Models\User;
 use App\Models\UserBill;
@@ -64,6 +65,60 @@ class UserRepository
         $point_purchase->order_id = $request->money . '' . Str::random(4);
         $point_purchase->method = 'Nạp tiền';
         $point_purchase->save();
+    }
+
+    public function getCardBill($request)
+    {          
+        $date = date('Y-m-d');
+        $all_bill = CardBill::where('user_id', Auth::user()->id)
+                    ->when(($request->date == null), function ($query) use ($date){
+                        $query->where(function ($q) use ($date){
+                            $q->whereDate('created_at', '=', $date);
+                        });
+                    })
+                    ->when(($request->date != null && isset(explode(' to ',$request->date)[1]) == true), function ($query) use ($request){
+                        $query->where(function ($q) use ($request) {
+                            $q->whereRaw('DATE(card_bills.created_at) BETWEEN "'.date('Y-m-d', strtotime(str_replace('/', '-', explode(' to ', $request->date)[0]))).'" 
+                            AND "'.date('Y-m-d', strtotime(str_replace('/', '-', explode(' to ', $request->date)[1]))).'"');
+                        });
+                    })
+                    ->when(($request->date != null && isset(explode(' to ',$request->date)[1]) == false), function ($query) use ($request){
+                        $query->whereDate('created_at', '=', date('Y-m-d', strtotime(str_replace('/', '-',$request->date))));
+                    })
+                    ->when(($request->name != null), function ($query) use ($request){
+                        $query->where(function ($q) use ($request){
+                            $q->where('order_id', 'LIKE', '%' . $request->name . '%');
+                        });
+                    })       
+                    ->get();
+        return $all_bill;
+    }
+    
+    public function getRechargeBill($request)
+    {          
+        $date = date('Y-m-d');
+        $all_bill = UserBill::where('user_id', Auth::user()->id)
+                    ->when(($request->date == null), function ($query) use ($date){
+                        $query->where(function ($q) use ($date){
+                            $q->whereDate('created_at', '=', $date);
+                        });
+                    })
+                    ->when(($request->date != null && isset(explode(' to ',$request->date)[1]) == true), function ($query) use ($request){
+                        $query->where(function ($q) use ($request) {
+                            $q->whereRaw('DATE(user_point_bills.created_at) BETWEEN "'.date('Y-m-d', strtotime(str_replace('/', '-', explode(' to ', $request->date)[0]))).'" 
+                            AND "'.date('Y-m-d', strtotime(str_replace('/', '-', explode(' to ', $request->date)[1]))).'"');
+                        });
+                    })
+                    ->when(($request->date != null && isset(explode(' to ',$request->date)[1]) == false), function ($query) use ($request){
+                        $query->whereDate('created_at', '=', date('Y-m-d', strtotime(str_replace('/', '-',$request->date))));
+                    })
+                    ->when(($request->name != null), function ($query) use ($request){
+                        $query->where(function ($q) use ($request){
+                            $q->where('order_id', 'LIKE', '%' . $request->name . '%');
+                        });
+                    })       
+                    ->get();
+        return $all_bill;
     }
 
     public static function utf8convert($str) {

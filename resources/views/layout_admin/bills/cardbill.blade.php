@@ -28,25 +28,28 @@
                                 <div class="card-header pb-0">
                                     <button type="submit" name="search" class="btn bg-gradient-primary mt-2 " style="float: right;margin-left:5px">
                                         <i class="fa fa-search"></i></button>
-                                    <input class="form-control datepicker" name="date" style="width: 25%; float: right; margin-top: 10px" placeholder="Please select date" type="text"
+                                    <input class="form-control datepicker" name="date" style="width: 20%; float: right; margin-top: 10px" placeholder="Please select date" type="text"
                                     value="{{ date('d/m/Y', strtotime($first_day)) . ' to ' . date('d/m/Y', strtotime($last_day)) }}" >
+                                    <input type="text" name="name" class="form-control" placeholder="Mã đơn hàng" style="width: 20%; float: right; margin-top: 10px; margin-right: 5px" aria-describedby="basic-addon1">
                                 </div>
                             </form>
                             <table class="table table-flush" id="datatable-basic">
                                 <thead class="thead-light">
-                                    <tr>
+                                    <tr>                                        
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder">Thẻ</th>
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder">Khách hàng</th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder">Mã đơn hàng</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Số lượng</th>
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder">Giá</th>
-                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Date</th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Ngày</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Trạng thái</th>
+                                        <th class="text-secondary"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @if($bills)
                                     @foreach($bills as $bill)
-                                    <tr>
+                                    <tr>         
                                         <td>
                                             <div class="d-flex px-2 py-1">
                                                 <div>
@@ -73,6 +76,7 @@
                                                 </div>
                                             </div>
                                         </td>
+                                        <td><p class="text-xs font-weight-bold mb-0">{{ $bill->order_id }}</p></td>
                                         <td class="align-middle text-center text-sm">
                                             <p class="text-xs font-weight-bold mb-0">{{ $bill->card_total }}</p>
                                         </td>
@@ -87,7 +91,35 @@
                                             <span class="badge badge-sm bg-gradient-success">Đã thanh toán</span>
                                             @endif
                                         </td>
+                                        <td >
+                                            <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModalMessage{{ $bill->id }}"><i class="fa fa-eye"></i></a>                             
+                                        </td>
                                     </tr>
+                                    <div class="col-md-4">
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="exampleModalMessage{{ $bill->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalMessageTitle" aria-hidden="true">
+                                          <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                              <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Thông tin thẻ</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                                  <span aria-hidden="true">×</span>
+                                                </button>
+                                              </div>
+                                              <div class="modal-body">
+                                                <form>
+                                                  <div class="form-group">       
+                                                    <textarea class="form-control"  rows="5">{{ $bill->card_info }}</textarea>                                          
+                                                  </div>
+                                                </form>
+                                              </div>
+                                              <div class="modal-footer">
+                                                <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Đóng</button>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
                                     @endforeach
                                     @endif
                                 </tbody>

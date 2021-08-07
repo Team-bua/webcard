@@ -5,7 +5,12 @@
             <span class="d-sm-inline d-none">{{ Auth::user()->name }}</span>
         </a>
     </li>
-    <li class="nav-item dropdown pe-2 d-flex align-items-center">
+    <li class="nav-item d-flex align-items-center">
+        <a href="{{ route('logout') }}">
+            <img src="{{ asset('dev/img/logout.svg') }}"  alt="" data-toggle="tooltip" data-placement="top" title="Đăng xuất">
+        </a>
+    </li>
+    {{-- <li class="nav-item dropdown pe-2 d-flex align-items-center">
         <a href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton"
             data-bs-toggle="dropdown" aria-expanded="false">
             <i class="fa fa-bell cursor-pointer"></i>
@@ -88,5 +93,5 @@
                 </a>
             </li>
         </ul>
-    </li>
+    </li> --}}
 </ul>

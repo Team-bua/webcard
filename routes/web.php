@@ -29,6 +29,8 @@ Route::group(['middleware' => 'user'], function () {
     Route::get('/users/unbanned/{id}',[AdminController::class,'unbanned'])->name('users.unbanned');
     //card bill
     Route::get('/card-bill',[BillController::class,'cardBill'])->name('cardbill');
+    //recharge bill
+    Route::get('/recharge-bill',[BillController::class,'rechargeBill'])->name('rechargebill');
 });
 
 Route::group(['middleware' => 'login'], function () {
@@ -41,6 +43,7 @@ Route::group(['middleware' => 'login'], function () {
     Route::get('/order-history',[UserController::class,'getOrderHistory'])->name('orderhistory');
     //recharge
     Route::get('/recharge',[UserController::class,'recharge'])->name('recharge');
+    Route::get('/recharge-history',[UserController::class,'getRechargeHistory'])->name('rechargehistory');
     Route::post('/recharge-money/{id}}',[UserController::class,'rechargeMoney'])->name('recharge.money');
 });
 
