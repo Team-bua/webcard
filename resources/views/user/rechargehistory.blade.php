@@ -60,6 +60,8 @@
                                         <td class="align-middle text-center text-sm">
                                             @if($bill->status == 1)
                                             <span class="badge badge-sm bg-gradient-success">Đã thanh toán</span>
+                                            @else
+                                            <span class="badge badge-sm bg-gradient-danger">Chưa thanh toán</span>
                                             @endif
                                         </td>
                                     </tr>
