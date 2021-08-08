@@ -8,7 +8,7 @@
                 <div class="col-12 col-xl-6">
                     <div class="card">
                         @if (session('information'))
-                            <div class="alert alert-danger">{{ session('information') }}</div>
+                            <div class="alert alert-success">{{ session('information') }}</div>
                         @endif
                         <div class="card-header pb-0 p-3">
                             <h6 class="mb-0">Nạp tiền</h6>

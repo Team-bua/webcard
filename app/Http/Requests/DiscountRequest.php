@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class RechargeRequest extends FormRequest
+class DiscountRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,15 +24,14 @@ class RechargeRequest extends FormRequest
     public function rules()
     {
         return [
-            'money' => 'required|gte:0',        
+            'discount' => 'gte:0',        
         ];
     }
 
     public function messages()
     {
         return [
-            'money.required' => 'Vui lòng nhập số tiền',
-            'money.gte' => 'Số tiền phải lớn hơn 0'
+            'discount.gte' => 'Giá trị phải lớn hơn 0'
         ];
     }
 }

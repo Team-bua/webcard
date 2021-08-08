@@ -53,12 +53,12 @@
             </a>
           </li>
           <li class="nav-item dropdown dropdown-hover mx-2">
-            <a class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center ">
+            <a href="{{ route('about') }}" class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center ">
               Về chúng tôi
             </a>
           </li>
           <li class="nav-item dropdown dropdown-hover mx-2">
-            <a class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center ">
+            <a {{ route('contact') }} class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center ">
               Liên hệ   
             </a>
           </li>
