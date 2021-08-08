@@ -94,7 +94,7 @@
                             <p class="mb-0">Nạp tiền vào tài khoản</p>
                         </div>
                         <!--/column -->
-                        <div class="col-md-4"> <img src="{{ asset('dev/img/icons/smartphone-2.svg') }}"
+                        <div class="col-md-4"> <img src="{{ asset('dev/img/icons/shopping-cart.svg') }}"
                                 class="svg-inject icon-svg icon-svg-sm text-red mb-3" alt="" />
                             <h4 class="mb-1">2. Mua thẻ</h4>
                             <p class="mb-0">Tiến hành giao dịch</p>
