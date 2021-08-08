@@ -1,26 +1,11 @@
-<!--
-=========================================================
-* Soft UI Dashboard - v1.0.3
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/soft-ui-dashboard
-* Copyright 2021 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://www.creative-tim.com/license)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
--->
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('dashboard/assets/img/apple-icon.png') }}">
+  <link rel="icon" type="image/png" href="{{ asset('dashboard/assets/img/favicon.png') }}">
   <title>
     Trang đăng nhập
   </title>
@@ -104,7 +89,7 @@
                         </a>
                       </div>
                       <div class="col-3 me-auto px-1">
-                        <a class="btn btn-outline-light w-100" href="javascript:;">
+                        <a class="btn btn-outline-light w-100" href="javascript:;" onclick="update()">
                           <svg width="24px" height="32px" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                             <g id="Artboard" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                               <g id="google-icon" transform="translate(3.000000, 2.000000)" fill-rule="nonzero">
@@ -183,6 +168,13 @@
   <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="{{ asset('dashboard/assets/js/soft-ui-dashboard.min.js?v=1.0.3') }}"></script>
   <script type="text/javascript">
+  function update(){
+    Swal.fire({
+        title: 'Tính năng đang cập nhật!',
+        showConfirmButton: true,
+        timer: 2000
+    })
+  }
     $(document).ready(function () {
       var msg = "{{Session::get('message')}}";
       var exist = "{{Session::has('message')}}";

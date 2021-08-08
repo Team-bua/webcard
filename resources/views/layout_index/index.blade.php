@@ -43,7 +43,7 @@
                 <div class="col-md-6 col-xl-3">
                     <div class="card shadow-lg">
                         <div class="card-body">
-                            <img src="{{ asset('dev/img/icons/browser.svg') }}"
+                            <img src="{{ asset('dev/img/icons/shield.svg') }}"
                                 class="svg-inject icon-svg icon-svg-md text-red mb-3" alt="">
                             <h4>Trải nghiệm đơn giản, nhưng bảo mật cao</h4>
                         </div>
@@ -55,7 +55,7 @@
                 <div class="col-md-6 col-xl-3">
                     <div class="card shadow-lg">
                         <div class="card-body">
-                            <img src="{{ asset('dev/img/icons/chat-2.svg') }}"
+                            <img src="{{ asset('dev/img/icons/gift.svg') }}"
                                 class="svg-inject icon-svg icon-svg-md text-green mb-3" alt="">
                             <h4>Giao dịch - gửi thẻ nhanh chóng, uy tín</h4>
                         </div>
@@ -88,7 +88,7 @@
                     <h3 class="display-4 mb-5">Cách thức giao dịch đơn giản, dễ thao tác</h3>
                     <p class="mb-8">Bằng cách nạp tiền vào tài khoản trên hệ thống trang web, bạn có thể thoải mái giao dịch và thanh toán bất cứ loại hình dịch vụ nào có trên trang web.</p>
                     <div class="row gy-6 gx-xxl-8 process-wrapper" data-cues="slideInUp" data-group="process">
-                        <div class="col-md-4"> <img src="{{ asset('dev/img/icons/cloud-computing.svg') }}"
+                        <div class="col-md-4"> <img src="{{ asset('dev/img/icons/savings.svg') }}"
                                 class="svg-inject icon-svg icon-svg-sm text-green mb-3" alt="" />
                             <h4 class="mb-1">1. Nạp tiền</h4>
                             <p class="mb-0">Nạp tiền vào tài khoản</p>
