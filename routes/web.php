@@ -27,9 +27,6 @@ Route::group(['middleware' => 'user'], function () {
     Route::get('/all-users',[AdminController::class,'getAllUsers'])->name('allusers');
     Route::get('/users/banned/{id}',[AdminController::class,'banned'])->name('users.banned');
     Route::get('/users/unbanned/{id}',[AdminController::class,'unbanned'])->name('users.unbanned');
-    //discount
-    Route::get('/discount',[AdminController::class,'discount'])->name('discount');
-    Route::post('/discount/{id}',[AdminController::class,'updateDiscount'])->name('update.discount');
     //card bill
     Route::get('/card-bill',[BillController::class,'cardBill'])->name('cardbill');
     //recharge bill
@@ -81,6 +78,7 @@ Route::get('/delete-price/{id}',[CardController::class,'deletePrice'])->name('ca
 Route::post('/edit-card/update/{id}',[CardController::class,'UpdateCard'])->name('card_update');
 Route::get('/add-card-code',[CardController::class,'AddCardCode'])->name('add-card-code');
 Route::post('/add-card-code/save',[CardController::class,'StoreCardCode'])->name('card-code-save');
+Route::get('/destroy',[CardController::class,'delete'])->name('destroy');
 //buy card
 Route::get('/buy-card',[CardController::class,'BuyCard'])->name('buy_card');
 //Test

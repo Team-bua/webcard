@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class DiscountRequest extends FormRequest
+class UpdateCardRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,13 +24,16 @@ class DiscountRequest extends FormRequest
     public function rules()
     {
         return [
-            'discount' => 'gte:0',        
+            'name_card' => 'required|max:150',        
+            'discount' => 'gte:0',
         ];
     }
 
     public function messages()
     {
         return [
+            'name_card.required' => 'Vui lòng nhập tên thẻ',
+            'name_card.max' => 'Giới hạn 150 ký tự',
             'discount.gte' => 'Giá trị phải lớn hơn 0'
         ];
     }

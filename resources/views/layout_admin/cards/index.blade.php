@@ -75,8 +75,11 @@
                                             <span class="text-secondary text-xs font-weight-bold">{{ date('d/m/Y', strtotime(str_replace('/', '-', $card->created_at))) }}</span>
                                         </td>
                                         <td class="align-middle">
-                                            <a href="{{ route('card_edit', $card->id) }}" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                                                Edit
+                                            <a href="{{ route('card_edit', $card->id) }}" class="text-secondary font-weight-bold text-xs">
+                                                <span class="badge bg-gradient-info">Sửa</span>
+                                            </a> || 
+                                            <a href="javascript:;" delete_id="{{ $card->id }}" class="text-secondary font-weight-bold text-xs simpleConfirm" >
+                                                <span class="badge bg-gradient-danger">Xóa</span>
                                             </a>
                                         </td>
                                     </tr>
@@ -129,7 +132,46 @@
 <script type="text/javascript">
     const dataTableBasic = new simpleDatatables.DataTable("#datatable-basic", {
         searchable: false,
-        fixedHeight: true
+        fixedHeight: true,
     });
+    $(document).on('click', '.simpleConfirm', function(e) {
+            e.preventDefault();
+            var id = $(this).attr('delete_id');
+            var that = $(this);
+            swal.fire({
+                title: "Bạn có muốn xóa thẻ này?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Xóa ngay!',
+                cancelButtonText: 'Hủy'
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        method: 'get',
+                        url: "{{ route('destroy') }}",
+                        data: {
+                            id: id
+                        },
+                        success: function(data) {
+                            if (data.success == true) {
+                                that.parent().parent().remove();
+                                Swal.fire(
+                                    'Xóa!',
+                                    'Xóa thành công.',
+                                    'success'
+                                )
+                            } else {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Mã thẻ vẫn còn tồn tại!',
+                                })
+                            }
+                        }
+                    })
+                }
+            });
+        });
 </script>
 @endsection

@@ -3,6 +3,7 @@
 namespace App\Repositories\card;
 
 use App\Models\Card;
+use App\Models\CardBill;
 use App\Models\CardStore;
 use App\Models\CardType;
 use Carbon\Carbon;
@@ -15,7 +16,7 @@ class CardRepository
     }
 
     public function getAllCard(){
-        return Card::all();
+        return Card::orderBy('created_at', 'desc')->get();
     }
 
     public function getCardToEdit($id){
@@ -84,6 +85,7 @@ class CardRepository
         $card->name = $request->name_card;
         $card->card_type = $request->type_card;
         $card->price = json_encode($request->price);
+        $card->discount = $request->discount;
 
         $card->save();
     }
@@ -98,5 +100,30 @@ class CardRepository
                'error' => false,
                'package'  => $card,
            ], 200);
+    }
+
+    public function destroy($request, $cards)
+    {
+        foreach($cards as $card) {
+            $card_code = CardStore::where('name', strtolower($card->name))
+                                ->count();
+            $arr[$card->name] = $card_code;
+        }
+          $card = Card::find($request->id);
+          if($arr[$card->name] == 0){
+            if(file_exists($card->image)){
+                unlink(public_path($card->image));
+            } 
+            $card->delete();  
+            return response()->json([
+                'success' => true
+            ]);
+          }else{
+            return response()->json([
+                'success' => false
+            ]);
+          }
+         
+        
     }
 }

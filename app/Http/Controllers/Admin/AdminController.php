@@ -22,20 +22,6 @@ class AdminController extends Controller
         return view('layout_admin.all_user.index', compact('users'));
     }
 
-    public function discount()
-    {
-        $discount = Discount::find(1);
-        return view('layout_admin.discount', compact('discount'));
-    }
-
-    public function updateDiscount(DiscountRequest $request)
-    {
-        $discount = Discount::find(1);
-        $discount->discount = $request->discount;
-        $discount->save();
-        return redirect()->back()->with('information', 'Cập nhật ưu đãi thành công');
-    }
-
     public function banned($id)
     {
         $users = User::find($id);

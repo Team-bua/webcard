@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Card;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CardRequest;
+use App\Http\Requests\UpdateCardRequest;
 use App\Models\CardStore;
 use App\Repositories\card\CardRepository;
 use Illuminate\Http\Request;
@@ -72,8 +73,16 @@ class CardController extends Controller
         return redirect()->back()->with('information', 'Thêm thành công');
     }
 
-    public function UpdateCard(Request $request, $id){
+    public function UpdateCard(UpdateCardRequest $request, $id){
         $this->repository->update($request, $id);
         return redirect()->back()->with('information', 'Cập nhật thành công');
+    }
+
+    public function delete(Request $request)
+    {
+        $cards = $this->repository->getAllCard();
+
+        return $this->repository->destroy($request, $cards);
+
     }
 }

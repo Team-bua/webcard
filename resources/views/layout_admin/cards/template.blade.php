@@ -27,6 +27,17 @@
             @endif
         </select>
     </div>
+    <div class="form-group" >
+        <label class="form-control-label" for="basic-url">Giảm giá</label>
+        <div class="input-group" style="width: 30%;">
+        <span class="input-group-text"><i class="fa fa-paint-brush"></i></span>
+        <input type="number" class="form-control" id="discount" name="discount" value="{{ isset($card) ? $card->discount : 0 }}" >
+        <span class="input-group-text" id="basic-addon2">%</span>                                   
+        </div>
+        @error('discount')
+            <p style="color:red; font-size: 13px; margin-left: 10px">{{ $message }}</p>
+        @enderror
+    </div>
     @if(isset($card) && $card->price != '')
         @for($i = 0; $i < count(json_decode($card->price)); $i++)
         <div class="row" style="width: 80%;" id="row{{ $i + 1 }}">

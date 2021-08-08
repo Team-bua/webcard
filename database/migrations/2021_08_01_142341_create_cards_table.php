@@ -19,6 +19,7 @@ class CreateCardsTable extends Migration
             $table->string('card_type')->nullable();
             $table->string('price')->nullable();
             $table->string('image')->nullable();
+            $table->integer('discount')->default(0);
             $table->timestamps();
         });
     }
