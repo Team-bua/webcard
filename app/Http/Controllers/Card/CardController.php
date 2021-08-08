@@ -46,13 +46,20 @@ class CardController extends Controller
     public function GetCardToIndex()
     {
         $arr = [];
+        $arr_price = [];
         $cards = $this->repository->getAllCard();
         foreach($cards as $card) {
            $card_code = CardStore::where('name', strtolower($card->name))
                                 ->count();
             $arr[$card->name] = $card_code;
+            for($i = 0; $i < count(json_decode($card->price)); $i++) {
+                $card_price = CardStore::where('price', json_decode($card->price)[$i])
+                                        ->where('name', strtolower($card->name))
+                                        ->count();
+                $arr_price[json_decode($card->price)[$i].'-'.$card->name] = $card_price; 
+            }
         }
-        return view('layout_admin.cards.index', compact('cards', 'arr'));
+        return view('layout_admin.cards.index', compact('cards', 'arr', 'arr_price'));
     }
 
     public function BuyCard(Request $request)

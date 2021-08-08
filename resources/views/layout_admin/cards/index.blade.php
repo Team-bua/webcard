@@ -72,7 +72,7 @@
                                             </ul>
                                         </td>
                                         <td class="align-middle text-center text-sm">
-                                            <span class="badge badge-sm bg-gradient-success">{{ isset($arr[$card->name]) ? $arr[$card->name] : 0 }}</span>
+                                        <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModalMessage{{ $card->id }}"><span class="badge badge-sm bg-gradient-success" style="font-size: 12px;">{{ isset($arr[$card->name]) ? $arr[$card->name] : 0 }}</span></a>
                                         </td>
                                         <td class="align-middle text-center">
                                             <span class="text-secondary text-xs font-weight-bold">{{ date('d/m/Y', strtotime(str_replace('/', '-', $card->created_at))) }}</span>
@@ -83,6 +83,38 @@
                                             </a>
                                         </td>
                                     </tr>
+
+                                    <div class="col-md-4">
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="exampleModalMessage{{ $card->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalMessageTitle" aria-hidden="true">
+                                          <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                              <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Thông tin thẻ</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                                  <span aria-hidden="true">×</span>
+                                                </button>
+                                              </div>
+                                              <div class="modal-body">
+                                                <form>
+                                                  <div class="form-group">       
+                                                    <ul>
+                                                        @for($i = 0; $i < count(json_decode($card->price)); $i++)
+                                                            <li>
+                                                                <p class="text-xs font-weight-bold mb-0">{{number_format(json_decode($card->price)[$i])}} VNĐ: <span class="badge badge-sm bg-gradient-success" style="font-size: 12px;">{{ isset($arr_price[json_decode($card->price)[$i].'-'.$card->name]) ? $arr_price[json_decode($card->price)[$i].'-'.$card->name] : 0 }}</span> </p>
+                                                            </li>
+                                                        @endfor
+                                                    </ul>                                         
+                                                  </div>
+                                                </form>
+                                              </div>
+                                              <div class="modal-footer">
+                                                <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Đóng</button>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
                                     @endforeach
                                     @endif
                                 </tbody>
