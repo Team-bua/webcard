@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Socialite\Facades\Socialite;
@@ -30,7 +29,7 @@ class LoginController extends Controller
             $newUser                  = new User();
             $newUser->name            = $getInfo->name;
             $newUser->email           = $getInfo->email;
-            $newUser->avatar_orginal  = $getInfo->avatar;
+            $newUser->avatar_original  = $getInfo->avatar;
             $newUser->password        = Hash::make($getInfo->id);
             $newUser->provider_id     = $getInfo->id;
             $newUser->save();
@@ -45,7 +44,7 @@ class LoginController extends Controller
                 return redirect()->route('index')->with('message', '2');
             }else{
                 Auth::logout();
-                return redirect()->back()->with('message', '4');
+                return redirect()->route('index')->with('message', '4');
             }
             
         }

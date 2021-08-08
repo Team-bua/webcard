@@ -26,7 +26,11 @@
         <div class="row gx-4">
             <div class="col-auto">
                 <div class="avatar avatar-xl position-relative">
+                    @if(Auth::user()->avatar_original)
+                    <img src="{{ Auth::user()->avatar_original }}" alt="profile_image" class="w-100 border-radius-lg shadow-sm">
+                    @else
                     <img src="{{ asset(Auth::user()->avatar ? Auth::user()->avatar : 'dashboard/assets/img/no_img.jpg') }}" alt="profile_image" class="w-100 border-radius-lg shadow-sm">
+                    @endif
                 </div>
             </div>
             <div class="col-auto my-auto">

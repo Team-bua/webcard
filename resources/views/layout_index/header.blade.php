@@ -22,18 +22,15 @@
 		<!-- /.navbar-nav -->
 	</div>
 	<!-- /.navbar-collapse -->
-	<div class="navbar-other ms-lg-4" style="margin-bottom:5px">
+	<div class="navbar-other ms-lg-4" style="margin-bottom:5px;">
 		<ul class="navbar-nav flex-row align-items-center ms-auto" data-sm-skip="true">
 		@if (Auth::check())
 			@if (Auth::user()->role	 == 1)
 				<li class="nav-item ms-lg-0">
 					<a href="{{ route('admin')}}"><img src="{{ asset('dev/img/person-fill.svg') }}" width="20px" height="20px" alt=""></a>			
 				</li>
-				<li class="nav-item ms-lg-0">
-					<a href="{{ route('admin') }}"><b style="color: black; font-size: 13px; margin-left: 3px" data-toggle="tooltip" data-placement="top" title="Thông tin">{{ Auth::user()->name }}</b></a>
-					
-				</li>
-				<li class="nav-item ms-lg-0">
+				<li class="nav-item ms-lg-0" style="width: 120px">
+					<a href="{{ route('admin') }}"><b style="color: black; font-size: 13px; margin-left: 5px" data-toggle="tooltip" data-placement="top" title="Thông tin">{{ Auth::user()->name }}</b></a>					
 					<a href="{{ route('logout') }}">
 						<img src="{{ asset('dev/img/logout.svg') }}" width="20px" height="20px" alt="" style="margin-left: 10px" data-toggle="tooltip" data-placement="top" title="Đăng xuất">
 					</a>
@@ -42,11 +39,8 @@
 				<li class="nav-item ms-lg-0">
 					<a href="{{ route('profile', Auth::user()->id) }}"><img src="{{ asset('dev/img/person-fill.svg') }}" width="20px" height="20px" alt=""></a>			
 				</li>
-				<li class="nav-item ms-lg-0">
-					<a href="{{ route('profile', Auth::user()->id) }}"><b style="color: black; font-size: 13px; margin-left: 3px" data-toggle="tooltip" data-placement="top" title="Thông tin">{{ Auth::user()->name }}</b></a>
-					
-				</li>
-				<li class="nav-item ms-lg-0">
+				<li class="nav-item ms-lg-0" style="width: 120px">
+					<a href="{{ route('profile', Auth::user()->id) }}"><b style="color: black; font-size: 13px; margin-left: 5px" data-toggle="tooltip" data-placement="top" title="Thông tin">{{ Auth::user()->name }}</b></a>					
 					<a href="{{ route('logout') }}">
 						<img src="{{ asset('dev/img/logout.svg') }}" width="20px" height="20px" alt="" style="margin-left: 10px" data-toggle="tooltip" data-placement="top" title="Đăng xuất">
 					</a>

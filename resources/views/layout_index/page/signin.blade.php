@@ -90,8 +90,6 @@
                   <p class="mb-0">Nhập email và mật khẩu của bạn để đăng nhập</p>
                 </div>
                 <div class="card-body">
-                  <form role="form" action="{{route('signin')}}" method="post">
-                    @csrf
                     <div class="row">
                       <div class="col-3 ms-auto px-1">
                         <a class="btn btn-outline-light w-100"  href="{{ route('social.login', ['facebook']) }}">
@@ -125,6 +123,8 @@
                         </p>
                       </div>
                     </div>
+                    <form role="form" action="{{route('signin')}}" method="post">
+                      @csrf
                     <label>Email</label>
                     <div class="mb-3">
                       <input type="email" name="email" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="email-addon">

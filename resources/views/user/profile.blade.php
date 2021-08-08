@@ -46,11 +46,11 @@
                                 <div class="form-group">
                                     <label class="form-control-label" for="basic-url">Ảnh đại diện</label> <br>
                                     <div class="avatar avatar-xl position-relative" style="margin-top: 25px; margin-left: 25px">
-                                    @if(Auth::user()->avatar_orginal)
-                                    <img id="img" class="border-radius-lg shadow-sm" style="width: 120px; height: 120px;" src="{{ $user->avatar_orginal}}">
+                                    @if(Auth::user()->avatar_original)
+                                        <img class="border-radius-lg shadow-sm" style="width: 120px; height: 120px;" src="{{ $user->avatar_original}}">
                                     @else   
-                                    <input id="fImages" type="file" name="avatar" class="form-control" style="display: none"  onchange="changeImg(this)">
-                                    <img id="img" class="border-radius-lg shadow-sm" style="width: 120px; height: 120px;" src="{{ asset($user->avatar ? $user->avatar : 'dashboard/assets/img/no_img.jpg') }}">
+                                        <input id="fImages" type="file" name="avatar" class="form-control" style="display: none"  onchange="changeImg(this)">
+                                        <img id="img" class="border-radius-lg shadow-sm" style="width: 120px; height: 120px;" src="{{ asset($user->avatar ? $user->avatar : 'dashboard/assets/img/no_img.jpg') }}">
                                     @endif                                    
                                     </div>
                                 </div>

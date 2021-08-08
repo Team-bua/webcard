@@ -122,7 +122,7 @@
                 <div class="form-check form-check-info text-left">
                   <input class="form-check-input" type="checkbox" name="checkbox" id="flexCheckDefault">
                   <label class="form-check-label" for="flexCheckDefault">
-                    Tôi đồng ý với các <a href="javascript:;" class="text-dark font-weight-bolder">Điều khoản</a>
+                    Tôi đồng ý với các <a href="{{ route('termOfUse') }}" class="text-dark font-weight-bolder">Điều khoản sử dụng</a>
                   </label>
                 </div>
                 @error('checkbox')

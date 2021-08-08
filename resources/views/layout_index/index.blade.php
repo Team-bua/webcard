@@ -8,10 +8,8 @@
             <div class="row gx-lg-8 gx-xl-12 align-items-center">
                 <div class="col-md-10 offset-md-1 col-lg-6 offset-lg-6 mt-md-n9 text-center text-lg-start"
                     data-cues="slideInDown" data-group="download">
-                    <h1 class="display-4 mb-4 px-md-10 px-lg-0">Get all of your steps, exercise, sleep and meds in one
-                        place.</h1>
-                    <p class="lead fs-lg mb-7 px-md-10 px-lg-0 pe-xxl-15">Sandbox is now available to download from both the
-                        App Store and Google Play Store.</p>
+                    <h1 class="display-4 mb-4 px-md-10 px-lg-0">Webcard.com cung cấp các loại thẻ cào & voucher giá rẻ</h1>
+                    <p class="lead fs-lg mb-7 px-md-10 px-lg-0 pe-xxl-15">Giao dịch nhanh chóng - Đảm bảo uy tín</p>
                 </div>
                 <!-- /column -->
             </div>
@@ -35,7 +33,7 @@
                         <div class="card-body">
                             <img src="{{ asset('dev/img/icons/search-1.svg') }}"
                                 class="svg-inject icon-svg icon-svg-md text-yellow mb-3" alt="">
-                            <h4>SEO Services</h4>
+                            <h4>Cung cấp nhiều loại thẻ cho khách hàng lựa chọn</h4>
                         </div>
                         <!--/.card-body -->
                     </div>
@@ -59,7 +57,7 @@
                         <div class="card-body">
                             <img src="{{ asset('dev/img/icons/chat-2.svg') }}"
                                 class="svg-inject icon-svg icon-svg-md text-green mb-3" alt="">
-                            <h4>Gửi và Nhận tức thì - dù gửi cho một người hoặc gửi cho hàng ngàn người</h4>
+                            <h4>Giao dịch - gửi thẻ nhanh chóng, uy tín</h4>
                         </div>
                         <!--/.card-body -->
                     </div>
@@ -71,7 +69,7 @@
                         <div class="card-body">
                             <img src="{{ asset('dev/img/icons/megaphone.svg') }}"
                                 class="svg-inject icon-svg icon-svg-md text-blue mb-3" alt="">
-                            <h4>Nâng cao trải nghiệm người dùng bằng trò chơi tương tác</h4>
+                            <h4>Nâng cao trải nghiệm người dùng khi sử dụng dịch vụ</h4>
                         </div>
                         <!--/.card-body -->
                     </div>
@@ -87,28 +85,25 @@
                 </div>
                 <!-- /column -->
                 <div class="col-lg-6">
-                    <h3 class="display-4 mb-5">Download the app, create your profile and voilà, you're all set!</h3>
-                    <p class="mb-8">Donec ullamcorper nulla non metus auctor fringilla. Cras mattis consectetur purus sit
-                        amet fermentum. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Nulla vitae
-                        elit libero. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus
-                        commodo.</p>
+                    <h3 class="display-4 mb-5">Cách thức giao dịch đơn giản, dễ thao tác</h3>
+                    <p class="mb-8">Bằng cách nạp tiền vào tài khoản trên hệ thống trang web, bạn có thể thoải mái giao dịch và thanh toán bất cứ loại hình dịch vụ nào có trên trang web.</p>
                     <div class="row gy-6 gx-xxl-8 process-wrapper" data-cues="slideInUp" data-group="process">
                         <div class="col-md-4"> <img src="{{ asset('dev/img/icons/cloud-computing.svg') }}"
                                 class="svg-inject icon-svg icon-svg-sm text-green mb-3" alt="" />
-                            <h4 class="mb-1">1. Download</h4>
-                            <p class="mb-0">Nulla vitae elit libero elit non porta eget.</p>
+                            <h4 class="mb-1">1. Nạp tiền</h4>
+                            <p class="mb-0">Nạp tiền vào tài khoản</p>
                         </div>
                         <!--/column -->
                         <div class="col-md-4"> <img src="{{ asset('dev/img/icons/smartphone-2.svg') }}"
                                 class="svg-inject icon-svg icon-svg-sm text-red mb-3" alt="" />
-                            <h4 class="mb-1">2. Set Profile</h4>
-                            <p class="mb-0">Nulla vitae elit libero elit non porta eget.</p>
+                            <h4 class="mb-1">2. Mua thẻ</h4>
+                            <p class="mb-0">Tiến hành giao dịch</p>
                         </div>
                         <!--/column -->
                         <div class="col-md-4"> <img src="{{ asset('dev/img/icons/rocket.svg') }}"
                                 class="svg-inject icon-svg icon-svg-sm text-aqua mb-3" alt="" />
-                            <h4 class="mb-1">3. Start</h4>
-                            <p class="mb-0">Nulla vitae elit libero elit non porta eget.</p>
+                            <h4 class="mb-1">3. Nhận thẻ</h4>
+                            <p class="mb-0">Tại trang người dùng của bạn</p>
                         </div>
                         <!--/column -->
                     </div>
@@ -123,11 +118,11 @@
 	<section class="wrapper image-wrapper bg-image bg-overlay" data-image-src="{{ asset('dev/img/photos/lol.jpg') }}" style="background-image: url(&quot;img/photos/bg1.jpg&quot;);">
 		<div class="container py-18">
 		  <div class="row">
-			{{-- <div class="col-lg-8">
-			  <h2 class="fs-16 text-uppercase text-line text-white mb-3">Join Our Community</h2>
-			  <h3 class="display-4 mb-6 text-white pe-xxl-18">We are trusted by over 5000+ clients. Join them by using our services and grow your business.</h3>
-			  <a href="#" class="btn btn-white rounded mb-0 text-nowrap">Join Us</a>
-			</div> --}}
+			<div class="col-lg-8">
+			  <h2 class="fs-16 text-uppercase text-line text-white mb-3">CHỈ VỚI 1 TÀI KHOẢN VÍ ĐIỆN TỬ</h2>
+			  <h2 class=" mb-6 text-white ">THANH TOÁN Ở MỌI NƠI, THEO CÁCH MÀ BẠN MUỐN</h2>
+              <a href="{{ route('signup') }}" class="btn btn-white rounded mb-0 text-nowrap">Tham gia ngay</a>
+			</div>
 			<!-- /column -->
 		  </div>
 		  <!-- /.row -->
