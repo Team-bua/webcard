@@ -6,7 +6,9 @@ use App\Models\Card;
 use App\Models\CardBill;
 use App\Models\CardStore;
 use App\Models\CardType;
+use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class CardRepository
@@ -21,6 +23,44 @@ class CardRepository
 
     public function getCardToEdit($id){
         return Card::find($id);
+    }
+
+    public function BuyCard($request){
+        
+        $card = Card::find($request->card_id_info);
+        $card_info = [];
+        if(isset(Auth::user()->id)){
+            if(in_array($request->subject, json_decode($card->price)) == true){
+                $card_codes = CardStore::where('name', strtolower($card->name))
+                                        ->where('price', $request->subject)
+                                        ->limit($request->quantity1)
+                                        ->get();
+                foreach($card_codes as $card_code){
+                    $card_info[] = $card_code->name.'|'.$card_code->price.'|'.$card_code->seri_number.'|'.$card_code->code;
+                    $card_delete = CardStore::find($card_code->id);
+                    $card_delete->delete();
+                }
+                $user = User::find(Auth::user()->id);
+                $user->point = $user->point - $request->subject * $request->quantity1;
+                $user->save();
+    
+                $card_codes_for_user = new CardBill();
+                $card_codes_for_user->user_id = Auth::user()->id;
+                $card_codes_for_user->card_id = $request->card_id_info;
+                $card_codes_for_user->order_id = Str::random(4);
+                $card_codes_for_user->card_type = $card->name;
+                $card_codes_for_user->card_price = $request->subject;
+                $card_codes_for_user->card_total = $request->quantity1;
+                $card_codes_for_user->card_info = json_encode($card_info);
+                $card_codes_for_user->price_total = $request->subject * $request->quantity1;
+                $card_codes_for_user->status = 1;
+                $card_codes_for_user->save();
+
+                return redirect()->route('orderhistory')->with('message', '1');
+            }
+        }else{
+            return redirect(url('sign-in'));
+        }           
     }
 
     public function store($request)

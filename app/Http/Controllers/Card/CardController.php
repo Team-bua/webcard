@@ -65,7 +65,7 @@ class CardController extends Controller
 
     public function BuyCard(Request $request)
     {
-        dd($request->all());
+        return $this->repository->BuyCard($request);
     }
 
     public function SaveCard(CardRequest $request){

@@ -80,8 +80,14 @@
                                                   </div>
                                                   <div class="modal-body">
                                                     <form>
-                                                      <div class="form-group">       
-                                                        <textarea class="form-control"  rows="5">{{ $bill->card_info }}</textarea>                                          
+                                                      <div class="form-group"> 
+                                                      <ul>
+                                                        @for($i = 0; $i < count(json_decode($bill->card_info)); $i++)
+                                                            <li>
+                                                                <p class="text-xs font-weight-bold mb-0">{{json_decode($bill->card_info)[$i]}}</p>
+                                                            </li>
+                                                        @endfor
+                                                    </ul>                                            
                                                       </div>
                                                     </form>
                                                   </div>
