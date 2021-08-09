@@ -15,6 +15,7 @@
             <input type="text" name="card_id_info" id="card_id_info" value="">
             <input type="text" name="subject" id="subject" value="">
             <input type="text" name="quantity1" id="quantity1" value="1">
+            <input type="text" name="discount" id="discount" value="">
         </form>
         <div class="row">
             <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12" style="margin-top: 20px">
@@ -102,7 +103,9 @@
         var card_id = number;     
         $('.cate').removeAttr("style");
         $('#' + card_id + '').attr("style", "border: solid 2px #0475c5;");
-        
+        $('#price').html('');
+        $('#total').html('');
+        $('#discount').attr("value", '');
         $('.cardInfo').attr("style", "display:none");
         $('#card'+card_id+'').removeAttr("style");
         $('#card_id_info').attr("value", number);
@@ -120,13 +123,14 @@
         $('.ac_chon_mg_these').removeClass('ac_chon_mg_these');
         $('#proId_'+id+'_'+id_card+'').attr('class', 'ac_chon_mg_these');
         $('#subject').attr("value", price);
+        $('#discount').attr("value",price - price * discount / 100)
         $('#price').html(Number(price - price * discount / 100).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,') + ' VNĐ');
         $('#total').html(Number(quantity * (price - price * discount / 100)).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,') + ' VNĐ');
         $('#quantity2').html(quantity);
     }
 
     function increaseCount(a, b) {
-        var discount = '{{ $card->discount }}';
+        var discount = document.getElementById("discount").value;
         var price = document.getElementById("subject").value;
         var input = b.previousElementSibling;
         var value = parseInt(input.value, 10);
@@ -135,11 +139,11 @@
         input.value = value;
         document.getElementById("quantity1").value = input.value;
         document.getElementById("quantity2").innerHTML = input.value;
-        document.getElementById("total").innerHTML = Number(input.value * (price - price * discount / 100)).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,') + ' VNĐ';
+        document.getElementById("total").innerHTML = Number(input.value * discount).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,') + ' VNĐ';
     }
 
     function decreaseCount(a, b) {
-        var discount = '{{ $card->discount }}';
+        var discount = document.getElementById("discount").value;
         var price = document.getElementById("subject").value;
         var input = b.nextElementSibling;
         var value = parseInt(input.value, 10);
@@ -149,7 +153,7 @@
             input.value = value;
         document.getElementById("quantity1").value = input.value;
         document.getElementById("quantity2").innerHTML = input.value;
-        document.getElementById("total").innerHTML = Number(input.value * (price - price * discount / 100)).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,') + ' VNĐ';
+        document.getElementById("total").innerHTML = Number(input.value * discount).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,') + ' VNĐ';
     }
 
     
