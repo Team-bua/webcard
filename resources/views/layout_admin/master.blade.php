@@ -63,6 +63,28 @@
 
     $("div.alert").delay(2000).slideUp();
   </script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      var msg = "{{Session::get('message')}}";
+      var exist = "{{Session::has('message')}}";
+      console.log(msg, exist);
+      if (exist && msg == '1') {
+          Swal.fire({
+              icon: 'success',
+              title: 'Mua thẻ thành công!',
+              showConfirmButton: false,
+              timer: 2000
+          })
+        }else if(exist && msg == '2') {
+          Swal.fire({
+              icon: 'success',
+              title: 'Đăng nhập thành công!',
+              showConfirmButton: false,
+              timer: 2000
+          })
+        }
+    })
+  </script>
   @yield('script')
 </body>
 
