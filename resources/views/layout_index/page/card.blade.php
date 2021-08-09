@@ -63,15 +63,28 @@
             </div>
             <div class="col-lg-4 col-md-8 col-sm-12 col-xs-12" style="margin-top: 20px">
                 <h6 class="text_td_thegame_ud" style="margin-top: 0;">Chi tiết giao dịch</h6>
-                <p class="all_so_luong_the">Loại thẻ: </p>
-                <p class="all_so_luong_the">Mệnh giá: </p>
-                <p class="all_so_luong_the">Số lượng: </p>
-                <h6 class="text_td_thegame_ud"></h6>
-                <div class="all_so_luong_the">
-                    <b>Tổng tiền:</b>
+                    <div class="table-responsive">
+                        <table class="table align-items-center mb-0">
+                        <tbody class="text-center">
+                            <tr style="text-align: left">
+                            <td>Loại thẻ :</td>
+                            <td>Zing</td>
+                            </tr>
+                            <tr style="text-align: left">
+                            <td>Mệnh giá :</td>
+                            <td>20,000 VNĐ</td>
+                            </tr>
+                            <tr style="text-align: left">
+                            <td>Số lượng :</td>
+                            <td>2</td>
+                            </tr>
+                            <tr style="text-align: left">
+                            <td><b>Tổng tiền :</b></td>
+                            <td>40,000 VNĐ</td>
+                            </tr>
+                        </tbody>
+                        </table>
                 </div>
-                <div class="clear"></div>
-                <h6 class="text_td_thegame_ud" style="margin-bottom:0;"></h6>
                 <a href="#" onClick='submitForm()' class="link_thanhtoan_naptien">Thanh toán ngay</a>
 
             </div>
