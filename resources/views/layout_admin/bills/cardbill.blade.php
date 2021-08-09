@@ -93,8 +93,8 @@
                                             <span class="badge badge-sm bg-gradient-danger">Chưa thanh toán</span>
                                             @endif
                                         </td>
-                                        <td >
-                                            <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModalMessage{{ $bill->id }}"><i class="fa fa-eye"></i></a>                             
+                                        <td>
+                                            <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModalMessage{{ $bill->id }}"><i class="fa fa-eye" style="margin-top: 15px"></i></a>                             
                                         </td>
                                     </tr>
                                     <div class="col-md-4">
