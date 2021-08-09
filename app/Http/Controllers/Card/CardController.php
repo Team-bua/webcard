@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateCardRequest;
 use App\Models\CardStore;
 use App\Repositories\card\CardRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CardController extends Controller
 {
@@ -68,7 +69,13 @@ class CardController extends Controller
 
     public function BuyCard(Request $request)
     {
-        return $this->repository->BuyCard($request);
+        $total = $request->subject * $request->quantity1;
+        if(Auth::user()->point - $total < 0){
+            return redirect()->back()->with('message', '5');
+        }else{
+            return $this->repository->BuyCard($request);
+        }
+        
     }
 
     public function SaveCard(CardRequest $request)

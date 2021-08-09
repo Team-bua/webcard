@@ -95,6 +95,22 @@
                 timer: 2500
             })
         }
+        else if(exist && msg == '5') {
+            Swal.fire({
+                icon: 'error',
+                title: 'Số tiền trong ví của bạn không đủ!',
+                showConfirmButton: false,
+                timer: 2500
+            })
+        }
+        else if(exist && msg == '6') {
+            Swal.fire({
+                icon: 'error',
+                title: 'Số thẻ hiện tại không đủ!',
+                showConfirmButton: false,
+                timer: 2500
+            })
+        }
     })
   </script>
   @yield('script')
