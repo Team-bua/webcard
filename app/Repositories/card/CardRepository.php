@@ -13,7 +13,8 @@ use Illuminate\Support\Str;
 
 class CardRepository
 {
-    public function getCardTypeForCard(){
+    public function getCardTypeForCard()
+    {
         return CardType::all();
     }
 
@@ -21,12 +22,14 @@ class CardRepository
         return Card::orderBy('created_at', 'desc')->get();
     }
 
-    public function getCardToEdit($id){
+    public function getCardToEdit($id)
+    {
         return Card::find($id);
     }
 
-    public function BuyCard($request){
-        
+    public function BuyCard($request)
+    {
+        dd($request->all());
         $card = Card::find($request->card_id_info);
         $card_info = [];
         if(isset(Auth::user()->id)){
@@ -162,8 +165,6 @@ class CardRepository
             return response()->json([
                 'success' => false
             ]);
-          }
-         
-        
+          }       
     }
 }

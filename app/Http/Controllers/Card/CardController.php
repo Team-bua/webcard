@@ -18,12 +18,14 @@ class CardController extends Controller
         $this->repository = $repository;
     }
 
-    public function AddCard(){
+    public function AddCard()
+    {
         $card_types = $this->repository->getCardTypeForCard();
         return view('layout_admin.cards.create', compact('card_types'));
     }
 
-    public function AddCardCode(){
+    public function AddCardCode()
+    {
         $card_types = $this->repository->getCardTypeForCard();
         return view('layout_admin.cards.createcode', compact('card_types'));
     }
@@ -38,7 +40,8 @@ class CardController extends Controller
         return $this->repository->AjaxDeletePrice($request, $id);
     }
 
-    public function EditCard($id){
+    public function EditCard($id)
+    {
         $card = $this->repository->getCardToEdit($id);
         $card_types = $this->repository->getCardTypeForCard();
         return view('layout_admin.cards.edit', compact('card_types', 'card'));
@@ -68,12 +71,14 @@ class CardController extends Controller
         return $this->repository->BuyCard($request);
     }
 
-    public function SaveCard(CardRequest $request){
+    public function SaveCard(CardRequest $request)
+    {
         $this->repository->store($request);
         return redirect()->back()->with('information', 'Thêm thành công');
     }
 
-    public function UpdateCard(UpdateCardRequest $request, $id){
+    public function UpdateCard(UpdateCardRequest $request, $id)
+    {
         $this->repository->update($request, $id);
         return redirect()->back()->with('information', 'Cập nhật thành công');
     }

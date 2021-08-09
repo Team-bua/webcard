@@ -12,10 +12,10 @@
 
     <div class="al_chonthe_menhgia_tin">
         <form name="form" action="{{ route('buy_card') }}" method="get" id="form">
-            <input type="text" name="card_id_info" id="card_id_info" value="">
-            <input type="text" name="subject" id="subject" value="">
-            <input type="text" name="quantity1" id="quantity1" value="1">
-            <input type="text" name="discount" id="discount" value="">
+            <input style="display: none" type="text" name="card_id_info" id="card_id_info" value="">
+            <input style="display: none" type="text" name="subject" id="subject" value="">
+            <input style="display: none" type="text" name="quantity1" id="quantity1" value="1">
+            <input style="display: none" type="text" name="discount" id="discount" value="">
         </form>
         <div class="row">
             <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12" style="margin-top: 20px">
