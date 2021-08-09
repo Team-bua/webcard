@@ -23,7 +23,7 @@
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder">Mã đơn hàng</th>
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder">Khách hàng</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Số tiền</th>
-                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder">Giá</th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder">Nội dung</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Ngày</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Trạng thái</th>
                                     </tr>
@@ -80,10 +80,19 @@
 @section('script')
 <script src="{{ asset('dashboard/assets/js/plugins/datatables.js') }}" type="text/javascript"></script>
 <script type="text/javascript">
-    const dataTableBasic = new simpleDatatables.DataTable("#datatable-basic", {
-        searchable: false,
-        fixedHeight: true
-    });
+    $(function() {
+        $('#datatable-basic').DataTable({
+        "sDom": '<"row view-filter"<"col-sm-12"<"pull-right"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"pull-left"l><"pull-right"p><"text-center"i>>>',
+        'paging': true,
+        'searching': true,
+        'info': true,
+        'autoWidth': false,
+        'lengthChange': false,
+        'ordering': true,
+        'aaSorting': [],
+        'columnDefs': []
+        })
+    })
 </script>
 <script type="text/javascript">
     if (document.querySelector('.datepicker')) {

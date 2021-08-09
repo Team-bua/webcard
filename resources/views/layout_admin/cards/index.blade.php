@@ -130,10 +130,20 @@
 @section('script')
 <script src="{{ asset('dashboard/assets/js/plugins/datatables.js') }}" type="text/javascript"></script>
 <script type="text/javascript">
-    const dataTableBasic = new simpleDatatables.DataTable("#datatable-basic", {
-        searchable: false,
-        fixedHeight: true,
-    });
+    $(function() {
+        $('#datatable-basic').DataTable({
+        "sDom": '<"row view-filter"<"col-sm-12"<"pull-right"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"pull-left"l><"pull-right"p><"text-center"i>>>',
+        'paging': true,
+        'searching': true,
+        'info': true,
+        'autoWidth': false,
+        'lengthChange': false,
+        'ordering': true,
+        'aaSorting': [],
+        'columnDefs': []
+        })
+    })
+    
     $(document).on('click', '.simpleConfirm', function(e) {
             e.preventDefault();
             var id = $(this).attr('delete_id');
