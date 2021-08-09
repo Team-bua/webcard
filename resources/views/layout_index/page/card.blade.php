@@ -17,7 +17,7 @@
             <input type="text" name="quantity1" id="quantity1" value="1">
         </form>
         <div class="row">
-            <div class="col-lg-12 col-md-8 col-sm-12 col-xs-12" style="margin-top: 20px">
+            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12" style="margin-top: 20px">
                 <h6 class="text_td_thegame_ud" style="margin-top: 0;">chọn loại thẻ
                 </h6>
                 <div class="tab-wrapper">
@@ -56,6 +56,19 @@
                             <polygon fill="white" points="10 4.5 5.5 4.5 5.5 0 4.5 0 4.5 4.5 0 4.5 0 5.5 4.5 5.5 4.5 10 5.5 10 5.5 5.5 10 5.5">
                             </polygon>
                         </svg></em>
+                </div>
+                <div class="clear"></div>
+                <h6 class="text_td_thegame_ud" style="margin-bottom:0;"></h6>
+
+            </div>
+            <div class="col-lg-4 col-md-8 col-sm-12 col-xs-12" style="margin-top: 20px">
+                <h6 class="text_td_thegame_ud" style="margin-top: 0;">Chi tiết giao dịch</h6>
+                <p class="all_so_luong_the">Loại thẻ: </p>
+                <p class="all_so_luong_the">Mệnh giá: </p>
+                <p class="all_so_luong_the">Số lượng: </p>
+                <h6 class="text_td_thegame_ud"></h6>
+                <div class="all_so_luong_the">
+                    <b>Tổng tiền:</b>
                 </div>
                 <div class="clear"></div>
                 <h6 class="text_td_thegame_ud" style="margin-bottom:0;"></h6>
