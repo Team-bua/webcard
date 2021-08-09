@@ -40,7 +40,7 @@
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder">Khách hàng</th>
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder">Mã đơn hàng</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Số lượng</th>
-                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder">Giá</th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder">Tổng tiền</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Ngày</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Trạng thái</th>
                                         <th class="text-secondary"></th>
@@ -81,7 +81,7 @@
                                             <p class="text-xs font-weight-bold mb-0">{{ $bill->card_total }}</p>
                                         </td>
                                         <td class="align-middle text-center text-sm">
-                                            <p class="text-xs font-weight-bold mb-0">{{ $bill->card_price }}</p>
+                                            <p class="text-xs font-weight-bold mb-0">{{ $bill->price_total }}</p>
                                         </td>
                                         <td class="align-middle text-center">
                                             <span class="text-secondary text-xs font-weight-bold">{{ date('d/m/Y', strtotime(str_replace('/', '-', $bill->created_at))) }}</span>
@@ -111,7 +111,13 @@
                                               <div class="modal-body">
                                                 <form>
                                                   <div class="form-group">       
-                                                    <textarea class="form-control"  rows="5">{{ $bill->card_info }}</textarea>                                          
+                                                    <ul>
+                                                        @for($i = 0; $i < count(json_decode($bill->card_info)); $i++)
+                                                            <li>
+                                                                <p class="text-xs font-weight-bold mb-0">{{json_decode($bill->card_info)[$i]}}</p>
+                                                            </li>
+                                                        @endfor
+                                                    </ul>                                                
                                                   </div>
                                                 </form>
                                               </div>
@@ -138,8 +144,11 @@
 <script src="{{ asset('dashboard/assets/js/plugins/datatables.js') }}" type="text/javascript"></script>
 <script type="text/javascript">
     const dataTableBasic = new simpleDatatables.DataTable("#datatable-basic", {
+        sDom: '<"row view-filter"<"col-sm-12"<"pull-right"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"pull-left"l><"pull-right"p><"text-center"i>>>',
         searchable: false,
-        fixedHeight: true
+        fixedHeight: true,
+        bSort: false,
+        ordering: false,
     });
 </script>
 <script type="text/javascript">
