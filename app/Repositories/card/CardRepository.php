@@ -47,7 +47,7 @@ class CardRepository
                         $card_delete->delete();
                     }
                     $user = User::find(Auth::user()->id);
-                    $user->point = $user->point - $request->subject * $request->quantity1;
+                    $user->point = $user->point - $discount * $request->quantity1;
                     $user->save();
         
                     $card_codes_for_user = new CardBill();
