@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\BillController;
 use App\Http\Controllers\Card\CardController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\LoginController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,6 +24,15 @@ Route::group(['middleware' => 'user'], function () {
     Route::get('/admin',[AdminController::class,'getAdmin'])->name('admin');
     //View card
     Route::get('/view-card',[CardController::class,'GetCardToIndex'])->name('viewcard');
+    //card
+    Route::get('/create-card',[CardController::class,'AddCard'])->name('create-card');
+    Route::post('/create-card/save',[CardController::class,'SaveCard'])->name('card_save');
+    Route::get('/edit-card/{id}',[CardController::class,'EditCard'])->name('card_edit');
+    Route::get('/delete-price/{id}',[CardController::class,'deletePrice'])->name('card_price_delete');
+    Route::post('/edit-card/update/{id}',[CardController::class,'UpdateCard'])->name('card_update');
+    Route::get('/add-card-code',[CardController::class,'AddCardCode'])->name('add-card-code');
+    Route::post('/add-card-code/save',[CardController::class,'StoreCardCode'])->name('card-code-save');
+    Route::get('/destroy',[CardController::class,'delete'])->name('destroy');
     //View user
     Route::get('/all-users',[AdminController::class,'getAllUsers'])->name('allusers');
     Route::get('/users/banned/{id}',[AdminController::class,'banned'])->name('users.banned');
@@ -44,7 +54,9 @@ Route::group(['middleware' => 'login'], function () {
     //recharge
     Route::get('/recharge',[UserController::class,'recharge'])->name('recharge');
     Route::get('/recharge-history',[UserController::class,'getRechargeHistory'])->name('rechargehistory');
-    Route::post('/recharge-money/{id}}',[UserController::class,'rechargeMoney'])->name('recharge.money');
+    Route::post('/recharge-money/{id}',[UserController::class,'rechargeMoney'])->name('recharge.money');
+    //VN Pay
+    Route::post('/payment/online',[UserController::class,'createPayment'])->name('payment.online');
 });
 
 //Login Facebook
@@ -70,15 +82,6 @@ Route::post('/sign-in',[FrontendController::class,'postSignIn'])->name('signin')
 Route::get('/logout',[FrontendController::class,'postLogout'])->name('logout');
 //Buy card
 Route::get('/card',[FrontendController::class,'getCardToView'])->name('card');
-//card
-Route::get('/create-card',[CardController::class,'AddCard'])->name('create-card');
-Route::post('/create-card/save',[CardController::class,'SaveCard'])->name('card_save');
-Route::get('/edit-card/{id}',[CardController::class,'EditCard'])->name('card_edit');
-Route::get('/delete-price/{id}',[CardController::class,'deletePrice'])->name('card_price_delete');
-Route::post('/edit-card/update/{id}',[CardController::class,'UpdateCard'])->name('card_update');
-Route::get('/add-card-code',[CardController::class,'AddCardCode'])->name('add-card-code');
-Route::post('/add-card-code/save',[CardController::class,'StoreCardCode'])->name('card-code-save');
-Route::get('/destroy',[CardController::class,'delete'])->name('destroy');
 //buy card
 Route::get('/buy-card',[CardController::class,'BuyCard'])->name('buy_card');
 //Test

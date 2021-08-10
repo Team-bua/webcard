@@ -103,6 +103,9 @@ class UserController extends Controller
 
     public function rechargeMoney(RechargeRequest $request, $id)
     {
+        if($request->payment == 2){
+            
+        }
         $point_purchase = UserBill::where('status', 0)->distinct()->count();
         if($point_purchase > 3){
             return redirect()->back()->with('information', 'Vui lòng thanh toán hóa đơn cũ');
@@ -113,4 +116,8 @@ class UserController extends Controller
         }    
     }
     
+    public function createPayment(Request $request)
+    {
+
+    }
 }

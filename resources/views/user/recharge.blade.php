@@ -8,7 +8,7 @@
                 <div class="col-12 col-xl-6">
                     <div class="card">
                         @if (session('information'))
-                            <div class="alert alert-success">{{ session('information') }}</div>
+                            <div class="alert alert-danger">{{ session('information') }}</div>
                         @endif
                         <div class="card-header pb-0 p-3">
                             <h6 class="mb-0">Nạp tiền</h6>
@@ -29,7 +29,7 @@
                                 </div>
                             </div>
                             <div class="text-center">
-                                <button type="submit" class="btn bg-gradient-primary w-12">Nạp ngay</button>
+                                <button type="submit" name="payment" value="2" class="btn bg-gradient-primary w-12">Nạp ngay</button>
                             </div>
                         </form>
                     </div>

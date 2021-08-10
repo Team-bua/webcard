@@ -33,7 +33,7 @@
             <div class="row gx-lg-8 gx-xl-12 gy-6 text-center">
                 <div class="col-md-6 col-lg-4">
                   <img src="{{ asset('dev/img/client-2.png') }}" style="width: 100px; height: 100px;" alt="">
-                  <h4>Thẻ quà tặng được sử dụng tại hơn 160 thương hiệu nổi tiếng với 12,000 cửa hàng toàn quốc</h4>
+                  <h4>Thẻ quà tặng được sử dụng tại các cửa hàng toàn quốc</h4>
                 </div>
                 <!--/column -->
                 <div class="col-md-6 col-lg-4">
