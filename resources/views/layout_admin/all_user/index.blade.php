@@ -56,7 +56,7 @@
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td>
+                                            <td class="align-middle text-sm">
                                                 <p class="text-xs font-weight-bold mb-0">{{ $user->phone }}</p>
                                             </td>
                                             <td class="align-middle text-center text-sm">
