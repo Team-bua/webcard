@@ -51,7 +51,7 @@
                                                 <p class="text-xs font-weight-bold mb-0">{{ $bill->card_total }}</p>
                                             </td>
                                             <td class="align-middle text-center text-sm">
-                                                <p class="text-xs font-weight-bold mb-0">{{ $bill->price_total }}</p>
+                                                <p class="text-xs font-weight-bold mb-0">{{ number_format($bill->price_total) }} VNĐ</p>
                                             </td>
                                             <td class="align-middle text-center">
                                                 <span class="text-secondary text-xs font-weight-bold">{{ date('d/m/Y', strtotime(str_replace('/', '-', $bill->created_at))) }}</span>
