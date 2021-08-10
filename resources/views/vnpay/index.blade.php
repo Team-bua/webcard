@@ -23,21 +23,18 @@
             </div>
             <h3>Tạo mới đơn hàng</h3>
             <div class="table-responsive">
-                <form action="/vnpay_php/vnpay_create_payment.php" id="create_form" method="post">       
-
+                <form action="{{ route('payment.online') }}" id="create_form" method="post">       
+                    @csrf
                     <div class="form-group">
                         <label for="language">Loại hàng hóa </label>
                         <select name="order_type" id="order_type" class="form-control">
-                            <option value="topup">Nạp tiền điện thoại</option>
                             <option value="billpayment">Thanh toán hóa đơn</option>
-                            <option value="fashion">Thời trang</option>
-                            <option value="other">Khác - Xem thêm tại VNPAY</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="amount">Số tiền</label>
                         <input class="form-control" id="amount"
-                               name="amount" type="number" value="10000" disabled/>
+                               name="amount" type="number" value="{{ $money }}"/>
                     </div>
                     <div class="form-group">
                         <label for="order_desc">Nội dung thanh toán</label>
@@ -79,8 +76,8 @@
                         </select>
                     </div>
 
-                    <button type="submit" class="btn btn-primary" id="btnPopup">Thanh toán Popup</button>
-                    <button type="submit" class="btn btn-default">Thanh toán Redirect</button>
+                    <button type="submit" class="btn btn-primary" id="btnPopup">Thanh toán</button>
+                    <button type="button" class="btn btn-default" onclick="history.back()">Quay lại</button>
 
                 </form>
             </div>
@@ -93,32 +90,5 @@
         </div>  
         <link href="https://sandbox.vnpayment.vn/paymentv2/lib/vnpay/vnpay.css" rel="stylesheet"/>
         <script src="https://sandbox.vnpayment.vn/paymentv2/lib/vnpay/vnpay.js"></script>
-        <script type="text/javascript">
-            $("#btnPopup").click(function () {
-                var postData = $("#create_form").serialize();
-                var submitUrl = $("#create_form").attr("action");
-                $.ajax({
-                    type: "POST",
-                    url: submitUrl,
-                    data: postData,
-                    dataType: 'JSON',
-                    success: function (x) {
-                        if (x.code === '00') {
-                            if (window.vnpay) {
-                                vnpay.open({width: 768, height: 600, url: x.data});
-                            } else {
-                                location.href = x.data;
-                            }
-                            return false;
-                        } else {
-                            alert(x.Message);
-                        }
-                    }
-                });
-                return false;
-            });
-        </script>
-
-
     </body>
 </html>

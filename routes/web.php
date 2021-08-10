@@ -57,6 +57,7 @@ Route::group(['middleware' => 'login'], function () {
     Route::post('/recharge-money/{id}',[UserController::class,'rechargeMoney'])->name('recharge.money');
     //VN Pay
     Route::post('/payment/online',[UserController::class,'createPayment'])->name('payment.online');
+    Route::get('/vnpay/return',[UserController::class,'vnpayReturn'])->name('vnpay.return');
 });
 
 //Login Facebook
@@ -86,5 +87,5 @@ Route::get('/card',[FrontendController::class,'getCardToView'])->name('card');
 Route::get('/buy-card',[CardController::class,'BuyCard'])->name('buy_card');
 //Test
 Route::get('/test', function(){
-    return view('vnpay.index');
+    return view('test');
 });
