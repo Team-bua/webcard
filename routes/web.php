@@ -86,5 +86,5 @@ Route::get('/card',[FrontendController::class,'getCardToView'])->name('card');
 Route::get('/buy-card',[CardController::class,'BuyCard'])->name('buy_card');
 //Test
 Route::get('/test', function(){
-    return view('test');
+    return view('vnpay.index');
 });
