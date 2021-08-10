@@ -70,7 +70,7 @@ class CardController extends Controller
     public function BuyCard(Request $request)
     {
         $total = $request->subject * $request->quantity1;
-        if(isset(Auth::user()->id)){
+        if(Auth::check()){
             if(Auth::user()->point - $total < 0){
                 return redirect()->back()->with('message', '5');
             }else{
