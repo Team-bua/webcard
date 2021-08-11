@@ -85,6 +85,8 @@ Route::get('/logout',[FrontendController::class,'postLogout'])->name('logout');
 Route::get('/card',[FrontendController::class,'getCardToView'])->name('card');
 //buy card
 Route::get('/buy-card',[CardController::class,'BuyCard'])->name('buy_card');
+//transaction
+Route::post('handler-bank-transfer',[FrontendController::class,'transtionInfo'])->name('transtion.info');
 //Test
 Route::get('/test', function(){
     return view('test');
