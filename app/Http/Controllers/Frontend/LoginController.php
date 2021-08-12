@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Support\Str;
 
 class LoginController extends Controller
 {
@@ -28,8 +29,9 @@ class LoginController extends Controller
             // create a new user
             $newUser                  = new User();
             $newUser->name            = $getInfo->name;
+            $newUser->code_name       = 'NAPTIEN'.rand(100000,999999);
             $newUser->email           = $getInfo->email;
-            $newUser->avatar_original  = $getInfo->avatar;
+            $newUser->avatar_original = $getInfo->avatar;
             $newUser->password        = Hash::make($getInfo->id);
             $newUser->provider_id     = $getInfo->id;
             $newUser->save();

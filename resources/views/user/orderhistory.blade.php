@@ -22,13 +22,13 @@
                                 <table class="table table-flush" id="datatable-basic">
                                     <thead class="thead-light">
                                         <tr>
-                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder">Thẻ</th>
-                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder">Mã đơn hàng</th>
+                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Thẻ</th>
+                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Mã đơn hàng</th>
                                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Số lượng</th>
-                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder">Tổng tiền</th>
+                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Tổng tiền</th>
                                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Ngày</th>
                                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Trạng thái</th>
-                                            <th class="text-secondary"></th>
+                                            <th class="text-center text-secondary"></th>
                                         </tr>
                                     </thead>
                                     <tbody>

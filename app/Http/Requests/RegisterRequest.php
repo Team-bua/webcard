@@ -27,7 +27,7 @@ class RegisterRequest extends FormRequest
             'name' =>'required|max:50|regex:/(^[\pL0-9 ]+$)/u',
             'email' =>'required|email|max:100|unique:users,email',
             'phone' => 'required|numeric|unique:users,phone',
-            'password' =>'required|max:25|min:6',
+            'password' =>'required|max:25|min:5',
             'confirm_password' => 'required|same:password',
             'checkbox' => 'required',
         ];
@@ -47,7 +47,7 @@ class RegisterRequest extends FormRequest
             'phone.unique' => 'Số điện thoại đã tồn tại',  
             'password.required' => 'Vui lòng nhập mật khẩu',
             'password.max' => 'Giới hạn 25 ký tự',
-            'password.min' => 'Thấp nhất 6 ký tự',
+            'password.min' => 'Thấp nhất 5 ký tự',
             'confirm_password.required' => 'Vui lòng nhập lại mật khẩu',
             'confirm_password.same' => 'Xác nhận mật khẩu không chính xác',
             'checkbox.required' => 'Vui lòng đồng ý điều khoản',

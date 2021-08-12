@@ -20,10 +20,10 @@
                             <table class="table table-flush" id="datatable-basic">
                                 <thead class="thead-light">
                                     <tr>
-                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder">Mã đơn hàng</th>
-                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder">Khách hàng</th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Mã đơn hàng</th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Khách hàng</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Số tiền</th>
-                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder">Nội dung</th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Nội dung</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Ngày</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Trạng thái</th>
                                     </tr>
@@ -32,7 +32,7 @@
                                     @if($recharge_bills)
                                     @foreach($recharge_bills as $bill)
                                     <tr>
-                                        <td><p class="text-xs font-weight-bold mb-0">{{ $bill->order_id }}</p></td>
+                                        <td class="align-middle text-center text-sm"><p class=" text-xs font-weight-bold mb-0">{{ $bill->order_id }}</p></td>
                                         <td>
                                             <div class="d-flex px-2 py-1">
                                                 <div>
@@ -52,7 +52,7 @@
                                             <p class="text-xs font-weight-bold mb-0">{{ number_format($bill->point_purchase) }} VNĐ</p>
                                         </td>
                                         <td class="align-middle text-center text-sm">
-                                            <p class="text-xs font-weight-bold mb-0"></p>
+                                            <p class="text-xs font-weight-bold mb-0 ">{{ $bill->method }}</p>
                                         </td>
                                         <td class="align-middle text-center">
                                             <span class="text-secondary text-xs font-weight-bold">{{ date('d/m/Y', strtotime(str_replace('/', '-', $bill->created_at))) }}</span>

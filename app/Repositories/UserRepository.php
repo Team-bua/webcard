@@ -56,16 +56,16 @@ class UserRepository
         $user->save();
     }
 
-    public function rechargeMoney($request, $id)
-    {
-        $point_purchase = new UserBill();
-        $point_purchase->user_id = $id;
-        $point_purchase->point_purchase = $request->money;
-        $point_purchase->description = 'Nạp ' . $request->money . ' VNĐ ';
-        $point_purchase->order_id = $request->money . '' . Str::random(4);
-        $point_purchase->method = 'Nạp tiền';
-        $point_purchase->save();
-    }
+    // public function rechargeMoney($request, $id)
+    // {
+    //     $point_purchase = new UserBill();
+    //     $point_purchase->user_id = $id;
+    //     $point_purchase->point_purchase = $request->money;
+    //     $point_purchase->description = 'Nạp ' . $request->money . ' VNĐ ';
+    //     $point_purchase->order_id = $request->money . '' . Str::random(4);
+    //     $point_purchase->method = 'Nạp tiền';
+    //     $point_purchase->save();
+    // }
 
     public function getCardBill($request)
     {          

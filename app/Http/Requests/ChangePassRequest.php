@@ -24,7 +24,7 @@ class ChangePassRequest extends FormRequest
     public function rules()
     {
         return [
-            'new_password' => 'required|min:6|max:25',
+            'new_password' => 'required|min:5|max:25',
             'confirm_password' => 'required|same:new_password',
         ];
     }
@@ -32,7 +32,7 @@ class ChangePassRequest extends FormRequest
     {
         return [
             'new_password.required' => 'Vui lòng nhập mật khẩu',              
-            'new_password.min' => 'Thấp nhất 6 ký tự',
+            'new_password.min' => 'Thấp nhất 5 ký tự',
             'new_password.max' => 'Giới hạn 25 ký tự',
             'confirm_password.required' => 'Vui lòng nhập lại mật khẩu',
             'confirm_password.same' => 'Xác nhận mật khẩu không chính xác',

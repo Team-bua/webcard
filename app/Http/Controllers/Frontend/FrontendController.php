@@ -7,6 +7,7 @@ use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Models\Card;
 use App\Models\Test;
+use App\Models\User;
 use App\Repositories\FrontendRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -35,14 +36,6 @@ class FrontendController extends Controller
     }
     public function getIndex()
     {
-        $name = 'ri khung';
-        $ahihi = '{"error":0,"data":[{"tid":"5017 - 48678","description":"311447.110821.213735.15330734312-0353460723-ri khung","when":"2021-08-11 21:37:37","subAccId":"0291000285902","amount":20000,"cusum_balance":0,"guid":"vietcombank-0291000285902-2021081100006","orderOfTheDay":"20210811-00006","orderOfTheSecond":"20210811213737-001","hashDateDesAmount":"f486777a76f0aaf86a699e8de417992b","id":360056,"bank_sub_acc_id":"0291000285902"}]}';
-        $res_json = json_decode($ahihi)->data[0];
-        $key = array_search($name, explode('.',$res_json->description));
-        $momo = explode('.',$res_json->description);
-        $test_momo = explode('-',$momo[3]);
-        dd(in_array($name, $test_momo));
-        // dd(explode('.',$res_json->description)[$key]);
         return view('layout_index.index');
     }
 
@@ -118,10 +111,11 @@ class FrontendController extends Controller
 
     public function transtionInfo(Request $request)
     {
-        $data = $request->all();
+        $res_json = $request->data[0];
         $data1 = new Test();
-        $data1->test = json_encode($data);
+        $data1->test = json_encode($res_json);
         $data1->save();
-        // return view('user.transfer');
+        $this->repository->Test($data1->test, $data1->id);
+
     }
 }

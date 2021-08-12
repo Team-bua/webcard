@@ -86,9 +86,7 @@ class UserController extends Controller
 
     public function recharge()
     {     
-        $user = Auth::user()->name;
-        $str = $this->repository->utf8convert($user);
-        return view('user.recharge',compact('str'));
+        return view('user.recharge');
     }
 
     public function updateInfo(UserRequest $request, $id)
@@ -103,15 +101,15 @@ class UserController extends Controller
         return redirect()->back()->with('changepass', 'Cập nhật mật khẩu thành công');
     }
 
-    public function rechargeMoney(RechargeRequest $request, $id)
-    {
-        $point_purchase = UserBill::where('status', 0)->distinct()->count();
-        if($point_purchase > 3){
-            return redirect()->back()->with('information', 'Vui lòng thanh toán hóa đơn cũ');
-        }
-        else{
-            $this->repository->rechargeMoney($request, $id);
-            return redirect()->route('rechargehistory');
-        }    
-    }
+    // public function rechargeMoney(RechargeRequest $request, $id)
+    // {
+    //     $point_purchase = UserBill::where('status', 0)->distinct()->count();
+    //     if($point_purchase > 3){
+    //         return redirect()->back()->with('information', 'Vui lòng thanh toán hóa đơn cũ');
+    //     }
+    //     else{
+    //         $this->repository->rechargeMoney($request, $id);
+    //         return redirect()->route('rechargehistory');
+    //     }    
+    // }
 }

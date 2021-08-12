@@ -37,8 +37,8 @@
                             <table class="table table-flush" id="datatable-basic">
                                 <thead class="thead-light">
                                     <tr>
-                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder">Loại thẻ</th>
-                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder">Giá</th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Loại thẻ</th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Giá</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Số lượng</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Ngày</th>
                                         <th class="text-secondary"></th>

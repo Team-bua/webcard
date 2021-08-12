@@ -31,8 +31,8 @@
                                 <table class="table table-flush" id="datatable-basic">
                                     <thead class="thead-light">
                                         <tr>
-                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder">Ảnh & Tên & email</th>
-                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder">Số điện thoại</th>
+                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Ảnh & Tên & email</th>
+                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Số điện thoại</th>
                                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Số dư</th>
                                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Khóa user</th>
                                         </tr>

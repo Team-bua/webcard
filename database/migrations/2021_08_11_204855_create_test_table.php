@@ -16,6 +16,7 @@ class CreateTestTable extends Migration
         Schema::create('test', function (Blueprint $table) {
             $table->id();
             $table->longText('test');
+            $table->string('user_codename')->nullable();
             $table->timestamps();
         });
     }

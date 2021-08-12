@@ -5,7 +5,7 @@
         @include('user.avatar')
         <div class="container-fluid py-4">
             <div class="row">
-                <div class="col-12 col-xl-6">
+                {{-- <div class="col-12 col-xl-6">
                     <div class="card">
                         @if (session('information'))
                             <div class="alert alert-danger">{{ session('information') }}</div>
@@ -33,7 +33,7 @@
                             </div>
                         </form>
                     </div>
-                </div>
+                </div> --}}
                 <div class="col-12 col-xl-6">
                     <div class="card h-80">
                         <div class="card-header pb-0 p-3">
@@ -53,21 +53,24 @@
                                     <tbody class="text-center">
                                         <tr style="text-align: left">
                                         <td>Số tài khoản :</td>
-                                        <td>123456789</td>
+                                        <td>0291000285902</td>
                                         </tr>
                                         <tr style="text-align: left">
                                         <td>Chủ tài khoản :</td>
-                                        <td>NGUYEN VAN A</td>
+                                        <td>VU HUYEN TUAN</td>
                                         </tr>
                                         <tr style="text-align: left">
                                         <td>Nội dung chuyển khoản :</td>
-                                        <td>{{ strtoupper($str) }}</td>
+                                        <td>{{ Auth::user()->code_name }}</td>
                                         </tr>
                                         <tr>
-                                        <td colspan="2">Vui lòng nhập đúng nội dung chuyển khoản</td>
+                                        <td colspan="2"><p style="color: red"> Vui lòng nhập đúng nội dung chuyển khoản</p></td>
                                         </tr>
                                     </tbody>
                                     </table>
+                                    <div>
+                                        <p style="color: red; text-align: center"> Lưu ý: Sau khi chuyển khoản thành công vui lòng chờ 5 -10 phút, sau đó bấm f5 số tiền sẽ cộng vào tài khoản</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
