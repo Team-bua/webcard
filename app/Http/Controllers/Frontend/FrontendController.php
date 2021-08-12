@@ -112,10 +112,10 @@ class FrontendController extends Controller
     public function transtionInfo(Request $request)
     {
         $res_json = $request->data[0];
-        $data1 = new Test();
-        $data1->test = json_encode($res_json);
-        $data1->save();
-        $this->repository->Test($data1->test, $data1->id);
+        $data = new Test();
+        $data->test = json_encode($res_json);
+        $data->save();
+        $this->repository->Test($data->test, $data->id);
 
     }
 }
