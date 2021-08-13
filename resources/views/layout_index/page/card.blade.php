@@ -5,7 +5,7 @@
 <link href="{{ asset('dev/css/style3.css') }}" rel="stylesheet" type="text/css" />
 
 <section class="wrapper bg-soft-primary" style="margin-top: -20px">
-    <figure class="position-absoute" style="bottom: 0; left: 0; z-index: 2;"><img src="{{ asset('dev/img/photos/banner_index.jpg') }}" alt=""></figure>
+    <img src="{{ asset('dev/img/photos/banner_index.jpg') }}" width="100%" height="400px" alt="">
     <!-- /.container -->
   </section>
 <div class="all_nd_themgame_ud">
@@ -15,7 +15,7 @@
             <input style="display: none" type="text" name="card_id_info" id="card_id_info" value="">
             <input style="display: none" type="text" name="subject" id="subject" value="">
             <input style="display: none" type="text" name="quantity1" id="quantity1" value="1">
-            <input style="display: none" type="text" name="discount" id="discount" value="">
+            <input style="display: none" type="text" id="discount" value="">
         </form>
         <div class="row">
             <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12" style="margin-top: 20px">
@@ -115,7 +115,23 @@
     }
 
     function submitForm() {
-        $('#form').submit();
+        if($('#card_id_info').val() == '' ){
+            Swal.fire({
+              icon: 'error',
+              title: 'Vui lòng chọn loại thẻ',
+              showConfirmButton: false,
+              timer: 2000
+          })
+        }else if($('#subject').val() == ''){
+            Swal.fire({
+              icon: 'error',
+              title: 'Vui lòng chọn mệnh giá',
+              showConfirmButton: false,
+              timer: 2000
+          })
+        }else{
+            $('#form').submit();
+        }       
     }
 
     function card(id, price, id_card, discount) {

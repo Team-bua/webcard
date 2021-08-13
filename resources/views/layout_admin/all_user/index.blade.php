@@ -45,8 +45,8 @@
                                             <td>
                                                 <div class="d-flex px-2 py-1">
                                                     <div>
-                                                        @if($user->avatar_orginal)
-                                                        <img src="{{ asset($user->avatar_orginal) }}" class="avatar avatar-sm me-3" alt="user1">
+                                                        @if($user->avatar_original)
+                                                        <img src="{{ $user->avatar_original }}" class="avatar avatar-sm me-3" alt="user1">
                                                         @else
                                                         <img src="{{ asset($user->avatar ? $user->avatar : 'dashboard/assets/img/no_img.jpg') }}" class="avatar avatar-sm me-3" alt="user1">
                                                         @endif

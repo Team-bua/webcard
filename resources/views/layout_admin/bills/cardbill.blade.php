@@ -65,7 +65,7 @@
                                             <div class="d-flex px-2 py-1">
                                                 <div>
                                                     @if($bill->user_card_bill->avatar_original)
-                                                        <img src="{{ asset($bill->user_card_bill->avatar_original) }}" class="avatar avatar-sm me-3" alt="user1">
+                                                        <img src="{{ $bill->user_card_bill->avatar_original }}" class="avatar avatar-sm me-3" alt="user1">
                                                     @else
                                                         <img src="{{ asset($bill->user_card_bill->avatar ? $bill->user_card_bill->avatar : 'dashboard/assets/img/no_img.jpg') }}" class="avatar avatar-sm me-3" alt="user1">
                                                     @endif
@@ -76,7 +76,7 @@
                                                 </div>
                                             </div>
                                         </td>
-                                        <td><p class="text-xs font-weight-bold mb-0">{{ $bill->order_id }}</p></td>
+                                        <td class="align-middle text-center text-sm"><p class="text-xs font-weight-bold mb-0">{{ $bill->order_id }}</p></td>
                                         <td class="align-middle text-center text-sm">
                                             <p class="text-xs font-weight-bold mb-0">{{ $bill->card_total }}</p>
                                         </td>

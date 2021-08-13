@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Route;
 //Admin
 Route::group(['middleware' => 'user'], function () {
     Route::get('/admin',[AdminController::class,'getAdmin'])->name('admin');
+    Route::post('/admin',[AdminController::class,'getAdmin'])->name('admin.search');
     //View card
     Route::get('/view-card',[CardController::class,'GetCardToIndex'])->name('viewcard');
     //card

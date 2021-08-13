@@ -53,7 +53,7 @@
                                             <div class="d-flex px-2 py-1">
                                                 <div>
                                                     @if($bill->user_bill->avatar_original)
-                                                        <img src="{{ asset($bill->user_bill->avatar_original) }}" class="avatar avatar-sm me-3" alt="user1">
+                                                        <img src="{{ $bill->user_bill->avatar_original }}" class="avatar avatar-sm me-3" alt="user1">
                                                     @else
                                                         <img src="{{ asset($bill->user_bill->avatar ? $bill->user_bill->avatar : 'dashboard/assets/img/no_img.jpg') }}" class="avatar avatar-sm me-3" alt="user1">
                                                     @endif
