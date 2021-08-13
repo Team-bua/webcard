@@ -61,7 +61,7 @@ class CardRepository
                     $card_codes_for_user->price_total = $discount * $request->quantity1;
                     $card_codes_for_user->status = 1;
                     $card_codes_for_user->save();
-    
+                    
                     return redirect()->route('orderhistory')->with('message', '1');
                 }           
             }

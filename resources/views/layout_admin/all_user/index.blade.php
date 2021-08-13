@@ -35,6 +35,7 @@
                                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Số điện thoại</th>
                                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Số dư</th>
                                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Khóa user</th>
+                                            <th class="text-secondary"></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -69,13 +70,43 @@
                                                 <a href="{{ route('users.unbanned', $user->id ) }}"><span class="badge badge-sm bg-gradient-success">Mở</span></a>
                                                 @endif
                                             </td>
-                                            {{-- <td class="align-middle">
-                                                <a href="javascript:;" class="text-secondary font-weight-bold text-xs"
-                                                    data-toggle="tooltip" data-original-title="Edit user">
-                                                    Edit
+                                            <td class="align-middle">
+                                                <a href="3" data-bs-toggle="modal" data-bs-target="#exampleModalMessage{{ $user->id }}" class="text-secondary font-weight-bold text-xs">
+                                                    <span class="badge bg-gradient-info">Sửa</span>
                                                 </a>
-                                            </td> --}}
+                                            </td>
                                         </tr>
+                                        <div class="col-md-4">
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="exampleModalMessage{{ $user->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalMessageTitle" aria-hidden="true">
+                                              <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-content">
+                                                  <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Cập nhật tiền</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                                      <span aria-hidden="true">×</span>
+                                                    </button>
+                                                  </div>
+                                                  <form  action="{{ route('users.update', $user->id) }}"method="post" enctype="multipart/form-data" id="form_data">
+                                                  @csrf
+                                                    <div class="modal-body">                     
+                                                      <div class="form-group">       
+                                                        <label class="form-control-label" for="basic-url">Số tiền: </label>
+                                                        <div class="input-group">
+                                                            <span class="input-group-text"><i class="fa fa-paint-brush"></i></span>
+                                                            <input name="money" id="money" type="number" class="form-control" id="exampleFormControlInput1" placeholder="Số tiền. . . . . . . . ." min="0" maxlength="50" value="{{ $user->point }}" required>
+                                                            <span class="input-group-text" id="basic-addon2">VNĐ</span>
+                                                        </div>                        
+                                                      </div>                                                 
+                                                  </div>
+                                                  <div class="modal-footer">
+                                                    <button type="submit" class="btn bg-gradient-secondary">Cập nhật</button>
+                                                  </div>
+                                                </form>
+                                                </div>
+                                              </div>
+                                            </div>
+                                        </div>
                                         @endforeach
                                         @endif
                                     </tbody>

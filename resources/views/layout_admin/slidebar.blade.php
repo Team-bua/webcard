@@ -213,7 +213,7 @@
                     </div>
                     <span class="nav-link-text ms-1">Lịch sử nạp tiền</span>
                 </a>
-            </li>          
+            </li>
             @endcan
         </ul>
     </div>

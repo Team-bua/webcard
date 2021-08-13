@@ -38,4 +38,12 @@ class AdminController extends Controller
         return redirect()->back()->with('information', 'Mở khóa user thành công');
     }
 
+    public function updatePoint(Request $request, $id)
+    {
+        $users = User::find($id);
+        $users->point = $request->money;
+        $users->save();
+        return redirect()->back()->with('information', 'Cập nhật tiền thành công');     
+    }
+
 }
