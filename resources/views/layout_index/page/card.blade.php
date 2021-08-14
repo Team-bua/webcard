@@ -16,6 +16,7 @@
             <input style="display: none" type="text" name="subject" id="subject" value="">
             <input style="display: none" type="text" name="quantity1" id="quantity1" value="1">
             <input style="display: none" type="text" id="discount" value="">
+            <input style="display: none" type="text" id="discount_num" name="discount_num" value="">
         </form>
         <div class="row">
             <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12" style="margin-top: 20px">
@@ -27,7 +28,7 @@
                         @foreach($cards as $card)
                         <li id="cateId_{{$card->id}}" class="cateId">
                             <a href="#" onclick="cate('{{ $card->id}}', '{{ $card->name }}')" class="cate" id="{{ $card->id }}">
-                                @if($card->discount != 0)<em>{{ $card->discount }} %</em>@endif<img class="lazyload" src="{{ asset($card->image) }}" style="max-width:85px; height: 50px;" alt="">
+                                <img class="lazyload" src="{{ asset($card->image) }}" style="max-width:85px; height: 50px;" alt="">
                             </a>
                         </li>
                         @endforeach
@@ -40,7 +41,8 @@
                     <div class="cardInfo" id="card{{$card->id}}" style="display: none" >
                         <ul class="list_all_menhgia_thegame_udrt" id="ul_Product">
                             @for($i = 0; $i < count(json_decode($card->price)); $i++)
-                            <li id="proId_{{ $i }}_{{$card->id}}" class="proId"><a href="#" onclick="card('{{ $i }}', '{{ json_decode($card->price)[$i] }}', '{{$card->id}}', '{{ $card->discount }}')"><b>{{ number_format(json_decode($card->price)[$i]) }} VNĐ</b><span>Giá bán: {{ number_format(json_decode($card->price)[$i] - json_decode($card->price)[$i] * $card->discount / 100) }} VNĐ</span></a></li>
+                            <li id="proId_{{ $i }}_{{$card->id}}" class="proId"><a href="#" onclick="card('{{ $i }}', '{{ json_decode($card->price)[$i] }}', '{{$card->id}}', '{{ json_decode($card->discount)[$i] }}')"><b>{{ number_format(json_decode($card->price)[$i]) }} VNĐ</b><span>Giá bán: {{ number_format(json_decode($card->price)[$i] - json_decode($card->price)[$i] * json_decode($card->discount)[$i] / 100) }} VNĐ</span></a></li>
+                            <input type="hidden" id="discount_number_{{ $card->id }}_{{ json_decode($card->price)[$i] }}" value="{{ json_decode($card->discount)[$i]}}" name="discount_num">
                             @endfor
                         </ul>
                     </div>
@@ -78,6 +80,10 @@
                                 <tr style="text-align: left">
                                     <td>Số lượng :</td>
                                     <td id="quantity2"></td>
+                                </tr>
+                                <tr style="text-align: left">
+                                    <td>Giảm giá :</td>
+                                    <td id="discount_num"></td>
                                 </tr>
                                 <tr style="text-align: left">
                                     <td><b>Tổng tiền :</b></td>
@@ -140,8 +146,10 @@
         $('#proId_'+id+'_'+id_card+'').attr('class', 'ac_chon_mg_these');
         $('#subject').attr("value", price);
         $('#discount').attr("value",price - price * discount / 100)
-        $('#price').html(Number(price - price * discount / 100).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,') + ' VNĐ');
+        $('#discount_num').attr("value",$('#discount_number_'+id_card+'_'+price+'').val());
+        $('#price').html(Number(price).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,') + ' VNĐ');
         $('#total').html(Number(quantity * (price - price * discount / 100)).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,') + ' VNĐ');
+        $('#discount_num').html($('#discount_number_'+id_card+'_'+price+'').val()+' %');
         $('#quantity2').html(quantity);
     }
 

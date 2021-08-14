@@ -32,8 +32,8 @@ class CardRepository
         $card = Card::find($request->card_id_info);
         $card_info = [];
         if(isset(Auth::user()->id)){
-            if(in_array($request->subject, json_decode($card->price)) == true){
-                $discount = $request->subject - ($request->subject * $card->discount / 100);
+            if(in_array($request->subject, json_decode($card->price)) == true && in_array($request->discount_num, json_decode($card->discount)) == true){
+                $discount = $request->subject - ($request->subject * $request->discount_num / 100);
                 $card_codes = CardStore::where('name', strtolower($card->name))
                                         ->where('price', $request->subject)
                                         ->limit($request->quantity1)
@@ -88,6 +88,7 @@ class CardRepository
 
         $card->name = $request->name_card;
         $card->card_type = $request->type_card;
+        $card->discount = json_encode($request->discount);
         $card->price = json_encode($request->price);
 
         $card->save();
@@ -135,7 +136,7 @@ class CardRepository
         $card->name = $request->name_card;
         $card->card_type = $request->type_card;
         $card->price = json_encode($request->price);
-        $card->discount = $request->discount;
+        $card->discount = json_encode($request->discount);
 
         $card->save();
     }

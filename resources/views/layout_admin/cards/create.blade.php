@@ -67,6 +67,16 @@
             html += '</div>';
             html += '<div class="col-md-2">';
             html += '<div class="form-group">';
+            html += '<label class="form-control-label" for="basic-url">Giảm giá: </label>';
+            html += '<div class="input-group" style="width: 100%;">';
+            html += '<span class="input-group-text"><i class="fa fa-paint-brush"></i></span>';
+            html += '<input type="number" class="form-control" id="discount" name="discount[]" value="0" required min="0">';
+            html += '<span class="input-group-text" id="basic-addon2">%</span>';
+            html += '</div>';
+            html += '</div>';
+            html += '</div>';
+            html += '<div class="col-md-2">';
+            html += '<div class="form-group">';
             html += '<label class="form-control-label" for="basic-url">Thao Tác: </label> <br>';
             html += '<button type="button" class="btn bg-gradient-primary w-12 float-left btn_remove" name="add_btn" id="'+ count +'"><i class="fa fa-minus"></i></button>';
             html += '</div>';

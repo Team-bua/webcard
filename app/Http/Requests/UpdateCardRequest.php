@@ -25,7 +25,6 @@ class UpdateCardRequest extends FormRequest
     {
         return [
             'name_card' => 'required|max:150',        
-            'discount' => 'gte:0',
         ];
     }
 
@@ -34,7 +33,6 @@ class UpdateCardRequest extends FormRequest
         return [
             'name_card.required' => 'Vui lòng nhập tên thẻ',
             'name_card.max' => 'Giới hạn 150 ký tự',
-            'discount.gte' => 'Giá trị phải lớn hơn 0'
         ];
     }
 }

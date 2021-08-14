@@ -26,7 +26,6 @@ class CardRequest extends FormRequest
         return [
             'name_card' => 'required|max:150',        
             'avatar' => 'required|mimes:jpg,jpeg,png,gif|max:2048',
-            'discount' => 'gte:0',
         ];
     }
 
@@ -38,7 +37,6 @@ class CardRequest extends FormRequest
             'avatar.required' => 'Vui lòng chọn ảnh game',
             'avatar.mimes' => 'Chỉ gắn thẻ hình ảnh có đuôi .jpg .jpeg .png .gif',
             'avatar.max' => 'Giới hạn ảnh 2Mb',
-            'discount.gte' => 'Giá trị phải lớn hơn 0'
         ];
     }
 }
