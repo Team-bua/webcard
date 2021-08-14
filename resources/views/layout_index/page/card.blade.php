@@ -83,7 +83,7 @@
                                 </tr>
                                 <tr style="text-align: left">
                                     <td>Giảm giá :</td>
-                                    <td id="discount_num"></td>
+                                    <td id="discount_num2"></td>
                                 </tr>
                                 <tr style="text-align: left">
                                     <td><b>Tổng tiền :</b></td>
@@ -149,7 +149,7 @@
         $('#discount_num').attr("value",$('#discount_number_'+id_card+'_'+price+'').val());
         $('#price').html(Number(price).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,') + ' VNĐ');
         $('#total').html(Number(quantity * (price - price * discount / 100)).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,') + ' VNĐ');
-        $('#discount_num').html($('#discount_number_'+id_card+'_'+price+'').val()+' %');
+        $('#discount_num2').html($('#discount_number_'+id_card+'_'+price+'').val()+' %');
         $('#quantity2').html(quantity);
     }
 
