@@ -111,6 +111,14 @@
                 timer: 2500
             })
         }
+        else if(exist && msg == '7') {
+            Swal.fire({
+                icon: 'error',
+                title: 'Opps, Something went wrong!!',
+                showConfirmButton: false,
+                timer: 2500
+            })
+        }
     })
   </script>
   @yield('script')

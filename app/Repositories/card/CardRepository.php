@@ -65,8 +65,11 @@ class CardRepository
                     return redirect()->route('orderhistory')->with('message', '1');
                 }           
             }
+            else{
+                return redirect()->back()->with('message', '7');
+            }
         }else{
-            return redirect(url('sign-in'));
+            return redirect()->route('signin');
         }           
     }
 
