@@ -38,6 +38,7 @@ class CreateIndexTable extends Migration
             $table->text('phone_contact')->nullable();
             $table->text('address_contact')->nullable();
             $table->text('email_contact')->nullable();
+            $table->text('map_contact')->nullable();
             $table->text('banner_buy_card')->nullable();
             $table->timestamps();
         });
