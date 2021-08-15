@@ -45,7 +45,7 @@
                         </div>
                         <div class="card-body p-3">
                             <div class="form-group text-center">
-                                <img id="img" class="border-radius-lg shadow-sm" style="width: 200px; height: 80px;" src="{{ asset($admin->bank_image) }}">
+                                <img id="img" class="border-radius-lg shadow-sm" style="width: 200px; height: 80px;" src="{{ asset($admin->bank_image ? $admin->bank_image : 'dashboard/assets/img/no_img.jpg') }}">
                             </div>
                             <div class="card">
                                 <div class="table-responsive">

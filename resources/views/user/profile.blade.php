@@ -13,7 +13,7 @@
                         <div class="card-header pb-0 p-3">
                             <h6 class="mb-0">Thông tin cá nhân</h6>
                         </div>
-                        <form action="{{ route('profile.update.info', $user->id) }}" method="post" >  
+                        <form action="{{ route('profile.update.info', $user->id) }}" method="post"  enctype="multipart/form-data">  
                         @csrf
                             <div class="card-body p-3">
                                 <div class="form-group">

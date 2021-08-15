@@ -40,10 +40,10 @@
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Khách hàng</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Mã đơn hàng</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Số lượng</th>
-                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Tổng tiền</th>
-                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Ngày</th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Tổng tiền</th>                                        
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Trạng thái</th>
-                                        <th class="text-secondary"></th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Xem</th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Ngày</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -83,9 +83,6 @@
                                         <td class="align-middle text-center text-sm">
                                             <p class="text-xs font-weight-bold mb-0">{{ number_format($bill->price_total) }} VNĐ</p>
                                         </td>
-                                        <td class="align-middle text-center">
-                                            <span class="text-secondary text-xs font-weight-bold">{{ date('d/m/Y', strtotime(str_replace('/', '-', $bill->created_at))) }}</span>
-                                        </td>
                                         <td class="align-middle text-center text-sm">
                                             @if($bill->status == 1)
                                             <span class="badge badge-sm bg-gradient-success">Đã thanh toán</span>
@@ -95,6 +92,9 @@
                                         </td>
                                         <td>
                                             <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModalMessage{{ $bill->id }}"><i class="fa fa-eye" style="margin-top: 10px"></i></a>                             
+                                        </td>
+                                        <td class="align-middle text-center">
+                                            <span class="text-secondary text-xs font-weight-bold">{{ date('d/m/Y', strtotime(str_replace('/', '-', $bill->created_at))) }}</span>
                                         </td>
                                     </tr>
                                     <div class="col-md-4">

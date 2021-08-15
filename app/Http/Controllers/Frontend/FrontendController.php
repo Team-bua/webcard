@@ -36,7 +36,8 @@ class FrontendController extends Controller
     }
     public function getIndex()
     {
-        return view('layout_index.index');
+        $partners = $this->repository->getPartners();
+        return view('layout_index.index', compact('partners'));
     }
 
     public function contact()

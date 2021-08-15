@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Bill;
+use App\Models\Partners;
 use App\Models\Product;
 use App\Models\Slide;
 use App\Models\Test;
@@ -71,5 +72,10 @@ class FrontendRepository
        $user_bill->method = "Nạp tiền";
        $user_bill->status = 1;
        $user_bill->save();
+    }
+
+    public function getPartners()
+    {
+        return Partners::all();
     }
 }

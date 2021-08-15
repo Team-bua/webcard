@@ -41,6 +41,17 @@ class PartnersController extends Controller
 
     public function store(Request $request)
     {
+        $this->validate(
+            $request,
+            [
+                'avatar' => 'required|mimes:jpg,jpeg,png,gif|max:2048',
+            ],
+            [
+                'avatar.required' => 'Vui lòng chọn logo',
+                'avatar.mimes' => 'Chỉ gắn thẻ hình ảnh có đuôi .jpg .jpeg .png .gif',
+                'avatar.max' => 'Giới hạn ảnh 2Mb',
+            ]
+        );
         $this->repository->store($request);
         return redirect()->back()->with('information', 'Thêm đối tác thành công');
     }

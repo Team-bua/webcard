@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\BillController;
 use App\Http\Controllers\Card\CardController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\LoginController;
+use App\Http\Controllers\Frontend\SettingController;
 use App\Http\Controllers\Partners\PartnersController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\UserController;
@@ -54,6 +55,8 @@ Route::group(['middleware' => 'user'], function () {
     Route::get('/partners-edit/{id}',[PartnersController::class,'edit'])->name('partners.edit');
     Route::post('/partners-update/{id}',[PartnersController::class,'update'])->name('partners.update');
     Route::get('/partners-destroy',[PartnersController::class,'destroy'])->name('partners.destroy');
+     //Setting index
+     Route::get('/setting',[SettingController::class,'viewSetting'])->name('setting');
 });
 
 Route::group(['middleware' => 'login'], function () {

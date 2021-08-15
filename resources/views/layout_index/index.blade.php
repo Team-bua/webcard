@@ -234,66 +234,13 @@
                 <div class="owl-stage-outer">
                     <div class="owl-stage"
                         style="transform: translate3d(-1140px, 0px, 0px); transition: all 0.25s ease 0s; width: 4370px;">
+                        @if($partners)
+                        @foreach ($partners as $partner)
                         <div class="owl-item cloned" style="width: 160px; margin-right: 30px;">
-                            <div class="item px-5"><img src="{{ asset('dev/img/brands/c6.png') }}" alt=""></div>
+                            <div class="item px-5"><a href="{{ $partner->link ? $partner->link : '#' }}" target="_blank"><img src="{{ asset($partner->image) }}" alt=""></a></div>
                         </div>
-                        <div class="owl-item cloned" style="width: 160px; margin-right: 30px;">
-                            <div class="item px-5"><img src="{{ asset('dev/img/brands/c7.png') }}" alt=""></div>
-                        </div>
-                        <div class="owl-item cloned" style="width: 160px; margin-right: 30px;">
-                            <div class="item px-5"><img src="{{ asset('dev/img/brands/c8.png') }}" alt=""></div>
-                        </div>
-                        <div class="owl-item cloned" style="width: 160px; margin-right: 30px;">
-                            <div class="item px-5"><img src="{{ asset('dev/img/brands/c9.png') }}" alt=""></div>
-                        </div>
-                        <div class="owl-item cloned" style="width: 160px; margin-right: 30px;">
-                            <div class="item px-5"><img src="{{ asset('dev/img/brands/c10.png') }}" alt=""></div>
-                        </div>
-                        <div class="owl-item cloned" style="width: 160px; margin-right: 30px;">
-                            <div class="item px-5"><img src="{{ asset('dev/img/brands/c11.png') }}" alt=""></div>
-                        </div>
-                        <div class="owl-item active" style="width: 160px; margin-right: 30px;">
-                            <div class="item px-5"><img src="{{ asset('dev/img/brands/c1.png') }}" alt=""></div>
-                        </div>
-                        <div class="owl-item active" style="width: 160px; margin-right: 30px;">
-                            <div class="item px-5"><img src="{{ asset('dev/img/brands/c2.png') }}" alt=""></div>
-                        </div>
-                        <div class="owl-item active" style="width: 160px; margin-right: 30px;">
-                            <div class="item px-5"><img src="{{ asset('dev/img/brands/c3.png') }}" alt=""></div>
-                        </div>
-                        <div class="owl-item active" style="width: 160px; margin-right: 30px;">
-                            <div class="item px-5"><img src="{{ asset('dev/img/brands/c4.png') }}" alt=""></div>
-                        </div>
-                        <div class="owl-item active" style="width: 160px; margin-right: 30px;">
-                            <div class="item px-5"><img src="{{ asset('dev/img/brands/c5.png') }}" alt=""></div>
-                        </div>
-                        <div class="owl-item active" style="width: 160px; margin-right: 30px;">
-                            <div class="item px-5"><img src="{{ asset('dev/img/brands/c6.png') }}" alt=""></div>
-                        </div>
-                        <div class="owl-item" style="width: 160px; margin-right: 30px;">
-                            <div class="item px-5"><img src="{{ asset('dev/img/brands/c7.png') }}" alt=""></div>
-                        </div>
-						<div class="owl-item active" style="width: 160px; margin-right: 30px;">
-                            <div class="item px-5"><img src="{{ asset('dev/img/brands/c1.png') }}" alt=""></div>
-                        </div>
-                        <div class="owl-item active" style="width: 160px; margin-right: 30px;">
-                            <div class="item px-5"><img src="{{ asset('dev/img/brands/c2.png') }}" alt=""></div>
-                        </div>
-                        <div class="owl-item active" style="width: 160px; margin-right: 30px;">
-                            <div class="item px-5"><img src="{{ asset('dev/img/brands/c3.png') }}" alt=""></div>
-                        </div>
-                        <div class="owl-item active" style="width: 160px; margin-right: 30px;">
-                            <div class="item px-5"><img src="{{ asset('dev/img/brands/c4.png') }}" alt=""></div>
-                        </div>
-                        <div class="owl-item active" style="width: 160px; margin-right: 30px;">
-                            <div class="item px-5"><img src="{{ asset('dev/img/brands/c5.png') }}" alt=""></div>
-                        </div>
-                        <div class="owl-item active" style="width: 160px; margin-right: 30px;">
-                            <div class="item px-5"><img src="{{ asset('dev/img/brands/c6.png') }}" alt=""></div>
-                        </div>
-                        <div class="owl-item" style="width: 160px; margin-right: 30px;">
-                            <div class="item px-5"><img src="{{ asset('dev/img/brands/c7.png') }}" alt=""></div>
-                        </div>
+                        @endforeach
+                        @endif
                     </div>
                 </div>
                 <div class="owl-nav disabled"><button type="button" role="presentation" class="owl-prev"><i
