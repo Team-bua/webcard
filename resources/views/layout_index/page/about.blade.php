@@ -42,7 +42,7 @@
                 </div>
                 <!--/column -->
                 <div class="col-md-6 col-lg-4">
-                  <img src="{{ asset('dev/img/client-5.png') }}" style="width: 150px; height: 100px;" alt="">
+                  <img src="{{ asset('dev/img/client-5.png') }}" style="width: 100px; height: 100px;" alt="">
                   <h4>Nền tảng an toàn và bảo mật</h4>
                 </div>
                 <!--/column -->

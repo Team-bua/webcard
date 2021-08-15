@@ -361,7 +361,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-control-label" for="basic-url">Logo</label> <br>
+                                    <label class="form-control-label" for="basic-url">Logo ( Xóa background trước khi thêm )</label> <br>
                                     <input id="img1" type="file" name="img_logo" class="form-control" style="display: none"
                                         onchange="changeImgPack(this, 1)">
                                     <img id="1" class="img1 imgpackgame" style="width: 200px; height: 120px;"
