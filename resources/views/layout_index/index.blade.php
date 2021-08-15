@@ -115,7 +115,7 @@
         </div>
         <!-- /.container -->
     </section>
-	<section class="wrapper image-wrapper bg-image bg-overlay" data-image-src="{{ asset('dev/img/photos/lol.jpg') }}" style="background-image: url('dev/img/photos/bg1.jpg');">
+	<section class="wrapper image-wrapper bg-image bg-overlay" data-image-src="{{ asset('dev/img/photos/lol.jpg') }}">
 		<div class="container py-18">
 		  <div class="row">
 			<div class="col-lg-8">

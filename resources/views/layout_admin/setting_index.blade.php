@@ -35,8 +35,8 @@
                                     <label class="form-control-label" for="basic-url">Nội dung 1</label>
                                     <div class="input-group">
                                         <span class="input-group-text"><i class="fa fa-paint-brush"></i></span>
-                                        <input type="text" class="form-control" id="tittle1" name="tittle1"
-                                            value="" placeholder="Tiêu đề 1">
+                                        <input type="text" class="form-control" id="tittle1" name="tittle1" value=""
+                                            placeholder="Tiêu đề 1">
                                     </div>
                                     @error('name')
                                         <p style="color:red; font-size: 13px; margin-left: 5px">{{ $message }}</p>
@@ -46,16 +46,15 @@
                                     <label class="form-control-label" for="basic-url">Nội dung 2</label>
                                     <div class="input-group">
                                         <span class="input-group-text"><i class="fa fa-paint-brush"></i></span>
-                                        <input type="text" class="form-control" id="tittle2" name="tittle2" placeholder="Tiêu đề 2"
-                                            value="" >
+                                        <input type="text" class="form-control" id="tittle2" name="tittle2"
+                                            placeholder="Tiêu đề 2" value="">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-control-label" for="basic-url">Ảnh banner</label> <br>                                   
+                                    <label class="form-control-label" for="basic-url">Ảnh banner</label> <br>
                                     <input id="img0" type="file" name="img_banner" class="form-control"
                                         style="display: none" onchange="changeImgPack(this, 0)">
-                                    <img id="0" class="img0 imgpackgame"
-                                        style="width: 200px; height: 120px;"
+                                    <img id="0" class="img0 imgpackgame" style="width: 200px; height: 120px;"
                                         src="{{ asset('dashboard/assets/img/no_img.jpg') }}">
                                 </div>
                                 @error('avatar')
@@ -84,8 +83,8 @@
                                     <label class="form-control-label" for="basic-url">Tiêu đề 1 </label>
                                     <div class="input-group">
                                         <span class="input-group-text"><i class="fa fa-paint-brush"></i></span>
-                                        <input type="text" class="form-control" id="tittle1" name="tittle1"
-                                            value="" placeholder="Tiêu đề 1">
+                                        <input type="text" class="form-control" id="tittle1" name="tittle1" value=""
+                                            placeholder="Tiêu đề 1">
                                     </div>
                                     @error('name')
                                         <p style="color:red; font-size: 13px; margin-left: 5px">{{ $message }}</p>
@@ -95,24 +94,24 @@
                                     <label class="form-control-label" for="basic-url">Tiêu đề 2</label>
                                     <div class="input-group">
                                         <span class="input-group-text"><i class="fa fa-paint-brush"></i></span>
-                                        <input type="text" class="form-control" id="tittle2" name="tittle2" placeholder="Tiêu đề 2"
-                                            value="" >
+                                        <input type="text" class="form-control" id="tittle2" name="tittle2"
+                                            placeholder="Tiêu đề 2" value="">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="form-control-label" for="basic-url">Tiêu đề 2</label>
                                     <div class="input-group">
                                         <span class="input-group-text"><i class="fa fa-paint-brush"></i></span>
-                                        <input type="text" class="form-control" id="tittle2" name="tittle2" placeholder="Tiêu đề 2"
-                                            value="" >
+                                        <input type="text" class="form-control" id="tittle2" name="tittle2"
+                                            placeholder="Tiêu đề 2" value="">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="form-control-label" for="basic-url">Tiêu đề 2</label>
                                     <div class="input-group">
                                         <span class="input-group-text"><i class="fa fa-paint-brush"></i></span>
-                                        <input type="text" class="form-control" id="tittle2" name="tittle2" placeholder="Tiêu đề 2"
-                                            value="" >
+                                        <input type="text" class="form-control" id="tittle2" name="tittle2"
+                                            placeholder="Tiêu đề 2" value="">
                                     </div>
                                 </div>
                             </div>
@@ -142,8 +141,8 @@
                                     <label class="form-control-label" for="basic-url">Tiêu đề 1 </label>
                                     <div class="input-group">
                                         <span class="input-group-text"><i class="fa fa-paint-brush"></i></span>
-                                        <input type="text" class="form-control" id="tittle1" name="tittle1"
-                                            value="" placeholder="Tiêu đề 1">
+                                        <input type="text" class="form-control" id="tittle1" name="tittle1" value=""
+                                            placeholder="Tiêu đề 1">
                                     </div>
                                     @error('name')
                                         <p style="color:red; font-size: 13px; margin-left: 5px">{{ $message }}</p>
@@ -153,19 +152,19 @@
                                     <label class="form-control-label" for="basic-url">Tiêu đề 2</label>
                                     <div class="input-group">
                                         <span class="input-group-text"><i class="fa fa-paint-brush"></i></span>
-                                        <input type="text" class="form-control" id="tittle2" name="tittle2" placeholder="Tiêu đề 2"
-                                            value="" >
+                                        <input type="text" class="form-control" id="tittle2" name="tittle2"
+                                            placeholder="Tiêu đề 2" value="">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="form-control-label" for="basic-url">Ảnh đại diện</label> <br>
                                     <div class="avatar avatar-xl position-relative"
                                         style="margin-top: 25px; margin-left: 25px">
-                                            <input id="fImages" type="file" name="avatar" class="form-control"
-                                                style="display: none" onchange="changeImg(this)">
-                                            <img id="img" class="border-radius-lg shadow-sm"
-                                                style="width: 120px; height: 120px;"
-                                                src="{{ asset('dashboard/assets/img/no_img.jpg') }}">
+                                        <input id="fImages" type="file" name="avatar" class="form-control"
+                                            style="display: none" onchange="changeImg(this)">
+                                        <img id="img" class="border-radius-lg shadow-sm"
+                                            style="width: 120px; height: 120px;"
+                                            src="{{ asset('dashboard/assets/img/no_img.jpg') }}">
                                     </div>
                                 </div>
                                 @error('avatar')
@@ -194,8 +193,8 @@
                                     <label class="form-control-label" for="basic-url">Tiêu đề 1 </label>
                                     <div class="input-group">
                                         <span class="input-group-text"><i class="fa fa-paint-brush"></i></span>
-                                        <input type="text" class="form-control" id="tittle1" name="tittle1"
-                                            value="" placeholder="Tiêu đề 1">
+                                        <input type="text" class="form-control" id="tittle1" name="tittle1" value=""
+                                            placeholder="Tiêu đề 1">
                                     </div>
                                     @error('name')
                                         <p style="color:red; font-size: 13px; margin-left: 5px">{{ $message }}</p>
@@ -205,24 +204,24 @@
                                     <label class="form-control-label" for="basic-url">Tiêu đề 2</label>
                                     <div class="input-group">
                                         <span class="input-group-text"><i class="fa fa-paint-brush"></i></span>
-                                        <input type="text" class="form-control" id="tittle2" name="tittle2" placeholder="Tiêu đề 2"
-                                            value="" >
+                                        <input type="text" class="form-control" id="tittle2" name="tittle2"
+                                            placeholder="Tiêu đề 2" value="">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="form-control-label" for="basic-url">Tiêu đề 2</label>
                                     <div class="input-group">
                                         <span class="input-group-text"><i class="fa fa-paint-brush"></i></span>
-                                        <input type="text" class="form-control" id="tittle2" name="tittle2" placeholder="Tiêu đề 2"
-                                            value="" >
+                                        <input type="text" class="form-control" id="tittle2" name="tittle2"
+                                            placeholder="Tiêu đề 2" value="">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="form-control-label" for="basic-url">Tiêu đề 2</label>
                                     <div class="input-group">
                                         <span class="input-group-text"><i class="fa fa-paint-brush"></i></span>
-                                        <input type="text" class="form-control" id="tittle2" name="tittle2" placeholder="Tiêu đề 2"
-                                            value="" >
+                                        <input type="text" class="form-control" id="tittle2" name="tittle2"
+                                            placeholder="Tiêu đề 2" value="">
                                     </div>
                                 </div>
                             </div>
@@ -232,7 +231,7 @@
                         </form>
                     </div>
                 </div>
-                
+
             </div>
         </div>
         <div class="container-fluid py-4">
@@ -242,7 +241,7 @@
                         <div class="card-header pb-0 p-3">
                             <div class="row">
                                 <div class="col-md-8 d-flex align-items-center">
-                                    <h6 class="mb-0">Thiết lập banner</h6>
+                                    <h6 class="mb-0">Thiết lập ảnh nền</h6>
                                 </div>
                             </div>
                         </div>
@@ -250,35 +249,11 @@
                             @csrf
                             <div class="card-body p-3">
                                 <div class="form-group">
-                                    <label class="form-control-label" for="basic-url">Tiêu đề 1 </label>
-                                    <div class="input-group">
-                                        <span class="input-group-text"><i class="fa fa-paint-brush"></i></span>
-                                        <input type="text" class="form-control" id="tittle1" name="tittle1"
-                                            value="" placeholder="Tiêu đề 1">
-                                    </div>
-                                    @error('name')
-                                        <p style="color:red; font-size: 13px; margin-left: 5px">{{ $message }}</p>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-control-label" for="basic-url">Tiêu đề 2</label>
-                                    <div class="input-group">
-                                        <span class="input-group-text"><i class="fa fa-paint-brush"></i></span>
-                                        <input type="text" class="form-control" id="tittle2" name="tittle2" placeholder="Tiêu đề 2"
-                                            value="" >
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-control-label" for="basic-url">Ảnh đại diện</label> <br>
-                                    <div class="avatar avatar-xl position-relative"
-                                        style="margin-top: 25px; margin-left: 25px">
-
-                                            <input id="fImages" type="file" name="avatar" class="form-control"
-                                                style="display: none" onchange="changeImg(this)">
-                                            <img id="img" class="border-radius-lg shadow-sm"
-                                                style="width: 120px; height: 120px;"
-                                                src="{{ asset('dashboard/assets/img/no_img.jpg') }}">
-                                    </div>
+                                    <label class="form-control-label" for="basic-url">Ảnh nền</label> <br>
+                                    <input id="img3" type="file" name="img_background" class="form-control"
+                                        style="display: none" onchange="changeImgPack(this, 3)">
+                                    <img id="3" class="img3 imgpackgame" style="width: 200px; height: 120px;"
+                                        src="{{ asset('dashboard/assets/img/no_img.jpg') }}">
                                 </div>
                                 @error('avatar')
                                     <p style="color:red; font-size: 13px; margin-left: 5px">{{ $message }}</p>
@@ -306,8 +281,8 @@
                                     <label class="form-control-label" for="basic-url">Địa chỉ </label>
                                     <div class="input-group">
                                         <span class="input-group-text"><i class="fa fa-paint-brush"></i></span>
-                                        <input type="text" class="form-control" id="address" name="address"
-                                            value="" placeholder="Địa chỉ">
+                                        <input type="text" class="form-control" id="address" name="address" value=""
+                                            placeholder="Địa chỉ">
                                     </div>
                                     @error('address')
                                         <p style="color:red; font-size: 13px; margin-left: 5px">{{ $message }}</p>
@@ -317,8 +292,8 @@
                                     <label class="form-control-label" for="basic-url">Số điện thoại</label>
                                     <div class="input-group">
                                         <span class="input-group-text"><i class="fa fa-phone"></i></span>
-                                        <input type="text" class="form-control" id="phone" name="phone" placeholder="Số điện thoại"
-                                            value="" >
+                                        <input type="text" class="form-control" id="phone" name="phone"
+                                            placeholder="Số điện thoại" value="">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -326,15 +301,15 @@
                                     <div class="input-group">
                                         <span class="input-group-text"><i class="fa fa-envelope"></i></span>
                                         <input type="email" class="form-control" id="email" name="email" placeholder="Email"
-                                            value="" >
+                                            value="">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="form-control-label" for="basic-url">Bản đồ</label>
                                     <div class="input-group">
                                         <span class="input-group-text"><i class="fa fa-map"></i></span>
-                                        <input type="text" class="form-control" id="maps" name="maps" placeholder="Cài đặt ifame có kích thước 500x450"
-                                            value="" >
+                                        <input type="text" class="form-control" id="maps" name="maps"
+                                            placeholder="Cài đặt ifame có kích thước 500 x 450" value="">
                                     </div>
                                 </div>
                             </div>
@@ -344,7 +319,7 @@
                         </form>
                     </div>
                 </div>
-                
+
             </div>
         </div>
         <div class="container-fluid py-4">
@@ -361,12 +336,35 @@
                         <form action="#" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="card-body p-3">
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="basic-url">Chiều rộng </label>
+                                            <div class="input-group">
+                                                <span class="input-group-text"><i class="fa fa-paint-brush"></i></span>
+                                                <input type="number" class="form-control" id="discount" name="discount[]"
+                                                    value="0" required min="0">
+                                                <span class="input-group-text" id="basic-addon2">px</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="basic-url">Chiều cao </label>
+                                            <div class="input-group">
+                                                <span class="input-group-text"><i class="fa fa-paint-brush"></i></span>
+                                                <input type="number" class="form-control" id="discount" name="discount[]"
+                                                    value="0" required min="0">
+                                                <span class="input-group-text" id="basic-addon2">px</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="form-group">
-                                    <label class="form-control-label" for="basic-url">Logo</label> <br>                                   
-                                    <input id="img1" type="file" name="img_logo" class="form-control"
-                                        style="display: none" onchange="changeImgPack(this, 1)">
-                                    <img id="1" class="img1 imgpackgame"
-                                        style="width: 200px; height: 120px;"
+                                    <label class="form-control-label" for="basic-url">Logo</label> <br>
+                                    <input id="img1" type="file" name="img_logo" class="form-control" style="display: none"
+                                        onchange="changeImgPack(this, 1)">
+                                    <img id="1" class="img1 imgpackgame" style="width: 200px; height: 120px;"
                                         src="{{ asset('dashboard/assets/img/no_img.jpg') }}">
                                 </div>
                                 @error('avatar')
@@ -395,8 +393,7 @@
                                     <label class="form-control-label" for="basic-url">Ảnh banner</label> <br>
                                     <input id="img2" type="file" name="img_buy_card" class="form-control"
                                         style="display: none" onchange="changeImgPack(this, 2)">
-                                    <img id="2" class="img2 imgpackgame"
-                                        style="width: 200px; height: 120px;"
+                                    <img id="2" class="img2 imgpackgame" style="width: 200px; height: 120px;"
                                         src="{{ asset('dashboard/assets/img/no_img.jpg') }}">
                                 </div>
                                 @error('avatar')
@@ -409,25 +406,25 @@
                         </form>
                     </div>
                 </div>
-                
+
             </div>
         </div>
     </main>
 @endsection
 @section('script')
-<script>
-    function changeImgPack(input, id_number) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function(e) {
-                $('.img'+id_number+'').attr('src', e.target.result);
+    <script>
+        function changeImgPack(input, id_number) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $('.img' + id_number + '').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
             }
-            reader.readAsDataURL(input.files[0]);
         }
-    }
-    $(document).on('click', '.imgpackgame', function() {
-                var input_id = $(this).attr('id');
-                $('#img'+input_id+'').click();
-            });   
-</script>
+        $(document).on('click', '.imgpackgame', function() {
+            var input_id = $(this).attr('id');
+            $('#img' + input_id + '').click();
+        });
+    </script>
 @endsection
