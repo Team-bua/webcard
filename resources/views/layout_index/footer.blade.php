@@ -3,8 +3,8 @@
 	<div class="row gy-6 gy-lg-0">
 	<div class="col-md-4 col-lg-4">
 		<div class="widget">
-		<img class="mb-4" src="{{ asset('dev/img/logo-light.png') }}" srcset="{{ asset('dev/img/logo-light@2x.png') }} 2x" alt="" />
-		<p class="mb-4">© 2021 Developer </p>
+		<img class="mb-4" src="{{ asset(json_decode($index->image_logo)[0]) }}" width="{{ json_decode($index->image_logo)[1] }}px" height="{{ json_decode($index->image_logo)[2] }}px" alt="" />
+		<p class="mb-4" style="margin-left: 20px">© 2021 Developer </p>
 		<nav class="nav social social-white">
 			<a href="#"><i class="uil uil-twitter"></i></a>
 			<a href="#"><i class="uil uil-facebook-f"></i></a>
@@ -20,8 +20,8 @@
 	<div class="col-md-4 col-lg-4">
 		<div class="widget">
 		<h4 class="widget-title text-white mb-3">Liện hệ</h4>
-		<address class="pe-xl-15 pe-xxl-17"><i class="uil uil-location-pin-alt"></i> 295 Tân Kỳ Tân Quý, Tân Sơn Nhì, Tân Phú, Thành phố Hồ Chí Minh</address>
-		<i class="uil uil-envelope"></i><a href="mailto:webcard@email.com"> webcard@email.com</a><br> <i class="uil uil-phone-volume"></i> 0349397157
+		<address class="pe-xl-15 pe-xxl-17"><i class="uil uil-location-pin-alt"></i> {{ $index->address_contact }}</address>
+		<i class="uil uil-envelope"></i><a href="mailto:{{ $index->email_contact }}"> {{ $index->email_contact }}</a><br> <i class="uil uil-phone-volume"></i> {{ $index->phone_contact }}
 		</div>
 		<!-- /.widget -->
 	</div>

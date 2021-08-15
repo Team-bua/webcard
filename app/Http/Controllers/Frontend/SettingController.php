@@ -31,7 +31,25 @@ class SettingController extends Controller
 
     public function viewSetting()
     {
-        return view('layout_admin.setting_index');
+        $index = $this->repository->getAllIndex();
+        return view('layout_admin.setting_index', compact('index'));
     }
     
+    public function updateLogo(Request $request)
+     {
+        $this->repository->updateLogo($request);
+        return redirect()->back()->with('information', 'Cập nhật thành công');
+     }
+
+    public function updateBannerCard(Request $request)
+    {
+        $this->repository->updateBannerCard($request);
+        return redirect()->back()->with('information', 'Cập nhật thành công');
+    }
+
+    public function updateContact(Request $request)
+    {
+    $this->repository->updateContact($request);
+    return redirect()->back()->with('information', 'Cập nhật thành công');
+    }
 }

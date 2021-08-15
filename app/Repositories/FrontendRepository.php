@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Bill;
+use App\Models\Index;
 use App\Models\Partners;
 use App\Models\Product;
 use App\Models\Slide;
@@ -78,4 +79,5 @@ class FrontendRepository
     {
         return Partners::all();
     }
+
 }

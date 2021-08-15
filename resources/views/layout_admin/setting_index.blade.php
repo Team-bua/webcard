@@ -17,6 +17,9 @@
             </div>
             </div>
         </nav>
+        @if (session('information'))
+            <div class="alert alert-success"><b>{{ session('information') }}</b></div>
+        @endif
         <div class="container-fluid py-4">
             <div class="row">
                 <div class="col-12 col-xl-6">
@@ -270,48 +273,23 @@
                         <div class="card-header pb-0 p-3">
                             <div class="row">
                                 <div class="col-md-8 d-flex align-items-center">
-                                    <h6 class="mb-0">Thiết lập liên hệ</h6>
+                                    <h6 class="mb-0">Thiết lập banner mua thẻ</h6>
                                 </div>
                             </div>
                         </div>
-                        <form action="#" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('updatebannercard', $index->id) }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="card-body p-3">
                                 <div class="form-group">
-                                    <label class="form-control-label" for="basic-url">Địa chỉ </label>
-                                    <div class="input-group">
-                                        <span class="input-group-text"><i class="fa fa-paint-brush"></i></span>
-                                        <input type="text" class="form-control" id="address" name="address" value=""
-                                            placeholder="Địa chỉ">
-                                    </div>
-                                    @error('address')
-                                        <p style="color:red; font-size: 13px; margin-left: 5px">{{ $message }}</p>
-                                    @enderror
+                                    <label class="form-control-label" for="basic-url">Ảnh banner</label> <br>
+                                    <input id="img2" type="file" name="img_buy_card" class="form-control"
+                                        style="display: none" onchange="changeImgPack(this, 2)">
+                                    <img id="2" class="img2 imgpackgame" style="width: 200px; height: 120px;"
+                                        src="{{ asset($index->banner_buy_card ? $index->banner_buy_card : 'dashboard/assets/img/no_img.jpg') }}">
                                 </div>
-                                <div class="form-group">
-                                    <label class="form-control-label" for="basic-url">Số điện thoại</label>
-                                    <div class="input-group">
-                                        <span class="input-group-text"><i class="fa fa-phone"></i></span>
-                                        <input type="text" class="form-control" id="phone" name="phone"
-                                            placeholder="Số điện thoại" value="">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-control-label" for="basic-url">Email</label>
-                                    <div class="input-group">
-                                        <span class="input-group-text"><i class="fa fa-envelope"></i></span>
-                                        <input type="email" class="form-control" id="email" name="email" placeholder="Email"
-                                            value="">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-control-label" for="basic-url">Bản đồ</label>
-                                    <div class="input-group">
-                                        <span class="input-group-text"><i class="fa fa-map"></i></span>
-                                        <input type="text" class="form-control" id="maps" name="maps"
-                                            placeholder="Cài đặt ifame có kích thước 500 x 450" value="">
-                                    </div>
-                                </div>
+                                @error('avatar')
+                                    <p style="color:red; font-size: 13px; margin-left: 5px">{{ $message }}</p>
+                                @enderror
                             </div>
                             <div class="text-center">
                                 <button type="submit" class="btn bg-gradient-primary w-12">Cập nhật </button>
@@ -333,7 +311,7 @@
                                 </div>
                             </div>
                         </div>
-                        <form action="#" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('updatelogo', $index->id) }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="card-body p-3">
                                 <div class="row">
@@ -342,8 +320,8 @@
                                             <label class="form-control-label" for="basic-url">Chiều rộng </label>
                                             <div class="input-group">
                                                 <span class="input-group-text"><i class="fa fa-paint-brush"></i></span>
-                                                <input type="number" class="form-control" id="discount" name="discount[]"
-                                                    value="0" required min="0">
+                                                <input type="number" class="form-control" id="width" name="width"
+                                                    value="{{ json_decode($index->image_logo)[1] }}" required min="0" required>
                                                 <span class="input-group-text" id="basic-addon2">px</span>
                                             </div>
                                         </div>
@@ -353,19 +331,19 @@
                                             <label class="form-control-label" for="basic-url">Chiều cao </label>
                                             <div class="input-group">
                                                 <span class="input-group-text"><i class="fa fa-paint-brush"></i></span>
-                                                <input type="number" class="form-control" id="discount" name="discount[]"
-                                                    value="0" required min="0">
+                                                <input type="number" class="form-control" id="height" name="height"
+                                                    value="{{ json_decode($index->image_logo)[2] }}" required min="0" required>
                                                 <span class="input-group-text" id="basic-addon2">px</span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-control-label" for="basic-url">Logo ( Xóa background trước khi thêm )</label> <br>
+                                    <label class="form-control-label" for="basic-url">Logo ( xóa background trước khi thêm )</label> <br>
                                     <input id="img1" type="file" name="img_logo" class="form-control" style="display: none"
                                         onchange="changeImgPack(this, 1)">
                                     <img id="1" class="img1 imgpackgame" style="width: 200px; height: 120px;"
-                                        src="{{ asset('dashboard/assets/img/no_img.jpg') }}">
+                                        src="{{ asset(json_decode($index->image_logo)[0] ? json_decode($index->image_logo)[0] :'dashboard/assets/img/no_img.jpg') }}">
                                 </div>
                                 @error('avatar')
                                     <p style="color:red; font-size: 13px; margin-left: 5px">{{ $message }}</p>
@@ -382,30 +360,60 @@
                         <div class="card-header pb-0 p-3">
                             <div class="row">
                                 <div class="col-md-8 d-flex align-items-center">
-                                    <h6 class="mb-0">Thiết lập banner mua thẻ</h6>
+                                    <h6 class="mb-0">Thiết lập liên hệ</h6>
                                 </div>
                             </div>
                         </div>
-                        <form action="#" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('updatecontact', $index->id) }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="card-body p-3">
                                 <div class="form-group">
-                                    <label class="form-control-label" for="basic-url">Ảnh banner</label> <br>
-                                    <input id="img2" type="file" name="img_buy_card" class="form-control"
-                                        style="display: none" onchange="changeImgPack(this, 2)">
-                                    <img id="2" class="img2 imgpackgame" style="width: 200px; height: 120px;"
-                                        src="{{ asset('dashboard/assets/img/no_img.jpg') }}">
+                                    <label class="form-control-label" for="basic-url">Tiêu đề </label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fa fa-paint-brush"></i></span>
+                                        <input type="text" class="form-control" id="tittle" name="tittle" value="{{ $index->desc_contact }}"
+                                            placeholder="Tiêu đề">
+                                    </div>
                                 </div>
-                                @error('avatar')
-                                    <p style="color:red; font-size: 13px; margin-left: 5px">{{ $message }}</p>
-                                @enderror
+                                <div class="form-group">
+                                    <label class="form-control-label" for="basic-url">Địa chỉ </label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fa fa-paint-brush"></i></span>
+                                        <input type="text" class="form-control" id="address" name="address" value="{{ $index->address_contact }}"
+                                            placeholder="Địa chỉ" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-control-label" for="basic-url">Số điện thoại</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fa fa-phone"></i></span>
+                                        <input type="text" class="form-control" id="phone" name="phone"
+                                            placeholder="Số điện thoại" value="{{ $index->phone_contact }}" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-control-label" for="basic-url">Email</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                                        <input type="email" class="form-control" id="email" name="email" placeholder="Email"
+                                            value="{{ $index->email_contact }}" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-control-label" for="basic-url">Bản đồ (kích thước ifame 500 x 450)</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fa fa-map"></i></span>
+                                        <input type="text" class="form-control" id="maps" name="maps"
+                                            placeholder="Cài đặt ifame có kích thước 500 x 450" value="{{ $index->map_contact }}" required>
+                                    </div>
+                                </div>
                             </div>
                             <div class="text-center">
                                 <button type="submit" class="btn bg-gradient-primary w-12">Cập nhật </button>
                             </div>
                         </form>
                     </div>
-                </div>
+                </div>             
 
             </div>
         </div>

@@ -55,8 +55,11 @@ Route::group(['middleware' => 'user'], function () {
     Route::get('/partners-edit/{id}',[PartnersController::class,'edit'])->name('partners.edit');
     Route::post('/partners-update/{id}',[PartnersController::class,'update'])->name('partners.update');
     Route::get('/partners-destroy',[PartnersController::class,'destroy'])->name('partners.destroy');
-     //Setting index
-     Route::get('/setting',[SettingController::class,'viewSetting'])->name('setting');
+    //Setting index
+    Route::get('/setting',[SettingController::class,'viewSetting'])->name('setting');
+    Route::post('/update-logo/{id}',[SettingController::class,'updateLogo'])->name('updatelogo');
+    Route::post('/update-banner-card/{id}',[SettingController::class,'updateBannerCard'])->name('updatebannercard');
+    Route::post('/update-contact/{id}',[SettingController::class,'updateContact'])->name('updatecontact');
 });
 
 Route::group(['middleware' => 'login'], function () {
