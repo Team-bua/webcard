@@ -45,7 +45,7 @@
                         </div>
                         <div class="card-body p-3">
                             <div class="form-group text-center">
-                                <img id="img" class="border-radius-lg shadow-sm" style="width: 200px; height: 80px;" src="{{ asset('dashboard/assets/img/logos/logo-vietcombank.jpeg') }}">
+                                <img id="img" class="border-radius-lg shadow-sm" style="width: 200px; height: 80px;" src="{{ asset($admin->bank_image) }}">
                             </div>
                             <div class="card">
                                 <div class="table-responsive">
@@ -53,11 +53,11 @@
                                     <tbody class="text-center">
                                         <tr style="text-align: left">
                                         <td>Số tài khoản :</td>
-                                        <td>0291000285902</td>
+                                        <td>{{ $admin->bank_number }}</td>
                                         </tr>
                                         <tr style="text-align: left">
                                         <td>Chủ tài khoản :</td>
-                                        <td>VU HUYEN TUAN</td>
+                                        <td>{{ strtoupper($admin_str) }}</td>
                                         </tr>
                                         <tr style="text-align: left">
                                         <td>Nội dung chuyển khoản :</td>

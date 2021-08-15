@@ -10,7 +10,7 @@
                     </li>
                     <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Thẻ</li>
                 </ol>
-                <h6 class="font-weight-bolder mb-0">Thêm Thẻ</h6>
+                <h6 class="font-weight-bolder mb-0">Cập nhật Thẻ</h6>
             </nav>
             @include('layout_admin.info')
         </div>

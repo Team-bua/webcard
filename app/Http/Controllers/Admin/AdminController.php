@@ -3,12 +3,15 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\BankRequest;
 use App\Http\Requests\DiscountRequest;
+use App\Models\AdminTransaction;
 use App\Models\CardBill;
 use App\Models\CardStore;
-use App\Models\Discount;
+use Illuminate\Support\Str;
 use App\Models\User;
 use App\Models\UserBill;
+use Carbon\Carbon;
 use Carbon\CarbonPeriod;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -125,6 +128,34 @@ class AdminController extends Controller
         $users->point = $request->money;
         $users->save();
         return redirect()->back()->with('information', 'Cập nhật tiền thành công');     
+    }
+
+    public function getBankInfo(Request $request)
+    {
+        $bank = AdminTransaction::find(1);
+        return view('layout_admin.bank_info', compact('bank'));     
+    }
+
+
+    public function updateBankInfo(BankRequest $request)
+    {
+        $bank = AdminTransaction::find(1);
+        $date = Carbon::now()->format('d-m-Y');
+        $img = $request->bank_image;
+        if (isset($img)) {
+            if($bank->bank_image){
+                unlink(public_path($bank->bank_image));
+            }           
+            $img_name = 'upload/bank/img/' . $date . '/' . Str::random(10) . rand() . '.' . $img->getClientOriginalExtension();
+            $destinationPath = public_path('upload/bank/img/' . $date);
+            $img->move($destinationPath, $img_name);
+
+            $bank->bank_image = $img_name;
+        }
+        $bank->bank_name = $request->bank_name;
+        $bank->bank_number = $request->bank_number;
+        $bank->save();
+        return redirect()->back()->with('information', 'Cập nhật thông tin thành công');     
     }
 
 }

@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\BillController;
 use App\Http\Controllers\Card\CardController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\LoginController;
+use App\Http\Controllers\Partners\PartnersController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -43,6 +44,16 @@ Route::group(['middleware' => 'user'], function () {
     Route::get('/card-bill',[BillController::class,'cardBill'])->name('cardbill');
     //recharge bill
     Route::get('/recharge-bill',[BillController::class,'rechargeBill'])->name('rechargebill');
+    //View bank
+    Route::get('/bank-info',[AdminController::class,'getBankInfo'])->name('bankinfo');
+    Route::post('/update-bank-info/{id}',[AdminController::class,'updateBankInfo'])->name('update.bankinfo');
+    //View partners
+    Route::get('/partners',[PartnersController::class,'index'])->name('partners');
+    Route::get('/partners-create',[PartnersController::class,'create'])->name('partners.create');
+    Route::post('/partners-save',[PartnersController::class,'store'])->name('partners.store');
+    Route::get('/partners-edit/{id}',[PartnersController::class,'edit'])->name('partners.edit');
+    Route::post('/partners-update/{id}',[PartnersController::class,'update'])->name('partners.update');
+    Route::get('/partners-destroy',[PartnersController::class,'destroy'])->name('partners.destroy');
 });
 
 Route::group(['middleware' => 'login'], function () {

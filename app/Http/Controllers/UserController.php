@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ChangePassRequest;
 use App\Http\Requests\RechargeRequest;
 use App\Http\Requests\UserRequest;
+use App\Models\AdminTransaction;
 use App\Models\Payment;
 use App\Models\UserBill;
 use App\Repositories\UserRepository;
@@ -85,8 +86,10 @@ class UserController extends Controller
     }
 
     public function recharge()
-    {     
-        return view('user.recharge');
+    {   
+        $admin = AdminTransaction::find(1);
+        $admin_str = $this->repository->utf8convert($admin->bank_name);
+        return view('user.recharge', compact('admin','admin_str'));
     }
 
     public function updateInfo(UserRequest $request, $id)

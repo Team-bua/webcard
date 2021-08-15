@@ -65,7 +65,7 @@
                                                 @endif
                                             </td>
                                             <td >
-                                                <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModalMessage{{ $bill->id }}"><i class="fa fa-eye"  style="margin-top: 15px"></i></a>                             
+                                                <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModalMessage{{ $bill->id }}"><i class="fa fa-eye"  style="margin-top: 10px"></i></a>                             
                                             </td>
                                         </tr>
                                         <div class="col-md-4">
@@ -114,19 +114,10 @@
 @section('script')
 <script src="{{ asset('dashboard/assets/js/plugins/datatables.js') }}" type="text/javascript"></script>
 <script>
-    $(function() {
-        $('#datatable-basic').DataTable({
-        "sDom": '<"row view-filter"<"col-sm-12"<"pull-right"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"pull-left"l><"pull-right"p><"text-center"i>>>',
-        'paging': true,
-        'searching': true,
-        'info': true,
-        'autoWidth': false,
-        'lengthChange': false,
-        'ordering': true,
-        'aaSorting': [],
-        'columnDefs': []
-        })
-    })
+ const dataTableBasic = new simpleDatatables.DataTable("#datatable-basic", {
+      searchable: false,
+      fixedHeight: true
+    });
 </script>
 <script type="text/javascript">
     if (document.querySelector('.datepicker')) {

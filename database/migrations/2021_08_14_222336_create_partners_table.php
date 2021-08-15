@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCardsTable extends Migration
+class CreatePartnersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,10 @@ class CreateCardsTable extends Migration
      */
     public function up()
     {
-        Schema::create('cards', function (Blueprint $table) {
+        Schema::create('partners', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->nullable();
-            $table->string('card_type')->nullable();
-            $table->string('price')->nullable();
             $table->string('image')->nullable();
-            $table->string('discount')->default(0);
+            $table->string('link')->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +28,6 @@ class CreateCardsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cards');
+        Schema::dropIfExists('partners');
     }
 }
