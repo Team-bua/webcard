@@ -52,4 +52,10 @@ class SettingController extends Controller
     $this->repository->updateContact($request);
     return redirect()->back()->with('information', 'Cập nhật thành công');
     }
+
+    public function updateServe(Request $request, $id)
+    {
+    $this->repository->updateServe($request, $id);
+    return redirect()->back()->with('information', 'Cập nhật thành công');
+    }
 }

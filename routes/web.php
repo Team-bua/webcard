@@ -60,6 +60,7 @@ Route::group(['middleware' => 'user'], function () {
     Route::post('/update-logo/{id}',[SettingController::class,'updateLogo'])->name('updatelogo');
     Route::post('/update-banner-card/{id}',[SettingController::class,'updateBannerCard'])->name('updatebannercard');
     Route::post('/update-contact/{id}',[SettingController::class,'updateContact'])->name('updatecontact');
+    Route::post('/update-serve/{id}',[SettingController::class,'updateServe'])->name('updateserve');
 });
 
 Route::group(['middleware' => 'login'], function () {

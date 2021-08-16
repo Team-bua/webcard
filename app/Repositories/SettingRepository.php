@@ -70,4 +70,32 @@ class SettingRepository
         $contact->save();
     }
 
+    public function updateServe($request, $id)
+    {
+        // dd($request->all(), $id);
+        $index_serve = Index::find($id);
+        $index_serve->title_serve = $request->tittle1;
+        $index_serve->desc_serve = json_encode($request->title_serve);
+        $date = Carbon::now()->format('d-m-Y');
+        $img = $request->img_serve;
+        $img_request = [];
+        if (isset($img)) {
+            if(json_decode($index_serve->icon_serve) !== null){
+                for($i = 0; $i < count(json_decode($index_serve->icon_serve)); $i++) {
+                    if(json_decode($index_serve->icon_serve)[$i] !== ''){
+                        unlink(public_path(json_decode($index_serve->icon_serve)[$i]));
+                    }         
+                }
+            }
+            for($j = 0; $j < count($img); $j++){
+                $img_name = 'upload/index/img/' . $date . '/' . Str::random(10) . rand() . '.' . $img[$j]->getClientOriginalExtension();
+                $destinationPath = public_path('upload/index/img/' . $date);
+                $img[$j]->move($destinationPath, $img_name);
+                $img_request[] = $img_name;
+            }
+        $index_serve->icon_serve = json_encode($img_request);            
+        }
+        $index_serve->save();
+    }
+
 }
