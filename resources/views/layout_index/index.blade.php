@@ -2,14 +2,16 @@
 @section('content')
     <section class="wrapper bg-soft-primary">
         <div class="container pt-10 pb-15 py-lg-17 py-xl-20 py-xxl-22 position-relative">
+            @if(isset($index->image_banner))
             <img class="position-lg-absolute col-12 col-lg-12 mt-lg-n50p mb-3 mb-md-10 mb-lg-0"
-                src="{{ asset('dev/img/photos/hopqua.png') }}" data-cue="fadeIn" alt=""
+                src="{{ asset($index->image_banner) }}" data-cue="fadeIn" alt=""
                 style="top: 50%; left: 0%; width: 50%; height: 80%;" />
+            @endif
             <div class="row gx-lg-8 gx-xl-12 align-items-center">
                 <div class="col-md-10 offset-md-1 col-lg-6 offset-lg-6 mt-md-n9 text-center text-lg-start"
                     data-cues="slideInDown" data-group="download">
-                    <h1 class="display-4 mb-4 px-md-10 px-lg-0">Webcard.com cung cấp các loại thẻ cào & voucher giá rẻ</h1>
-                    <p class="lead fs-lg mb-7 px-md-10 px-lg-0 pe-xxl-15">Giao dịch nhanh chóng - Đảm bảo uy tín</p>
+                    <h1 class="display-4 mb-4 px-md-10 px-lg-0">{{ $index->desc_banner }}</h1>
+                    <p class="lead fs-lg mb-7 px-md-10 px-lg-0 pe-xxl-15">{{ $index->sub_desc_banner }}</p>
                 </div>
                 <!-- /column -->
             </div>
@@ -80,31 +82,24 @@
             <!--/.row -->
             <div class="row gx-lg-8 align-items-center">
                 <div class="col-lg-6">
-                    <figure><img src="{{ asset('dev/img/photos/device.png') }}"
-                            srcset="{{ asset('dev/img/photos/device@2x.png') }} 2x" data-cue="fadeIn" alt="" /></figure>
+                    @if(isset($index->image_step))
+                    <figure><img src="{{ asset($index->image_step) }}" data-cue="fadeIn" alt="" /></figure>
+                    @endif
                 </div>
                 <!-- /column -->
                 <div class="col-lg-6">
-                    <h3 class="display-4 mb-5">Cách thức giao dịch đơn giản, dễ thao tác</h3>
-                    <p class="mb-8">Bằng cách nạp tiền vào tài khoản trên hệ thống trang web, bạn có thể thoải mái giao dịch và thanh toán bất cứ loại hình dịch vụ nào có trên trang web.</p>
+                    <h3 class="display-4 mb-5">{{ $index->desc_step }}</h3>
+                    <p class="mb-8">{{ $index->sub_desc_step }}</p>
                     <div class="row gy-6 gx-xxl-8 process-wrapper" data-cues="slideInUp" data-group="process">
-                        <div class="col-md-4"> <img src="{{ asset('dev/img/icons/savings.svg') }}"
+                        @if(isset($index->desc_number_step))
+                        @for($i = 0; $i < count(json_decode($index->desc_number_step)); $i++)
+                        <div class="col-md-4"> <img src="{{ asset(json_decode($index->icon_step)[$i]) }}"
                                 class="svg-inject icon-svg icon-svg-sm text-green mb-3" alt="" />
-                            <h4 class="mb-1">1. Nạp tiền</h4>
-                            <p class="mb-0">Nạp tiền vào tài khoản</p>
+                            <h4 class="mb-1">{{ json_decode($index->desc_number_step)[$i] }}</h4>
+                            <p class="mb-0">{{ json_decode($index->sub_desc_number_step)[$i] }}</p>
                         </div>
-                        <!--/column -->
-                        <div class="col-md-4"> <img src="{{ asset('dev/img/icons/shopping-cart.svg') }}"
-                                class="svg-inject icon-svg icon-svg-sm text-red mb-3" alt="" />
-                            <h4 class="mb-1">2. Mua thẻ</h4>
-                            <p class="mb-0">Tiến hành giao dịch</p>
-                        </div>
-                        <!--/column -->
-                        <div class="col-md-4"> <img src="{{ asset('dev/img/icons/rocket.svg') }}"
-                                class="svg-inject icon-svg icon-svg-sm text-aqua mb-3" alt="" />
-                            <h4 class="mb-1">3. Nhận thẻ</h4>
-                            <p class="mb-0">Tại trang người dùng của bạn</p>
-                        </div>
+                        @endfor
+                        @endif
                         <!--/column -->
                     </div>
                     <!--/.row -->
@@ -115,7 +110,7 @@
         </div>
         <!-- /.container -->
     </section>
-	<section class="wrapper image-wrapper bg-image bg-overlay" data-image-src="{{ asset('dev/img/photos/lol.jpg') }}">
+	<section class="wrapper image-wrapper bg-image bg-overlay" data-image-src="{{ asset($index->image_background) }}">
 		<div class="container py-18">
 		  <div class="row">
 			<div class="col-lg-8">
@@ -184,7 +179,7 @@
                             <div class="d-flex flex-row">
                                 <div>
                                     <div class="icon btn btn-circle btn-lg btn-soft-primary disabled me-5"> <i
-                                            class="uil uil-shield-check exclamation"></i> </div>
+                                            class="uil uil-shield-check"></i> </div>
                                 </div>
                                 <div>
                                     <h4 class="mb-1">An toàn và Bảo mật</h4>

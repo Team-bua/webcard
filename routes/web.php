@@ -58,9 +58,13 @@ Route::group(['middleware' => 'user'], function () {
     //Setting index
     Route::get('/setting',[SettingController::class,'viewSetting'])->name('setting');
     Route::post('/update-logo/{id}',[SettingController::class,'updateLogo'])->name('updatelogo');
+    Route::post('/update-banner-index/{id}',[SettingController::class,'updateBannerIndex'])->name('updatebannerindex');
+    Route::post('/update-background/{id}',[SettingController::class,'updateBackground'])->name('updatebackground');
     Route::post('/update-banner-card/{id}',[SettingController::class,'updateBannerCard'])->name('updatebannercard');
     Route::post('/update-contact/{id}',[SettingController::class,'updateContact'])->name('updatecontact');
     Route::post('/update-serve/{id}',[SettingController::class,'updateServe'])->name('updateserve');
+    Route::post('/update-step/{id}',[SettingController::class,'updateStep'])->name('update.step');
+    Route::get('/delete-icon/{id}',[SettingController::class,'deleteIcon'])->name('delete.icon');
 });
 
 Route::group(['middleware' => 'login'], function () {

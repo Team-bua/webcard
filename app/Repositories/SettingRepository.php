@@ -19,6 +19,27 @@ class SettingRepository
         return Index::find(1);
     }
 
+    public function updateBannerIndex($request)
+    {
+        $banner_index = Index::find(1);
+        $date = Carbon::now()->format('d-m-Y');
+        $img = $request->img_banner;
+        if (isset($img)) {
+            if($banner_index->image_banner){
+                unlink(public_path($banner_index->image_banner));
+            }
+            $img_name = 'upload/index/img/' . $date . '/' . Str::random(10) . rand() . '.' . $img->getClientOriginalExtension();
+            $destinationPath = public_path('upload/index/img/' . $date);
+            $img->move($destinationPath, $img_name);
+
+            $banner_index->image_banner = $img_name;
+
+        }
+        $banner_index->desc_banner = $request->desc;
+        $banner_index->sub_desc_banner = $request->sub_desc;
+        $banner_index->save();
+    }
+
     public function updateLogo($request)
     {
         $logo = Index::find(1);
@@ -38,6 +59,25 @@ class SettingRepository
         $arr = [ $img_name, $request->width, $request->height ];
         $logo->image_logo = json_encode($arr);
         $logo->save();
+    }
+
+    public function updateBackground($request)
+    {
+        $background = Index::find(1);
+        $date = Carbon::now()->format('d-m-Y');
+        $img = $request->img_background;
+        if (isset($img)) {
+            if($background->image_background){
+                unlink(public_path($background->image_background));
+            }
+            $img_name = 'upload/index/img/' . $date . '/' . Str::random(10) . rand() . '.' . $img->getClientOriginalExtension();
+            $destinationPath = public_path('upload/index/img/' . $date);
+            $img->move($destinationPath, $img_name);
+
+            $background->image_background = $img_name;
+
+        }
+        $background->save();
     }
 
     public function updateBannerCard($request)
@@ -96,6 +136,71 @@ class SettingRepository
         $index_serve->icon_serve = json_encode($img_request);            
         }
         $index_serve->save();
+    }
+    public function updateStep($request, $id)
+    {
+     $step = Index::find($id);
+     $date = Carbon::now()->format('d-m-Y');
+     $img = $request->image_step;
+     if (isset($img)) {
+         if($step->image_step){
+            unlink(public_path($step->image_step));
+         }      
+         $img_name = 'upload/index/img/' . $date.'/'.Str::random(10).rand().'.'.$img->getClientOriginalExtension();
+         $destinationPath = public_path('upload/index/img/' . $date);
+         $img->move($destinationPath, $img_name);
+
+         $step->image_step = $img_name;
+     }
+     $step->desc_step = $request->tittle;
+     $step->sub_desc_step = $request->desc;
+
+     if($request->icon){
+          $arr_packgame = array_replace($request->pack, $request->icon);
+     }
+     if(isset($arr_packgame)){
+          foreach($arr_packgame as $ap){  
+               if (is_string($ap) == false) {
+                    $img_name_package = 'upload/index/img/' . $date.'/'.Str::random(10).rand().'.'.$ap->getClientOriginalExtension();
+                    $destinationPath = public_path('upload/index/img/' . $date);
+                    $ap->move($destinationPath, $img_name_package);
+                    $arr[] = $img_name_package;               
+                }
+                else{
+                    $arr[] = $ap; 
+                }  
+          }
+               $step->icon_step = json_encode($arr);
+     }
+     else {
+          $step->icon_step = json_encode($request->pack);
+     }
+
+    $step->desc_number_step = json_encode($request->content);
+    $step->sub_desc_number_step = json_encode($request->description);    
+     
+    $step->save();
+    }
+
+    public function AjaxDeleteIcon($request, $id)
+    {
+        $step = Index::find(1);
+        if($request->pack){              
+            $img_unlink =  array_diff(json_decode($step->icon_step), $request->pack);  
+                foreach($img_unlink as $iu){
+                        
+                        unlink(public_path($iu));
+                }      
+        }
+        $step->icon_step = json_encode($request->pack);   
+        $step->desc_number_step = json_encode($request->content);
+        $step->sub_desc_number_step = json_encode($request->description);
+        $step->save();
+
+        return response()->json([
+            'error' => false,
+            'package'  => $step,
+        ], 200);
     }
 
 }

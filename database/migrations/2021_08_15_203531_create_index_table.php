@@ -23,6 +23,7 @@ class CreateIndexTable extends Migration
             $table->text('icon_serve')->nullable();
             $table->text('desc_serve')->nullable();
             $table->text('image_step')->nullable();
+            $table->text('icon_step')->nullable();
             $table->text('desc_step')->nullable();
             $table->text('sub_desc_step')->nullable();
             $table->text('desc_number_step')->nullable();

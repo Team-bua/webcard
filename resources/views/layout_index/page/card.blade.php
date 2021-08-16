@@ -5,7 +5,9 @@
 <link href="{{ asset('dev/css/style3.css') }}" rel="stylesheet" type="text/css" />
 
 <section class="wrapper bg-soft-primary" style="margin-top: -20px">
+    @if(isset($index->banner_buy_card))
     <img src="{{ asset($index->banner_buy_card) }}" width="100%" height="400px" alt="">
+    @endif
     <!-- /.container -->
   </section>
 <div class="all_nd_themgame_ud">

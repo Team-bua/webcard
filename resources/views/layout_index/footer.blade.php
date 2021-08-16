@@ -19,7 +19,7 @@
 	<!-- /column -->
 	<div class="col-md-4 col-lg-4">
 		<div class="widget">
-		<h4 class="widget-title text-white mb-3">Liện hệ</h4>
+		<h4 class="widget-title text-white mb-3">Liên hệ</h4>
 		<address class="pe-xl-15 pe-xxl-17"><i class="uil uil-location-pin-alt"></i> {{ $index->address_contact }}</address>
 		<i class="uil uil-envelope"></i><a href="mailto:{{ $index->email_contact }}"> {{ $index->email_contact }}</a><br> <i class="uil uil-phone-volume"></i> {{ $index->phone_contact }}
 		</div>
