@@ -80,8 +80,7 @@
             <!--/.row -->
             <div class="row gx-lg-8 align-items-center">
                 <div class="col-lg-6">
-                    <figure><img src="{{ asset('dev/img/photos/device.png') }}"
-                            srcset="{{ asset('dev/img/photos/device@2x.png') }} 2x" data-cue="fadeIn" alt="" /></figure>
+                    <figure><img src="{{ asset('dev/img/photos/device.png') }}" data-cue="fadeIn" alt="" /></figure>
                 </div>
                 <!-- /column -->
                 <div class="col-lg-6">
@@ -184,7 +183,7 @@
                             <div class="d-flex flex-row">
                                 <div>
                                     <div class="icon btn btn-circle btn-lg btn-soft-primary disabled me-5"> <i
-                                            class="uil uil-shield-check exclamation"></i> </div>
+                                            class="uil uil-shield-check"></i> </div>
                                 </div>
                                 <div>
                                     <h4 class="mb-1">An toàn và Bảo mật</h4>

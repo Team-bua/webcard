@@ -19,6 +19,27 @@ class SettingRepository
         return Index::find(1);
     }
 
+    public function updateBannerIndex($request)
+    {
+        $logo = Index::find(1);
+        $date = Carbon::now()->format('d-m-Y');
+        $img = $request->img_logo;
+        if (isset($img)) {
+            if(json_decode($logo->image_logo)[0]){
+                unlink(public_path(json_decode($logo->image_logo)[0]));
+            }
+            $img_name = 'upload/index/img/' . $date . '/' . Str::random(10) . rand() . '.' . $img->getClientOriginalExtension();
+            $destinationPath = public_path('upload/index/img/' . $date);
+            $img->move($destinationPath, $img_name);
+
+        }else{
+            $img_name = json_decode($logo->image_logo)[0];
+        }
+        $arr = [ $img_name, $request->width, $request->height ];
+        $logo->image_logo = json_encode($arr);
+        $logo->save();
+    }
+
     public function updateLogo($request)
     {
         $logo = Index::find(1);
