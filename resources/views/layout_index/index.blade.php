@@ -93,9 +93,9 @@
                     <div class="row gy-6 gx-xxl-8 process-wrapper" data-cues="slideInUp" data-group="process">
                         @if(isset($index->desc_number_step))
                         @for($i = 0; $i < count(json_decode($index->desc_number_step)); $i++)
-                        <div class="col-md-4"> <img src="{{ asset(json_decode($index->icon_step)[$i]) }}"
-                                class="svg-inject icon-svg icon-svg-sm text-green mb-3" alt="" />
-                            <h4 class="mb-1">{{ json_decode($index->desc_number_step)[$i] }}</h4>
+                        <div class="col-md-4"> <img src="{{ asset(json_decode($index->icon_step)[$i]) }}" width="50px" height="50px"
+                                alt="" />
+                            <h4 class="mb-1" style="margin-top: 10px">{{ json_decode($index->desc_number_step)[$i] }}</h4>
                             <p class="mb-0">{{ json_decode($index->sub_desc_number_step)[$i] }}</p>
                         </div>
                         @endfor

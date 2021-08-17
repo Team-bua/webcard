@@ -112,19 +112,6 @@ class SettingController extends Controller
     }
     public function updateStep(Request $request, $id)
     {
-        $this->validate(
-            $request,
-            [
-                'image_step' => 'mimes:jpg,jpeg,png,gif|max:2048',
-                'icon' => 'mimes:svg|max:2048',
-            ],
-            [
-                'icon.mimes' => 'Icon chỉ nhận hình ảnh có đuôi .svg',
-                'icon.max' => 'Giới hạn ảnh 2Mb',
-                'image_step.mimes' => 'Chỉ gắn thẻ hình ảnh có đuôi .jpg .jpeg .png .gif',
-                'image_step.max' => 'Giới hạn ảnh 2Mb',
-            ]
-        );
         $this->repository->updateStep($request, $id);
         return redirect()->back()->with('information', 'Cập nhật thành công');
     }

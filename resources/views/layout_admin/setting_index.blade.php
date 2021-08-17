@@ -143,7 +143,7 @@
 
                                         <div class="input-group">
                                             <input id="img_serve0" type="file" name="img_serve[]" class="form-control hidden packgame" onchange="changeImgServe(this, 0)" style="display:none">
-                                            <img id="0" class="img_serve0 indexServe" style="width: 50px; height: 34px;" src="asset('dashboard/assets/img/no_img.jpg')">
+                                            <img id="0" class="img_serve0 indexServe" style="width: 50px; height: 34px;" src="{{ asset('dashboard/assets/img/no_img.jpg') }}">
                                         </div>
                                     </div>
                                 </div>
@@ -199,16 +199,20 @@
                                 </div>
                                 @php
                                     $i = 0;
+                                    // dd(json_decode($index->icon_step));
                                 @endphp
+                                
+                                <button type="button" class="btn bg-gradient-primary w-12 float-left" name="add_btn" id="add_btn"><i class="fa fa-plus"></i></button>
+                                <input type="text" id="step" value="">
                                 @if(isset($index->desc_number_step))
                                 @for($i; $i < count(json_decode($index->desc_number_step)); $i++)
                                 <div class="row" id="new{{ $i + 1 }}">
-                                    <input type="hidden" name="pack[]" value="{{isset(json_decode($index->icon_step)[$i]) ? json_decode($index->icon_step)[$i] : 'dashboard/assets/img/no_img.jpg'}}">
+                                    <input type="hidden" name="pack[]" value="{{ json_decode($index->icon_step)[$i] }}">
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label class="form-control-label" for="basic-url">Nội dung </label>                       
                                             <div class="input-group">
-                                                <input name="content[]" id="content" type="text" class="form-control" value="{{ json_decode($index->desc_number_step)[$i] }}" id="exampleFormControlInput1" placeholder="Giá. . . . . . . . ." maxlength="50" >
+                                                <input name="content[]" id="content" type="text" class="form-control" value="{{ json_decode($index->desc_number_step)[$i] }}" id="exampleFormControlInput1" placeholder="Nội dung. . . . . . . . ." maxlength="50" >
                                             </div>
                                         </div>
                                     </div>
@@ -216,24 +220,21 @@
                                         <div class="form-group">
                                             <label class="form-control-label" for="basic-url">Miêu tả </label>                       
                                             <div class="input-group" style="width: 100%;">
-                                                <input type="text" class="form-control" id="description" name="description[]" value="{{ json_decode($index->sub_desc_number_step)[$i] }}" placeholder="Giá. . . . . . . . .">
+                                                <input type="text" class="form-control" id="description" name="description[]" value="{{ json_decode($index->sub_desc_number_step)[$i] }}" placeholder="Miêu tả. . . . . . . . .">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-sm-2">
                                         <label class="form-control-label" for="basic-url">Icon </label><br>
-                                        <input id="img_icon0" type="file" name="icon[]" class="form-control packgame"
-                                        onchange="changeIcon(this, 0    )" style="display: none">
-                                        <img id="0" class="img_icon0 imgicon" style="width: 50px; height: 34px;"
+                                        <input id="img_icon{{ $i + 1 }}" type="file" name="icon[]" class="form-control packgame"
+                                        onchange="changeIcon(this, {{ $i + 1 }})" style="display: none">
+                                        <img id="{{ $i + 1 }}" class="img_icon{{ $i + 1 }} imgicon" style="width: 50px; height: 34px;"
                                         src="{{ asset(isset(json_decode($index->icon_step)[$i]) ? json_decode($index->icon_step)[$i] : 'dashboard/assets/img/no_img.jpg') }}">
                                     </div>                                 
                                     <div class="col-md-2">
                                         <div class="form-group">
                                             <label class="form-control-label" for="basic-url">Thao tác</label> <br>
-                                            <button type="button" class="btn bg-gradient-primary w-12 float-left btn_remove" name="remove_btn" id="{{ $i + 1 }}"><i class="fa fa-minus"></i></button>
-                                            @if($i == 0)
-                                            <button type="button" class="btn bg-gradient-primary w-12 float-left" name="add_btn" id="add_btn"><i class="fa fa-plus"></i></button>
-                                            @endif
+                                            <button type="button" class="btn bg-gradient-primary w-12 float-left btn_remove" name="remove_btn" id="{{ $i + 1 }}"><i class="fa fa-minus"></i></button>                                         
                                         </div>
                                     </div>
                                 </div>
@@ -275,13 +276,13 @@
                             </div>
                         </div>
                     </div>
-                    <form action="#" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('updatebackground', $index->id) }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="card-body p-3">
                             <div class="form-group">
                                 <label class="form-control-label" for="basic-url">Ảnh nền</label> <br>
                                 <input id="img3" type="file" name="img_background" class="form-control" style="display: none" onchange="changeImgPack(this, 3)">
-                                <img id="3" class="img3 imgpackgame" style="width: 200px; height: 120px;" src="{{ asset('dashboard/assets/img/no_img.jpg') }}">
+                                <img id="3" class="img3 imgpackgame" style="width: 200px; height: 120px;" src="{{ asset($index->image_background ? $index->image_background : 'dashboard/assets/img/no_img.jpg') }}">
                             </div>
                             @error('avatar')
                             <p style="color:red; font-size: 13px; margin-left: 5px">{{ $message }}</p>
@@ -371,14 +372,6 @@
                                     <p style="color:red; font-size: 13px; margin-left: 5px">{{ $message }}</p>
                                 @enderror
                             </div>
-                            <div class="form-group">
-                                <label class="form-control-label" for="basic-url">Logo ( xóa background trước khi thêm )</label> <br>
-                                <input id="img1" type="file" name="img_logo" class="form-control" style="display: none" onchange="changeImgPack(this, 1)">
-                                <img id="1" class="img1 imgpackgame" style="width: 200px; height: 120px;" src="{{ asset(json_decode($index->image_logo)[0] ? json_decode($index->image_logo)[0] :'dashboard/assets/img/no_img.jpg') }}">
-                            </div>
-                            @error('avatar')
-                            <p style="color:red; font-size: 13px; margin-left: 5px">{{ $message }}</p>
-                            @enderror
                         </div>
                         <div class="text-center">
                             <button type="submit" class="btn bg-gradient-primary w-12">Cập nhật </button>
@@ -396,24 +389,6 @@
                         </div>
                         <form action="{{ route('updatecontact', $index->id) }}" method="post" enctype="multipart/form-data">
                             @csrf
-                            <div class="card-body p-3">
-                                <div class="form-group">
-                                    <label class="form-control-label" for="basic-url">Tiêu đề </label>
-                                    <div class="input-group">
-                                        <span class="input-group-text"><i class="fa fa-paint-brush"></i></span>
-                                        <input type="text" class="form-control" id="tittle" name="tittle" value="{{ $index->desc_contact }}"
-                                            placeholder="Tiêu đề">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-control-label" for="basic-url">Địa chỉ </label>
-                                    <div class="input-group">
-                                        <span class="input-group-text"><i class="fa fa-book"></i></span>
-                                        <input type="text" class="form-control" id="address" name="address" value="{{ $index->address_contact }}"
-                                            placeholder="Địa chỉ" required>
-                                    </div>
-                                </div>
-                            </div>
                             <div class="form-group">
                                 <label class="form-control-label" for="basic-url">Địa chỉ </label>
                                 <div class="input-group">
@@ -609,17 +584,19 @@ $(document).ready(function() {
             var count = "{{ count(explode(',', $index->desc_number_step)) }}";
             <?php } else { ?>
             var arr_number = 0;
-            var count = 1;
+            var count = true;
             <?php } ?>
 
             function data_form(number) {
-                
+                if(count == true){
+                    count = 1;
+                }
                 var html = `<div class="row" id="new`+count+`">
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label class="form-control-label" for="basic-url">Nội dung </label>                       
                                             <div class="input-group">
-                                                <input name="content[]" id="content" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Giá. . . . . . . . ." maxlength="50" >
+                                                <input name="content[]" id="content" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Nội dung. . . . . . . . ." maxlength="50" >
                                             </div>
                                         </div>
                                     </div>
@@ -627,7 +604,7 @@ $(document).ready(function() {
                                         <div class="form-group">
                                             <label class="form-control-label" for="basic-url">Miêu tả </label>                       
                                             <div class="input-group" style="width: 100%;">
-                                                <input type="text" class="form-control" id="description" name="description[]" value="" placeholder="Giá. . . . . . . . .">
+                                                <input type="text" class="form-control" id="description" name="description[]" value="" placeholder="Miêu tả. . . . . . . . .">
                                             </div>
                                         </div>
                                     </div>
@@ -686,7 +663,7 @@ $(document).ready(function() {
                     cancelButtonText: 'Huỷ'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        if (button_id == 1 && arr_number != 0) {
+                        if (count == true && arr_number != 0) {
                             $("#content").val('');
                             $("#description").val('');
                         } else {
@@ -708,17 +685,11 @@ $(document).ready(function() {
                             error: function() {
                                 Swal.fire({
                                     icon: 'error',
-                                    title: 'Oops...',
-                                    text: 'Something went wrong!',
+                                    title: 'Lỗi...',
+                                    text: 'Không thể xóa!',
                                 })
                             }
                         });
-                        // Swal.fire(
-                        // 'Deleted!',
-                        // 'Your file has been deleted.',
-                        // 'success'
-                        // )
-                        // $('#row'+button_id+'').remove();
                     }
                 })
 
