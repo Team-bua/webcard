@@ -62,21 +62,6 @@
                                     <p style="color:red; font-size: 13px; margin-left: 5px">{{ $message }}</p>
                                 @enderror
                             </div>
-                            <div class="form-group">
-                                <label class="form-control-label" for="basic-url">Nội dung 2</label>
-                                <div class="input-group">
-                                    <span class="input-group-text"><i class="fa fa-paint-brush"></i></span>
-                                    <input type="text" class="form-control" id="tittle2" name="tittle2" placeholder="Tiêu đề 2" value="">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="form-control-label" for="basic-url">Ảnh banner</label> <br>
-                                <input id="img0" type="file" name="img_banner" class="form-control" style="display: none" onchange="changeImgPack(this, 0)">
-                                <img id="0" class="img0 imgpackgame" style="width: 200px; height: 120px;" src="{{ asset('dashboard/assets/img/no_img.jpg') }}">
-                            </div>
-                            @error('avatar')
-                            <p style="color:red; font-size: 13px; margin-left: 5px">{{ $message }}</p>
-                            @enderror
                         </div>
                         <div class="text-center">
                             <button type="submit" class="btn bg-gradient-primary w-12">Cập nhật </button>
@@ -178,112 +163,105 @@
         </div>
     </div>
     <div class="container-fluid py-4">
-        <div class="row">
-            <div class="col-12 col-xl-6">
-                <div class="card h-80">
-                    <div class="card-header pb-0 p-3">
-                        <div class="row">
-                            <div class="col-md-8 d-flex align-items-center">
-                                <h6 class="mb-0">Thiết lập banner</h6>
+            <div class="row">
+                <div class="col-12 col-xl-12">
+                    <div class="card h-80">
+                        <div class="card-header pb-0 p-3">
+                            <div class="row">
+                                <div class="col-md-8 d-flex align-items-center">
+                                    <h6 class="mb-0">Thiết lập nội dung 2</h6>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <form action="#" method="post" enctype="multipart/form-data">
-                        @csrf
-                        <div class="card-body p-3">
-                            <div class="form-group">
-                                <label class="form-control-label" for="basic-url">Tiêu đề 1 </label>
-                                <div class="input-group">
-                                    <span class="input-group-text"><i class="fa fa-paint-brush"></i></span>
-                                    <input type="text" class="form-control" id="tittle1" name="tittle1" value="" placeholder="Tiêu đề 1">
+                        <form action="{{ route('update.step', $index->id) }} }}" method="post" enctype="multipart/form-data" id="form_data1">
+                            @csrf
+                            <div class="card-body p-3">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="basic-url">Tiêu đề </label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fa fa-paint-brush"></i></span>
+                                        <input type="text" class="form-control" id="tittle" name="tittle" value="{{ $index->desc_step }}"
+                                            placeholder="Tiêu đề 1">
+                                    </div>
+                                    @error('name')
+                                        <p style="color:red; font-size: 13px; margin-left: 5px">{{ $message }}</p>
+                                    @enderror
                                 </div>
-                                @error('name')
-                                <p style="color:red; font-size: 13px; margin-left: 5px">{{ $message }}</p>
+                                <div class="form-group">
+                                    <label class="form-control-label" for="basic-url">Mô tả</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fa fa-paint-brush"></i></span>
+                                        <input type="text" class="form-control" id="desc" name="desc"
+                                            placeholder="Tiêu đề 2" value="{{ $index->sub_desc_step }}">
+                                    </div>
+                                </div>
+                                @php
+                                    $i = 0;
+                                @endphp
+                                @if(isset($index->desc_number_step))
+                                @for($i; $i < count(json_decode($index->desc_number_step)); $i++)
+                                <div class="row" id="new{{ $i + 1 }}">
+                                    <input type="hidden" name="pack[]" value="{{isset(json_decode($index->icon_step)[$i]) ? json_decode($index->icon_step)[$i] : 'dashboard/assets/img/no_img.jpg'}}">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="basic-url">Nội dung </label>                       
+                                            <div class="input-group">
+                                                <input name="content[]" id="content" type="text" class="form-control" value="{{ json_decode($index->desc_number_step)[$i] }}" id="exampleFormControlInput1" placeholder="Giá. . . . . . . . ." maxlength="50" >
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="basic-url">Miêu tả </label>                       
+                                            <div class="input-group" style="width: 100%;">
+                                                <input type="text" class="form-control" id="description" name="description[]" value="{{ json_decode($index->sub_desc_number_step)[$i] }}" placeholder="Giá. . . . . . . . .">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <label class="form-control-label" for="basic-url">Icon </label><br>
+                                        <input id="img_icon0" type="file" name="icon[]" class="form-control packgame"
+                                        onchange="changeIcon(this, 0    )" style="display: none">
+                                        <img id="0" class="img_icon0 imgicon" style="width: 50px; height: 34px;"
+                                        src="{{ asset(isset(json_decode($index->icon_step)[$i]) ? json_decode($index->icon_step)[$i] : 'dashboard/assets/img/no_img.jpg') }}">
+                                    </div>                                 
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="basic-url">Thao tác</label> <br>
+                                            <button type="button" class="btn bg-gradient-primary w-12 float-left btn_remove" name="remove_btn" id="{{ $i + 1 }}"><i class="fa fa-minus"></i></button>
+                                            @if($i == 0)
+                                            <button type="button" class="btn bg-gradient-primary w-12 float-left" name="add_btn" id="add_btn"><i class="fa fa-plus"></i></button>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                               @endfor
+                               @endif
+                               @error('icon')
+                                    <p style="color:red; font-size: 15px; margin-left: 10px">{{ $message }}</p>
                                 @enderror
-                            </div>
-                            <div class="form-group">
-                                <label class="form-control-label" for="basic-url">Tiêu đề 2</label>
-                                <div class="input-group">
-                                    <span class="input-group-text"><i class="fa fa-paint-brush"></i></span>
-                                    <input type="text" class="form-control" id="tittle2" name="tittle2" placeholder="Tiêu đề 2" value="">
+                                <div id="new_chq"></div>
+                                <input type="hidden" value="1" id="total_chq">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="basic-url">Ảnh </label> <br>
+                                    <input id="img4" type="file" name="image_step" class="form-control"
+                                        style="display: none" onchange="changeImgPack(this, 4)">
+                                    <img id="4" class="img4 imgpackgame" style="width: 120px; height: 120px;"
+                                        src="{{ asset($index->image_step ? $index->image_step : 'dashboard/assets/img/no_img.jpg') }}">
                                 </div>
                                 @error('image_step')
                                     <p style="color:red; font-size: 13px; margin-left: 5px">{{ $message }}</p>
                                 @enderror
                             </div>
-                            <div class="form-group">
-                                <label class="form-control-label" for="basic-url">Ảnh đại diện</label> <br>
-                                <div class="avatar avatar-xl position-relative" style="margin-top: 25px; margin-left: 25px">
-                                    <input id="fImages" type="file" name="avatar" class="form-control" style="display: none" onchange="changeImg(this)">
-                                    <img id="img" class="border-radius-lg shadow-sm" style="width: 120px; height: 120px;" src="{{ asset('dashboard/assets/img/no_img.jpg') }}">
-                                </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn bg-gradient-primary w-12">Cập nhật </button>
                             </div>
-                            @error('avatar')
-                            <p style="color:red; font-size: 13px; margin-left: 5px">{{ $message }}</p>
-                            @enderror
-                        </div>
-                        <div class="text-center">
-                            <button type="submit" class="btn bg-gradient-primary w-12">Cập nhật </button>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
-            </div>
-            <div class="col-12 col-xl-6">
-                <div class="card h-80">
-                    <div class="card-header pb-0 p-3">
-                        <div class="row">
-                            <div class="col-md-8 d-flex align-items-center">
-                                <h6 class="mb-0">Thiết lập 2</h6>
-                            </div>
-                        </div>
-                        <form action="{{ route('updatebackground', $index->id) }}" method="post" enctype="multipart/form-data">
-                            @csrf
-                            <div class="card-body p-3">
-                                <div class="form-group">
-                                    <label class="form-control-label" for="basic-url">Ảnh nền</label> <br>
-                                    <input id="img3" type="file" name="img_background" class="form-control"
-                                        style="display: none" onchange="changeImgPack(this, 3)">
-                                    <img id="3" class="img3 imgpackgame" style="width: 200px; height: 120px;"
-                                        src="{{ asset($index->image_background ? $index->image_background : 'dashboard/assets/img/no_img.jpg') }}">
-                                </div>
-                                @error('img_background')
-                                    <p style="color:red; font-size: 13px; margin-left: 5px">{{ $message }}</p>
-                                @enderror
-                            </div>
-                            <div class="form-group">
-                                <label class="form-control-label" for="basic-url">Tiêu đề 2</label>
-                                <div class="input-group">
-                                    <span class="input-group-text"><i class="fa fa-paint-brush"></i></span>
-                                    <input type="text" class="form-control" id="tittle2" name="tittle2" placeholder="Tiêu đề 2" value="">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="form-control-label" for="basic-url">Tiêu đề 2</label>
-                                <div class="input-group">
-                                    <span class="input-group-text"><i class="fa fa-paint-brush"></i></span>
-                                    <input type="text" class="form-control" id="tittle2" name="tittle2" placeholder="Tiêu đề 2" value="">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="form-control-label" for="basic-url">Tiêu đề 2</label>
-                                <div class="input-group">
-                                    <span class="input-group-text"><i class="fa fa-paint-brush"></i></span>
-                                    <input type="text" class="form-control" id="tittle2" name="tittle2" placeholder="Tiêu đề 2" value="">
-                                </div>
-                                @error('img_buy_card')
-                                    <p style="color:red; font-size: 13px; margin-left: 5px">{{ $message }}</p>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="text-center">
-                            <button type="submit" class="btn bg-gradient-primary w-12">Cập nhật </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
 
+            </div>
         </div>
-    </div>
     <div class="container-fluid py-4">
         <div class="row">
             <div class="col-12 col-xl-6">
