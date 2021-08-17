@@ -98,7 +98,7 @@
                             @if(isset($index->desc_serve))
                             @for($i; $i < count(json_decode($index->desc_serve)); $i++)
                             <input type="hidden" name="serve[]" value="{{isset(json_decode($index->icon_serve)[$i]) ? json_decode($index->icon_serve)[$i] : 'dashboard/assets/img/no_img.jpg'}}">
-                            <div class="row" style="width: 80%;" id="row_serve{{$i + 1}}">
+                            <div class="row" id="row_serve{{$i + 1}}">
                                 <div class="col-md-7">
                                     <div class="form-group">
                                         <label class="form-control-label" for="basic-url">Giá: </label>
@@ -126,34 +126,6 @@
                                 </div>
                             </div>
                             @endfor
-                            @else
-                            <div class="row" style="width: 80%;" id="row_serve0">
-                                <div class="col-md-7">
-                                    <div class="form-group">
-                                        <label class="form-control-label" for="basic-url">Giá: </label>
-
-                                        <div class="input-group">
-                                            <input name="title_serve[]" id="title_serve" type="text" value="" class="form-control" id="exampleFormControlInput1" placeholder="Giá. . . . . . . . ." min="0" maxlength="50" required>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <label class="form-control-label" for="basic-url">Giảm giá: </label>
-
-                                        <div class="input-group">
-                                            <input id="img_serve0" type="file" name="img_serve[]" class="form-control hidden packgame" onchange="changeImgServe(this, 0)" style="display:none">
-                                            <img id="0" class="img_serve0 indexServe" style="width: 50px; height: 34px;" src="{{ asset('dashboard/assets/img/no_img.jpg') }}">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label class="form-control-label" for="basic-url">Thao Tác: </label> <br>                                   
-                                        <button type="button" class="btn bg-gradient-primary w-12 float-left" name="add_btn_serve" id="add_btn_serve"><i class="fa fa-plus"></i></button>
-                                    </div>
-                                </div>
-                            </div>
                             @endif      
                             <div id="new_chq_serve"></div>
                             <div class="text-center">
@@ -177,6 +149,7 @@
                         </div>
                         <form action="{{ route('update.step', $index->id) }} }}" method="post" enctype="multipart/form-data" id="form_data1">
                             @csrf
+                            <input type="hidden" id="id_step" name="id_step" value="">
                             <div class="card-body p-3">
                                 <div class="form-group">
                                     <label class="form-control-label" for="basic-url">Tiêu đề </label>
@@ -203,7 +176,6 @@
                                 @endphp
                                 
                                 <button type="button" class="btn bg-gradient-primary w-12 float-left" name="add_btn" id="add_btn"><i class="fa fa-plus"></i></button>
-                                <input type="text" id="step" value="">
                                 @if(isset($index->desc_number_step))
                                 @for($i; $i < count(json_decode($index->desc_number_step)); $i++)
                                 <div class="row" id="new{{ $i + 1 }}">
@@ -468,7 +440,7 @@ $(document).ready(function() {
         if(count == true) {
             count = 1;
         }
-        var html = `<div class='row' style='width: 80%;' id='row_serve`+count+`'>
+        var html = `<div class='row' id='row_serve`+count+`'>
                                 <div class='col-md-7'>
                                     <div class='form-group'>
                                         <label class='form-control-label' for='basic-url'>Giá: </label>
@@ -547,22 +519,13 @@ $(document).ready(function() {
                             error: function() {
                                 Swal.fire({
                                     icon: 'error',
-                                    title: 'Oops...',
-                                    text: 'Cần ít nhất một dữ liệu!',
+                                    title: 'Cần ít nhất một dữ liệu!',
                                 })
                                 window.location.reload();
                             }
                         });
-                        // Swal.fire(
-                        // 'Deleted!',
-                        // 'Your file has been deleted.',
-                        // 'success'
-                        // )
-                        // $('#row'+button_id+'').remove();
                     }
                 })
-
-                // $('#form_data1').validate();
             });
         });
 </script>
@@ -667,6 +630,7 @@ $(document).ready(function() {
                             $("#content").val('');
                             $("#description").val('');
                         } else {
+                            $('#id_step').attr('value', button_id - 1);
                             $('#new' + button_id + '').remove();
                         }
                         $.ajax({
@@ -675,25 +639,23 @@ $(document).ready(function() {
                             data: $('#form_data1').serialize(),
                             dataType: 'json',
                             success: function(data) {
-                                // Swal.fire(
-                                //     'Xóa!',
-                                //     'Xóa thành công',
-                                //     'success'
-                                // )
-                                // window.location.reload();
+                                Swal.fire(
+                                    'Xóa!',
+                                    'Xóa thành công',
+                                    'success'
+                                )
+                                window.location.reload();
                             },
                             error: function() {
                                 Swal.fire({
                                     icon: 'error',
-                                    title: 'Lỗi...',
-                                    text: 'Không thể xóa!',
+                                    title: 'Cần ít nhất một dữ liệu!',
                                 })
+                                window.location.reload();
                             }
                         });
                     }
                 })
-
-                $('#form_data1').validate();
 
             });
         });

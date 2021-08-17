@@ -197,17 +197,19 @@ class SettingRepository
 
     public function AjaxDeleteIcon($request, $id)
     {
-        $step = Index::find(1);
-        if($request->pack){              
-            $img_unlink =  array_diff(json_decode($step->icon_step), $request->pack);  
-                // foreach($img_unlink as $iu){
-                        
-                //         unlink(public_path($iu));
-                // }      
+        $step = Index::find($id);
+        $arr_icon_step = json_decode($step->icon_step);
+        $arr_desc_step = json_decode($step->desc_number_step);
+        $arr_sub_desc_step = json_decode($step->sub_desc_number_step);
+        if($arr_icon_step[$request->id_step]){
+            unlink(public_path($arr_icon_step[$request->id_step]));
         }
-        $step->icon_step = json_encode($request->pack);   
-        $step->desc_number_step = json_encode($request->content);
-        $step->sub_desc_number_step = json_encode($request->description);
+        array_splice($arr_icon_step, $request->id_step, 1);
+        array_splice($arr_desc_step, $request->id_step, 1);
+        array_splice($arr_sub_desc_step, $request->id_step, 1);
+        $step->icon_step = $arr_icon_step;   
+        $step->desc_number_step =  $arr_desc_step;
+        $step->sub_desc_number_step = $arr_sub_desc_step;
         $step->save();
 
         return response()->json([
