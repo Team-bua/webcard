@@ -139,47 +139,48 @@ class SettingRepository
     }
     public function updateStep($request, $id)
     {
-     $step = Index::find($id);
-     $date = Carbon::now()->format('d-m-Y');
-     $img = $request->image_step;
-     if (isset($img)) {
-         if($step->image_step){
-            unlink(public_path($step->image_step));
-         }      
-         $img_name = 'upload/index/img/' . $date.'/'.Str::random(10).rand().'.'.$img->getClientOriginalExtension();
-         $destinationPath = public_path('upload/index/img/' . $date);
-         $img->move($destinationPath, $img_name);
+        // $step = Index::find($id);
+        // $date = Carbon::now()->format('d-m-Y');
+        // $img = $request->image_step;
+        // if (isset($img)) {
+        //     if($step->image_step){
+        //         unlink(public_path($step->image_step));
+        //     }      
+        //     $img_name = 'upload/index/img/' . $date.'/'.Str::random(10).rand().'.'.$img->getClientOriginalExtension();
+        //     $destinationPath = public_path('upload/index/img/' . $date);
+        //     $img->move($destinationPath, $img_name);
 
-         $step->image_step = $img_name;
-     }
-     $step->desc_step = $request->tittle;
-     $step->sub_desc_step = $request->desc;
+        //     $step->image_step = $img_name;
+        // }
+        // $step->desc_step = $request->tittle;
+        // $step->sub_desc_step = $request->desc;
 
-     if($request->icon){
-          $arr_packgame = array_replace($request->pack, $request->icon);
-     }
-     if(isset($arr_packgame)){
-          foreach($arr_packgame as $ap){  
-               if (is_string($ap) == false) {
-                    $img_name_package = 'upload/index/img/' . $date.'/'.Str::random(10).rand().'.'.$ap->getClientOriginalExtension();
-                    $destinationPath = public_path('upload/index/img/' . $date);
-                    $ap->move($destinationPath, $img_name_package);
-                    $arr[] = $img_name_package;               
-                }
-                else{
-                    $arr[] = $ap; 
-                }  
-          }
-               $step->icon_step = json_encode($arr);
-     }
-     else {
-          $step->icon_step = json_encode($request->pack);
-     }
+        // if($request->icon){
+        //     $arr_packgame = array_replace($request->pack, $request->icon);
+        // }
+        
+        // if(isset($arr_packgame)){
+        //     foreach($arr_packgame as $ap){  
+        //         if (is_string($ap) == false) {
+        //                 $img_name_package = 'upload/index/img/' . $date.'/'.Str::random(10).rand().'.'.$ap->getClientOriginalExtension();
+        //                 $destinationPath = public_path('upload/index/img/' . $date);
+        //                 $ap->move($destinationPath, $img_name_package);
+        //                 $arr[] = $img_name_package;               
+        //             }
+        //             else{
+        //                 $arr[] = $ap; 
+        //             }  
+        //     }
+        //         $step->icon_step = json_encode($arr);
+        // }
+        // else {
+        //     $step->icon_step = json_encode($request->pack);
+        // }
 
-    $step->desc_number_step = json_encode($request->content);
-    $step->sub_desc_number_step = json_encode($request->description);    
-     
-    $step->save();
+        // $step->desc_number_step = json_encode($request->content);
+        // $step->sub_desc_number_step = json_encode($request->description);    
+        
+        // $step->save();
     }
 
     public function AjaxDeleteIcon($request, $id)
