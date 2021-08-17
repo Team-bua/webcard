@@ -78,8 +78,9 @@
                             </div>
                         </div>
                     </div>
-                    <form action="{{isset($index->id) ? route('updateserve', $index->id) : '#'}}" method="post" enctype="multipart/form-data">
+                    <form action="{{isset($index->id) ? route('updateserve', $index->id) : '#'}}" id="form_data_serve" method="post"  enctype="multipart/form-data">
                         @csrf
+                        <input type="hidden" id="id_serve_delected" name="id_serve_delected" value="">
                         <div class="card-body p-3">
                             <div class="form-group">
                                 <label class="form-control-label" for="basic-url">Tiêu đề 1 </label>
@@ -91,9 +92,13 @@
                                 <p style="color:red; font-size: 13px; margin-left: 5px">{{ $message }}</p>
                                 @enderror
                             </div>
+                            @php
+                                $i = 0;
+                            @endphp
                             @if(isset($index->desc_serve))
-                            @for($i = 0; $i < count(json_decode($index->desc_serve)); $i++)
-                            <div class="row" style="width: 80%;" id="row_serve{{ $i }}">
+                            @for($i; $i < count(json_decode($index->desc_serve)); $i++)
+                            <input type="hidden" name="serve[]" value="{{isset(json_decode($index->icon_serve)[$i]) ? json_decode($index->icon_serve)[$i] : 'dashboard/assets/img/no_img.jpg'}}">
+                            <div class="row" style="width: 80%;" id="row_serve{{$i + 1}}">
                                 <div class="col-md-7">
                                     <div class="form-group">
                                         <label class="form-control-label" for="basic-url">Giá: </label>
@@ -103,20 +108,17 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <label class="form-control-label" for="basic-url">Giảm giá: </label>
-
-                                        <div class="input-group">
-                                            <input id="img_serve{{ $i }}" type="file" name="img_serve[]" class="form-control hidden packgame" onchange="changeImgServe(this, '{{ $i }}')" style="display:none">
-                                            <img id="{{ $i }}" class="img_serve{{ $i }} indexServe" style="width: 50px; height: 34px;" src="{{ asset(json_decode($index->icon_serve)[$i]) ? asset(json_decode($index->icon_serve)[$i]) : asset('dashboard/assets/img/no_img.jpg') }}">
-                                        </div>
+                                <div class="col-sm-2">
+                                        <label class="form-control-label" for="basic-url">Icon </label><br>
+                                        <input id="img_icon_serve{{ $i + 1}}" type="file" name="img_serve[]" class="form-control packgame"
+                                        onchange="changeIconServe(this, '{{$i + 1}}'    )" style="display: none">
+                                        <img id="{{$i + 1}}" class="img_icon_serve{{$i + 1}} imgserve" style="width: 50px; height: 34px;"
+                                        src="{{ asset(isset(json_decode($index->icon_serve)[$i]) ? json_decode($index->icon_serve)[$i] : 'dashboard/assets/img/no_img.jpg') }}">
                                     </div>
-                                </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label class="form-control-label" for="basic-url">Thao Tác: </label> <br>
-                                        <button type="button" class="btn bg-gradient-primary w-12 float-left btn_remove" name="remove_btn" id="{{ $i }}"><i class="fa fa-minus"></i></button>
+                                        <button type="button" class="btn bg-gradient-primary w-12 float-left btn_remove_serve" name="remove_btn" id="{{ $i }}"><i class="fa fa-minus"></i></button>
                                         @if($i == 0)
                                         <button type="button" class="btn bg-gradient-primary w-12 float-left" name="add_btn_serve" id="add_btn_serve"><i class="fa fa-plus"></i></button>
                                         @endif
@@ -469,6 +471,127 @@
     });
 </script>
 <script>
+function changeIconServe(input, id_number) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                        $('.img_icon_serve'+id_number+'').attr('src', e.target.result);
+                    }
+                    reader.readAsDataURL(input.files[0]);
+                }
+            } 
+$(document).ready(function() {
+    <?php if (isset($index->icon_serve)) { ?>
+            var arr_number = '{{ count(json_decode($index->icon_serve)) }}';
+            var count = '{{ count(json_decode($index->icon_serve)) }}';
+            <?php } else { ?>
+            var arr_number = 0;
+            var count = true;
+            <?php } ?>
+
+    function data_form(number) {
+        if(count == true) {
+            count = 1;
+        }
+        var html = `<div class='row' style='width: 80%;' id='row_serve`+count+`'>
+                                <div class='col-md-7'>
+                                    <div class='form-group'>
+                                        <label class='form-control-label' for='basic-url'>Giá: </label>
+
+                                        <div class='input-group'>
+                                            <input name='title_serve[]' id='title_serve' type='text' class='form-control' id='exampleFormControlInput1' placeholder='Giá. . . . . . . . .' min='0' maxlength='50' required>
+                                            <span class='input-group-text' id='basic-addon2'>VNĐ</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                        <label class="form-control-label" for="basic-url">Icon </label><br>
+                                        <input id="img_icon_serve`+count+`" type="file" name="img_serve[]" class="form-control packgame"
+                                        onchange="changeIconServe(this, `+count+`    )" style="display: none">
+                                        <img id="`+count+`" class="img_icon_serve`+count+` imgserve" style="width: 50px; height: 34px;"
+                                        src="{{ asset(isset(json_decode($index->icon_serve)[`+count+`]) ? json_decode($index->icon_serve)[`+count+`] : 'dashboard/assets/img/no_img.jpg') }}">
+                                    </div>
+                                <div class='col-md-2'>
+                                    <div class='form-group'>
+                                        <label class='form-control-label' for='basic-url'>Thao Tác: </label> <br>
+                                        <button type='button' class='btn bg-gradient-primary w-12 float-left btn_remove_serve' name='remove_btn_serve' id='`+count+`'><i class='fa fa-minus'></i></button>
+                                    </div>
+                                </div>
+                            </div>`;
+                $('#new_chq_serve').append(html);
+
+            }
+
+            $('#add_btn_serve').click(function() {
+                count++;
+                data_form(count);
+            });
+
+            $(document).on('click', '.imgserve', function() {
+                var input_id = $(this).attr('id');
+                $('#img_icon_serve'+input_id+'').click();
+            });       
+
+            $(document).on('click', '.btn_remove_serve', function() {
+               var button_id = $(this).attr('id');
+               $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                Swal.fire({
+                    title: 'Bạn có chắc chắn muốn xoá?',
+                    text: "Bạn không thể hoàn tác sau khi xoá!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Xoá!',
+                    cancelButtonText: 'Huỷ'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        if (count == true && arr_number != 0) {
+                            $("#title_serve").val('');
+                        } else {
+                            $('#id_serve_delected').attr('value', button_id);
+                            $('#row_serve' + button_id + '').remove();
+                        }
+                        $.ajax({
+                            url: "{{ route('delete.icon.serve', $index->id) }}",
+                            method: 'GET',
+                            data: $('#form_data_serve').serialize(),
+                            dataType: 'json',
+                            success: function(data) {
+                                Swal.fire(
+                                    'Xóa!',
+                                    'Xóa thành công',
+                                    'success'
+                                )
+                                window.location.reload();
+                            },
+                            error: function() {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Oops...',
+                                    text: 'Cần ít nhất một dữ liệu!',
+                                })
+                                window.location.reload();
+                            }
+                        });
+                        // Swal.fire(
+                        // 'Deleted!',
+                        // 'Your file has been deleted.',
+                        // 'success'
+                        // )
+                        // $('#row'+button_id+'').remove();
+                    }
+                })
+
+                // $('#form_data1').validate();
+            });
+        });
+</script>
+<script>
     
      function changeIcon(input, id_number) {
                 if (input.files && input.files[0]) {
@@ -575,12 +698,12 @@
                             data: $('#form_data1').serialize(),
                             dataType: 'json',
                             success: function(data) {
-                                Swal.fire(
-                                    'Xóa!',
-                                    'Xóa thành công',
-                                    'success'
-                                )
-                                window.location.reload();
+                                // Swal.fire(
+                                //     'Xóa!',
+                                //     'Xóa thành công',
+                                //     'success'
+                                // )
+                                // window.location.reload();
                             },
                             error: function() {
                                 Swal.fire({
@@ -601,73 +724,6 @@
 
                 $('#form_data1').validate();
 
-            });
-        });
-</script>
-<script>
-function changeImgServe(input, id_number) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function(e) {
-                $('.img_serve'+id_number+'').attr('src', e.target.result);
-            }
-        }
-    }
-$(document).ready(function() {
-    <?php if (isset($index->icon_serve)) { ?>
-            var arr_number = '{{ count(json_decode($index->icon_serve)) }}';
-            var count = '{{ count(json_decode($index->icon_serve)) }}';
-            <?php } else { ?>
-            var arr_number = 0;
-            var count = 1;
-            <?php } ?>
-
-    function data_form(number) {
-        var html = `<div class='row' style='width: 80%;' id='row_serve`+count+`'>
-                                <div class='col-md-7'>
-                                    <div class='form-group'>
-                                        <label class='form-control-label' for='basic-url'>Giá: </label>
-
-                                        <div class='input-group'>
-                                            <input name='title_serve[]' id='title_serve' type='text' class='form-control' id='exampleFormControlInput1' placeholder='Giá. . . . . . . . .' min='0' maxlength='50' required>
-                                            <span class='input-group-text' id='basic-addon2'>VNĐ</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class='col-md-2'>
-                                    <div class='form-group'>
-                                        <label class='form-control-label' for='basic-url'>Giảm giá: </label>
-
-                                        <div class='input-group'>
-                                            <input id='img_serve`+count+`' type='file' name='img_serve[]' class='form-control hidden packgame' onchange='changeImgServe(this, `+count+`)' style='display:none'>
-                                            <img id='`+count+`' class='img_serve`+count+` indexServe' style='width: 50px; height: 34px;' src='{{ asset('dashboard/assets/img/no_img.jpg') }}'>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class='col-md-2'>
-                                    <div class='form-group'>
-                                        <label class='form-control-label' for='basic-url'>Thao Tác: </label> <br>
-                                        <button type='button' class='btn bg-gradient-primary w-12 float-left btn_remove' name='remove_btn_serve' id='`+count+`'><i class='fa fa-minus'></i></button>
-                                    </div>
-                                </div>
-                            </div>`;
-                $('#new_chq_serve').append(html);
-
-            }
-
-            $('#add_btn_serve').click(function() {
-                count++;
-                data_form(count);
-            });
-
-            $(document).on('click', '.indexServe', function() {
-                var input_id = $(this).attr('id');
-                $('#img_serve'+input_id+'').click();
-            });       
-
-            $(document).on('click', '.btn_remove', function() {
-               var button_id = $(this).attr('id');
-               $('#row_serve'+button_id+'').remove();
             });
         });
 </script>

@@ -114,27 +114,40 @@ class SettingRepository
     {
         // dd($request->all(), $id);
         $index_serve = Index::find($id);
+        $date = Carbon::now()->format('d-m-Y');
+
         $index_serve->title_serve = $request->tittle1;
         $index_serve->desc_serve = json_encode($request->title_serve);
-        $date = Carbon::now()->format('d-m-Y');
+
         $img = $request->img_serve;
-        $img_request = [];
-        if (isset($img)) {
-            if(json_decode($index_serve->icon_serve) !== null){
-                for($i = 0; $i < count(json_decode($index_serve->icon_serve)); $i++) {
-                    if(json_decode($index_serve->icon_serve)[$i] !== ''){
-                        unlink(public_path(json_decode($index_serve->icon_serve)[$i]));
-                    }         
-                }
-            }
-            for($j = 0; $j < count($img); $j++){
-                $img_name = 'upload/index/img/' . $date . '/' . Str::random(10) . rand() . '.' . $img[$j]->getClientOriginalExtension();
-                $destinationPath = public_path('upload/index/img/' . $date);
-                $img[$j]->move($destinationPath, $img_name);
-                $img_request[] = $img_name;
-            }
-        $index_serve->icon_serve = json_encode($img_request);            
+        $arr_serve = [];
+        if($img){
+            $arr_icon_serve = array_replace($request->serve, $img);
+       }
+        if (isset($arr_icon_serve)) {
+            // if(json_decode($index_serve->icon_serve) !== null){
+            //     for($i = 0; $i < count(json_decode($index_serve->icon_serve)); $i++) {
+            //         if(json_decode($index_serve->icon_serve)[$i] !== ''){
+            //             unlink(public_path(json_decode($index_serve->icon_serve)[$i]));
+            //         }         
+            //     }
+            // }
+            foreach($arr_icon_serve as $ap){  
+                if (is_string($ap) == false) {
+                     $img_name_package = 'upload/index/img/' . $date.'/'.Str::random(10).rand().'.'.$ap->getClientOriginalExtension();
+                     $destinationPath = public_path('upload/index/img/' . $date);
+                     $ap->move($destinationPath, $img_name_package);
+                     $arr_serve[] = $img_name_package;               
+                 }
+                 else{
+                     $arr_serve[] = $ap; 
+                 }  
+           }
+                $index_serve->icon_serve = json_encode($arr_serve);
         }
+        else {
+            $index_serve->icon_serve = json_encode($request->serve);
+       }
         $index_serve->save();
     }
     public function updateStep($request, $id)
@@ -187,10 +200,10 @@ class SettingRepository
         $step = Index::find(1);
         if($request->pack){              
             $img_unlink =  array_diff(json_decode($step->icon_step), $request->pack);  
-                foreach($img_unlink as $iu){
+                // foreach($img_unlink as $iu){
                         
-                        unlink(public_path($iu));
-                }      
+                //         unlink(public_path($iu));
+                // }      
         }
         $step->icon_step = json_encode($request->pack);   
         $step->desc_number_step = json_encode($request->content);
@@ -200,6 +213,27 @@ class SettingRepository
         return response()->json([
             'error' => false,
             'package'  => $step,
+        ], 200);
+    }
+
+    public function AjaxDeleteIconServe($request, $id)
+    {
+       
+        $serve = Index::find($id);
+        $arr_icon_serve_unlink = json_decode($serve->icon_serve);
+        $arr_desc_serve_unlink = json_decode($serve->desc_serve);
+        if($arr_icon_serve_unlink[$request->id_serve_delected]){
+            unlink(public_path($arr_icon_serve_unlink[$request->id_serve_delected]));
+        }
+        array_splice($arr_icon_serve_unlink, $request->id_serve_delected, 1);
+        array_splice($arr_desc_serve_unlink, $request->id_serve_delected, 1);
+        $serve->icon_serve = $arr_icon_serve_unlink;
+        $serve->desc_serve = $arr_desc_serve_unlink;
+        $serve->save();
+
+        return response()->json([
+            'error' => false,
+            'package'  => $serve,
         ], 200);
     }
 

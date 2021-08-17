@@ -134,4 +134,9 @@ class SettingController extends Controller
         return $this->repository->AjaxDeleteIcon($request, $id);
     }
 
+    public function deleteIconServe(Request $request, $id)
+    {
+        return $this->repository->AjaxDeleteIconServe($request, $id);
+    }
+
 }

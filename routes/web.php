@@ -65,6 +65,7 @@ Route::group(['middleware' => 'user'], function () {
     Route::post('/update-serve/{id}',[SettingController::class,'updateServe'])->name('updateserve');
     Route::post('/update-step/{id}',[SettingController::class,'updateStep'])->name('update.step');
     Route::get('/delete-icon/{id}',[SettingController::class,'deleteIcon'])->name('delete.icon');
+    Route::get('/delete-icon-serve/{id}',[SettingController::class,'deleteIconServe'])->name('delete.icon.serve');
 });
 
 Route::group(['middleware' => 'login'], function () {
