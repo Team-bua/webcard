@@ -451,7 +451,7 @@
                                         <div class="form-group">
                                             <label class="form-control-label" for="basic-url">Nội dung </label>                       
                                             <div class="input-group">
-                                                <input name="content[]" id="content" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Giá. . . . . . . . ." maxlength="50" >
+                                                <input name="content[]" id="content" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Nội dung. . . . . . . . ." maxlength="50" >
                                             </div>
                                         </div>
                                     </div>
@@ -459,7 +459,7 @@
                                         <div class="form-group">
                                             <label class="form-control-label" for="basic-url">Miêu tả </label>                       
                                             <div class="input-group" style="width: 100%;">
-                                                <input type="text" class="form-control" id="description" name="description[]" value="" placeholder="Giá. . . . . . . . .">
+                                                <input type="text" class="form-control" id="description" name="description[]" value="" placeholder="Miêu tả. . . . . . . . .">
                                             </div>
                                         </div>
                                     </div>
