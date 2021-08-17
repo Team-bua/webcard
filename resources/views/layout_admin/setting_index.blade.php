@@ -197,14 +197,15 @@
                                 </div>
                                 @php
                                     $i = 0;
+                                    // dd(json_decode($index->icon_step));
                                 @endphp
-                                 @if($i == 0)
-                                 <button type="button" class="btn bg-gradient-primary w-12 float-left" name="add_btn" id="add_btn"><i class="fa fa-plus"></i></button>
-                                 @endif
+                                
+                                <button type="button" class="btn bg-gradient-primary w-12 float-left" name="add_btn" id="add_btn"><i class="fa fa-plus"></i></button>
+                                <input type="text" id="step" value="">
                                 @if(isset($index->desc_number_step))
                                 @for($i; $i < count(json_decode($index->desc_number_step)); $i++)
                                 <div class="row" id="new{{ $i + 1 }}">
-                                    <input type="hidden" name="pack[]" value="{{isset(json_decode($index->icon_step)[$i]) ? json_decode($index->icon_step)[$i] : 'dashboard/assets/img/no_img.jpg'}}">
+                                    <input type="hidden" name="pack[]" value="{{ json_decode($index->icon_step)[$i] }}">
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label class="form-control-label" for="basic-url">Nội dung </label>                       
@@ -223,7 +224,7 @@
                                     </div>
                                     <div class="col-sm-2">
                                         <label class="form-control-label" for="basic-url">Icon </label><br>
-                                        <input id="img_icon{{ $i + 1 }}" type="file" name="icon{{ $i + 1 }}[]" class="form-control packgame"
+                                        <input id="img_icon{{ $i + 1 }}" type="file" name="icon[]" class="form-control packgame"
                                         onchange="changeIcon(this, {{ $i + 1 }})" style="display: none">
                                         <img id="{{ $i + 1 }}" class="img_icon{{ $i + 1 }} imgicon" style="width: 50px; height: 34px;"
                                         src="{{ asset(isset(json_decode($index->icon_step)[$i]) ? json_decode($index->icon_step)[$i] : 'dashboard/assets/img/no_img.jpg') }}">
@@ -460,11 +461,13 @@
             var count = "{{ count(explode(',', $index->desc_number_step)) }}";
             <?php } else { ?>
             var arr_number = 0;
-            var count = 1;
+            var count = true;
             <?php } ?>
 
             function data_form(number) {
-                
+                if(count == true){
+                    count = 1;
+                }
                 var html = `<div class="row" id="new`+count+`">
                                     <div class="col-md-4">
                                         <div class="form-group">
@@ -484,7 +487,7 @@
                                     </div>
                                     <div class="col-sm-2">
                                         <label class="form-control-label" for="basic-url">Icon </label><br>
-                                        <input id="img_icon`+count+`" type="file" name="icon`+count+`[]" class="form-control packgame"
+                                        <input id="img_icon`+count+`" type="file" name="icon[]" class="form-control packgame"
                                         onchange="changeIcon(this, `+count+`)" style="display: none">
                                         <img id="`+count+`" class="img_icon`+count+` imgicon" style="width: 50px; height: 34px;"
                                         src="{{ asset('dashboard/assets/img/no_img.jpg') }}">
@@ -537,7 +540,7 @@
                     cancelButtonText: 'Huỷ'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        if (button_id == 1 && arr_number != 0) {
+                        if (count == true && arr_number != 0) {
                             $("#content").val('');
                             $("#description").val('');
                         } else {
@@ -559,17 +562,11 @@
                             error: function() {
                                 Swal.fire({
                                     icon: 'error',
-                                    title: 'Oops...',
-                                    text: 'Something went wrong!',
+                                    title: 'Lỗi...',
+                                    text: 'Không thể xóa!',
                                 })
                             }
                         });
-                        // Swal.fire(
-                        // 'Deleted!',
-                        // 'Your file has been deleted.',
-                        // 'success'
-                        // )
-                        // $('#row'+button_id+'').remove();
                     }
                 })
 
