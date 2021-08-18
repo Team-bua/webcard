@@ -74,7 +74,7 @@
                     <div class="card-header pb-0 p-3">
                         <div class="row">
                             <div class="col-md-8 d-flex align-items-center">
-                                <h6 class="mb-0">Thiết lập 2</h6>
+                                <h6 class="mb-0">Thiết lập nội dung 1</h6>
                             </div>
                         </div>
                     </div>
@@ -83,10 +83,10 @@
                         <input type="hidden" id="id_serve_delected" name="id_serve_delected" value="">
                         <div class="card-body p-3">
                             <div class="form-group">
-                                <label class="form-control-label" for="basic-url">Tiêu đề 1 </label>
+                                <label class="form-control-label" for="basic-url">Tiêu đề </label>
                                 <div class="input-group">
                                     <span class="input-group-text"><i class="fa fa-paint-brush"></i></span>
-                                    <input type="text" class="form-control" id="tittle1" name="tittle1" value="{{ isset($index->title_serve) ? $index->title_serve : '' }}" placeholder="Tiêu đề 1">
+                                    <input type="text" class="form-control" id="tittle" name="tittle" value="{{ isset($index->title_serve) ? $index->title_serve : '' }}" placeholder="Tiêu đề 1">
                                 </div>
                                 @error('name')
                                 <p style="color:red; font-size: 13px; margin-left: 5px">{{ $message }}</p>
@@ -101,10 +101,10 @@
                             <div class="row" id="row_serve{{$i + 1}}">
                                 <div class="col-md-7">
                                     <div class="form-group">
-                                        <label class="form-control-label" for="basic-url">Giá: </label>
+                                        <label class="form-control-label" for="basic-url">Nội dung </label>
 
                                         <div class="input-group">
-                                            <input name="title_serve[]" id="title_serve" type="text" value="{{ isset(json_decode($index->desc_serve)[$i]) ? json_decode($index->desc_serve)[$i] : ''}}" class="form-control" id="exampleFormControlInput1" placeholder="Giá. . . . . . . . ." min="0" maxlength="50" required>
+                                            <input name="title_serve[]" id="title_serve" type="text" value="{{ isset(json_decode($index->desc_serve)[$i]) ? json_decode($index->desc_serve)[$i] : ''}}" class="form-control" id="exampleFormControlInput1" placeholder="Nội dung. . . . . . . . ." min="0" maxlength="50" required>
                                         </div>
                                     </div>
                                 </div>
@@ -443,10 +443,10 @@ $(document).ready(function() {
         var html = `<div class='row' id='row_serve`+count+`'>
                                 <div class='col-md-7'>
                                     <div class='form-group'>
-                                        <label class='form-control-label' for='basic-url'>Giá: </label>
+                                        <label class='form-control-label' for='basic-url'>Nội dung </label>
 
                                         <div class='input-group'>
-                                            <input name='title_serve[]' id='title_serve' type='text' class='form-control' id='exampleFormControlInput1' placeholder='Giá. . . . . . . . .' min='0' maxlength='50' required>
+                                            <input name='title_serve[]' id='title_serve' type='text' class='form-control' id='exampleFormControlInput1' placeholder='Nội dung. . . . . . . . .' min='0' maxlength='50' required>
                                             <span class='input-group-text' id='basic-addon2'>VNĐ</span>
                                         </div>
                                     </div>
