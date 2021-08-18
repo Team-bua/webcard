@@ -3,11 +3,11 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\BillController;
 use App\Http\Controllers\Card\CardController;
+use App\Http\Controllers\Discount\DiscountController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\LoginController;
 use App\Http\Controllers\Frontend\SettingController;
 use App\Http\Controllers\Partners\PartnersController;
-use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -66,6 +66,10 @@ Route::group(['middleware' => 'user'], function () {
     Route::post('/update-step/{id}',[SettingController::class,'updateStep'])->name('update.step');
     Route::get('/delete-icon/{id}',[SettingController::class,'deleteIcon'])->name('delete.icon');
     Route::get('/delete-icon-serve/{id}',[SettingController::class,'deleteIconServe'])->name('delete.icon.serve');
+    //Discount
+    Route::get('/discount',[DiscountController::class,'viewDiscount'])->name('discount');
+    Route::post('/discount-create',[DiscountController::class,'createDiscount'])->name('discount.create');
+    Route::post('/discount-update',[DiscountController::class,'updateDiscount'])->name('discount.update');
 });
 
 Route::group(['middleware' => 'login'], function () {

@@ -26,9 +26,9 @@ class CardTableSeeder extends Seeder
 {
     public function run()
     {
-        DB::table('card_types')->insert([
+        DB::table('discount_types')->insert([
             [
-                'name' => 'Card',
+                'name' => 'Cố định',
             ],
         ]);
     }
@@ -38,9 +38,9 @@ class ProductTypeTableSeeder extends Seeder
 {
     public function run()
     {
-        DB::table('card_types')->insert([
+        DB::table('discount_types')->insert([
             [
-                'name' => 'Voucher',
+                'name' => 'Phần trăm',
             ],
         ]);
     }
@@ -61,14 +61,3 @@ class AdminTableSeeder extends Seeder
     }
 }
 
-class TransactionTableSeeder extends Seeder
-{
-    public function run()
-    {
-        DB::table('admin_transaction')->insert([
-            [
-                'transaction_type' => 'bank',
-            ],
-        ]);
-    }
-}
