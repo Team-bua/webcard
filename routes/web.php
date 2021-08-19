@@ -42,6 +42,7 @@ Route::group(['middleware' => 'user'], function () {
     Route::get('/users/banned/{id}',[AdminController::class,'banned'])->name('users.banned');
     Route::get('/users/unbanned/{id}',[AdminController::class,'unbanned'])->name('users.unbanned');
     Route::post('/users/update/{id}',[AdminController::class,'updatePoint'])->name('users.update');
+    Route::get('/users-card-bills/{id}',[AdminController::class,'showCardBill'])->name('users.card_bills');
     //card bill
     Route::get('/card-bill',[BillController::class,'cardBill'])->name('cardbill');
     //recharge bill
@@ -126,5 +127,5 @@ Route::get('/buy-card',[CardController::class,'BuyCard'])->name('buy_card');
 Route::post('handler-bank-transfer',[FrontendController::class,'transtionInfo'])->name('transtion.info');
 //Test
 Route::get('/test', function(){
-    return view('test');
+    return view('layout_admin.all_user.card_bill');
 });

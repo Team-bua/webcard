@@ -209,7 +209,6 @@
     $(document).on('click', '.simpleConfirm', function(e) {
         e.preventDefault();
         var id = $(this).attr('delete_id');
-        var that = $(this);
         swal.fire({
             title: "Bạn có muốn xóa mã này?",
             icon: 'warning',

@@ -5,41 +5,38 @@
         @include('user.avatar')
         <div class="container-fluid py-4">
             <div class="row">
-                {{-- <div class="col-12 col-xl-6">
-                    <div class="card">
-                        @if (session('information'))
-                            <div class="alert alert-danger">{{ session('information') }}</div>
-                        @endif
-                        <div class="card-header pb-0 p-3">
-                            <h6 class="mb-0">Nạp tiền</h6>
-                        </div>
-                        <form action="{{ route('recharge.money', Auth::user()->id) }}" method="post">  
-                        @csrf
-                            <div class="card-body p-3">
-                                <div class="form-group">
-                                    <label class="form-control-label" for="basic-url">Số tiền</label>
-                                    <div class="input-group">
-                                    <span class="input-group-text"><i class="fa fa-paint-brush"></i></span>
-                                    <input type="number" class="form-control" id="money" name="money" placeholder="Số tiền">
-                                    <span class="input-group-text" id="basic-addon2">VNĐ</span>                                   
-                                    </div>
-                                    @error('money')
-                                        <p style="color:red; font-size: 13px; margin-left: 5px">{{ $message }}</p>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="text-center">
-                                <button type="submit" name="payment" value="2" class="btn bg-gradient-primary w-12">Nạp ngay</button>
-                            </div>
-                        </form>
-                    </div>
-                </div> --}}
                 <div class="col-12 col-xl-6">
                     <div class="card h-80">
                         <div class="card-header pb-0 p-3">
                             <div class="row">
                                 <div class="col-md-8 d-flex align-items-center">
-                                    <h6 class="mb-0">Mẫu nạp</h6>
+                                    <h6 class="mb-0">Nạp tiền bằng mã</h6>
+                                </div>
+                            </div>
+                        </div>
+                        <form action="#" method="post"  enctype="multipart/form-data">  
+                            @csrf
+                            <div class="card-body p-3">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="basic-url">Nhập mã nạp tiền</label>
+                                    <div class="input-group">
+                                    <span class="input-group-text"><i class="fa fa-paint-brush"></i></span>
+                                    <input type="text" class="form-control" id="code" name="code" placeholder="Mã nạp tiền" required>                                   
+                                    </div>
+                                </div>                     
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn bg-gradient-primary w-12">Nạp ngay </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-12 col-xl-6">
+                    <div class="card h-80">
+                        <div class="card-header pb-0 p-3">
+                            <div class="row">
+                                <div class="col-md-8 d-flex align-items-center">
+                                    <h6 class="mb-0">Nạp tiền qua ngân hàng</h6>
                                 </div>
                             </div>
                         </div>

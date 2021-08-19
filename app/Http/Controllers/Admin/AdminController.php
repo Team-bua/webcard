@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\BankRequest;
 use App\Http\Requests\DiscountRequest;
 use App\Models\AdminTransaction;
+use App\Models\Card;
 use App\Models\CardBill;
 use App\Models\CardStore;
 use Illuminate\Support\Str;
@@ -104,6 +105,13 @@ class AdminController extends Controller
         $users = User::where('role',0)
                     ->orderBy('created_at','desc')->get();
         return view('layout_admin.all_user.index', compact('users'));
+    }
+    
+    public function showCardBill(Request $request)
+    {
+        $card_bills = CardBill::where('user_id', $request->id)->get();
+        $user_info = User::where('id', $request->id)->first();
+        return view('layout_admin.all_user.card_bill', compact('card_bills','user_info')); 
     }
 
     public function banned($id)
