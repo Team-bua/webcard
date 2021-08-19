@@ -15,8 +15,9 @@ class CreateRechargeCodeTable extends Migration
     {
         Schema::create('recharge_code', function (Blueprint $table) {
             $table->id();
-            $table->string('code');
-            $table->string('price');
+            $table->string('code')->nullable();
+            $table->string('price')->nullable();
+            $table->integer('status')->default(0);
             $table->timestamps();
         });
     }

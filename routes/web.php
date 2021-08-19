@@ -8,6 +8,7 @@ use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\LoginController;
 use App\Http\Controllers\Frontend\SettingController;
 use App\Http\Controllers\Partners\PartnersController;
+use App\Http\Controllers\Recharge\RechargeCodeController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -72,6 +73,11 @@ Route::group(['middleware' => 'user'], function () {
     Route::get('/discount',[DiscountController::class,'viewDiscount'])->name('discount');
     Route::post('/discount-create',[DiscountController::class,'createDiscount'])->name('discount.create');
     Route::post('/discount-update',[DiscountController::class,'updateDiscount'])->name('discount.update');
+    //Recharge code
+    Route::get('/recharge-code',[RechargeCodeController::class,'viewRechargeCode'])->name('rechargecode');
+    Route::post('/recharge-create',[RechargeCodeController::class,'createRechargeCode'])->name('rechargecode.create');
+    Route::post('/recharge-update/{id}',[RechargeCodeController::class,'updateRechargeCode'])->name('rechargecode.update');
+    Route::get('/recharge-destroy',[RechargeCodeController::class,'destroy'])->name('rechargecode.destroy');
 });
 
 Route::group(['middleware' => 'login'], function () {
