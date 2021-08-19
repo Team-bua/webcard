@@ -24,60 +24,27 @@
         <div class="container py-14 py-md-2">
             <div class="row text-center mt-xl-12">
                 <div class="col-md-10 offset-md-1 col-lg-8 offset-lg-2">
-                    <h3 class="display-4 mb-9 px-xxl-11">Hãy để chúng tôi phục vụ bạn</h3>
+                    <h3 class="display-4 mb-9 px-xxl-11">{{ isset($index->title_serve) ? $index->title_serve : '' }}</h3>
                 </div>
                 <!-- /column -->
             </div>
             <!-- /.row -->
             <div class="row gx-md-5 gy-5 text-center">
+                @if(isset($index->desc_serve))
+                @for($i = 0; $i < count(json_decode($index->desc_serve)); $i++)
                 <div class="col-md-6 col-xl-3">
                     <div class="card shadow-lg">
                         <div class="card-body">
-                            <img src="{{ asset('dev/img/icons/search-1.svg') }}"
+                            <img src="{{ asset(isset(json_decode($index->icon_serve)[$i])) ? json_decode($index->icon_serve)[$i] : ''}}"
                                 class="svg-inject icon-svg icon-svg-md text-yellow mb-3" alt="">
-                            <h4>Cung cấp nhiều loại thẻ cho khách hàng lựa chọn</h4>
+                            <h4>{{ isset(json_decode($index->desc_serve)[$i]) ? json_decode($index->desc_serve)[$i] : '' }}</h4>
                         </div>
                         <!--/.card-body -->
                     </div>
                     <!--/.card -->
                 </div>
-                <!--/column -->
-                <div class="col-md-6 col-xl-3">
-                    <div class="card shadow-lg">
-                        <div class="card-body">
-                            <img src="{{ asset('dev/img/icons/shield.svg') }}"
-                                class="svg-inject icon-svg icon-svg-md text-red mb-3" alt="">
-                            <h4>Trải nghiệm đơn giản, nhưng bảo mật cao</h4>
-                        </div>
-                        <!--/.card-body -->
-                    </div>
-                    <!--/.card -->
-                </div>
-                <!--/column -->
-                <div class="col-md-6 col-xl-3">
-                    <div class="card shadow-lg">
-                        <div class="card-body">
-                            <img src="{{ asset('dev/img/icons/gift.svg') }}"
-                                class="svg-inject icon-svg icon-svg-md text-green mb-3" alt="">
-                            <h4>Giao dịch - gửi thẻ nhanh chóng, uy tín</h4>
-                        </div>
-                        <!--/.card-body -->
-                    </div>
-                    <!--/.card -->
-                </div>
-                <!--/column -->
-                <div class="col-md-6 col-xl-3">
-                    <div class="card shadow-lg">
-                        <div class="card-body">
-                            <img src="{{ asset('dev/img/icons/megaphone.svg') }}"
-                                class="svg-inject icon-svg icon-svg-md text-blue mb-3" alt="">
-                            <h4>Nâng cao trải nghiệm người dùng khi sử dụng dịch vụ</h4>
-                        </div>
-                        <!--/.card-body -->
-                    </div>
-                    <!--/.card -->
-                </div>
-                <!--/column -->
+                @endfor
+                @endif
             </div>
             <!--/.row -->
             <div class="row gx-lg-8 align-items-center">
@@ -133,22 +100,22 @@
                         <div class="col-md-4 offset-md-2 align-self-end" data-cue="fadeIn" data-group="images"
                             data-show="true"
                             style="animation-name: fadeIn; animation-duration: 700ms; animation-timing-function: ease; animation-delay: 0ms; animation-direction: normal; animation-fill-mode: both;">
-                            <figure class="rounded"><img src="{{ asset('dev/img/photos/g1.jpg') }}" alt=""></figure>
+                            <figure class="rounded"><img src="{{ asset(isset(json_decode($index->image_to_do)[0]) ? json_decode($index->image_to_do)[0] : '' ) }}" alt=""></figure>
                         </div>
                         <!--/column -->
                         <div class="col-md-6 align-self-end" data-cue="fadeIn" data-group="images" data-show="true"
                             style="animation-name: fadeIn; animation-duration: 700ms; animation-timing-function: ease; animation-delay: 300ms; animation-direction: normal; animation-fill-mode: both;">
-                            <figure class="rounded"><img src="{{ asset('dev/img/photos/g2.jpg') }}" alt=""></figure>
+                            <figure class="rounded"><img src="{{ asset(isset(json_decode($index->image_to_do)[0]) ? json_decode($index->image_to_do)[1] : '' ) }}" alt=""></figure>
                         </div>
                         <!--/column -->
                         <div class="col-md-6 offset-md-1" data-cue="fadeIn" data-group="images" data-show="true"
                             style="animation-name: fadeIn; animation-duration: 700ms; animation-timing-function: ease; animation-delay: 600ms; animation-direction: normal; animation-fill-mode: both;">
-                            <figure class="rounded"><img src="{{ asset('dev/img/photos/g3.jpg') }}" alt=""></figure>
+                            <figure class="rounded"><img src="{{ asset(isset(json_decode($index->image_to_do)[0]) ? json_decode($index->image_to_do)[2] : '' ) }}" alt=""></figure>
                         </div>
                         <!--/column -->
                         <div class="col-md-4 align-self-start" data-cue="fadeIn" data-group="images" data-show="true"
                             style="animation-name: fadeIn; animation-duration: 700ms; animation-timing-function: ease; animation-delay: 900ms; animation-direction: normal; animation-fill-mode: both;">
-                            <figure class="rounded"><img src="{{ asset('dev/img/photos/g4.jpg') }}" alt=""></figure>
+                            <figure class="rounded"><img src="{{ asset(isset(json_decode($index->image_to_do)[0]) ? json_decode($index->image_to_do)[3] : '' ) }}" alt=""></figure>
                         </div>
                         <!--/column -->
                     </div>
@@ -156,66 +123,26 @@
                 </div>
                 <!--/column -->
                 <div class="col-lg-7">
-                    <h2 class="display-4 mb-3">Chúng tôi làm gì?</h2>
-                    <p class="lead fs-lg mb-8 pe-xxl-2">Dịch vụ đầy đủ mà chúng tôi đang cung cấp được thiết kế đặc biệt để
-                        đáp ứng nhu cầu của bạn</p>
+                    <h2 class="display-4 mb-3">{{ isset($index->decs_to_do) ? $index->decs_to_do : '' }}</h2>
+                    <p class="lead fs-lg mb-8 pe-xxl-2">{{ isset($index->sub_desc_to_do) ? $index->sub_desc_to_do : '' }}</p>
                     <div class="row gx-xl-10 gy-6" data-cues="slideInUp" data-group="services" data-disabled="true">
+                        @if(isset($index->desc_icon_to_do))
+                        @for($i = 0; $i < count(json_decode($index->desc_icon_to_do)); $i++)
                         <div class="col-md-6 col-lg-12 col-xl-6" data-cue="slideInUp" data-group="services" data-show="true"
                             style="animation-name: slideInUp; animation-duration: 700ms; animation-timing-function: ease; animation-delay: 0ms; animation-direction: normal; animation-fill-mode: both;">
                             <div class="d-flex flex-row">
                                 <div>
-                                    <div class="icon btn btn-circle btn-lg btn-soft-primary disabled me-5"> <i
-                                            class="uil uil-phone-volume"></i> </div>
+                                    <div class="icon btn btn-circle btn-lg btn-soft-primary disabled me-5"> 
+                                        <img src="{{ asset(isset(json_decode($index->icon_to_do)[$i]) ? json_decode($index->icon_to_do)[$i] : '') }}" alt="" width="30px" height="30px"> </div>
                                 </div>
                                 <div>
-                                    <h4 class="mb-1">Hỗ trợ 24/7</h4>
-                                    <p class="mb-0">Hỗ trợ của chúng tôi luôn lôn sẵn sàng hỗ trợ bạn, 24 giờ mỗi ngày.</p>
+                                    <h4 class="mb-1">{{ isset(json_decode($index->desc_icon_to_do)[$i]) ? json_decode($index->desc_icon_to_do)[$i] : ''}}</h4>
+                                    <p class="mb-0">{{ isset(json_decode($index->sub_desc_icon_to_do)[$i]) ? json_decode($index->sub_desc_icon_to_do)[$i] : ''}}</p>
                                 </div>
                             </div>
                         </div>
-                        <!--/column -->
-                        <div class="col-md-6 col-lg-12 col-xl-6" data-cue="slideInUp" data-group="services" data-show="true"
-                            style="animation-name: slideInUp; animation-duration: 700ms; animation-timing-function: ease; animation-delay: 300ms; animation-direction: normal; animation-fill-mode: both;">
-                            <div class="d-flex flex-row">
-                                <div>
-                                    <div class="icon btn btn-circle btn-lg btn-soft-primary disabled me-5"> <i
-                                            class="uil uil-shield-check"></i> </div>
-                                </div>
-                                <div>
-                                    <h4 class="mb-1">An toàn và Bảo mật</h4>
-                                    <p class="mb-0">Chúng tôi không lưu trữ nhật ký để đảm bảo bảo mật cao nhất.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!--/column -->
-                        <div class="col-md-6 col-lg-12 col-xl-6" data-cue="slideInUp" data-group="services" data-show="true"
-                            style="animation-name: slideInUp; animation-duration: 700ms; animation-timing-function: ease; animation-delay: 600ms; animation-direction: normal; animation-fill-mode: both;">
-                            <div class="d-flex flex-row">
-                                <div>
-                                    <div class="icon btn btn-circle btn-lg btn-soft-primary disabled me-5"> <i
-                                            class="uil uil-laptop-cloud"></i> </div>
-                                </div>
-                                <div>
-                                    <h4 class="mb-1">Nạp với giá thấp hơn</h4>
-                                    <p class="mb-0">Chiết khấu lên đến hơn 20%.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!--/column -->
-                        <div class="col-md-6 col-lg-12 col-xl-6" data-cue="slideInUp" data-group="services" data-show="true"
-                            style="animation-name: slideInUp; animation-duration: 700ms; animation-timing-function: ease; animation-delay: 900ms; animation-direction: normal; animation-fill-mode: both;">
-                            <div class="d-flex flex-row">
-                                <div>
-                                    <div class="icon btn btn-circle btn-lg btn-soft-primary disabled me-5"> <i
-                                            class="uil uil-chart-line"></i> </div>
-                                </div>
-                                <div>
-                                    <h4 class="mb-1">Chi phí thấp</h4>
-                                    <p class="mb-0">Chúng tôi cung cấp giá tốt nhất trên thị trường.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!--/column -->
+                        @endfor
+                        @endif
                     </div>
                     <!--/.row -->
                 </div>

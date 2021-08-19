@@ -74,7 +74,7 @@
                     <div class="card-header pb-0 p-3">
                         <div class="row">
                             <div class="col-md-8 d-flex align-items-center">
-                                <h6 class="mb-0">Thiết lập nội dung 1</h6>
+                                <h6 class="mb-0">Thiết lập nội dung 2</h6>
                             </div>
                         </div>
                     </div>
@@ -143,7 +143,7 @@
                         <div class="card-header pb-0 p-3">
                             <div class="row">
                                 <div class="col-md-8 d-flex align-items-center">
-                                    <h6 class="mb-0">Thiết lập nội dung 2</h6>
+                                    <h6 class="mb-0">Thiết lập nội dung 3</h6>
                                 </div>
                             </div>
                         </div>
@@ -223,6 +223,126 @@
                                         style="display: none" onchange="changeImgPack(this, 4)">
                                     <img id="4" class="img4 imgpackgame" style="width: 120px; height: 120px;"
                                         src="{{ asset($index->image_step ? $index->image_step : 'dashboard/assets/img/no_img.jpg') }}">
+                                </div>
+                                @error('image_step')
+                                    <p style="color:red; font-size: 13px; margin-left: 5px">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn bg-gradient-primary w-12">Cập nhật </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="container-fluid py-4">
+            <div class="row">
+                <div class="col-12 col-xl-12">
+                    <div class="card h-80">
+                        <div class="card-header pb-0 p-3">
+                            <div class="row">
+                                <div class="col-md-8 d-flex align-items-center">
+                                    <h6 class="mb-0">Thiết lập nội dung 4</h6>
+                                </div>
+                            </div>
+                        </div>
+                        <form action="{{ route('update.todo', $index->id) }}" method="post" enctype="multipart/form-data" id="form_data_to_do">
+                            @csrf
+                            <input type="hidden" id="id_to_do" name="id_to_do" value="">
+                            <div class="card-body p-3">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="basic-url">Tiêu đề </label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fa fa-paint-brush"></i></span>
+                                        <input type="text" class="form-control" id="tittle" name="tittle" value="{{ isset($index->decs_to_do) ? $index->decs_to_do : '' }}"
+                                            placeholder="Tiêu đề 1">
+                                    </div>
+                                    @error('name')
+                                        <p style="color:red; font-size: 13px; margin-left: 5px">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-control-label" for="basic-url">Mô tả</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fa fa-paint-brush"></i></span>
+                                        <input type="text" class="form-control" id="desc" name="desc"
+                                            placeholder="Tiêu đề 2" value="{{  isset($index->sub_desc_to_do) ? $index->sub_desc_to_do : '' }}">
+                                    </div>
+                                </div>
+                                @php
+                                    $i = 0;
+                                @endphp
+                                
+                                <button type="button" class="btn bg-gradient-primary w-12 float-left" name="add_btn_to_do" id="add_btn_to_do"><i class="fa fa-plus"></i></button>
+                                <input type="hidden" name="img_to_do" value="{{ isset($index->image_to_do) ?  $index->image_to_do : ''}}">
+                                @for($i; $i < count(json_decode($index->desc_icon_to_do)); $i++)
+                                <div class="row" id="row_to_do{{ $i }}">
+                                    <input type="hidden" name="img_icon_to_do_value[]" value="{{ isset(json_decode($index->icon_to_do)[$i]) ?  json_decode($index->icon_to_do)[$i] : ''}}">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="basic-url">Nội dung </label>                       
+                                            <div class="input-group">
+                                                <input name="content[]" id="content_to_do" type="text" class="form-control" value="{{ isset(json_decode($index->desc_icon_to_do)[$i]) ? json_decode($index->desc_icon_to_do)[$i] : '' }}" id="exampleFormControlInput1" placeholder="Nội dung. . . . . . . . ." maxlength="50" >
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="basic-url">Miêu tả </label>                       
+                                            <div class="input-group" style="width: 100%;">
+                                                <input type="text" class="form-control" id="description_to_do" name="description[]" value="{{ isset(json_decode($index->sub_desc_icon_to_do)[$i]) ? json_decode($index->sub_desc_icon_to_do)[$i] : '' }}" placeholder="Miêu tả. . . . . . . . .">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <label class="form-control-label" for="basic-url">Icon </label><br>
+                                        <input id="img_icon_to_do{{ $i }}" type="file" name="icon_to_do[]" class="form-control packgame"
+                                        onchange="changeIconToDo(this, {{ $i }})" style="display: none">
+                                        <img id="{{ $i }}" class="img_icon_to_do{{ $i }} img_icon_to_do" style="width: 50px; height: 34px;"
+                                        src="{{ asset(isset(json_decode($index->icon_to_do)[$i]) ? json_decode($index->icon_to_do)[$i] : 'dashboard/assets/img/no_img.jpg') }}">
+                                    </div>                                 
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="basic-url">Thao tác</label> <br>
+                                            <button type="button" class="btn bg-gradient-primary w-12 float-left btn_remove_to_do" name="btn_remove_to_do" id="{{ $i }}"><i class="fa fa-minus"></i></button>                                         
+                                        </div>
+                                    </div>
+                                </div>
+                               @endfor
+                               @error('icon')
+                                    <p style="color:red; font-size: 15px; margin-left: 10px">{{ $message }}</p>
+                                @enderror
+                                <div id="new_chq_to_do"></div>
+                                <input type="hidden" value="1" id="total_chq">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="basic-url">Ảnh partner</label> <br>
+                                    <input id="img_partner0" type="file" name="image_partner[]" class="form-control"
+                                        style="display: none" onchange="changeImgPartner(this, 0)">
+                                    <img id="0" class="img_partner0 img_partner" style="width: 120px; height: 120px;"
+                                        src="{{ asset(json_decode($index->image_to_do)[0] ? json_decode($index->image_to_do)[0] : 'dashboard/assets/img/no_img.jpg') }}">
+                                </div>
+
+                                <div class="form-group">
+                                    <input id="img_partner1" type="file" name="image_partner[]" class="form-control"
+                                        style="display: none" onchange="changeImgPartner(this, 1)">
+                                    <img id="1" class="img_partner1 img_partner" style="width: 120px; height: 120px;"
+                                        src="{{ asset(json_decode($index->image_to_do)[1] ? json_decode($index->image_to_do)[1] : 'dashboard/assets/img/no_img.jpg') }}">
+                                </div>
+
+                                <div class="form-group">
+                                    <input id="img_partner2" type="file" name="image_partner[]" class="form-control"
+                                        style="display: none" onchange="changeImgPartner(this, 2)">
+                                    <img id="2" class="img_partner2 img_partner" style="width: 120px; height: 120px;"
+                                        src="{{ asset(json_decode($index->image_to_do)[2] ? json_decode($index->image_to_do)[2] : 'dashboard/assets/img/no_img.jpg') }}">
+                                </div>
+
+                                <div class="form-group">
+                                    <input id="img_partner3" type="file" name="image_partner[]" class="form-control"
+                                        style="display: none" onchange="changeImgPartner(this, 3)">
+                                    <img id="3" class="img_partner3 img_partner" style="width: 120px; height: 120px;"
+                                        src="{{ asset(json_decode($index->image_to_do)[3] ? json_decode($index->image_to_do)[3] : 'dashboard/assets/img/no_img.jpg') }}">
                                 </div>
                                 @error('image_step')
                                     <p style="color:red; font-size: 13px; margin-left: 5px">{{ $message }}</p>
@@ -447,7 +567,6 @@ $(document).ready(function() {
 
                                         <div class='input-group'>
                                             <input name='title_serve[]' id='title_serve' type='text' class='form-control' id='exampleFormControlInput1' placeholder='Nội dung. . . . . . . . .' min='0' maxlength='50' required>
-                                            <span class='input-group-text' id='basic-addon2'>VNĐ</span>
                                         </div>
                                     </div>
                                 </div>
@@ -530,6 +649,140 @@ $(document).ready(function() {
         });
 </script>
 <script>
+function changeIconToDo(input, id_number) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                        $('.img_icon_to_do'+id_number+'').attr('src', e.target.result);
+                    }
+                    reader.readAsDataURL(input.files[0]);
+                }
+            } 
+
+function changeImgPartner(input, id_number) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            $('.img_partner'+id_number+'').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+} 
+$(document).ready(function() {
+    <?php if (isset($index->icon_serve)) { ?>
+            var arr_number = '{{ count(json_decode($index->desc_icon_to_do)) }}';
+            var count = '{{ count(json_decode($index->desc_icon_to_do)) }}';
+            <?php } else { ?>
+            var arr_number = 0;
+            var count = true;
+            <?php } ?>
+
+    function data_form(number) {
+        if(count == true) {
+            count = 1;
+        }
+        var html = `<div class="row" id="row_to_do`+count+`">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="basic-url">Nội dung </label>                       
+                                            <div class="input-group">
+                                                <input name="content[]" id="content_to_do" type="text" class="form-control" value="" id="exampleFormControlInput1" placeholder="Nội dung. . . . . . . . ." maxlength="50" >
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="basic-url">Miêu tả </label>                       
+                                            <div class="input-group" style="width: 100%;">
+                                                <input type="text" class="form-control" id="description_to_do" name="description[]" value="" placeholder="Miêu tả. . . . . . . . .">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <label class="form-control-label" for="basic-url">Icon </label><br>
+                                        <input id="img_icon_to_do`+count+`" type="file" name="icon_to_do[]" class="form-control packgame"
+                                        onchange="changeIconToDo(this, `+count+`)" style="display: none">
+                                        <img id="`+count+`" class="img_icon_to_do`+count+` img_icon_to_do" style="width: 50px; height: 34px;"
+                                        src="{{ asset('dashboard/assets/img/no_img.jpg') }}">
+                                    </div>                                 
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="basic-url">Thao tác</label> <br>
+                                            <button type="button" class="btn bg-gradient-primary w-12 float-left btn_remove_to_do" name="btn_remove_to_do" id="`+count+`"><i class="fa fa-minus"></i></button>                                         
+                                        </div>
+                                    </div>
+                                </div>`;
+                $('#new_chq_to_do').append(html);
+
+            }
+
+            $('#add_btn_to_do').click(function() {
+                count++;
+                data_form(count);
+            });
+
+            $(document).on('click', '.img_icon_to_do', function() {
+                var input_id = $(this).attr('id');
+                $('#img_icon_to_do'+input_id+'').click();
+            }); 
+            
+            $(document).on('click', '.img_partner', function() {
+                var input_id = $(this).attr('id');
+                $('#img_partner'+input_id+'').click();
+            });
+
+            $(document).on('click', '.btn_remove_to_do', function() {
+               var button_id = $(this).attr('id');
+               $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                Swal.fire({
+                    title: 'Bạn có chắc chắn muốn xoá?',
+                    text: "Bạn không thể hoàn tác sau khi xoá!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Xoá!',
+                    cancelButtonText: 'Huỷ'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        if (count == true && arr_number != 0) {
+                            $("#content_to_do").val('');
+                            $("#description_to_do").val('');
+                        } else {
+                            $('#id_to_do').attr('value', button_id);
+                            $('#row_to_do' + button_id + '').remove();
+                        }
+                        $.ajax({
+                            url: "{{ route('delete.icon.todo', $index->id) }}",
+                            method: 'GET',
+                            data: $('#form_data_to_do').serialize(),
+                            dataType: 'json',
+                            success: function(data) {
+                                Swal.fire(
+                                    'Xóa!',
+                                    'Xóa thành công',
+                                    'success'
+                                )
+                                window.location.reload();
+                            },
+                            error: function() {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Cần ít nhất một dữ liệu!',
+                                })
+                                // window.location.reload();
+                            }
+                        });
+                    }
+                })
+            });
+        });
+</script>
+<script>
     
      function changeIcon(input, id_number) {
                 if (input.files && input.files[0]) {
@@ -543,8 +796,8 @@ $(document).ready(function() {
         $(document).ready(function() {
 
             <?php if (isset($index->desc_number_step)) { ?>
-            var arr_number = "{{ count(explode(',', $index->desc_number_step)) }}";
-            var count = "{{ count(explode(',', $index->desc_number_step)) }}";
+            var arr_number = "{{ count(explode(',', $index->icon_step)) }}";
+            var count = "{{ count(explode(',', $index->icon_step)) }}";
             <?php } else { ?>
             var arr_number = 0;
             var count = true;
@@ -575,7 +828,7 @@ $(document).ready(function() {
                                         <label class="form-control-label" for="basic-url">Icon </label><br>
                                         <input id="img_icon`+count+`" type="file" name="icon[]" class="form-control packgame"
                                         onchange="changeIcon(this, `+count+`)" style="display: none">
-                                        <img id="`+count+`" class="img_icon`+count+` imgicon" style="width: 50px; height: 34px;"
+                                        <img id="`+count+`" class="img_icon_to_do`+count+` imgicon" style="width: 50px; height: 34px;"
                                         src="{{ asset('dashboard/assets/img/no_img.jpg') }}">
                                     </div>
                                     <div class="col-md-2">

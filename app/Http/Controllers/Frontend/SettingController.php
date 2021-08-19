@@ -116,6 +116,12 @@ class SettingController extends Controller
         return redirect()->back()->with('information', 'Cập nhật thành công');
     }
 
+    public function updateToDo(Request $request, $id)
+    {
+        $this->repository->updateToDo($request, $id);
+        return redirect()->back()->with('information', 'Cập nhật thành công');
+    }
+
     public function deleteIcon(Request $request, $id)
     {
         return $this->repository->AjaxDeleteIcon($request, $id);
@@ -124,6 +130,11 @@ class SettingController extends Controller
     public function deleteIconServe(Request $request, $id)
     {
         return $this->repository->AjaxDeleteIconServe($request, $id);
+    }
+
+    public function deleteIconToDo(Request $request, $id)
+    {
+        return $this->repository->deleteIconToDo($request, $id);
     }
 
 }

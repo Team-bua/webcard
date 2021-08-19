@@ -64,8 +64,10 @@ Route::group(['middleware' => 'user'], function () {
     Route::post('/update-contact/{id}',[SettingController::class,'updateContact'])->name('updatecontact');
     Route::post('/update-serve/{id}',[SettingController::class,'updateServe'])->name('updateserve');
     Route::post('/update-step/{id}',[SettingController::class,'updateStep'])->name('update.step');
+    Route::post('/update-to-do/{id}',[SettingController::class,'updateToDo'])->name('update.todo');
     Route::get('/delete-icon/{id}',[SettingController::class,'deleteIcon'])->name('delete.icon');
     Route::get('/delete-icon-serve/{id}',[SettingController::class,'deleteIconServe'])->name('delete.icon.serve');
+    Route::get('/delete-icon-todo/{id}',[SettingController::class,'deleteIconToDo'])->name('delete.icon.todo');
     //Discount
     Route::get('/discount',[DiscountController::class,'viewDiscount'])->name('discount');
     Route::post('/discount-create',[DiscountController::class,'createDiscount'])->name('discount.create');

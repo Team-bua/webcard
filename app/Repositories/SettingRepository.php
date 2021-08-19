@@ -112,11 +112,10 @@ class SettingRepository
 
     public function updateServe($request, $id)
     {
-        // dd($request->all(), $id);
         $index_serve = Index::find($id);
         $date = Carbon::now()->format('d-m-Y');
 
-        $index_serve->title_serve = $request->tittle1;
+        $index_serve->title_serve = $request->tittle;
         $index_serve->desc_serve = json_encode($request->title_serve);
 
         $img = $request->img_serve;
@@ -150,6 +149,64 @@ class SettingRepository
        }
         $index_serve->save();
     }
+
+    public function updateToDo($request, $id)
+    {
+        $todo = Index::find($id);
+        $date = Carbon::now()->format('d-m-Y');
+        $img = $request->image_partner;
+        $arr = [];
+        $arr_icon = [];
+        if($request->image_partner){
+            $arr_img_partner = array_replace(json_decode($request->img_to_do), $request->image_partner);
+        }
+        if(isset($arr_img_partner)){           
+            foreach($arr_img_partner as $ap){  
+                if (is_string($ap) == false) {
+                        $img_name_package = 'upload/index/img/' . $date.'/'.Str::random(10).rand().'.'.$ap->getClientOriginalExtension();
+                        $destinationPath = public_path('upload/index/img/' . $date);
+                        $ap->move($destinationPath, $img_name_package);
+                        $arr[] = $img_name_package;               
+                    }
+                    else{
+                        $arr[] = $ap; 
+                    }  
+            }
+                $todo->image_to_do = json_encode($arr);
+        }
+        else {
+            $todo->image_to_do = $request->img_to_do;
+        }
+        $todo->decs_to_do = $request->tittle;
+        $todo->sub_desc_to_do = $request->desc;
+
+        if($request->icon_to_do){
+            $arr_icon_to_do = array_replace($request->img_icon_to_do_value, $request->icon_to_do);
+        }
+        if(isset($arr_icon_to_do)){           
+            foreach($arr_icon_to_do as $ap){  
+                if (is_string($ap) == false) {
+                        $img_name_package = 'upload/index/img/' . $date.'/'.Str::random(10).rand().'.'.$ap->getClientOriginalExtension();
+                        $destinationPath = public_path('upload/index/img/' . $date);
+                        $ap->move($destinationPath, $img_name_package);
+                        $arr_icon[] = $img_name_package;               
+                    }
+                    else{
+                        $arr_icon[] = $ap; 
+                    }  
+            }
+                $todo->	icon_to_do = json_encode($arr_icon);
+        }
+        else {
+            $todo->	icon_to_do = $request->img_icon_to_do_value;
+        }
+
+        $todo->desc_icon_to_do = json_encode($request->content);
+        $todo->sub_desc_icon_to_do = json_encode($request->description);    
+        
+        $todo->save();
+    }
+
     public function updateStep($request, $id)
     {
         $step = Index::find($id);
@@ -236,6 +293,29 @@ class SettingRepository
         return response()->json([
             'error' => false,
             'package'  => $serve,
+        ], 200);
+    }
+
+    public function deleteIconToDo($request, $id)
+    {
+        $todo = Index::find($id);
+        $arr_icon_to_do_unlink = json_decode($todo->icon_to_do);
+        $arr_desc_to_do_unlink = json_decode($todo->desc_icon_to_do);
+        $arr_content_to_do_unlink = json_decode($todo->sub_desc_icon_to_do);
+        if($arr_icon_to_do_unlink[$request->id_to_do]){
+            unlink(public_path($arr_icon_to_do_unlink[$request->id_to_do]));
+        }
+        array_splice($arr_icon_to_do_unlink, $request->id_to_do, 1);
+        array_splice($arr_desc_to_do_unlink, $request->id_to_do, 1);
+        array_splice($arr_content_to_do_unlink, $request->id_to_do, 1);
+        $todo->icon_to_do = $arr_icon_to_do_unlink;
+        $todo->desc_icon_to_do = $arr_desc_to_do_unlink;
+        $todo->sub_desc_icon_to_do = $arr_content_to_do_unlink;
+        $todo->save();
+
+        return response()->json([
+            'error' => false,
+            'package'  => $todo,
         ], 200);
     }
 
