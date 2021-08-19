@@ -77,6 +77,7 @@ Route::group(['middleware' => 'user'], function () {
     Route::get('/recharge-code',[RechargeCodeController::class,'viewRechargeCode'])->name('rechargecode');
     Route::post('/recharge-create',[RechargeCodeController::class,'createRechargeCode'])->name('rechargecode.create');
     Route::post('/recharge-update/{id}',[RechargeCodeController::class,'updateRechargeCode'])->name('rechargecode.update');
+    Route::get('/recharge-update-status',[RechargeCodeController::class,'updateStatus'])->name('rechargecode.update.status');
     Route::get('/recharge-destroy',[RechargeCodeController::class,'destroy'])->name('rechargecode.destroy');
 });
 

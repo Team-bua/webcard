@@ -55,20 +55,20 @@
                                         <td class="align-middle text-center">
                                             <center>
                                             <div class="form-switch">
-                                                <input class="form-check-input" type="checkbox">
+                                                <input onchange="updateStatus(this)" value="{{ $recharge->id }}" class="form-check-input" type="checkbox" @if($recharge->status == 1) checked @endif>
                                             </div>   
                                             </center> 
                                         </td>
                                         <td class="align-middle">
-                                            <a href="#" class="text-secondary font-weight-bold text-xs" data-bs-toggle="modal" data-bs-target="#edit_code{{ $recharge->id }}">
+                                            {{-- <a href="#" class="text-secondary font-weight-bold text-xs" data-bs-toggle="modal" data-bs-target="#edit_code{{ $recharge->id }}">
                                                 <span class="badge bg-gradient-info">Sửa</span>
-                                            </a> || 
+                                            </a> ||  --}}
                                             <a href="javascript:;" delete_id="{{ $recharge->id }}" class="text-secondary font-weight-bold text-xs simpleConfirm" >
                                                 <span class="badge bg-gradient-danger">Xóa</span>
                                             </a>
                                         </td>
                                     </tr>
-                                    <div class="col-md-4">
+                                    {{-- <div class="col-md-4">
                                         <!-- Modal -->
                                         <div class="modal fade" id="edit_code{{ $recharge->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalMessageTitle" aria-hidden="true">
                                           <div class="modal-dialog modal-dialog-centered" role="document">
@@ -108,7 +108,7 @@
                                             </div>
                                           </div>
                                         </div>
-                                    </div>                                     
+                                    </div>                                      --}}
                                     @endforeach   
                                     @endif                                                                                   
                                 </tbody>
@@ -168,15 +168,43 @@
       fixedHeight: true
     });
 
+    function updateStatus(el){
+        if(el.checked){
+            var status = 1;
+        }
+        else{
+            var status = 0;
+        }
+        $.ajax({
+            method: 'get',
+            url: "{{ route('rechargecode.update.status') }}",
+            data: {
+                _token:'{{ csrf_token() }}',
+                id: el.value,
+                status: status,
+            },
+            success: function(data) {
+                if (data == 1) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Kích hoạt thành công!',
+                        showConfirmButton: false,
+                        timer: 2000
+                    })
+                }
+            }
+        })
+    }
+
     $('#btn_code').on('click', function(){
         let r = (Math.random() + 1).toString(36).substring(2, 20).toUpperCase();
         $('#recharge_code').attr('value', r);
     })
 
-    $('#btn_edit_code').on('click', function(){
-        let r = (Math.random() + 1).toString(36).substring(2, 20).toUpperCase();
-        $('#recharge_edit_code').attr('value', r);
-    })
+    // $('#btn_edit_code').on('click', function(){
+    //     let r = (Math.random() + 1).toString(36).substring(2, 20).toUpperCase();
+    //     $('#recharge_edit_code').attr('value', r);
+    // })
 
     $(document).on('click', '.simpleConfirm', function(e) {
         e.preventDefault();
