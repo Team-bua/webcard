@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Recharge;
 
 use App\Http\Controllers\Controller;
+use App\Models\Discount;
 use App\Models\RechargeCode;
 use App\Repositories\Recharge\RechargeCodeRepository;
 use Illuminate\Http\Request;

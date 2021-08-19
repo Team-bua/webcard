@@ -65,21 +65,20 @@
                                         <td class="align-middle text-center">
                                             <center>
                                             <div class="form-switch">
-                                                <input onchange="update_approved(this)" class="form-check-input" type="checkbox" checked="">
+                                                <input onchange="updateStatus(this)" value="{{ $discounts->id }}" class="form-check-input" type="checkbox" @if($discounts->status == 1) checked @endif >
                                             </div>   
                                             </center> 
                                         </td>
                                         <td class="align-middle">
-                                            <a href="#" class="text-secondary font-weight-bold text-xs" data-bs-toggle="modal" data-bs-target="#edit_code{{ $discounts->id }}">
+                                            <!-- <a href="#" class="text-secondary font-weight-bold text-xs" data-bs-toggle="modal" data-bs-target="#edit_code{{ $discounts->id }}">
                                                 <span class="badge bg-gradient-info">Sửa</span>
-                                            </a> || 
-                                            <a href="javascript:;" delete_id="" class="text-secondary font-weight-bold text-xs simpleConfirm" >
+                                            </a> ||  -->
+                                            <a href="javascript:;" delete_id="{{ $discounts->id }}" class="text-secondary font-weight-bold text-xs simpleConfirm" >
                                                 <span class="badge bg-gradient-danger">Xóa</span>
                                             </a>
                                         </td>
                                     </tr>
-                                    <div class="col-md-4">
-                                        <!-- Modal -->
+                                    <!-- <div class="col-md-4">
                                         <div class="modal fade" id="edit_code{{ $discounts->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalMessageTitle" aria-hidden="true">
                                           <div class="modal-dialog modal-dialog-centered" role="document">
                                             <div class="modal-content">
@@ -135,7 +134,7 @@
                                             </div>
                                           </div>
                                         </div>
-                                    </div>                                  
+                                    </div>                                   -->
                                     @endforeach   
                                     @endif                                                      
                                 </tbody>
@@ -207,6 +206,34 @@
       fixedHeight: true
     });
 
+    function updateStatus(el){
+        if(el.checked){
+            var status = 1;
+        }
+        else{
+            var status = 0;
+        }
+        $.ajax({
+            method: 'get',
+            url: "{{ route('discount.update.status') }}",
+            data: {
+                _token:'{{ csrf_token() }}',
+                id: el.value,
+                status: status,
+            },
+            success: function(data) {
+                if (data == 1) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Kích hoạt thành công!',
+                        showConfirmButton: false,
+                        timer: 2000
+                    })
+                }
+            }
+        })
+    }
+    
     $('#discount_type').on('change', function() {
        if(this.value == 'Cố định'){
            $('#show_add').html('VNĐ');
@@ -216,22 +243,26 @@
         
     });
 
-    $('.select-discount').on('click', function() { 
-        var id = $('#discount_id').val();
-        $('#discount_type_edit'+id).on('change', function(){
-            var discount = $('#edit_discount').val(); 
-            var type_discount = $('#edit_type_discount').val();
-            if(type_discount != this.value){
-                $('#discount_edit').attr('value', 0);
-            }else{
-                $('#discount_edit').attr('value', discount);
-            }
-            if(this.value == 'Cố định'){
-                $('#show_edit').html('VNĐ');
-            }else if(this.value == 'Phần trăm'){
-                $('#show_edit').html('%');
-            }
-        })       
+    // $('.select-discount').on('click', function() { 
+    //     var id = $('#discount_id').val();
+    //     $('#discount_type_edit'+id).on('change', function(){
+    //         var discount = $('#edit_discount').val(); 
+    //         var type_discount = $('#edit_type_discount').val();
+    //         if(type_discount != this.value){
+    //             $('#discount_edit').attr('value', 0);
+    //         }else{
+    //             $('#discount_edit').attr('value', discount);
+    //         }
+    //         if(this.value == 'Cố định'){
+    //             $('#show_edit').html('VNĐ');
+    //         }else if(this.value == 'Phần trăm'){
+    //             $('#show_edit').html('%');
+    //         }
+    //     })       
+    // });
+    $(document).on('change', '.custom-control', function (e) {
+    let test = e.target.checked;
+    console.log(test);
     });
 
     $('#btn_code').on('click', function(){
@@ -249,7 +280,7 @@
         var id = $(this).attr('delete_id');
         var that = $(this);
         swal.fire({
-            title: "Bạn có muốn xóa thẻ này?",
+            title: "Bạn có muốn xóa mã này?",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -260,23 +291,18 @@
             if (result.value) {
                 $.ajax({
                     method: 'get',
-                    url: "{{ route('destroy') }}",
+                    url: "{{ route('discount.destroy') }}",
                     data: {
                         id: id
                     },
                     success: function(data) {
                         if (data.success == true) {
-                            that.parent().parent().remove();
                             Swal.fire(
                                 'Xóa!',
                                 'Xóa thành công.',
                                 'success'
                             )
-                        } else {
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'Mã thẻ vẫn còn tồn tại!',
-                            })
+                            window.location.reload();
                         }
                     }
                 })

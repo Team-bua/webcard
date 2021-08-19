@@ -74,6 +74,8 @@ Route::group(['middleware' => 'user'], function () {
     Route::get('/discount',[DiscountController::class,'viewDiscount'])->name('discount');
     Route::post('/discount-create',[DiscountController::class,'createDiscount'])->name('discount.create');
     Route::post('/discount-update',[DiscountController::class,'updateDiscount'])->name('discount.update');
+    Route::get('/discount-update-status',[DiscountController::class,'updateStatusDiscount'])->name('discount.update.status');
+    Route::get('/discount-destroy',[DiscountController::class,'destroy'])->name('discount.destroy');
     //Recharge code
     Route::get('/recharge-code',[RechargeCodeController::class,'viewRechargeCode'])->name('rechargecode');
     Route::post('/recharge-create',[RechargeCodeController::class,'createRechargeCode'])->name('rechargecode.create');

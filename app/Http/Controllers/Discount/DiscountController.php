@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Discount;
 
 use App\Http\Controllers\Controller;
+use App\Models\Discount;
 use App\Repositories\Discount\DiscountRepository;
 use Illuminate\Http\Request;
 
@@ -44,5 +45,24 @@ class DiscountController extends Controller
     {
         $this->repository->updateDiscount($request, $id);
         return redirect()->back()->with('information', 'Cập nhật mã giảm giá thành công');
+    }
+
+    public function updateStatusDiscount(Request $request)
+    {
+        $discount_code = Discount::find($request->id);
+        $discount_code->status = $request->status;
+        if($discount_code->save()){
+            return 1;
+        }
+        return 0;
+    }
+
+    public function destroy(Request $request)
+    {
+        $discount_code = Discount::find($request->id);
+        $discount_code->delete();      
+            return response()->json([
+              'success' => true
+          ]);
     }
 }
