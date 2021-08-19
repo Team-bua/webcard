@@ -36,7 +36,7 @@
                     <div class="card shadow-lg">
                         <div class="card-body">
                             <img src="{{ asset(isset(json_decode($index->icon_serve)[$i])) ? json_decode($index->icon_serve)[$i] : ''}}"
-                                class="svg-inject icon-svg icon-svg-md text-yellow mb-3" alt="">
+                                class="svg-inject icon-svg icon-svg-md text-blue mb-3" alt="">
                             <h4>{{ isset(json_decode($index->desc_serve)[$i]) ? json_decode($index->desc_serve)[$i] : '' }}</h4>
                         </div>
                         <!--/.card-body -->
@@ -60,7 +60,7 @@
                     <div class="row gy-6 gx-xxl-8 process-wrapper" data-cues="slideInUp" data-group="process">
                         @if(isset($index->desc_number_step))
                         @for($i = 0; $i < count(json_decode($index->desc_number_step)); $i++)
-                        <div class="col-md-4"> <img src="{{ asset(json_decode($index->icon_step)[$i]) }}" width="50px" height="50px"
+                        <div class="col-md-4"> <img src="{{ asset(json_decode($index->icon_step)[$i]) }}" class="svg-inject icon-svg icon-svg-md text-blue mb-3"
                                 alt="" />
                             <h4 class="mb-1" style="margin-top: 10px">{{ json_decode($index->desc_number_step)[$i] }}</h4>
                             <p class="mb-0">{{ json_decode($index->sub_desc_number_step)[$i] }}</p>

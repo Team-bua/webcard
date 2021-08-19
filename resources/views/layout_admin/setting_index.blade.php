@@ -92,6 +92,8 @@
                                 <p style="color:red; font-size: 13px; margin-left: 5px">{{ $message }}</p>
                                 @enderror
                             </div>
+                            <button type="button" class="btn bg-gradient-primary w-12 float-left" name="add_btn_serve" id="add_btn_serve"><i class="fa fa-plus"></i></button>
+                            <p style="color: red; font-size: 12px"><b>Icon chỉ sử dụng đuôi .svg</b></p>
                             @php
                                 $i = 0;
                             @endphp
@@ -118,10 +120,7 @@
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label class="form-control-label" for="basic-url">Thao Tác: </label> <br>
-                                        <button type="button" class="btn bg-gradient-primary w-12 float-left btn_remove_serve" name="remove_btn" id="{{ $i }}"><i class="fa fa-minus"></i></button>
-                                        @if($i == 0)
-                                        <button type="button" class="btn bg-gradient-primary w-12 float-left" name="add_btn_serve" id="add_btn_serve"><i class="fa fa-plus"></i></button>
-                                        @endif
+                                        <button type="button" class="btn bg-gradient-primary w-12 float-left btn_remove_serve" name="remove_btn" id="{{ $i }}"><i class="fa fa-minus"></i></button>                                                                             
                                     </div>
                                 </div>
                             </div>
@@ -176,6 +175,7 @@
                                 @endphp
                                 
                                 <button type="button" class="btn bg-gradient-primary w-12 float-left" name="add_btn" id="add_btn"><i class="fa fa-plus"></i></button>
+                                <p style="color: red; font-size: 12px"><b>Icon chỉ sử dụng đuôi .svg</b></p>
                                 @if(isset($index->desc_number_step))
                                 @for($i; $i < count(json_decode($index->desc_number_step)); $i++)
                                 <div class="row" id="new{{ $i + 1 }}">
@@ -276,6 +276,7 @@
                                 @endphp
                                 
                                 <button type="button" class="btn bg-gradient-primary w-12 float-left" name="add_btn_to_do" id="add_btn_to_do"><i class="fa fa-plus"></i></button>
+                                <p style="color: red; font-size: 12px"><b>Icon chỉ sử dụng đuôi .svg</b></p>
                                 <input type="hidden" name="img_to_do" value="{{ isset($index->image_to_do) ?  $index->image_to_do : ''}}">
                                 @for($i; $i < count(json_decode($index->desc_icon_to_do)); $i++)
                                 <div class="row" id="row_to_do{{ $i }}">
@@ -316,37 +317,44 @@
                                 @enderror
                                 <div id="new_chq_to_do"></div>
                                 <input type="hidden" value="1" id="total_chq">
-                                <div class="form-group">
-                                    <label class="form-control-label" for="basic-url">Ảnh partner</label> <br>
-                                    <input id="img_partner0" type="file" name="image_partner[]" class="form-control"
-                                        style="display: none" onchange="changeImgPartner(this, 0)">
-                                    <img id="0" class="img_partner0 img_partner" style="width: 120px; height: 120px;"
-                                        src="{{ asset(json_decode($index->image_to_do)[0] ? json_decode($index->image_to_do)[0] : 'dashboard/assets/img/no_img.jpg') }}">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="basic-url">Ảnh 1</label> <br>
+                                            <input id="img_partner0" type="file" name="image_partner[]" class="form-control"
+                                                style="display: none" onchange="changeImgPartner(this, 0)">
+                                            <img id="0" class="img_partner0 img_partner" style="width: 120px; height: 120px;"
+                                                src="{{ asset(json_decode($index->image_to_do)[0] ? json_decode($index->image_to_do)[0] : 'dashboard/assets/img/no_img.jpg') }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="basic-url">Ảnh 2</label> <br>
+                                            <input id="img_partner1" type="file" name="image_partner[]" class="form-control"
+                                                style="display: none" onchange="changeImgPartner(this, 1)">
+                                            <img id="1" class="img_partner1 img_partner" style="width: 120px; height: 120px;"
+                                                src="{{ asset(json_decode($index->image_to_do)[1] ? json_decode($index->image_to_do)[1] : 'dashboard/assets/img/no_img.jpg') }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="basic-url">Ảnh 3</label> <br>
+                                            <input id="img_partner2" type="file" name="image_partner[]" class="form-control"
+                                                style="display: none" onchange="changeImgPartner(this, 2)">
+                                            <img id="2" class="img_partner2 img_partner" style="width: 120px; height: 120px;"
+                                                src="{{ asset(json_decode($index->image_to_do)[2] ? json_decode($index->image_to_do)[2] : 'dashboard/assets/img/no_img.jpg') }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="basic-url">Ảnh 4</label> <br>
+                                            <input id="img_partner3" type="file" name="image_partner[]" class="form-control"
+                                                style="display: none" onchange="changeImgPartner(this, 3)">
+                                            <img id="3" class="img_partner3 img_partner" style="width: 120px; height: 120px;"
+                                                src="{{ asset(json_decode($index->image_to_do)[3] ? json_decode($index->image_to_do)[3] : 'dashboard/assets/img/no_img.jpg') }}">
+                                        </div>
+                                    </div>
                                 </div>
-
-                                <div class="form-group">
-                                    <input id="img_partner1" type="file" name="image_partner[]" class="form-control"
-                                        style="display: none" onchange="changeImgPartner(this, 1)">
-                                    <img id="1" class="img_partner1 img_partner" style="width: 120px; height: 120px;"
-                                        src="{{ asset(json_decode($index->image_to_do)[1] ? json_decode($index->image_to_do)[1] : 'dashboard/assets/img/no_img.jpg') }}">
-                                </div>
-
-                                <div class="form-group">
-                                    <input id="img_partner2" type="file" name="image_partner[]" class="form-control"
-                                        style="display: none" onchange="changeImgPartner(this, 2)">
-                                    <img id="2" class="img_partner2 img_partner" style="width: 120px; height: 120px;"
-                                        src="{{ asset(json_decode($index->image_to_do)[2] ? json_decode($index->image_to_do)[2] : 'dashboard/assets/img/no_img.jpg') }}">
-                                </div>
-
-                                <div class="form-group">
-                                    <input id="img_partner3" type="file" name="image_partner[]" class="form-control"
-                                        style="display: none" onchange="changeImgPartner(this, 3)">
-                                    <img id="3" class="img_partner3 img_partner" style="width: 120px; height: 120px;"
-                                        src="{{ asset(json_decode($index->image_to_do)[3] ? json_decode($index->image_to_do)[3] : 'dashboard/assets/img/no_img.jpg') }}">
-                                </div>
-                                @error('image_step')
-                                    <p style="color:red; font-size: 13px; margin-left: 5px">{{ $message }}</p>
-                                @enderror
                             </div>
                             <div class="text-center">
                                 <button type="submit" class="btn bg-gradient-primary w-12">Cập nhật </button>
@@ -590,7 +598,14 @@ $(document).ready(function() {
 
             $('#add_btn_serve').click(function() {
                 count++;
-                data_form(count);
+                if(count <= 6){
+                    data_form(count);
+                }else{
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Giới hạn là 6 nội dung!',
+                    })
+                }
             });
 
             $(document).on('click', '.imgserve', function() {
@@ -718,7 +733,14 @@ $(document).ready(function() {
 
             $('#add_btn_to_do').click(function() {
                 count++;
-                data_form(count);
+                if(count <= 6){
+                    data_form(count);
+                }else{
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Giới hạn là 6 nội dung!',
+                    })
+                }
             });
 
             $(document).on('click', '.img_icon_to_do', function() {
