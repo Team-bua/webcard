@@ -31,7 +31,7 @@
                                     @endif
                                 </div>
                                 <div class="box box-info">
-                                    <form action="#" method="post" enctype="multipart/form-data" id="form_data">
+                                    <form action="{{ route('card.store.update', $card_store->id) }}" method="post" enctype="multipart/form-data" id="form_data">
                                         @csrf
                                         <div class="card-body p-3">
                                             <div class="form-group" style="width: 70%;">
@@ -51,9 +51,9 @@
                                                 <label class="form-control-label" for="basic-url">Giá thẻ</label>
                                                 <div class="input-group">
                                                     <span class="input-group-text"><i class="fa fa-quidditch"></i></span>
-                                                    <input type="text" class="form-control" id="name_card" name="name_card" aria-describedby="basic-addon3" maxlength="150" value="{{ isset($card_store) ? $card_store->price : '' }}">
+                                                    <input type="text" class="form-control" id="price_card" name="price_card" aria-describedby="basic-addon3" maxlength="150" value="{{ isset($card_store) ? $card_store->price : '' }}">
                                                 </div>
-                                                @error('name_card')
+                                                @error('price_card')
                                                 <p style="color:red; font-size: 13px; margin-left: 10px">{{ $message }}</p>
                                                 @enderror
                                             </div>
@@ -64,9 +64,9 @@
                                                 <label class="form-control-label" for="basic-url">ID thẻ</label>
                                                 <div class="input-group">
                                                     <span class="input-group-text"><i class="fa fa-quidditch"></i></span>
-                                                    <input type="text" class="form-control" id="name_card" name="name_card" aria-describedby="basic-addon3" maxlength="150" value="{{ isset($card_store) ? $card_store->seri_number : '' }}">
+                                                    <input type="text" class="form-control" id="id_card" name="id_card" aria-describedby="basic-addon3" maxlength="150" value="{{ isset($card_store) ? $card_store->seri_number : '' }}">
                                                 </div>
-                                                @error('name_card')
+                                                @error('id_card')
                                                 <p style="color:red; font-size: 13px; margin-left: 10px">{{ $message }}</p>
                                                 @enderror
                                             </div>
@@ -77,9 +77,9 @@
                                                 <label class="form-control-label" for="basic-url">Mã thẻ</label>
                                                 <div class="input-group">
                                                     <span class="input-group-text"><i class="fa fa-quidditch"></i></span>
-                                                    <input type="text" class="form-control" id="name_card" name="name_card" aria-describedby="basic-addon3" maxlength="150" value="{{ isset($card_store) ? $card_store->code : '' }}">
+                                                    <input type="text" class="form-control" id="code_card" name="code_card" aria-describedby="basic-addon3" maxlength="150" value="{{ isset($card_store) ? $card_store->code : '' }}">
                                                 </div>
-                                                @error('name_card')
+                                                @error('code_card')
                                                 <p style="color:red; font-size: 13px; margin-left: 10px">{{ $message }}</p>
                                                 @enderror
                                             </div>
@@ -88,7 +88,7 @@
                                 <div class="text-center">
                                     <input type="submit" name="submit" id="submit" value="Cập nhật" class="btn bg-gradient-primary w-12 btnthem">
                                 </div>
-                                </form>
+                            </form>
                         </div>
                         </section><!-- /.content -->
                     </div>

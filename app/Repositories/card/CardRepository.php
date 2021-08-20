@@ -45,6 +45,18 @@ class CardRepository
         return Card::find($id);
     }
 
+    public function UpdateCardStore($request, $id)
+    {
+        $card_store = CardStore::find($id);
+        $card_store->name = strtolower($request->name_card);
+        $card_store->price = $request->price_card;
+        $card_store->seri_number = $request->id_card;
+        $card_store->code = $request->code_card;
+        
+        $card_store->save();
+    }
+
+
     public function BuyCard($request)
     {
         $card = Card::find($request->card_id_info);

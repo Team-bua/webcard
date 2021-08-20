@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Card;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CardRequest;
+use App\Http\Requests\CardStoreRequest;
 use App\Http\Requests\UpdateCardRequest;
 use App\Models\CardStore;
 use App\Repositories\card\CardRepository;
@@ -29,6 +30,12 @@ class CardController extends Controller
     {
         $card_store = $this->repository->EditCardStore($id);
         return view('layout_admin.cards.edit_card_store', compact('card_store'));
+    }
+
+    public function UpdateCardStore(CardStoreRequest $request, $id)
+    {
+        $this->repository->UpdateCardStore($request, $id);
+        return redirect()->back()->with('information', 'Cập nhật thành công');
     }
 
     public function GetCardStoreToIndex($name)
