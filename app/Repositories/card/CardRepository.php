@@ -18,6 +18,24 @@ class CardRepository
         return CardType::all();
     }
 
+    public function GetCardStoreToIndex($name)
+    {
+        return CardStore::where('name', strtolower($name))
+                        ->orderBy('price', 'asc')
+                        ->get();
+    }
+
+    public function EditCardStore($id)
+    {
+        return CardStore::find($id);
+    }
+
+    public function GetCardImageToIndex($name)
+    {
+        return Card::where('name', $name)
+                        ->first();
+    }
+
     public function getAllCard(){
         return Card::orderBy('created_at', 'desc')->get();
     }

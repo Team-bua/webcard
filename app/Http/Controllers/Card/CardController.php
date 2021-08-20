@@ -25,6 +25,19 @@ class CardController extends Controller
         return view('layout_admin.cards.create', compact('card_types'));
     }
 
+    public function EditCardStore($id)
+    {
+        $card_store = $this->repository->EditCardStore($id);
+        return view('layout_admin.cards.edit_card_store', compact('card_store'));
+    }
+
+    public function GetCardStoreToIndex($name)
+    {
+        $card_stores = $this->repository->GetCardStoreToIndex($name);
+        $card_image = $this->repository->GetCardImageToIndex($name);
+        return view('layout_admin.cards.card_stores', compact('card_stores', 'card_image'));
+    }
+
     public function AddCardCode()
     {
         $card_types = $this->repository->getCardTypeForCard();

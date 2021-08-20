@@ -40,6 +40,7 @@
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Loại thẻ</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Giá</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Số lượng</th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Chi tiết kho thẻ</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Ngày</th>
                                         <th class="text-secondary"></th>
                                     </tr>
@@ -70,6 +71,9 @@
                                         </td>
                                         <td class="align-middle text-center text-sm">
                                         <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModalMessage{{ $card->id }}"><span class="badge badge-sm bg-gradient-success" style="font-size: 12px;">{{ isset($arr[$card->name]) ? $arr[$card->name] : 0 }}</span></a>
+                                        </td>
+                                        <td>
+                                            <a href="{{ route('view.cards.tores', $card->name) }}"><i class="fa fa-eye" style="margin-left: 45%;"></i></a>                             
                                         </td>
                                         <td class="align-middle text-center">
                                             <span class="text-secondary text-xs font-weight-bold">{{ date('d/m/Y', strtotime(str_replace('/', '-', $card->created_at))) }}</span>
