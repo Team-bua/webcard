@@ -109,14 +109,14 @@ class AdminController extends Controller
     
     public function showCardBill(Request $request)
     {
-        $card_bills = CardBill::where('user_id', $request->id)->get();
+        $card_bills = CardBill::where('user_id', $request->id)->orderBy('created_at', 'desc')->get();
         $user_info = User::where('id', $request->id)->first();
         return view('layout_admin.all_user.card_bill', compact('card_bills','user_info')); 
     }
 
     public function showRechargeBill(Request $request)
     {
-        $recharge_bills = UserBill::where('user_id', $request->id)->get();
+        $recharge_bills = UserBill::where('user_id', $request->id)->orderBy('created_at', 'desc')->get();
         $user_info = User::where('id', $request->id)->first();
         return view('layout_admin.all_user.recharge_bill', compact('recharge_bills','user_info')); 
     }
@@ -133,6 +133,8 @@ class AdminController extends Controller
     {
         $users = User::find($id);
         $users->banned_status = 0;
+        $users->check_discount_code = 5;
+        $users->check_recharge_code = 5;
         $users->save();
         return redirect()->back()->with('information', 'Mở khóa user thành công');
     }

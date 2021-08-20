@@ -24,15 +24,14 @@ class RechargeRequest extends FormRequest
     public function rules()
     {
         return [
-            'money' => 'required|gte:0',        
+            'money' => 'required',        
         ];
     }
 
     public function messages()
     {
         return [
-            'money.required' => 'Vui lòng nhập số tiền',
-            'money.gte' => 'Số tiền phải lớn hơn 0'
+            'money.required' => 'Vui lòng nhập mã',
         ];
     }
 }

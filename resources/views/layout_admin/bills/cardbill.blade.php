@@ -94,7 +94,7 @@
                                             <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModalMessage{{ $bill->id }}"><i class="fa fa-eye" style="margin-top: 10px"></i></a>                             
                                         </td>
                                         <td class="align-middle text-center">
-                                            <span class="text-secondary text-xs font-weight-bold">{{ date('d/m/Y', strtotime(str_replace('/', '-', $bill->created_at))) }}</span>
+                                            <span class="text-secondary text-xs font-weight-bold">{{ date('H:i d/m/Y', strtotime(str_replace('/', '-', $bill->created_at))) }}</span>
                                         </td>
                                     </tr>
                                     <div class="col-md-4">

@@ -9,20 +9,26 @@
                     <div class="card h-80">
                         <div class="card-header pb-0 p-3">
                             <div class="row">
+                                @if (session('information'))
+                                <p style="color:red; font-size: 13px; margin-left: 5px">{{ session('information') }}</p>
+                                @endif
                                 <div class="col-md-8 d-flex align-items-center">
                                     <h6 class="mb-0">Nạp tiền bằng mã</h6>
                                 </div>
                             </div>
                         </div>
-                        <form action="#" method="post"  enctype="multipart/form-data">  
+                        <form action="{{ route('recharge.code') }}" method="post"  enctype="multipart/form-data">  
                             @csrf
                             <div class="card-body p-3">
                                 <div class="form-group">
                                     <label class="form-control-label" for="basic-url">Nhập mã nạp tiền</label>
                                     <div class="input-group">
                                     <span class="input-group-text"><i class="fa fa-paint-brush"></i></span>
-                                    <input type="text" class="form-control" id="code" name="code" placeholder="Mã nạp tiền" required>                                   
+                                    <input type="text" class="form-control" id="money" name="money" placeholder="Mã nạp tiền">                                   
                                     </div>
+                                    @error('money')
+                                        <p style="color:red; font-size: 13px; margin-left: 5px">{{ $message }}</p>
+                                    @enderror
                                 </div>                     
                             </div>
                             <div class="text-center">

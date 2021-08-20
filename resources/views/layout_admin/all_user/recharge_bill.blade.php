@@ -45,13 +45,13 @@
                                                             </div>
                                                         </td>
                                                         <td class="align-middle text-center text-sm">
-                                                            <p class="text-xs font-weight-bold mb-0">{{ number_format($bill->point_purchase) }} VNĐ</p>
+                                                            <p class="text-xs font-weight-bold mb-0">+ {{ number_format($bill->point_purchase) }} VNĐ</p>
                                                         </td>
                                                         <td class="align-middle text-center text-sm">
-                                                            <p class="text-xs font-weight-bold mb-0">{{ $bill->method }}</p>
+                                                            <p class="text-xs font-weight-bold mb-0">{{ $bill->description }}</p>
                                                         </td>
                                                         <td class="align-middle text-center">
-                                                            <span class="text-secondary text-xs font-weight-bold">{{ date('d/m/Y', strtotime(str_replace('/', '-', $bill->created_at))) }}</span>
+                                                            <span class="text-secondary text-xs font-weight-bold">{{ date('H:i d/m/Y', strtotime(str_replace('/', '-', $bill->created_at))) }}</span>
                                                         </td>
                                                         <td class="align-middle text-center text-sm">
                                                             @if($bill->status == 1)

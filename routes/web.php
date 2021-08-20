@@ -100,6 +100,7 @@ Route::group(['middleware' => 'login'], function () {
     //recharge
     Route::get('/recharge',[UserController::class,'recharge'])->name('recharge');
     Route::get('/recharge-history',[UserController::class,'getRechargeHistory'])->name('rechargehistory');
+    Route::post('/recharge-code',[UserController::class,'rechargeMoneyCode'])->name('recharge.code');
     //VN Pay
     Route::post('/payment/online',[UserController::class,'createPayment'])->name('payment.online');
     Route::get('/vnpay/return',[UserController::class,'vnpayReturn'])->name('vnpay.return');

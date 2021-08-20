@@ -33,7 +33,8 @@ class BillRepository
                         $query->where(function ($q) use ($request){
                             $q->where('order_id', 'LIKE', '%' . $request->name . '%');
                         });
-                    })       
+                    }) 
+                    ->orderBy('created_at', 'desc')      
                     ->get();
         return $all_bill;
     }
@@ -59,7 +60,8 @@ class BillRepository
                         $query->where(function ($q) use ($request){
                             $q->where('order_id', 'LIKE', '%' . $request->name . '%');
                         });
-                    })       
+                    })     
+                    ->orderBy('created_at', 'desc')  
                     ->get();
         return $all_bill;
     }

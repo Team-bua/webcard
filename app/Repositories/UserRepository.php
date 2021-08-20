@@ -2,14 +2,11 @@
 
 namespace App\Repositories;
 
-use App\Models\AdminTransaction;
-use App\Models\Bill;
 use App\Models\CardBill;
-use App\Models\PointPurchase;
+use App\Models\RechargeCode;
 use App\Models\User;
 use App\Models\UserBill;
 use Carbon\Carbon;
-use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -56,15 +53,49 @@ class UserRepository
         $user->save();
     }
 
-    public function rechargeMoney($request, $id)
+    public function rechargeMoneyCode($request)
     {
-        $point_purchase = new UserBill();
-        $point_purchase->user_id = $id;
-        $point_purchase->point_purchase = $request->money;
-        $point_purchase->description = 'Nạp ' . $request->money . ' VNĐ ';
-        $point_purchase->order_id = $request->money . '' . Str::random(4);
-        $point_purchase->method = 'Nạp tiền';
-        $point_purchase->save();
+        $user = User::find(Auth::user()->id);
+        $recharge_code = RechargeCode::all();
+        foreach($recharge_code as $recharge){
+            $arr[] = $recharge->code;
+            $money[$recharge->code] = $recharge->price;
+            $status[$recharge->code] = $recharge->status;
+        }
+
+        if(in_array($request->money, $arr) == true){
+            if($status[$request->money] == 1){
+
+                $user->point = $user->point + $money[$request->money];
+                $user->check_recharge_code = 5;
+                $user->save();
+    
+                $user_bill = new UserBill();
+                $user_bill->user_id = $user->id;
+                $user_bill->order_id = $money[$request->money] . '' . Str::random(4);
+                $user_bill->point_purchase = $money[$request->money];
+                $user_bill->description = 'Nạp bằng mã';
+                $user_bill->method = "Nạp tiền";
+                $user_bill->status = 1;
+                $user_bill->save();
+                return redirect()->route('rechargehistory');
+            }else{
+                return redirect()->back()->with('information', 'Mã nạp đã hết hạn');
+            }
+           
+        }else{
+            if($user->check_recharge_code != 1 ){
+                $user->check_recharge_code -= 1;
+                $user->save();
+                return redirect()->back()->with('information', 'Sai mã nạp. Bạn chỉ còn lại ' .$user->check_recharge_code. ' lần nhập sai');
+            }else{
+                $user->check_recharge_code -= 1;
+                $user->banned_status = 1;
+                $user->save();
+                Auth::logout();                
+                return redirect()->route('index')->with('message', '4');
+            }
+        }
     }
 
     public function getCardBill($request)
