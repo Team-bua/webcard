@@ -70,7 +70,7 @@ class FrontendRepository
        $user_bill->user_id = $update->id;
        $user_bill->order_id = $res_json->id;
        $user_bill->point_purchase = $amount;
-       $user_bill->method = "Nạp tiền";
+       $user_bill->method = "Nạp tiền qua ngân hàng";
        $user_bill->status = 1;
        $user_bill->save();
     }

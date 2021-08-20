@@ -10,7 +10,7 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="card-header pb-0">
-                                            <h4>Tất cả hóa đơn của {{ $user_info->name }}</h4>
+                                            <h4>Tất cả đơn hàng của {{ $user_info->name }}</h4>
                                         </div>
                                         <div class="table-responsive">
                                             <table class="table table-flush" id="datatable-basic">
@@ -46,7 +46,7 @@
                                                                     @if($card_bill->user_card_bill->avatar_original)
                                                                         <img src="{{ $card_bill->user_card_bill->avatar_original }}" class="avatar avatar-sm me-3" alt="user1">
                                                                     @else
-                                                                        <img src="{{ asset($card_bill->user_card_bill->avatar ? $bill->user_card_bill->avatar : 'dashboard/assets/img/no_img.jpg') }}" class="avatar avatar-sm me-3" alt="user1">
+                                                                        <img src="{{ asset($card_bill->user_card_bill->avatar ? $card_bill->user_card_bill->avatar : 'dashboard/assets/img/no_img.jpg') }}" class="avatar avatar-sm me-3" alt="user1">
                                                                     @endif
                                                                 </div>
                                                                 <div class="d-flex flex-column justify-content-center">

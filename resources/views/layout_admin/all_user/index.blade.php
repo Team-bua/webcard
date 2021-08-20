@@ -69,7 +69,7 @@
                                                 <a href="{{ route('users.card_bills', $user->id) }}" target="_blank"><i class="fa fa-eye" style="margin-top: 10px"></i></a>                             
                                             </td>
                                             <td class="align-middle text-center text-sm">
-                                                <a href="#"><i class="fa fa-eye" style="margin-top: 10px"></i></a>                             
+                                                <a href="{{ route('users.recharge_bills', $user->id) }}" target="_blank"><i class="fa fa-eye" style="margin-top: 10px"></i></a>                             
                                             </td>
                                             <td class="align-middle text-center text-sm">
                                                 @if($user->banned_status == 0)

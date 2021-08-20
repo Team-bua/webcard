@@ -43,6 +43,7 @@ Route::group(['middleware' => 'user'], function () {
     Route::get('/users/unbanned/{id}',[AdminController::class,'unbanned'])->name('users.unbanned');
     Route::post('/users/update/{id}',[AdminController::class,'updatePoint'])->name('users.update');
     Route::get('/users-card-bills/{id}',[AdminController::class,'showCardBill'])->name('users.card_bills');
+    Route::get('/users-recharge-bills/{id}',[AdminController::class,'showRechargeBill'])->name('users.recharge_bills');
     //card bill
     Route::get('/card-bill',[BillController::class,'cardBill'])->name('cardbill');
     //recharge bill

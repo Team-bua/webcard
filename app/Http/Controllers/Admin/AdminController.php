@@ -114,6 +114,13 @@ class AdminController extends Controller
         return view('layout_admin.all_user.card_bill', compact('card_bills','user_info')); 
     }
 
+    public function showRechargeBill(Request $request)
+    {
+        $recharge_bills = UserBill::where('user_id', $request->id)->get();
+        $user_info = User::where('id', $request->id)->first();
+        return view('layout_admin.all_user.recharge_bill', compact('recharge_bills','user_info')); 
+    }
+
     public function banned($id)
     {
         $users = User::find($id);

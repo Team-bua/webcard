@@ -157,7 +157,7 @@
                                             <span class="text-secondary text-xs font-weight-bold">{{ date('d/m/Y', strtotime($dates[$i])) }}</span>
                                         </td>
                                         <td class="align-middle text-center">
-                                            <span class="text-secondary text-xs font-weight-bold">{{ $arrRevenueMonthDone[$i] }} VNĐ </span>
+                                            <span class="text-secondary text-xs font-weight-bold">{{ number_format($arrRevenueMonthDone[$i]) }} VNĐ </span>
                                         </td>
                                     </tr>
                                 @endfor                                 
