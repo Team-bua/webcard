@@ -24,7 +24,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        view()->composer(['layout_index.header','layout_index.index','layout_index.footer','layout_index.page.card','layout_index.page.contact'], function ($view) {
+        view()->composer(['layout_index.header','layout_index.index','layout_index.footer','layout_index.page.card','layout_index.page.contact',
+                        'layout_admin.slidebar'], function ($view) {
             $index = Index::find(1);
             $view->with(['index' => $index]);
         });
