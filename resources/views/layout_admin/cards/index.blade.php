@@ -64,7 +64,7 @@
                                             <ul>
                                                 @for($i = 0; $i < count(json_decode($card->price)); $i++)
                                                     <li>
-                                                        <p class="text-xs font-weight-bold mb-0">{{number_format(json_decode($card->price)[$i])}} VNĐ </p>
+                                                        <p class="text-xs font-weight-bold mb-0">{{number_format(json_decode($card->price)[$i])}} VNĐ <span class="badge badge-sm bg-gradient-success" style="font-size: 12px;">{{ isset($arr_price[json_decode($card->price)[$i].'-'.$card->name]) ? $arr_price[json_decode($card->price)[$i].'-'.$card->name] : 0 }}</span></p>
                                                     </li>
                                                 @endfor
                                             </ul>
