@@ -32,6 +32,7 @@
                                     <thead class="thead-light">
                                         <tr>
                                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Ảnh & Tên & email</th>
+                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Mật khẩu</th>
                                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Số điện thoại</th>
                                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Số dư</th>
                                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Đơn hàng</th>
@@ -59,7 +60,17 @@
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td class="align-middle text-sm">
+                                            <td class="align-middle text-center text-sm">
+                                                @if(isset($user->recovery_password))
+                                                <label class="text-xs font-weight-bold mb-0 show{{ $user->id }}">*******</label>&nbsp; 
+                                                <a class="eye_show show_pass{{ $user->id }}" id="{{ $user->id }}"> <i class="fa fa-eye" style="margin-top: 10px"></i></a>
+                                                <a class="eye_hide hide_pass{{ $user->id }}" id="{{ $user->id }}" style="display: none"><i class="fa fa-eye-slash" style="margin-top: 10px"></i></a>
+                                                <input type="hidden" id="pass_{{ $user->id }}" value="{{ $user->recovery_password }}"/>
+                                                @else
+                                                <label class="text-xs font-weight-bold mb-0">Faceboook</label>&nbsp;                                        
+                                                @endif
+                                            </td>
+                                            <td class="align-middle text-center text-sm">
                                                 <p class="text-xs font-weight-bold mb-0">{{ $user->phone }}</p>
                                             </td>
                                             <td class="align-middle text-center text-sm">
@@ -133,6 +144,21 @@
      const dataTableBasic = new simpleDatatables.DataTable("#datatable-basic", {
       searchable: false,
       fixedHeight: true
+    });
+
+    $(document).ready(function(){       
+        $(".eye_show").click(function(){
+            var id = $(this).attr('id');
+            $(".show"+id).html($('#pass_'+id).val());
+            $(".hide_pass"+id).show();
+            $(this).hide();
+        });
+        $(".eye_hide").click(function(){
+            var id = $(this).attr('id');
+            $(".show"+id).html('*******');
+            $(".show_pass"+id).show();
+            $(this).hide();
+        });
     });
 </script>
 @endsection

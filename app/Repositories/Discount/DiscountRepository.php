@@ -8,38 +8,50 @@ use Illuminate\Support\Str;
 
 class DiscountRepository
 {
-    /**
-     * Get member collection paginate.
-     *
-     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
-     */
+   /**
+    * Get member collection paginate.
+    *
+    * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+    */
 
-     public function getDiscountType()
-     {
-        return DiscountType::all();
-     }
+   public function getDiscountType()
+   {
+      return DiscountType::all();
+   }
 
-     public function getDiscount()
-     {
-        return Discount::orderBy('created_at', 'desc')->get();
-     }
+   public function getDiscount()
+   {
+      return Discount::orderBy('created_at', 'desc')->get();
+   }
 
-     public function createDiscount($request)
-     {
-        $discount = new Discount();
-        $discount->discount_type = $request->discount_type;
-        $discount->code = $request->discount_code;
-        $discount->price = $request->discount;
-        $discount->save();
-     }
+   public function createDiscount($request)
+   {
+      $discount_code = explode('  ', preg_replace("/\r|\n/", " ", $request->discount_code));
+      for ($i = 0; $i < count($discount_code); $i++) {
+         $code = $discount_code[$i];
+         $discount = new Discount();
+         if ($request->discount_type == 'Cố định') {
+            $discount->discount_type = $request->discount_type;
+            $discount->code = $code;
+            $discount->price = $request->discount;
+            $discount->save();
+         } else if ($request->discount_type == 'Phần trăm') {
+            $discount->discount_type = $request->discount_type;
+            $discount->code = $code;
+            $discount->price = $request->discount;
+            $discount->save();
+         }
+      }
+   }
 
-     public function updateDiscount($request, $id)
-     {
-        $discount = Discount::find($id);
-        $discount->discount_type = $request->discount_type;
-        $discount->code = $request->discount_edit__code;
-        $discount->price = $request->discount_edit;
-        $discount->save();
-     }
-
+   public function deleteAll()
+   {
+       $discount = Discount::where('status', 1 )->get();
+       foreach($discount as $discount_code){
+           $discount_code->delete();
+       }    
+       return response()->json([
+           'success' => true
+       ]);
+   }
 }

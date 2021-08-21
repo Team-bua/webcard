@@ -18,19 +18,27 @@ class RechargeCodeRepository
     }
 
     public function createRechargeCode($request)
-    {
-        $recharge_code = new RechargeCode();
-        $recharge_code->code = $request->recharge_code;
-        $recharge_code->price = $request->price;
-        $recharge_code->save();
+    {   
+        $arr_code = explode('  ',preg_replace("/\r|\n/", " ", $request->recharge_code));
+        for($i = 0; $i < count($arr_code); $i++){
+            $recharge_code = new RechargeCode();
+            $code = $arr_code[$i];
+            $recharge_code->price = $request->price;
+            $recharge_code->code = $code;
+            $recharge_code->save();
+            
+        }
     }
 
-    public function updateRechargeCode($request, $id)
+    public function deleteAll()
     {
-        $recharge_code = RechargeCode::find($id);
-        $recharge_code->code = $request->recharge_edit_code;
-        $recharge_code->price = $request->price_edit;
-        $recharge_code->save();
+        $recharge_code_all = RechargeCode::where('status', 1 )->get();
+        foreach($recharge_code_all as $recharge_code){
+            $recharge_code->delete();
+        }    
+        return response()->json([
+            'success' => true
+        ]);
     }
 
 }

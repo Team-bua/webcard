@@ -9,6 +9,7 @@ use App\Http\Controllers\Frontend\LoginController;
 use App\Http\Controllers\Frontend\SettingController;
 use App\Http\Controllers\Partners\PartnersController;
 use App\Http\Controllers\Recharge\RechargeCodeController;
+use App\Http\Controllers\ShowBill\ShowBillController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -78,15 +79,13 @@ Route::group(['middleware' => 'user'], function () {
     //Discount
     Route::get('/discount',[DiscountController::class,'viewDiscount'])->name('discount');
     Route::post('/discount-create',[DiscountController::class,'createDiscount'])->name('discount.create');
-    Route::post('/discount-update',[DiscountController::class,'updateDiscount'])->name('discount.update');
-    Route::get('/discount-update-status',[DiscountController::class,'updateStatusDiscount'])->name('discount.update.status');
     Route::get('/discount-destroy',[DiscountController::class,'destroy'])->name('discount.destroy');
+    Route::get('/discount-destroy-all',[DiscountController::class,'deleteAll'])->name('discount.destroy.all');
     //Recharge code
     Route::get('/recharge-code',[RechargeCodeController::class,'viewRechargeCode'])->name('rechargecode');
     Route::post('/recharge-create',[RechargeCodeController::class,'createRechargeCode'])->name('rechargecode.create');
-    Route::post('/recharge-update/{id}',[RechargeCodeController::class,'updateRechargeCode'])->name('rechargecode.update');
-    Route::get('/recharge-update-status',[RechargeCodeController::class,'updateStatus'])->name('rechargecode.update.status');
     Route::get('/recharge-destroy',[RechargeCodeController::class,'destroy'])->name('rechargecode.destroy');
+    Route::get('/recharge-destroy-all',[RechargeCodeController::class,'deleteAll'])->name('rechargecode.destroy.all');
 });
 
 Route::group(['middleware' => 'login'], function () {
@@ -101,10 +100,10 @@ Route::group(['middleware' => 'login'], function () {
     Route::get('/recharge',[UserController::class,'recharge'])->name('recharge');
     Route::get('/recharge-history',[UserController::class,'getRechargeHistory'])->name('rechargehistory');
     Route::post('/recharge-code',[UserController::class,'rechargeMoneyCode'])->name('recharge.code');
-    //VN Pay
-    Route::post('/payment/online',[UserController::class,'createPayment'])->name('payment.online');
-    Route::get('/vnpay/return',[UserController::class,'vnpayReturn'])->name('vnpay.return');
 });
+ //Show bill
+ Route::get('/show-card-bill/{id}',[ShowBillController::class,'showCardBill'])->name('show.card_bill');
+ Route::get('/show-recharge-bill/{id}',[ShowBillController::class,'showRechargeBill'])->name('show.recharge_bill');
 
 //Login Facebook
 Route::get('/social-login/redirect/{provider}', [LoginController::class,'redirectToProvider'])->name('social.login');
@@ -134,6 +133,6 @@ Route::get('/buy-card',[CardController::class,'BuyCard'])->name('buy_card');
 //transaction
 Route::post('handler-bank-transfer',[FrontendController::class,'transtionInfo'])->name('transtion.info');
 //Test
-Route::get('/test', function(){
-    return view('layout_admin.all_user.card_bill');
-});
+// Route::get('/test', function(){
+//     return view('show_bill.show_card_bill');
+// });

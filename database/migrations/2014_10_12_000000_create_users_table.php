@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('code_name')->nullable();
             $table->string('email')->unique();
             $table->string('password');
+            $table->string('recovery_password')->nullable();
             $table->string('phone')->nullable();
             $table->integer('point')->default(0);
             $table->integer('check_discount_code')->default(5);

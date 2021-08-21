@@ -64,7 +64,10 @@ class UserRepository
         }
 
         if(in_array($request->money, $arr) == true){
-            if($status[$request->money] == 1){
+            if($status[$request->money] == 0){
+                $recharge_code_status = RechargeCode::where('code', $request->money)->first();
+                $recharge_code_status->status = 1;
+                $recharge_code_status->save();
 
                 $user->point = $user->point + $money[$request->money];
                 $user->check_recharge_code = 5;

@@ -35,7 +35,8 @@
                             </form>
                             <table class="table table-flush" id="datatable-basic">
                                 <thead class="thead-light">
-                                    <tr>                                        
+                                    <tr>         
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Xem</th>                               
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Thẻ</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Khách hàng</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Mã đơn hàng</th>
@@ -49,7 +50,12 @@
                                 <tbody>
                                     @if($bills)
                                     @foreach($bills as $bill)
-                                    <tr>         
+                                    <tr>      
+                                        <td class="align-middle">
+                                            <a href="{{ route('show.card_bill', $bill->id) }}" target="_blank" class="text-secondary font-weight-bold text-xs">
+                                                <span class="badge bg-gradient-info">Hóa đơn</span>
+                                            </a>
+                                        </td>   
                                         <td>
                                             <div class="d-flex px-2 py-1">
                                                 <div>
@@ -57,7 +63,7 @@
                                                 </div>
                                                 <div class="d-flex flex-column justify-content-center">
                                                     <h6 class="mb-0 text-sm">{{$bill->card_bill->name }}</h6>
-                                                    <p class="text-xs text-secondary mb-0">{{ $bill->card_type }}</p>
+                                                    <p class="text-xs text-secondary mb-0">{{ $bill->card_bill->card_type }}</p>
                                                 </div>
                                             </div>
                                         </td>

@@ -36,6 +36,7 @@
                             <table class="table table-flush" id="datatable-basic">
                                 <thead class="thead-light">
                                     <tr>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Xem</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Mã đơn hàng</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Khách hàng</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Số tiền</th>
@@ -48,6 +49,11 @@
                                     @if($recharge_bills)
                                     @foreach($recharge_bills as $bill)
                                     <tr>
+                                        <td class="align-middle">
+                                            <a href="{{ route('show.recharge_bill', $bill->id) }}" target="_blank" class="text-secondary font-weight-bold text-xs">
+                                                <span class="badge bg-gradient-info">Hóa đơn</span>
+                                            </a>
+                                        </td>
                                         <td class="align-middle text-center text-sm"><p class="text-xs font-weight-bold mb-0">{{ $bill->order_id }}</p></td>
                                         <td>
                                             <div class="d-flex px-2 py-1">

@@ -119,4 +119,5 @@ class FrontendController extends Controller
         $this->repository->Test($data->test, $data->id);
 
     }
+    
 }

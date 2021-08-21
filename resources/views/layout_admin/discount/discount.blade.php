@@ -28,6 +28,10 @@
                             @endif
                         <div class="table-responsive p-0">
                             <div class="card-header pb-0">
+                                <a href="#" class="delete_all">
+                                    <button class="btn bg-gradient-danger mt-4 w-12" style="float: right;;margin-bottom:5px;margin-left:5px">
+                                        <i class="fa fa-trash">&nbsp; Xóa all </i></button>
+                                </a>
                                 <a href="#" data-bs-toggle="modal" data-bs-target="#add_code">
                                     <button class="btn bg-gradient-primary mt-4 w-12" style="float: right;;margin-bottom:5px;margin-left:5px">
                                         <i class="fa fa-plus">&nbsp; Thêm mã </i></button>
@@ -40,6 +44,7 @@
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Mã giảm giá</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Giảm giá</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Trạng thái</th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Ngày sử dụng</th>
                                         <th class="text-secondary"></th>
                                     </tr>
                                 </thead>
@@ -63,78 +68,23 @@
                                         </span>
                                         </td>
                                         <td class="align-middle text-center">
-                                            <center>
-                                            <div class="form-switch">
-                                                <input onchange="updateStatus(this)" value="{{ $discounts->id }}" class="form-check-input" type="checkbox" @if($discounts->status == 1) checked @endif >
-                                            </div>   
-                                            </center> 
+                                            @if($discounts->status == 0)
+                                                <span class="badge badge-sm bg-gradient-success">Chưa sử dụng</span>
+                                            @else
+                                                <span class="badge badge-sm bg-gradient-danger">Đã sử dụng</span>
+                                            @endif
+                                        </td>
+                                        <td class="align-middle text-center">
+                                            @if($discounts->created_at != $discounts->updated_at)
+                                            <span class="text-secondary text-xs font-weight-bold">{{ date('H:i d/m/Y', strtotime(str_replace('/', '-', $discounts->updated_at))) }}</span>
+                                            @endif
                                         </td>
                                         <td class="align-middle">
-                                            <!-- <a href="#" class="text-secondary font-weight-bold text-xs" data-bs-toggle="modal" data-bs-target="#edit_code{{ $discounts->id }}">
-                                                <span class="badge bg-gradient-info">Sửa</span>
-                                            </a> ||  -->
                                             <a href="javascript:;" delete_id="{{ $discounts->id }}" class="text-secondary font-weight-bold text-xs simpleConfirm" >
                                                 <span class="badge bg-gradient-danger">Xóa</span>
                                             </a>
                                         </td>
                                     </tr>
-                                    <!-- <div class="col-md-4">
-                                        <div class="modal fade" id="edit_code{{ $discounts->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalMessageTitle" aria-hidden="true">
-                                          <div class="modal-dialog modal-dialog-centered" role="document">
-                                            <div class="modal-content">
-                                              <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Cập nhật mã giảm giá</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                                                  <span aria-hidden="true">×</span>
-                                                </button>
-                                              </div>
-                                              <form action="{{ route('discount.update', $discounts->id) }}" method="post" enctype="multipart/form-data">
-                                                @csrf
-                                                <input type="text" id="discount_id" value="{{ $discounts->id }}">
-                                                <div class="modal-body">               
-                                                    <div class="form-group">       
-                                                        <div class="form-group" style="width: 70%;">
-                                                            <label class="form-control-label" for="basic-url">Loại giảm giá</label>
-                                                            <div class="input-group">
-                                                                <select class="form-control select-discount" id="discount_type_edit{{ $discounts->id }}" name="discount_type_edit" style="width: 200px;" required>
-                                                                    @foreach ($types as $type)
-                                                                    @if($type == $discounts->discount_type)
-                                                                        <option selected>{{ $discounts->discount_type }}</option>
-                                                                    @else
-                                                                        <option id="{{ $type->id }}" value="{{ $type->name }}">{{ $type->name }}</option>
-                                                                    @endif
-                                                                    @endforeach
-                                                                </select>
-                                                            </div>
-                                                        </div> 
-                                                        <div class="form-group" style="width: 70%;">
-                                                            <label class="form-control-label" for="basic-url">Giảm giá</label>
-                                                            <div class="input-group">
-                                                                <input type="text" id="edit_discount" value="{{ $discounts->price }}">
-                                                                <input type="text" id="edit_type_discount" value="{{ $discounts->discount_type }}">
-                                                                <span class="input-group-text"><i class="fa fa-quidditch"></i></span>
-                                                                <input type="number" class="form-control" id="discount_edit" name="discount_edit" min="0" value="{{ $discounts->price }}" maxlength="150" required>
-                                                                <span class="input-group-text" id="show_edit">VNĐ</span>
-                                                            </div>
-                                                        </div>    
-                                                        <div class="form-group" style="width: 70%;">
-                                                            <label class="form-control-label" for="basic-url">Mã giảm giá</label>
-                                                            <div class="input-group">
-                                                                <span class="input-group-text"><i class="fa fa-credit-card"></i></span>
-                                                                <input type="text" class="form-control" id="discount_edit_code" name="discount_edit_code" value="" maxlength="150" required>                            
-                                                            </div>
-                                                            <button type="button" class="btn bg-gradient-info" id="btn_edit_code">Tạo mã</button>
-                                                        </div>                           
-                                                    </div>       
-                                                </div>
-                                                <div class="modal-footer">
-                                                <button type="submit" class="btn bg-gradient-secondary">Cập nhật</button>
-                                                </div>
-                                            </form>
-                                            </div>
-                                          </div>
-                                        </div>
-                                    </div>                                   -->
                                     @endforeach   
                                     @endif                                                      
                                 </tbody>
@@ -181,10 +131,7 @@
                         </div>    
                         <div class="form-group" style="width: 70%;">
                             <label class="form-control-label" for="basic-url">Mã giảm giá</label>
-                            <div class="input-group">
-                                <span class="input-group-text"><i class="fa fa-credit-card"></i></span>
-                                <input type="text" class="form-control" id="discount_code" name="discount_code" value="" maxlength="150" required>                            
-                            </div>
+                            <textarea class="form-control" id="discount_code" name="discount_code" rows="3" ></textarea> <br>                        
                             <button type="button" class="btn bg-gradient-info" id="btn_code">Tạo mã</button>
                         </div>                           
                     </div>       
@@ -202,38 +149,10 @@
 <script src="{{ asset('dashboard/assets/js/plugins/datatables.js') }}" type="text/javascript"></script>
 <script type="text/javascript">
     const dataTableBasic = new simpleDatatables.DataTable("#datatable-basic", {
-      searchable: false,
+      searchable: true,
       fixedHeight: true
     });
 
-    function updateStatus(el){
-        if(el.checked){
-            var status = 1;
-        }
-        else{
-            var status = 0;
-        }
-        $.ajax({
-            method: 'get',
-            url: "{{ route('discount.update.status') }}",
-            data: {
-                _token:'{{ csrf_token() }}',
-                id: el.value,
-                status: status,
-            },
-            success: function(data) {
-                if (data == 1) {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Kích hoạt thành công!',
-                        showConfirmButton: false,
-                        timer: 2000
-                    })
-                }
-            }
-        })
-    }
-    
     $('#discount_type').on('change', function() {
        if(this.value == 'Cố định'){
            $('#show_add').html('VNĐ');
@@ -243,36 +162,14 @@
         
     });
 
-    // $('.select-discount').on('click', function() { 
-    //     var id = $('#discount_id').val();
-    //     $('#discount_type_edit'+id).on('change', function(){
-    //         var discount = $('#edit_discount').val(); 
-    //         var type_discount = $('#edit_type_discount').val();
-    //         if(type_discount != this.value){
-    //             $('#discount_edit').attr('value', 0);
-    //         }else{
-    //             $('#discount_edit').attr('value', discount);
-    //         }
-    //         if(this.value == 'Cố định'){
-    //             $('#show_edit').html('VNĐ');
-    //         }else if(this.value == 'Phần trăm'){
-    //             $('#show_edit').html('%');
-    //         }
-    //     })       
-    // });
     $(document).on('change', '.custom-control', function (e) {
     let test = e.target.checked;
     console.log(test);
     });
 
     $('#btn_code').on('click', function(){
-        let r = (Math.random() + 1).toString(36).substring(2, 20).toUpperCase();
+        let r = (Math.random() + 1).toString(36).substring(2, 20);
         $('#discount_code').attr('value', r);
-    })
-
-    $('#btn_edit_code').on('click', function(){
-        let r = (Math.random() + 1).toString(36).substring(2, 20).toUpperCase();
-        $('#discount_edit_code').attr('value', r);
     })
 
     $(document).on('click', '.simpleConfirm', function(e) {
@@ -309,5 +206,35 @@
             }
         });
     });
+
+    $(document).on('click', '.delete_all', function(e) {
+        e.preventDefault();
+        swal.fire({
+            title: "Bạn có muốn xóa tất cả mã đã sử dụng không?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Xóa ngay!',
+            cancelButtonText: 'Hủy'
+        }).then((result) => {
+            if (result.value) {
+                $.ajax({
+                    method: 'get',
+                    url: "{{ route('discount.destroy.all') }}",
+                    success: function(data) {
+                        if (data.success == true) {
+                            Swal.fire(
+                                'Xóa!',
+                                'Xóa thành công.',
+                                'success'
+                            )
+                            window.location.reload();
+                        }
+                    }
+                })
+            }
+        });
+    })
 </script>
 @endsection

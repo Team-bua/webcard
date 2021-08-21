@@ -23,19 +23,25 @@
                                 <table class="table table-flush" id="datatable-basic">
                                     <thead class="thead-light">
                                         <tr>
+                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Xem</th>
                                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Thẻ</th>
                                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Mã đơn hàng</th>
                                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Số lượng</th>
-                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Tổng tiền</th>
-                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Ngày</th>
+                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Tổng tiền</th>                                        
                                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Trạng thái</th>
-                                            <th class="text-center text-secondary"></th>
+                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Xem</th>
+                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Ngày</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @if($bills)
                                         @foreach($bills as $bill)
                                         <tr>
+                                            <td class="align-middle">
+                                                <a href="{{ route('show.card_bill', $bill->id) }}" target="_blank" class="text-secondary font-weight-bold text-xs">
+                                                    <span class="badge bg-gradient-info">Hóa đơn</span>
+                                                </a>
+                                            </td>
                                             <td>
                                                 <div class="d-flex px-2 py-1">
                                                     <div>
@@ -53,10 +59,7 @@
                                             </td>
                                             <td class="align-middle text-center text-sm">
                                                 <p class="text-xs font-weight-bold mb-0">{{ number_format($bill->price_total) }} VNĐ</p>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">{{ date('d/m/Y', strtotime(str_replace('/', '-', $bill->created_at))) }}</span>
-                                            </td>
+                                            </td>                                          
                                             <td class="align-middle text-center text-sm">
                                                 @if($bill->status == 1)
                                                 <span class="badge badge-sm bg-gradient-success">Đã thanh toán</span>
@@ -66,6 +69,9 @@
                                             </td>
                                             <td >
                                                 <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModalMessage{{ $bill->id }}"><i class="fa fa-eye"  style="margin-top: 10px"></i></a>                             
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                <span class="text-secondary text-xs font-weight-bold">{{ date('d/m/Y', strtotime(str_replace('/', '-', $bill->created_at))) }}</span>
                                             </td>
                                         </tr>
                                         <div class="col-md-4">

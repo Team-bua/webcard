@@ -68,7 +68,7 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-4 mt-md-0 mt-3">
-                                        <button class="btn bg-gradient-info mt-lg-7 mb-0" onclick="window.print()" type="button" name="button">Print</button>
+                                        <button class="btn bg-gradient-info mt-lg-7 mb-0" onclick="window.print()" type="button" name="button">Xuất</button>
                                       </div>
                                 </div>
                             </div>

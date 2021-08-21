@@ -28,6 +28,10 @@
                             @endif
                         <div class="table-responsive p-0">
                             <div class="card-header pb-0">
+                                <a href="#" class="delete_all">
+                                    <button class="btn bg-gradient-danger mt-4 w-12" style="float: right;;margin-bottom:5px;margin-left:5px">
+                                        <i class="fa fa-trash">&nbsp; Xóa all </i></button>
+                                </a>
                                 <a href="#" data-bs-toggle="modal" data-bs-target="#add_code">
                                     <button class="btn bg-gradient-primary mt-4 w-12" style="float: right;;margin-bottom:5px;margin-left:5px">
                                         <i class="fa fa-plus">&nbsp; Thêm mã </i></button>
@@ -39,6 +43,7 @@
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Mã nạp tiền</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Giá nạp</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Trạng thái</th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Ngày sử dụng</th>
                                         <th class="text-secondary"></th>
                                     </tr>
                                 </thead>
@@ -52,12 +57,17 @@
                                         <td class="align-middle text-center text-sm">
                                         <span class="text-secondary text-xs font-weight-bold" style="font-size: 12px;">{{ number_format($recharge->price) }} VNĐ</span>
                                         </td>
+                                        <td class="align-middle text-center text-sm">
+                                            @if($recharge->status == 0)
+                                                <span class="badge badge-sm bg-gradient-success">Chưa sử dụng</span>
+                                            @else
+                                                <span class="badge badge-sm bg-gradient-danger">Đã sử dụng</span>
+                                            @endif
+                                        </td>
                                         <td class="align-middle text-center">
-                                            <center>
-                                            <div class="form-switch">
-                                                <input onchange="updateStatus(this)" value="{{ $recharge->id }}" class="form-check-input" type="checkbox" @if($recharge->status == 1) checked @endif>
-                                            </div>   
-                                            </center> 
+                                            @if($recharge->created_at != $recharge->updated_at)
+                                            <span class="text-secondary text-xs font-weight-bold">{{ date('H:i d/m/Y', strtotime(str_replace('/', '-', $recharge->updated_at))) }}</span>
+                                            @endif
                                         </td>
                                         <td class="align-middle">
                                             {{-- <a href="#" class="text-secondary font-weight-bold text-xs" data-bs-toggle="modal" data-bs-target="#edit_code{{ $recharge->id }}">
@@ -70,7 +80,7 @@
                                     </tr>
                                   <!-- <div class="col-md-4">
                                         
-                                        <div class="modal fade" id="edit_code{{ $recharge->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalMessageTitle" aria-hidden="true">
+                                        <div class="modal fade" id="edit_code" tabindex="-1" role="dialog" aria-labelledby="exampleModalMessageTitle" aria-hidden="true">
                                           <div class="modal-dialog modal-dialog-centered" role="document">
                                             <div class="modal-content">
                                               <div class="modal-header">
@@ -79,15 +89,14 @@
                                                   <span aria-hidden="true">×</span>
                                                 </button>
                                               </div>
-                                              <form action="{{ route('rechargecode.update', $recharge->id) }}" method="post" enctype="multipart/form-data">
-                                                @csrf
+                                              <form action="#" method="post" enctype="multipart/form-data">
                                                 <div class="modal-body">               
                                                     <div class="form-group">       
                                                         <div class="form-group" style="width: 70%;">
                                                             <label class="form-control-label" for="basic-url">Giá</label>
                                                             <div class="input-group">
                                                                 <span class="input-group-text"><i class="fa fa-quidditch"></i></span>
-                                                                <input type="number" class="form-control" id="price_edit" name="price_edit" min="0" value="{{ $recharge->price }}" maxlength="150" required>
+                                                                <input type="number" class="form-control" id="price_edit" name="price_edit" min="0"  maxlength="150" required>
                                                                 <span class="input-group-text">VNĐ</span>
                                                             </div>
                                                         </div>    
@@ -143,10 +152,7 @@
                         </div>    
                         <div class="form-group" style="width: 70%;">
                             <label class="form-control-label" for="basic-url">Mã nạp tiền</label>
-                            <div class="input-group">
-                                <span class="input-group-text"><i class="fa fa-credit-card"></i></span>
-                                <input type="text" class="form-control" id="recharge_code" name="recharge_code" value="" maxlength="150" required>                            
-                            </div>
+                            <textarea class="form-control" id="recharge_code" name="recharge_code" rows="3" ></textarea> <br>                        
                             <button type="button" class="btn bg-gradient-info" id="btn_code">Tạo mã</button>
                         </div>                           
                     </div>       
@@ -164,47 +170,42 @@
 <script src="{{ asset('dashboard/assets/js/plugins/datatables.js') }}" type="text/javascript"></script>
 <script type="text/javascript">
     const dataTableBasic = new simpleDatatables.DataTable("#datatable-basic", {
-      searchable: false,
+      searchable: true,
       fixedHeight: true
     });
 
-    function updateStatus(el){
-        if(el.checked){
-            var status = 1;
-        }
-        else{
-            var status = 0;
-        }
-        $.ajax({
-            method: 'get',
-            url: "{{ route('rechargecode.update.status') }}",
-            data: {
-                _token:'{{ csrf_token() }}',
-                id: el.value,
-                status: status,
-            },
-            success: function(data) {
-                if (data == 1) {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Kích hoạt thành công!',
-                        showConfirmButton: false,
-                        timer: 2000
-                    })
-                }
-            }
-        })
-    }
+    // function updateStatus(el){
+    //     if(el.checked){
+    //         var status = 0;
+    //     }
+    //     else{
+    //         var status = 1;
+    //     }
+    //     $.ajax({
+    //         method: 'get',
+    //         url: "#",
+    //         data: {
+    //             _token:'{{ csrf_token() }}',
+    //             id: el.value,
+    //             status: status,
+    //         },
+    //         success: function(data) {
+    //             if (data == 1) {
+    //                 Swal.fire({
+    //                     icon: 'success',
+    //                     title: 'Kích hoạt thành công!',
+    //                     showConfirmButton: false,
+    //                     timer: 2000
+    //                 })
+    //             }
+    //         }
+    //     })
+    // }
 
     $('#btn_code').on('click', function(){
-        let r = (Math.random() + 1).toString(36).substring(2, 20).toUpperCase();
+        let r = (Math.random() + 1).toString(36).substring(2, 20);
         $('#recharge_code').attr('value', r);
     })
-
-    // $('#btn_edit_code').on('click', function(){
-    //     let r = (Math.random() + 1).toString(36).substring(2, 20).toUpperCase();
-    //     $('#recharge_edit_code').attr('value', r);
-    // })
 
     $(document).on('click', '.simpleConfirm', function(e) {
         e.preventDefault();
@@ -239,5 +240,35 @@
             }
         });
     });
+
+    $(document).on('click', '.delete_all', function(e) {
+        e.preventDefault();
+        swal.fire({
+            title: "Bạn có muốn xóa tất cả mã đã sử dụng không?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Xóa ngay!',
+            cancelButtonText: 'Hủy'
+        }).then((result) => {
+            if (result.value) {
+                $.ajax({
+                    method: 'get',
+                    url: "{{ route('rechargecode.destroy.all') }}",
+                    success: function(data) {
+                        if (data.success == true) {
+                            Swal.fire(
+                                'Xóa!',
+                                'Xóa thành công.',
+                                'success'
+                            )
+                            window.location.reload();
+                        }
+                    }
+                })
+            }
+        });
+    })
 </script>
 @endsection

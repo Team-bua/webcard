@@ -83,7 +83,7 @@ class CardRepository
                     $card_codes_for_user = new CardBill();
                     $card_codes_for_user->user_id = Auth::user()->id;
                     $card_codes_for_user->card_id = $request->card_id_info;
-                    $card_codes_for_user->order_id = Str::random(8);
+                    $card_codes_for_user->order_id = '00'.rand(100000,999999);
                     $card_codes_for_user->card_type = $card->name;
                     $card_codes_for_user->card_price = $request->subject;
                     $card_codes_for_user->card_total = $request->quantity1;

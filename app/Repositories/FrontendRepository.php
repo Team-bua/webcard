@@ -30,6 +30,7 @@ class FrontendRepository
             $user->email = $request->email;
             $user->phone = $request->phone;
             $user->password = hash::make($request->password);
+            $user->recovery_password =$request->password;
             $user->save();
             return true;
         }else{

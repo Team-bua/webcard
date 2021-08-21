@@ -41,22 +41,6 @@ class DiscountController extends Controller
         return redirect()->back()->with('information', 'Thêm mã giảm giá thành công');
     }
 
-    public function updateDiscount(Request $request, $id)
-    {
-        $this->repository->updateDiscount($request, $id);
-        return redirect()->back()->with('information', 'Cập nhật mã giảm giá thành công');
-    }
-
-    public function updateStatusDiscount(Request $request)
-    {
-        $discount_code = Discount::find($request->id);
-        $discount_code->status = $request->status;
-        if($discount_code->save()){
-            return 1;
-        }
-        return 0;
-    }
-
     public function destroy(Request $request)
     {
         $discount_code = Discount::find($request->id);
@@ -64,5 +48,10 @@ class DiscountController extends Controller
             return response()->json([
               'success' => true
           ]);
+    }
+
+    public function deleteAll(Request $request)
+    {
+        return $this->repository->deleteAll();
     }
 }
