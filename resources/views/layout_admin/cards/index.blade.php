@@ -23,6 +23,11 @@
                 <div class="card mb-4">
 
                     <div class="card-body px-0 pt-0 pb-2">
+                        <div class="box-header">
+                            @if (session('information'))
+                            <div class="alert alert-success"><b>{{ session('information') }}</b></div>
+                            @endif
+                        </div>
                         <div class="table-responsive p-0">
                             <div class="card-header pb-0">
                                 <a href="{{ route('create-card') }}">
@@ -39,7 +44,7 @@
                                     <tr>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Loại thẻ</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Giá</th>
-                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Số lượng</th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Thêm mã</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Chi tiết kho thẻ</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Ngày</th>
                                         <th class="text-secondary"></th>
@@ -64,16 +69,28 @@
                                             <ul>
                                                 @for($i = 0; $i < count(json_decode($card->price)); $i++)
                                                     <li>
-                                                        <p class="text-xs font-weight-bold mb-0">{{number_format(json_decode($card->price)[$i])}} VNĐ <span class="badge badge-sm bg-gradient-success" style="font-size: 12px;">{{ isset($arr_price[json_decode($card->price)[$i].'-'.$card->name]) ? $arr_price[json_decode($card->price)[$i].'-'.$card->name] : 0 }}</span></p>
+                                                        <p class="text-xs font-weight-bold mb-0">{{number_format(json_decode($card->price)[$i])}} VNĐ <span class="badge badge-sm bg-gradient-success" style="font-size: 12px;">{{ isset($arr_price_use[json_decode($card->price)[$i].'-'.$card->name.'-0']) ? $arr_price_use[json_decode($card->price)[$i].'-'.$card->name.'-0'] : 0 }}</span><span class="badge badge-sm bg-gradient-danger" style="font-size: 12px;">{{ isset($arr_price_used[json_decode($card->price)[$i].'-'.$card->name.'-1']) ? $arr_price_used[json_decode($card->price)[$i].'-'.$card->name.'-1'] : 0 }}</span></p>
                                                     </li>
-                                                @endfor
+                                                    @endfor
                                             </ul>
                                         </td>
                                         <td class="align-middle text-center text-sm">
-                                        <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModalMessage{{ $card->id }}"><span class="badge badge-sm bg-gradient-success" style="font-size: 12px;">{{ isset($arr[$card->name]) ? $arr[$card->name] : 0 }}</span></a>
+                                            <ul style="list-style-type: none; padding: 0; margin: 0;">
+                                                @for($i = 0; $i < count(json_decode($card->price)); $i++)
+                                                    <li>
+                                                        <p class="text-xs font-weight-bold mb-0"><a href="#" onclick="myclick('{{number_format(json_decode($card->price)[$i])}}', '{{ $card->name }}', '{{ $card->card_type }}')"><span class="badge badge-sm bg-gradient-success" style="font-size: 12px;"><i class="fa fa-plus"></i></span></a></p>
+                                                    </li>
+                                                    @endfor
+                                            </ul>
                                         </td>
                                         <td>
-                                            <a href="{{ route('view.cards.tores', $card->name) }}"><i class="fa fa-eye" style="margin-left: 45%;"></i></a>                             
+                                            <ul style="list-style-type: none; padding: 0; margin: 0;">
+                                                @for($i = 0; $i < count(json_decode($card->price)); $i++)
+                                                    <li>
+                                                        <a href="{{ route('view.cards.stores', [$card->name, json_decode($card->price)[$i]]) }}"><i class="fa fa-eye" style="margin-left: 45%;"></i></a>
+                                                    </li>
+                                                    @endfor
+                                            </ul>
                                         </td>
                                         <td class="align-middle text-center">
                                             <span class="text-secondary text-xs font-weight-bold">{{ date('d/m/Y', strtotime(str_replace('/', '-', $card->created_at))) }}</span>
@@ -81,8 +98,8 @@
                                         <td class="align-middle">
                                             <a href="{{ route('card_edit', $card->id) }}" class="text-secondary font-weight-bold text-xs">
                                                 <span class="badge bg-gradient-info">Sửa</span>
-                                            </a> || 
-                                            <a href="javascript:;" delete_id="{{ $card->id }}" class="text-secondary font-weight-bold text-xs simpleConfirm" >
+                                            </a> ||
+                                            <a href="javascript:;" delete_id="{{ $card->id }}" class="text-secondary font-weight-bold text-xs simpleConfirm">
                                                 <span class="badge bg-gradient-danger">Xóa</span>
                                             </a>
                                         </td>
@@ -90,33 +107,41 @@
 
                                     <div class="col-md-4">
                                         <!-- Modal -->
-                                        <div class="modal fade" id="exampleModalMessage{{ $card->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalMessageTitle" aria-hidden="true">
-                                          <div class="modal-dialog modal-dialog-centered" role="document">
-                                            <div class="modal-content">
-                                              <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Thông tin thẻ</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                                                  <span aria-hidden="true">×</span>
-                                                </button>
-                                              </div>
-                                              <div class="modal-body">
-                                                <form>
-                                                  <div class="form-group">       
-                                                    <ul>
-                                                        @for($i = 0; $i < count(json_decode($card->price)); $i++)
-                                                            <li>
-                                                                <p class="text-xs font-weight-bold mb-0">{{number_format(json_decode($card->price)[$i])}} VNĐ: <span class="badge badge-sm bg-gradient-success" style="font-size: 12px;">{{ isset($arr_price[json_decode($card->price)[$i].'-'.$card->name]) ? $arr_price[json_decode($card->price)[$i].'-'.$card->name] : 0 }}</span> </p>
-                                                            </li>
-                                                        @endfor
-                                                    </ul>                                         
-                                                  </div>
-                                                </form>
-                                              </div>
-                                              <div class="modal-footer">
-                                                <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Đóng</button>
-                                              </div>
+                                        <div class="modal fade" id="exampleModalMessage" tabindex="-1" role="dialog" aria-labelledby="exampleModalMessageTitle" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Thông tin thẻ</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">×</span>
+                                                        </button>
+                                                    </div>
+                                                    <form action="{{ route('card-code-save') }}" method="post" enctype="multipart/form-data">
+                                                        @csrf
+                                                        <div class="modal-body">
+                                                            <div class="form-group">
+                                                                <label for="exampleFormControlTextarea1">Tên thẻ</label>
+                                                                <input class="form-control" id="card_name_modal" name="code" rows="3" disabled>
+                                                                <input type="hidden" class="form-control" id="card_name_form" name="card_name_form" rows="3">
+                                                                <input type="text" class="form-control" id="card_type_form" name="card_type_form" rows="3">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="exampleFormControlTextarea1">Giá thẻ</label>
+                                                                <input class="form-control" id="card_price_modal" name="code" rows="3" disabled>
+                                                                <input type="hidden" class="form-control" id="card_price_form" name="card_price_form" rows="3">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="exampleFormControlTextarea1">Mã thẻ</label>
+                                                                <textarea class="form-control" id="code" name="code" rows="3" style="width: 70%"></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="submit" class="btn bg-gradient-success" data-bs-dismiss="modal">Thêm</button>
+                                                            <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Đóng</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
                                             </div>
-                                          </div>
                                         </div>
                                     </div>
                                     @endforeach
@@ -135,48 +160,57 @@
 <script src="{{ asset('dashboard/assets/js/plugins/datatables.js') }}" type="text/javascript"></script>
 <script type="text/javascript">
     const dataTableBasic = new simpleDatatables.DataTable("#datatable-basic", {
-      searchable: false,
-      fixedHeight: true
+        searchable: false,
+        fixedHeight: true
     });
-    
+
+    function myclick(price, name, type) {
+        $('#card_name_modal').attr('value', name);
+        $('#card_name_form').attr('value', name);
+        $('#card_type_form').attr('value', type);
+        $('#card_price_modal').attr('value', price);
+        $('#card_price_form').attr('value', price);
+        $('#exampleModalMessage').modal('show');
+    }
+
     $(document).on('click', '.simpleConfirm', function(e) {
-            e.preventDefault();
-            var id = $(this).attr('delete_id');
-            var that = $(this);
-            swal.fire({
-                title: "Bạn có muốn xóa thẻ này?",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Xóa ngay!',
-                cancelButtonText: 'Hủy'
-            }).then((result) => {
-                if (result.value) {
-                    $.ajax({
-                        method: 'get',
-                        url: "{{ route('destroy') }}",
-                        data: {
-                            id: id
-                        },
-                        success: function(data) {
-                            if (data.success == true) {
-                                that.parent().parent().remove();
-                                Swal.fire(
-                                    'Xóa!',
-                                    'Xóa thành công.',
-                                    'success'
-                                )
-                            } else {
-                                Swal.fire({
-                                    icon: 'error',
-                                    title: 'Mã thẻ vẫn còn tồn tại!',
-                                })
-                            }
+        e.preventDefault();
+        var id = $(this).attr('delete_id');
+        var that = $(this);
+        swal.fire({
+            title: "Bạn có muốn xóa thẻ này?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Xóa ngay!',
+            cancelButtonText: 'Hủy'
+        }).then((result) => {
+            if (result.value) {
+                $.ajax({
+                    method: 'get',
+                    url: "{{ route('destroy') }}",
+                    data: {
+                        id: id
+                    },
+                    success: function(data) {
+                        if (data.success == true) {
+                            that.parent().parent().remove();
+                            Swal.fire(
+                                'Xóa!',
+                                'Xóa thành công.',
+                                'success'
+                            )
+                        } else {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Mã thẻ vẫn còn tồn tại!',
+                            })
                         }
-                    })
-                }
-            });
+                    }
+                })
+            }
         });
+    });
 </script>
 @endsection

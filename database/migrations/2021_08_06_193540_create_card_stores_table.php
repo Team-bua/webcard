@@ -20,6 +20,8 @@ class CreateCardStoresTable extends Migration
             $table->string('price')->nullable();
             $table->string('seri_number')->nullable();
             $table->string('code')->nullable();
+            $table->integer('status')->nullable();
+            $table->timestamp('date_used')->nullable();
             $table->timestamps();
         });
     }

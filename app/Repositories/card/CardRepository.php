@@ -18,9 +18,10 @@ class CardRepository
         return CardType::all();
     }
 
-    public function GetCardStoreToIndex($name)
+    public function GetCardStoreToIndex($name, $price)
     {
         return CardStore::where('name', strtolower($name))
+                        ->where('price', $price)
                         ->orderBy('price', 'asc')
                         ->get();
     }
@@ -128,21 +129,22 @@ class CardRepository
     {    
         $card_info = new CardStore();
         $test = explode('  ',preg_replace("/\r|\n/", " ", $request->code));
+        
         for($i = 0; $i < count($test); $i++){
             $code = explode('|', $test[$i]);
             $card_info = new CardStore();
-            if($request->type_card == 'Card'){
-                $card_info->card_type = $request->type_card;
-                $card_info->name = strtolower($code[0]);
-                $card_info->price = $code[1];
-                $card_info->seri_number = $code[2];
-                $card_info->code = $code[3];
+            if($request->card_type_form == 'Card'){
+                $card_info->card_type = $request->card_type_form;
+                $card_info->name = strtolower($request->card_name_form);
+                $card_info->price = str_replace(',', '', $request->card_price_form);
+                $card_info->seri_number = $code[0];
+                $card_info->code = $code[1];
                 $card_info->save();
-            }else if ($request->type_card == 'Voucher'){
-                $card_info->card_type = $request->type_card;
-                $card_info->name = strtolower($code[0]);
-                $card_info->price = $code[1];
-                $card_info->code = $code[2];
+            }else if ($request->card_type_form == 'Voucher'){
+                $card_info->card_type = $request->card_type_form;
+                $card_info->name = strtolower($request->card_name_form);
+                $card_info->price = str_replace(',', '', $request->card_price_form);
+                $card_info->code = $code[0];
                 $card_info->save();
             }
             
@@ -204,5 +206,14 @@ class CardRepository
                 'success' => false
             ]);
           }       
+    }
+
+    public function deleteCardCode($request)
+    { 
+        $card_store_delete = CardStore::find($request->id);
+        $card_store_delete->delete();
+        return response()->json([
+                    'success' => true
+                ]);  
     }
 }

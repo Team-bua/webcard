@@ -38,22 +38,25 @@ class CardController extends Controller
         return redirect()->back()->with('information', 'Cập nhật thành công');
     }
 
-    public function GetCardStoreToIndex($name)
+    public function GetCardStoreToIndex($name, $price)
     {
-        $card_stores = $this->repository->GetCardStoreToIndex($name);
+        $card_stores = $this->repository->GetCardStoreToIndex($name, $price);
         $card_image = $this->repository->GetCardImageToIndex($name);
         return view('layout_admin.cards.card_stores', compact('card_stores', 'card_image'));
     }
 
     public function AddCardCode()
     {
+
         $card_types = $this->repository->getCardTypeForCard();
         return view('layout_admin.cards.createcode', compact('card_types'));
     }
 
-    public function StoreCardCode(Request $request){
-       $this->repository->storeCardCode($request);
-       return redirect()->back()->with('information', 'Thêm mã thẻ thành công!');
+    public function StoreCardCode(Request $request)
+    {
+       
+        $this->repository->storeCardCode($request);
+        return redirect()->back()->with('information', 'Thêm mã thẻ thành công!');
     }
 
     public function deletePrice(Request $request, $id)
@@ -71,37 +74,41 @@ class CardController extends Controller
     public function GetCardToIndex()
     {
         $arr = [];
-        $arr_price = [];
+        $arr_price_use = [];
+        $arr_price_used = [];
         $cards = $this->repository->getAllCard();
-        foreach($cards as $card) {
-           $card_code = CardStore::where('name', strtolower($card->name))
-                                ->count();
+        foreach ($cards as $card) {
+            $card_code = CardStore::where('name', strtolower($card->name))
+                ->count();
             $arr[$card->name] = $card_code;
-            for($i = 0; $i < count(json_decode($card->price)); $i++) {
-                $card_price = CardStore::where('price', json_decode($card->price)[$i])
-                                        ->where('name', strtolower($card->name))
-                                        ->count();
-                $arr_price[json_decode($card->price)[$i].'-'.$card->name] = $card_price; 
+            for ($i = 0; $i < count(json_decode($card->price)); $i++) {
+                $card_price_use = CardStore::where('price', json_decode($card->price)[$i])
+                    ->where('name', strtolower($card->name))
+                    ->where('status', 0)
+                    ->count();
+                $arr_price_use[json_decode($card->price)[$i] . '-' . $card->name . '-0'] = $card_price_use;
+                $card_price_used = CardStore::where('price', json_decode($card->price)[$i])
+                    ->where('name', strtolower($card->name))
+                    ->where('status', 1)
+                    ->count();
+                $arr_price_used[json_decode($card->price)[$i] . '-' . $card->name . '-1'] = $card_price_used;
             }
         }
-        return view('layout_admin.cards.index', compact('cards', 'arr', 'arr_price'));
+        return view('layout_admin.cards.index', compact('cards', 'arr', 'arr_price_use', 'arr_price_used'));
     }
 
     public function BuyCard(Request $request)
     {
         $total = $request->subject * $request->quantity1;
-        if(Auth::check()){
-            if(Auth::user()->point - $total < 0){
+        if (Auth::check()) {
+            if (Auth::user()->point - $total < 0) {
                 return redirect()->back()->with('message', '5');
-            }else{
+            } else {
                 return $this->repository->BuyCard($request);
             }
-        }
-        else{
+        } else {
             return redirect()->route('signin');
         }
-        
-        
     }
 
     public function SaveCard(CardRequest $request)
@@ -121,6 +128,10 @@ class CardController extends Controller
         $cards = $this->repository->getAllCard();
 
         return $this->repository->destroy($request, $cards);
+    }
 
+    public function deleteCardCode(Request $request)
+    {
+        return $this->repository->deleteCardCode($request);
     }
 }

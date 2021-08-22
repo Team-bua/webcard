@@ -37,6 +37,8 @@
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Giá</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">ID thẻ</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Mã thẻ</th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Ngày sử dụng</th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Trạng thái</th>
                                         <th class="text-secondary"></th>
                                     </tr>
                                 </thead>
@@ -61,8 +63,24 @@
                                                 </li>
                                             </ul>
                                         </td>
-                                        <td class="align-middle text-center text-sm"><p class="text-xs font-weight-bold mb-0">{{ $card->seri_number }}</p></td>
-                                        <td class="align-middle text-center text-sm"><p class="text-xs font-weight-bold mb-0">{{ $card->code }}</p></td>
+                                        <td class="align-middle text-center text-sm">
+                                            <p class="text-xs font-weight-bold mb-0">{{ $card->seri_number }}</p>
+                                        </td>
+                                        <td class="align-middle text-center text-sm">
+                                            <p class="text-xs font-weight-bold mb-0">{{ $card->code }}</p>
+                                        </td>
+                                        <td class="align-middle text-center text-sm">
+                                            @if($card->status == 1)
+                                            <span class="badge badge-sm bg-gradient-success">Đã sử dụng</span>
+                                            @else
+                                            <span class="badge badge-sm bg-gradient-danger">Chưa sử dụng</span>
+                                            @endif
+                                        </td>
+                                        <td class="align-middle text-center text-sm">
+                                            @if($card->date_used != null)
+                                            <span class="text-secondary text-xs font-weight-bold">{{ date('H:i d/m/Y', strtotime(str_replace('/', '-', ($card->date_used)))) }}</span>
+                                            @endif
+                                        </td>
                                         <td class="align-middle">
                                             <a href="{{ route('card.store.edit', $card->id) }}" class="text-secondary font-weight-bold text-xs">
                                                 <span class="badge bg-gradient-info">Sửa</span>
@@ -88,48 +106,48 @@
 <script src="{{ asset('dashboard/assets/js/plugins/datatables.js') }}" type="text/javascript"></script>
 <script type="text/javascript">
     const dataTableBasic = new simpleDatatables.DataTable("#datatable-basic", {
-        searchable: false,
+        searchable: true,
         fixedHeight: true
     });
 
-    // $(document).on('click', '.simpleConfirm', function(e) {
-    //         e.preventDefault();
-    //         var id = $(this).attr('delete_id');
-    //         var that = $(this);
-    //         swal.fire({
-    //             title: "Bạn có muốn xóa thẻ này?",
-    //             icon: 'warning',
-    //             showCancelButton: true,
-    //             confirmButtonColor: '#3085d6',
-    //             cancelButtonColor: '#d33',
-    //             confirmButtonText: 'Xóa ngay!',
-    //             cancelButtonText: 'Hủy'
-    //         }).then((result) => {
-    //             if (result.value) {
-    //                 $.ajax({
-    //                     method: 'get',
-    //                     url: "{{ route('destroy') }}",
-    //                     data: {
-    //                         id: id
-    //                     },
-    //                     success: function(data) {
-    //                         if (data.success == true) {
-    //                             that.parent().parent().remove();
-    //                             Swal.fire(
-    //                                 'Xóa!',
-    //                                 'Xóa thành công.',
-    //                                 'success'
-    //                             )
-    //                         } else {
-    //                             Swal.fire({
-    //                                 icon: 'error',
-    //                                 title: 'Mã thẻ vẫn còn tồn tại!',
-    //                             })
-    //                         }
-    //                     }
-    //                 })
-    //             }
-    //         });
-    //     });
+    $(document).on('click', '.simpleConfirm', function(e) {
+        e.preventDefault();
+        var id = $(this).attr('delete_id');
+        var that = $(this);
+        swal.fire({
+            title: "Bạn có muốn xóa mã này?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Xóa ngay!',
+            cancelButtonText: 'Hủy'
+        }).then((result) => {
+            if (result.value) {
+                $.ajax({
+                    method: 'get',
+                    url: "{{ route('destroy.card.store') }}",
+                    data: {
+                        id: id
+                    },
+                    success: function(data) {
+                        if (data.success == true) {
+                            that.parent().parent().remove();
+                            Swal.fire(
+                                'Xóa!',
+                                'Xóa thành công.',
+                                'success'
+                            )
+                        } else {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Mã thẻ vẫn còn tồn tại!',
+                            })
+                        }
+                    }
+                })
+            }
+        });
+    });
 </script>
 @endsection

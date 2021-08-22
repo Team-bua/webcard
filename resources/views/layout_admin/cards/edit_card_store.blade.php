@@ -87,6 +87,7 @@
                                 </div>
                                 <div class="text-center">
                                     <input type="submit" name="submit" id="submit" value="Cập nhật" class="btn bg-gradient-primary w-12 btnthem">
+                                    <a href="{{ route('view.cards.stores', [$card_store->name, $card_store->price]) }}" class="btn bg-gradient-primary w-12">Quay lại</a>
                                 </div>
                             </form>
                         </div>

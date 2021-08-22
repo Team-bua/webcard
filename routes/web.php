@@ -30,9 +30,10 @@ Route::group(['middleware' => 'user'], function () {
     //View card
     Route::get('/view-card',[CardController::class,'GetCardToIndex'])->name('viewcard');
     //stores card
-    Route::get('/view-card-stores/{name}',[CardController::class,'GetCardStoreToIndex'])->name('view.cards.tores');
+    Route::get('/view-card-stores/{name}/price/{price}',[CardController::class,'GetCardStoreToIndex'])->name('view.cards.stores');
     Route::get('/edit-card-store/{id}',[CardController::class,'EditCardStore'])->name('card.store.edit');
     Route::post('/update-card-store/{id}',[CardController::class,'UpdateCardStore'])->name('card.store.update');
+    Route::get('/destroy-card-store',[CardController::class,'deleteCardCode'])->name('destroy.card.store');
     //card
     Route::get('/create-card',[CardController::class,'AddCard'])->name('create-card');
     Route::post('/create-card/save',[CardController::class,'SaveCard'])->name('card_save');
