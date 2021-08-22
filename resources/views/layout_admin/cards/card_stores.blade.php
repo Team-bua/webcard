@@ -71,9 +71,9 @@
                                         </td>
                                         <td class="align-middle text-center text-sm">
                                             @if($card->status == 1)
-                                            <span class="badge badge-sm bg-gradient-success">Đã sử dụng</span>
+                                            <span class="badge badge-sm bg-gradient-danger">Đã sử dụng</span>
                                             @else
-                                            <span class="badge badge-sm bg-gradient-danger">Chưa sử dụng</span>
+                                            <span class="badge badge-sm bg-gradient-success">Chưa sử dụng</span>
                                             @endif
                                         </td>
                                         <td class="align-middle text-center text-sm">

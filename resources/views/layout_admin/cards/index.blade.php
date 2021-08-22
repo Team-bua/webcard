@@ -34,10 +34,10 @@
                                     <button class="btn bg-gradient-primary mt-4 w-12" style="float: right;;margin-bottom:5px;margin-left:5px;">
                                         <i class="fa fa-plus">&nbsp; Thêm thẻ </i></button>
                                 </a>
-                                <a href="{{ route('add-card-code') }}">
+                                {{-- <a href="{{ route('add-card-code') }}">
                                     <button class="btn bg-gradient-primary mt-4 w-12" style="float: right;;margin-bottom:5px;margin-left:5px">
                                         <i class="fa fa-plus">&nbsp; Thêm mã </i></button>
-                                </a>
+                                </a> --}}
                             </div>
                             <table class="table table-flush" id="datatable-basic">
                                 <thead class="thead-light">
@@ -65,11 +65,11 @@
                                                 </div>
                                             </div>
                                         </td>
-                                        <td>
-                                            <ul>
+                                        <td class="align-middle text-center text-sm">
+                                            <ul style="list-style-type: none; padding: 0; margin: 0;">
                                                 @for($i = 0; $i < count(json_decode($card->price)); $i++)
-                                                    <li>
-                                                        <p class="text-xs font-weight-bold mb-0">{{number_format(json_decode($card->price)[$i])}} VNĐ <span class="badge badge-sm bg-gradient-success" style="font-size: 12px;">{{ isset($arr_price_use[json_decode($card->price)[$i].'-'.$card->name.'-0']) ? $arr_price_use[json_decode($card->price)[$i].'-'.$card->name.'-0'] : 0 }}</span><span class="badge badge-sm bg-gradient-danger" style="font-size: 12px;">{{ isset($arr_price_used[json_decode($card->price)[$i].'-'.$card->name.'-1']) ? $arr_price_used[json_decode($card->price)[$i].'-'.$card->name.'-1'] : 0 }}</span></p>
+                                                    <li  style="margin-bottom:5px">
+                                                        <p class="text-xs font-weight-bold mb-0">{{number_format(json_decode($card->price)[$i])}} VNĐ &nbsp; <span class="badge badge-sm bg-gradient-success" style="font-size: 12px;">{{ isset($arr_price_use[json_decode($card->price)[$i].'-'.$card->name.'-0']) ? $arr_price_use[json_decode($card->price)[$i].'-'.$card->name.'-0'] : 0 }}</span>&nbsp; <span class="badge badge-sm bg-gradient-danger" style="font-size: 12px;">{{ isset($arr_price_used[json_decode($card->price)[$i].'-'.$card->name.'-1']) ? $arr_price_used[json_decode($card->price)[$i].'-'.$card->name.'-1'] : 0 }}</span></p>
                                                     </li>
                                                     @endfor
                                             </ul>
@@ -77,7 +77,7 @@
                                         <td class="align-middle text-center text-sm">
                                             <ul style="list-style-type: none; padding: 0; margin: 0;">
                                                 @for($i = 0; $i < count(json_decode($card->price)); $i++)
-                                                    <li>
+                                                    <li  style="margin-bottom:5px">
                                                         <p class="text-xs font-weight-bold mb-0"><a href="#" onclick="myclick('{{number_format(json_decode($card->price)[$i])}}', '{{ $card->name }}', '{{ $card->card_type }}')"><span class="badge badge-sm bg-gradient-success" style="font-size: 12px;"><i class="fa fa-plus"></i></span></a></p>
                                                     </li>
                                                     @endfor
@@ -86,7 +86,7 @@
                                         <td>
                                             <ul style="list-style-type: none; padding: 0; margin: 0;">
                                                 @for($i = 0; $i < count(json_decode($card->price)); $i++)
-                                                    <li>
+                                                    <li  style="margin-bottom:5px">
                                                         <a href="{{ route('view.cards.stores', [$card->name, json_decode($card->price)[$i]]) }}"><i class="fa fa-eye" style="margin-left: 45%;"></i></a>
                                                     </li>
                                                     @endfor
@@ -111,7 +111,7 @@
                                             <div class="modal-dialog modal-dialog-centered" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Thông tin thẻ</h5>
+                                                        <h5 class="modal-title" id="exampleModalLabel">Thêm mã thẻ</h5>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                                                             <span aria-hidden="true">×</span>
                                                         </button>
@@ -123,7 +123,7 @@
                                                                 <label for="exampleFormControlTextarea1">Tên thẻ</label>
                                                                 <input class="form-control" id="card_name_modal" name="code" rows="3" disabled>
                                                                 <input type="hidden" class="form-control" id="card_name_form" name="card_name_form" rows="3">
-                                                                <input type="text" class="form-control" id="card_type_form" name="card_type_form" rows="3">
+                                                                <input type="hidden" class="form-control" id="card_type_form" name="card_type_form" rows="3">
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="exampleFormControlTextarea1">Giá thẻ</label>
@@ -132,7 +132,7 @@
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="exampleFormControlTextarea1">Mã thẻ</label>
-                                                                <textarea class="form-control" id="code" name="code" rows="3" style="width: 70%"></textarea>
+                                                                <textarea class="form-control" id="code" name="code" rows="3"></textarea>
                                                             </div>
                                                         </div>
                                                         <div class="modal-footer">
