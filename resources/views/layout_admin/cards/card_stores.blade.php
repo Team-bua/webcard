@@ -37,8 +37,8 @@
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Giá</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">ID thẻ</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Mã thẻ</th>
-                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Ngày sử dụng</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Trạng thái</th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Ngày sử dụng</th>
                                         <th class="text-secondary"></th>
                                     </tr>
                                 </thead>
