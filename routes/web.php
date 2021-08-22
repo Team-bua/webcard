@@ -51,8 +51,10 @@ Route::group(['middleware' => 'user'], function () {
     Route::get('/users-recharge-bills/{id}',[AdminController::class,'showRechargeBill'])->name('users.recharge_bills');
     //card bill
     Route::get('/card-bill',[BillController::class,'cardBill'])->name('cardbill');
+    Route::post('/card-bill/exportCardBill',[BillController::class,'exportCardBill'])->name('cardbill.export');
     //recharge bill
     Route::get('/recharge-bill',[BillController::class,'rechargeBill'])->name('rechargebill');
+    Route::post('/recharge-bill/exportRechargeBill',[BillController::class,'exportRechargeBill'])->name('rechargebill.export');
     //View bank
     Route::get('/bank-info',[AdminController::class,'getBankInfo'])->name('bankinfo');
     Route::post('/update-bank-info/{id}',[AdminController::class,'updateBankInfo'])->name('update.bankinfo');

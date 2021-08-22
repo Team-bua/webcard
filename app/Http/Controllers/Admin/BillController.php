@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\CardBillExport;
+use App\Exports\RechargeBillExport;
 use App\Http\Controllers\Controller;
 use App\Repositories\BillRepository;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class BillController extends Controller
 {
@@ -70,5 +73,17 @@ class BillController extends Controller
         
         $recharge_bills = $this->repository->getRechargeBill($request);
         return view('layout_admin.bills.rechargebill', compact('recharge_bills','first_day','last_day'));
+    }
+
+    public function exportCardBill(Request $request)
+    {
+        $date = str_replace('/', '-', str_replace('to','đến',$request->date_export));
+        return Excel::download(new CardBillExport( $date), 'Thông tin đơn hàng từ ngày '. $date.'.xlsx');
+    }
+
+    public function exportRechargeBill(Request $request)
+    {
+        $date = str_replace('/', '-', str_replace('to','đến',$request->date_export));
+        return Excel::download(new RechargeBillExport( $date), 'Thông tin đơn nạp từ ngày '. $date.'.xlsx');
     }
 }

@@ -25,7 +25,7 @@
                         <div class="card-header pb-0">
                             <button type="submit" name="search" class="btn bg-gradient-primary mt-2 " style="float: right;margin-left:5px">
                                 <i class="fa fa-search"></i></button>
-                            <input class="form-control datepicker" name="date" style="width: 20%; float: right; margin-top: 10px" placeholder="Please select date" type="text"
+                            <input class="form-control datepicker" id="date_picker" name="date" style="width: 20%; float: right; margin-top: 10px" placeholder="Please select date" type="text"
                             value="{{ date('d/m/Y', strtotime($first_day)) . ' to ' . date('d/m/Y', strtotime($last_day)) }}" >
                             <input type="text" name="name" class="form-control" placeholder="Mã đơn hàng" style="width: 20%; float: right; margin-top: 10px; margin-right: 5px" aria-describedby="basic-addon1">   
                         </div>
@@ -92,6 +92,13 @@
                                 </tbody>
                             </table>
                         </div>
+                        <form action="{{ route('rechargebill.export') }}" method="post" id="form_export">
+                            @csrf
+                           <input type="hidden" name="date_export" id="date_export">
+                        </form>
+                        <div class="col-lg-4 mt-md-0 mt-3" style="margin-left: 20px">
+                            <button class="btn bg-gradient-info mt-lg-7 mb-0" type="submit" name="button" id="btn_export">Xuất Excel</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -106,6 +113,11 @@
       searchable: false,
       fixedHeight: true
     });
+
+    $('#btn_export').on('click', function(){ 
+        $('#date_export').attr('value',$('#date_picker').val());
+        $('#form_export').submit();
+    })
 </script>
 <script type="text/javascript">
     if (document.querySelector('.datepicker')) {

@@ -17,6 +17,16 @@ class RechargeCodeRepository
         return RechargeCode::orderBy('created_at', 'desc')->get();
     }
 
+    public function getUsed()
+    {
+        return RechargeCode::where('status', 1)->count();
+    }
+
+    public function getNotUse()
+    {
+        return RechargeCode::where('status', 0)->count();
+    }
+
     public function createRechargeCode($request)
     {   
         $arr_code = explode('  ',preg_replace("/\r|\n/", " ", $request->recharge_code));
