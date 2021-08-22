@@ -220,34 +220,6 @@
       fixedHeight: true
     });
 
-    // function updateStatus(el){
-    //     if(el.checked){
-    //         var status = 0;
-    //     }
-    //     else{
-    //         var status = 1;
-    //     }
-    //     $.ajax({
-    //         method: 'get',
-    //         url: "#",
-    //         data: {
-    //             _token:'{{ csrf_token() }}',
-    //             id: el.value,
-    //             status: status,
-    //         },
-    //         success: function(data) {
-    //             if (data == 1) {
-    //                 Swal.fire({
-    //                     icon: 'success',
-    //                     title: 'Kích hoạt thành công!',
-    //                     showConfirmButton: false,
-    //                     timer: 2000
-    //                 })
-    //             }
-    //         }
-    //     })
-    // }
-
     $('#btn_code').on('click', function(){
         let r = (Math.random() + 1).toString(36).substring(2, 20);
         $('#recharge_code').attr('value', r);

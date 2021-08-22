@@ -34,6 +34,22 @@ class BillRepository
                             $q->where('order_id', 'LIKE', '%' . $request->name . '%');
                         });
                     }) 
+                    ->when(($request->status == 0 && isset(explode(' to ',$request->date)[1]) == true), function ($query) use ($request){
+                        $query->where(function ($q) use ($request){
+                            $q->whereRaw('DATE(card_bills.created_at) BETWEEN "'.date('Y-m-d', strtotime(str_replace('/', '-', explode(' to ', $request->date)[0]))).'" 
+                            AND "'.date('Y-m-d', strtotime(str_replace('/', '-', explode(' to ', $request->date)[1]))).'"');
+                        });
+                    })
+                    ->when(($request->status == 2), function ($query) use ($request){
+                        $query->where(function ($q) use ($request){
+                            $q->where('status', 1);
+                        });
+                    }) 
+                    ->when(($request->status == 1), function ($query) use ($request){
+                        $query->where(function ($q) use ($request){
+                            $q->where('status', 0);
+                        });
+                    }) 
                     ->orderBy('created_at', 'desc')      
                     ->get();
         return $all_bill;

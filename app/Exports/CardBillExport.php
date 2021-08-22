@@ -26,8 +26,15 @@ class CardBillExport implements FromCollection,WithHeadings,ShouldAutoSize,WithH
     public function collection()
     {   
         $card_bill = CardBill::join('users', 'card_bills.user_id', '=', 'users.id')
-                            ->whereRaw('DATE(card_bills.created_at) BETWEEN "'.date('Y-m-d', strtotime(str_replace('/', '-', explode(' đến ', $this->date)[0]))).'" 
-                            AND "'.date('Y-m-d', strtotime(str_replace('/', '-', explode(' đến ', $this->date)[1]))).'"')
+                            ->when(($this->date != null && isset(explode(' đến ',$this->date)[1]) == true), function ($query){
+                                $query->where(function ($q){
+                                    $q->whereRaw('DATE(card_bills.created_at) BETWEEN "'.date('Y-m-d', strtotime(str_replace('/', '-', explode(' đến ', $this->date)[0]))).'" 
+                                    AND "'.date('Y-m-d', strtotime(str_replace('/', '-', explode(' đến ',$this->date)[1]))).'"');
+                                });
+                            })
+                            ->when(($this->date != null && isset(explode(' đến ',$this->date)[1]) == false), function ($query){
+                                $query->whereDate('card_bills.created_at', '=', date('Y-m-d', strtotime(str_replace('/', '-',$this->date))));
+                            })
                             ->select('card_bills.card_type', 'users.name', 'card_bills.order_id', 'card_bills.card_total', 'card_bills.price_total', 'card_bills.status',
                                     'card_bills.card_info', DB::raw("DATE_FORMAT(card_bills.created_at, '%H:%i %d-%m-%Y') as created"))
                             ->get();
@@ -37,7 +44,7 @@ class CardBillExport implements FromCollection,WithHeadings,ShouldAutoSize,WithH
             }else{
                 $bill->status = 'Đã thanh toán';
             }
-            $bill->price_total = '+ '.number_format($bill->price_total).' VNĐ';
+            $bill->price_total = number_format($bill->price_total).' VNĐ';
             $bill->card_info = str_replace(',',"\r\n" , implode(',',json_decode($bill->card_info)));
         }
         return $card_bill;

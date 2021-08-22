@@ -43,16 +43,6 @@ class RechargeCodeController extends Controller
         return redirect()->back()->with('information', 'Thêm mã nạp tiền thành công');
     }
 
-    // public function updateStatus(Request $request)
-    // {
-    //     $recharge_code = RechargeCode::find($request->id);
-    //     $recharge_code->status = $request->status;
-    //     if($recharge_code->save()){
-    //         return 1;
-    //     }
-    //     return 0;
-    // }
-
     public function destroy(Request $request)
     {
         $recharge_code = RechargeCode::find($request->id);
