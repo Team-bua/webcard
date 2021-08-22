@@ -19,6 +19,52 @@
     <!-- End Navbar -->
     <div class="container-fluid py-4">
         <div class="row">
+            <div class="col-xl-6 col-sm-6 mb-xl-0 mb-4">
+                <div class="card">
+                    <div class="card-body p-3">
+                        <div class="row">
+                            <div class="col-8">
+                                <div class="numbers">
+                                    <p class="text-sm mb-0 text-capitalize font-weight-bold">Tổng số mã chưa sử dụng</p>
+                                    <h5 class="font-weight-bolder mb-0">
+                                       {{ $not_use }}
+                                    </h5>
+                                </div>
+                            </div>
+                            <div class="col-4 text-end">
+                                <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
+                                    <i class="ni ni-credit-card text-lg opacity-10" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-6 col-sm-6 mb-xl-0 mb-4">
+                <div class="card">
+                    <div class="card-body p-3">
+                        <div class="row">
+                            <div class="col-8">
+                                <div class="numbers">
+                                    <p class="text-sm mb-0 text-capitalize font-weight-bold">Tổng số mã đã sử dụng</p>
+                                    <h5 class="font-weight-bolder mb-0">
+                                        {{ $used }}
+                                    </h5>
+                                </div>
+                            </div>
+                            <div class="col-4 text-end">
+                                <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
+                                    <i class="ni ni-credit-card text-lg opacity-10" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid py-4">
+        <div class="row">
             <div class="col-12">
                 <div class="card mb-4">
                     @if (session('information'))
@@ -173,34 +219,6 @@
       searchable: true,
       fixedHeight: true
     });
-
-    // function updateStatus(el){
-    //     if(el.checked){
-    //         var status = 0;
-    //     }
-    //     else{
-    //         var status = 1;
-    //     }
-    //     $.ajax({
-    //         method: 'get',
-    //         url: "#",
-    //         data: {
-    //             _token:'{{ csrf_token() }}',
-    //             id: el.value,
-    //             status: status,
-    //         },
-    //         success: function(data) {
-    //             if (data == 1) {
-    //                 Swal.fire({
-    //                     icon: 'success',
-    //                     title: 'Kích hoạt thành công!',
-    //                     showConfirmButton: false,
-    //                     timer: 2000
-    //                 })
-    //             }
-    //         }
-    //     })
-    // }
 
     $('#btn_code').on('click', function(){
         let r = (Math.random() + 1).toString(36).substring(2, 20);

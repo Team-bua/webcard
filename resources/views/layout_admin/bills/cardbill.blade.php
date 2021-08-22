@@ -20,37 +20,63 @@
     <div class="container-fluid py-4">
         <div class="row">
             <div class="col-12">
+                @if (session('information'))
+                    <div class="alert alert-success"><b>{{ session('information') }}</b></div>
+                @endif
                 <div class="card mb-4">
                     <form action="">
                         <div class="card-header pb-0">
                             <button type="submit" name="search" class="btn bg-gradient-primary mt-2 " style="float: right;margin-left:5px">
                                 <i class="fa fa-search"></i></button>
-                            <input class="form-control datepicker" name="date" style="width: 20%; float: right; margin-top: 10px" placeholder="Please select date" type="text"
+                            <input class="form-control datepicker" id="date_picker" name="date" style="width: 20%; float: right; margin-top: 10px" placeholder="Please select date" type="text"
                             value="{{ date('d/m/Y', strtotime($first_day)) . ' to ' . date('d/m/Y', strtotime($last_day)) }}" >
                             <input type="text" name="name" class="form-control" placeholder="Mã đơn hàng" style="width: 20%; float: right; margin-top: 10px; margin-right: 5px" aria-describedby="basic-addon1">
+                            <select class="form-control" name="status" style="width: 20%; float: right; margin-top: 10px; margin-right: 5px">
+                                @if($status == 0)
+                                    <option value="0" selected>Tất cả trạng thái </option>
+                                    <option value="1">Chưa thanh toán</option>
+                                    <option value="2" >Đã thanh toán</option>
+                                @elseif($status == 2)
+                                    <option value="0">Tất cả trạng thái </option>
+                                    <option value="1">Chưa thanh toán</option>
+                                    <option value="2" selected>Đã thanh toán</option>
+                                @elseif($status == 1)
+                                    <option value="0">Tất cả trạng thái </option>
+                                    <option value="1" selected>Chưa thanh toán</option>
+                                    <option value="2">Đã thanh toán</option>
+                                @endif
+                            </select>
                         </div>
                     </form>
                     <div class="card-body px-0 pt-0 pb-2">
                         <div class="table-responsive p-0">
-                           
+                            <form action="{{ route('cardbill.update.status.all') }}" method="post">
+                                @csrf
+                                <button class="btn bg-gradient-primary mt-4 w-12" style="float: right;;margin-bottom:5px;margin-left:5px;">
+                                    <i class="fa fa-check">&nbsp; Duyệt tất cả đơn </i></button>
+                            </form>
                             <table class="table table-flush" id="datatable-basic">
-                                <thead class="thead-light">
                                     <tr>         
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Duyệt</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Xem</th>                               
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Thẻ</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Khách hàng</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Mã đơn hàng</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Số lượng</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Tổng tiền</th>                                        
-                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Trạng thái</th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Trạng thái</th>                                        
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Xem</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Ngày</th>
-                                    </tr>
-                                </thead>
+                                    </tr>                              
                                 <tbody>
                                     @if($bills)
                                     @foreach($bills as $bill)
                                     <tr>      
+                                        <td class="align-middle">
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" onchange="updateStatus(this)" value="{{ $bill->id }}" type="checkbox" @if($bill->status == 1) checked disabled @endif>
+                                            </div>
+                                        </td>
                                         <td class="align-middle">
                                             <a href="{{ route('show.card_bill', $bill->id) }}" target="_blank" class="text-secondary font-weight-bold text-xs">
                                                 <span class="badge bg-gradient-info">Hóa đơn</span>
@@ -89,7 +115,7 @@
                                         <td class="align-middle text-center text-sm">
                                             <p class="text-xs font-weight-bold mb-0">{{ number_format($bill->price_total) }} VNĐ</p>
                                         </td>
-                                        <td class="align-middle text-center text-sm">
+                                        <td class="align-middle text-center text-sm" id="load{{ $bill->id }}">
                                             @if($bill->status == 1)
                                             <span class="badge badge-sm bg-gradient-success">Đã thanh toán</span>
                                             @else
@@ -139,8 +165,12 @@
                                 </tbody>
                             </table>
                         </div>
+                        <form action="{{ route('cardbill.export') }}" method="post" id="form_export">
+                            @csrf
+                           <input type="hidden" name="date_export" id="date_export">
+                        </form>
                         <div class="col-lg-4 mt-md-0 mt-3" style="margin-left: 20px">
-                            <button class="btn bg-gradient-info mt-lg-7 mb-0" onclick="window.print()" type="button" name="button">Xuất</button>
+                            <button class="btn bg-gradient-info mt-lg-7 mb-0" type="submit" name="button" id="btn_export">Xuất Excel</button>
                         </div>
                     </div>
                 </div>
@@ -157,6 +187,43 @@
       searchable: false,
       fixedHeight: true
     });
+
+    $('#btn_export').on('click', function(){ 
+        $('#date_export').attr('value',$('#date_picker').val());
+        $('#form_export').submit();
+    })
+
+    function updateStatus(el){
+        var count = "{{ $count }}";
+        if(el.checked){
+            var status = 1;
+            $(el).attr('disabled', true);
+        }
+        else{
+            var status = 0;
+        }    
+        $.ajax({
+            method: 'get',
+            url: "{{ route('cardbill.update.status') }}",
+            data: {
+                _token:'{{ csrf_token() }}',
+                id: el.value,
+                status: status,
+            },
+            success: function(data) {
+                if (data == 1) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Duyệt thành công!',
+                        showConfirmButton: false,
+                        timer: 2000
+                    })
+                    $('#load'+el.value).html(`<span class="badge badge-sm bg-gradient-success">Đã thanh toán</span>`);
+                }
+            }
+        })
+    }
+    
 </script>
 <script type="text/javascript">
     if (document.querySelector('.datepicker')) {
@@ -165,5 +232,5 @@
         dateFormat: 'd/m/Y'
       });       
     }
-  </script>
+</script>
 @endsection

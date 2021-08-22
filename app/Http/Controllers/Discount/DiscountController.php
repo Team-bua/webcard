@@ -32,7 +32,9 @@ class DiscountController extends Controller
     {
         $types = $this->repository->getDiscountType();
         $discount = $this->repository->getDiscount();
-        return view('layout_admin.discount.discount', compact('types','discount'));
+        $used = $this->repository->getUsed();
+        $not_use = $this->repository->getNotUse();
+        return view('layout_admin.discount.discount', compact('types','discount','used','not_use'));
     }
 
     public function createDiscount(Request $request)

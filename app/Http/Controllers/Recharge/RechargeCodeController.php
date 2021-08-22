@@ -21,7 +21,7 @@ class RechargeCodeController extends Controller
     /**
      * Create a new PostController instance.
      *
-     * @param  \App\Repositories\UserRepository $repository
+     * @param  \App\Repositories\RechargeCodeRepository $repository
      *
      */
     public function __construct(RechargeCodeRepository $repository)
@@ -32,7 +32,9 @@ class RechargeCodeController extends Controller
     public function viewRechargeCode(Request $request)
     {
         $recharge_code = $this->repository->viewRechargeCode();
-        return view('layout_admin.recharge.recharge_code', compact('recharge_code'));
+        $used = $this->repository->getUsed();
+        $not_use = $this->repository->getNotUse();
+        return view('layout_admin.recharge.recharge_code', compact('recharge_code','used','not_use'));
     }
 
     public function createRechargeCode(Request $request)
@@ -40,16 +42,6 @@ class RechargeCodeController extends Controller
         $this->repository->createRechargeCode($request);
         return redirect()->back()->with('information', 'Thêm mã nạp tiền thành công');
     }
-
-    // public function updateStatus(Request $request)
-    // {
-    //     $recharge_code = RechargeCode::find($request->id);
-    //     $recharge_code->status = $request->status;
-    //     if($recharge_code->save()){
-    //         return 1;
-    //     }
-    //     return 0;
-    // }
 
     public function destroy(Request $request)
     {

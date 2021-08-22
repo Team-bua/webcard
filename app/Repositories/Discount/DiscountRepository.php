@@ -24,6 +24,16 @@ class DiscountRepository
       return Discount::orderBy('created_at', 'desc')->get();
    }
 
+   public function getUsed()
+    {
+        return Discount::where('status', 1)->count();
+    }
+
+    public function getNotUse()
+    {
+        return Discount::where('status', 0)->count();
+    }
+
    public function createDiscount($request)
    {
       $discount_code = explode('  ', preg_replace("/\r|\n/", " ", $request->discount_code));
