@@ -21,22 +21,22 @@
         <div class="row">
             <div class="col-12">
                 <div class="card mb-4">
-
+                    @if (session('information'))
+                    <div class="alert alert-success"><b>{{ session('information') }}</b></div>
+                    @endif
+                    <div class="card-header pb-0">
+                        <a href="#" class="delete_all">
+                            <button class="btn bg-gradient-danger mt-4 w-12" style="float: right;;margin-bottom:5px;margin-left:5px">
+                                <i class="fa fa-trash">&nbsp; Xóa all </i></button>
+                        </a>
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#add_code">
+                            <button class="btn bg-gradient-primary mt-4 w-12" style="float: right;;margin-bottom:5px;margin-left:5px">
+                                <i class="fa fa-plus">&nbsp; Thêm mã </i></button>
+                        </a>
+                    </div>
                     <div class="card-body px-0 pt-0 pb-2">
-                            @if (session('information'))
-                            <div class="alert alert-success"><b>{{ session('information') }}</b></div>
-                            @endif
                         <div class="table-responsive p-0">
-                            <div class="card-header pb-0">
-                                <a href="#" class="delete_all">
-                                    <button class="btn bg-gradient-danger mt-4 w-12" style="float: right;;margin-bottom:5px;margin-left:5px">
-                                        <i class="fa fa-trash">&nbsp; Xóa all </i></button>
-                                </a>
-                                <a href="#" data-bs-toggle="modal" data-bs-target="#add_code">
-                                    <button class="btn bg-gradient-primary mt-4 w-12" style="float: right;;margin-bottom:5px;margin-left:5px">
-                                        <i class="fa fa-plus">&nbsp; Thêm mã </i></button>
-                                </a>
-                            </div>
+                       
                             <table class="table table-flush" id="datatable-basic">
                                 <thead class="thead-light">
                                     <tr>
