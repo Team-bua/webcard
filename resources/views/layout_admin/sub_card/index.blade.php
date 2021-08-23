@@ -25,38 +25,38 @@
                     <div class="card-body px-0 pt-0 pb-2">
                         <div class="table-responsive p-0">
                             <div class="card-header pb-0">
-                                <a href="{{ route('partners.create') }}">
+                                <a href="{{ route('brand.create') }}">
                                     <button class="btn bg-gradient-primary mt-4 w-12" style="float: right;;margin-bottom:5px;margin-left:5px;">
-                                        <i class="fa fa-plus">&nbsp; Thêm đối tác </i></button>
+                                        <i class="fa fa-plus">&nbsp; Thêm thương hiệu </i></button>
                                 </a>
                             </div>
                             <table class="table table-flush" id="datatable-basic">
                                 <thead class="thead-light">
                                     <tr>
-                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Logo</th>
-                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Đường dẫn</th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Loại thẻ</th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Thương hiệu</th>
                                         <th class="text-secondary"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @if($partners)
-                                    @foreach ($partners as $partner)
+                                    @if(isset($sub_card_type))
+                                    @foreach ($sub_card_type as $sub_card)
                                     <tr>
                                         <td class="align-middle text-center">
-                                            <img width="150px" height="80" src="{{ asset($partner->image ? $partner->image : 'dashboard/assets/img/no_img.jpg') }}">
+                                            <p class="text-xs font-weight-bold mb-0">{{ $sub_card->card_type_id }}</p>
                                         </td>
                                         <td class="align-middle text-center text-sm">
-                                        <a href="{{ $partner->link ? $partner->link : '#' }}" target="_blank"><p class="text-xs font-weight-bold mb-0">{{ $partner->link ? $partner->link : '' }}</p></a>
+                                            <p class="text-xs font-weight-bold mb-0">{{ $sub_card->name }}</p>
                                         </td>
                                         <td class="align-middle">
-                                            <a href="{{ route('partners.edit', $partner->id) }}" class="text-secondary font-weight-bold text-xs">
+                                            <a href="{{ route('brand.edit', $sub_card->id) }}" class="text-secondary font-weight-bold text-xs">
                                                 <span class="badge bg-gradient-info">Sửa</span>
                                             </a> || 
-                                            <a href="javascript:;" delete_id="{{ $partner->id }}" class="text-secondary font-weight-bold text-xs simpleConfirm" >
+                                            <a href="javascript:;" delete_id="{{ $sub_card->id }}" class="text-secondary font-weight-bold text-xs simpleConfirm" >
                                                 <span class="badge bg-gradient-danger">Xóa</span>
                                             </a>
                                         </td>
-                                    </tr>
+                                    </tr>                                                                       
                                     @endforeach
                                     @endif
                                 </tbody>
@@ -82,7 +82,7 @@
             var id = $(this).attr('delete_id');
             var that = $(this);
             swal.fire({
-                title: "Bạn có muốn xóa đối tác này?",
+                title: "Bạn có muốn xóa thương hiệu này?",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -93,7 +93,7 @@
                 if (result.value) {
                     $.ajax({
                         method: 'get',
-                        url: "{{ route('partners.destroy') }}",
+                        url: "{{ route('brand.destroy') }}",
                         data: {
                             id: id
                         },

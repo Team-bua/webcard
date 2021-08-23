@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\BillController;
 use App\Http\Controllers\Card\CardController;
+use App\Http\Controllers\Card\SubCardTypeController;
 use App\Http\Controllers\Discount\DiscountController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\LoginController;
@@ -91,6 +92,13 @@ Route::group(['middleware' => 'user'], function () {
     Route::post('/recharge-create',[RechargeCodeController::class,'createRechargeCode'])->name('rechargecode.create');
     Route::get('/recharge-destroy',[RechargeCodeController::class,'destroy'])->name('rechargecode.destroy');
     Route::get('/recharge-destroy-all',[RechargeCodeController::class,'deleteAll'])->name('rechargecode.destroy.all');
+    //View sub card
+    Route::get('/brand',[SubCardTypeController::class,'index'])->name('brand');
+    Route::get('/brand-create',[SubCardTypeController::class,'create'])->name('brand.create');
+    Route::post('/brand-save',[SubCardTypeController::class,'store'])->name('brand.store');
+    Route::get('/brand-edit/{id}',[SubCardTypeController::class,'edit'])->name('brand.edit');
+    Route::post('/brand-update/{id}',[SubCardTypeController::class,'update'])->name('brand.update');
+    Route::get('/brand-destroy',[SubCardTypeController::class,'destroy'])->name('brand.destroy');
 });
 
 Route::group(['middleware' => 'login'], function () {

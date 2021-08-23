@@ -28,4 +28,9 @@ class Card extends Model
     {
         return $this->belongsTo(CardBill::class,'card_id', 'id');
     }
+
+    public function sub_card_type()
+    {
+        return $this->belongsTo(SubCardType::class,'sub_card_type_id', 'id');
+    }
 }
