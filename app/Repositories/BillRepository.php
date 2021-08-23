@@ -81,5 +81,24 @@ class BillRepository
                     ->get();
         return $all_bill;
     }
-
+    
+    public function updateStatusAll($request)
+    {   
+        $card_bill = CardBill::where('status', 0)
+                            ->when(($request->date_check != null && isset(explode(' to ',$request->date_check)[1]) == true), function ($query) use ($request){
+                                $query->where(function ($q) use ($request) {
+                                    $q->whereRaw('DATE(card_bills.created_at) BETWEEN "'.date('Y-m-d', strtotime(str_replace('/', '-', explode(' to ', $request->date_check)[0]))).'" 
+                                    AND "'.date('Y-m-d', strtotime(str_replace('/', '-', explode(' to ', $request->date_check)[1]))).'"');
+                                });
+                            })
+                            ->when(($request->date_check != null && isset(explode(' to ',$request->date_check)[1]) == false), function ($query) use ($request){
+                                $query->whereDate('card_bills.created_at', '=', date('Y-m-d', strtotime(str_replace('/', '-',$request->date_check))));
+                            })
+                            ->get();
+        foreach($card_bill as $bill){
+            $bill->status = 1;
+            $bill->save();
+        }
+        return redirect()->back()->with('information', 'Duyệt tất cả đơn hàng thành công');
+    }
 }

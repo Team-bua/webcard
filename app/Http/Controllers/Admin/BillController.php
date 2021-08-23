@@ -102,11 +102,6 @@ class BillController extends Controller
 
     public function updateStatusAll(Request $request)
     {
-        $card_bill = CardBill::where('status', 0)->get();
-        foreach($card_bill as $bill){
-            $bill->status = 1;
-            $bill->save();
-        }
-        return redirect()->back()->with('information', 'Duyệt tất cả đơn hàng thành công');
+       return $this->repository->updateStatusAll($request);
     }
 }

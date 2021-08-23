@@ -50,11 +50,12 @@
                     </form>
                     <div class="card-body px-0 pt-0 pb-2">
                         <div class="table-responsive p-0">
-                            <form action="{{ route('cardbill.update.status.all') }}" method="post">
+                            <form action="{{ route('cardbill.update.status.all') }}" method="post" id="form_check">
                                 @csrf
-                                <button class="btn bg-gradient-primary mt-4 w-12" style="float: right;;margin-bottom:5px;margin-left:5px;">
-                                    <i class="fa fa-check">&nbsp; Duyệt tất cả đơn </i></button>
+                                <input type="hidden" name="date_check" id="date_check">
                             </form>
+                            <button class="btn bg-gradient-primary mt-4 w-12" id="btn_check" style="float: right;;margin-bottom:5px;margin-left:5px;">
+                                <i class="fa fa-check">&nbsp; Duyệt tất cả đơn </i></button>
                             <table class="table table-flush" id="datatable-basic">
                                     <tr>         
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Duyệt</th>
@@ -191,6 +192,11 @@
     $('#btn_export').on('click', function(){ 
         $('#date_export').attr('value',$('#date_picker').val());
         $('#form_export').submit();
+    })
+
+    $('#btn_check').on('click', function(){ 
+        $('#date_check').attr('value',$('#date_picker').val());
+        $('#form_check').submit();
     })
 
     function updateStatus(el){
