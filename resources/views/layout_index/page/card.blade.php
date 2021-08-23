@@ -68,6 +68,10 @@ h1 a {
   transition: all 0.4s ease;
 }
 
+.accordion li {
+    margin-left: -40px;
+}
+
 .accordion li:last-child .link { border-bottom: 0; }
 
 .accordion li i {
@@ -109,7 +113,10 @@ h1 a {
   font-size: 14px;
 }
 
-.submenu li { border-bottom: 1px solid #4b4a5e; }
+.submenu li { 
+    border-bottom: 1px solid #4b4a5e; 
+    margin-left: -40px;
+}
 
 .submenu a {
   display: block;
@@ -145,12 +152,12 @@ h1 a {
                 <input style="display: none" type="text" id="discount" value="">
                 <input style="display: none" type="text" id="discount_num" name="discount_num" value="">
             </form>
-            <div class="row">
-                <div class="col-lg-3 col-md-8 col-sm-12 col-xs-12" style="margin-top: 20px">
-                    <h6 class="text_td_thegame_ud" style="margin-top: 0;">Danh sách loại thẻ</h6>
-                    <ul id="accordion" class="accordion">
+            <div class="row" style="margin-top: 20px">
+                <div class="col-lg-3 col-md-8 col-sm-12 col-xs-12" >
+                    <h6 class="text_td_thegame_ud" style="margin-top: 0px">Danh sách loại thẻ</h6>
+                    <ul id="accordion" class="accordion" style="margin-top: -25px">
                         <li>
-                          <div class="link">Web Design<i class="fa fa-chevron-down"></i></div>
+                          <div class="link">Web Design<i class="uil uil-angle-down"></i></div>
                           <ul class="submenu">
                             <li><a href="#">Photoshop</a></li>
                             <li><a href="#">HTML</a></li>
@@ -158,7 +165,7 @@ h1 a {
                           </ul>
                         </li>
                         <li>
-                          <div class="link"><i class="fa fa-code"></i>Coding<i class="fa fa-chevron-down"></i></div>
+                          <div class="link">Coding<i class="uil uil-angle-down"></i></div>
                           <ul class="submenu">
                             <li><a href="#">Javascript</a></li>
                             <li><a href="#">jQuery</a></li>
@@ -166,7 +173,7 @@ h1 a {
                           </ul>
                         </li>
                         <li>
-                          <div class="link"><i class="fa fa-mobile"></i>Devices<i class="fa fa-chevron-down"></i></div>
+                          <div class="link">Devices<i class="uil uil-angle-down"></i></div>
                           <ul class="submenu">
                             <li><a href="#">Tablet</a></li>
                             <li><a href="#">Mobile</a></li>
@@ -174,7 +181,7 @@ h1 a {
                           </ul>
                         </li>
                         <li>
-                          <div class="link"><i class="fa fa-globe"></i>Global<i class="fa fa-chevron-down"></i></div>
+                          <div class="link">Global<i class="uil uil-angle-down"></i></div>
                           <ul class="submenu">
                             <li><a href="#">Google</a></li>
                             <li><a href="#">Bing</a></li>
@@ -183,11 +190,8 @@ h1 a {
                         </li>
                       </ul>
                 </div>
-                <div class="col-lg-6">
-                    <!-- /.nav-tabs -->
-                    <div class="tab-content" style="margin-top: 20px">
-                        <div class="tab-pane fade active show" id="tab1-1">
-                            <h6 class="text_td_thegame_ud" style="margin-top: 0;">chọn loại thẻ</h6>
+                <div class="col-lg-6 col-md-8 col-sm-12 col-xs-12">
+                    <h6 class="text_td_thegame_ud" style="margin-top: 0;">chọn loại thẻ</h6>
                             <div class="tab-wrapper">
                                 <ul class="list_all_the_game_udrt">
                                     @if (isset($cards))
@@ -245,35 +249,9 @@ h1 a {
                             </div>
                             <div class="clear"></div>
                             <h6 class="text_td_thegame_ud" style="margin-bottom:0;"></h6>
-                        </div>
-                        <!--/.tab-pane -->
-                        <div class="tab-pane fade" id="tab1-2">
-                            <p>Sed posuere consectetur est at lobortis. Vivamus sagittis lacus vel augue laoreet rutrum
-                                faucibus dolor auctor. Maecenas faucibus mollis interdum. Maecenas faucibus mollis interdum.
-                                Sed posuere consectetur est at lobortis. Vestibulum id ligula porta felis euismod.</p>
-                            <p> Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor vel scelerisque nisl
-                                consectetur et.</p>
-                            <p>Maecenas faucibus mollis interdum. Sed posuere consectetur est at lobortis. Maecenas sed diam
-                                eget risus varius blandit sit amet non magna. Donec id elit non mi porta gravida at eget
-                                metus. Curabitur blandit tempus porttitor. Nullam id dolor id nibh ultricies vehicula ut id
-                                elit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus.</p>
-                        </div>
-                        <!--/.tab-pane -->
-                        <div class="tab-pane fade" id="tab1-3">
-                            <p>Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo,
-                                tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Cras mattis
-                                consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris
-                                condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-                            <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Nullam id dolor id nibh
-                                ultricies vehicula ut id elit. Aenean eu leo quam. Pellentesque ornare sem lacinia quam
-                                venenatis vestibulum. Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
-                        </div>
-                        <!--/.tab-pane -->
-                    </div>
-                    <!-- /.tab-content -->
                 </div>
                 <!--/column -->
-                <div class="col-lg-3 col-md-8 col-sm-12 col-xs-12" style="margin-top: 20px">
+                <div class="col-lg-3 col-md-8 col-sm-12 col-xs-12">
                     <h6 class="text_td_thegame_ud" style="margin-top: 0;">Chi tiết giao dịch</h6>
                     <div class="table-responsive">
                         <table class="table align-items-center mb-0">
