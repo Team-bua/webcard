@@ -85,7 +85,7 @@ h1 a {
   transition: all 0.4s ease;
 }
 
-.accordion li i.fa-chevron-down {
+.accordion li i.uil-angle-down {
   right: 12px;
   left: auto;
   font-size: 16px;
@@ -95,7 +95,7 @@ h1 a {
 
 .accordion li.open i { color: #b63b4d; }
 
-.accordion li.open i.fa-chevron-down {
+.accordion li.open i.uil-angle-down {
   -webkit-transform: rotate(180deg);
   -ms-transform: rotate(180deg);
   -o-transform: rotate(180deg);
