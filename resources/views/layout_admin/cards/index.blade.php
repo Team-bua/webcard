@@ -43,6 +43,7 @@
                                 <thead class="thead-light">
                                     <tr>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Loại thẻ</th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Thương hiệu</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Giá</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Thêm mã</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Chi tiết kho thẻ</th>
@@ -64,6 +65,9 @@
                                                     <p class="text-xs text-secondary mb-0">{{ $card->card_type }}</p>
                                                 </div>
                                             </div>
+                                        </td>
+                                        <td class="align-middle text-center">
+                                            <span class="text-secondary text-xs font-weight-bold">{{ $card->sub_card_type_id }}</span>
                                         </td>
                                         <td class="align-middle text-center text-sm">
                                             <ul style="list-style-type: none; padding: 0; margin: 0;">

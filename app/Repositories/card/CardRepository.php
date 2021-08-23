@@ -6,6 +6,7 @@ use App\Models\Card;
 use App\Models\CardBill;
 use App\Models\CardStore;
 use App\Models\CardType;
+use App\Models\SubCardType;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -16,6 +17,11 @@ class CardRepository
     public function getCardTypeForCard()
     {
         return CardType::all();
+    }
+
+    public function getSubCardType()
+    {
+        return SubCardType::all();
     }
 
     public function GetCardStoreToIndex($name, $price)
@@ -119,6 +125,7 @@ class CardRepository
 
         $card->name = $request->name_card;
         $card->card_type = $request->type_card;
+        $card->sub_card_type_id = $request->sub_card_type;
         $card->discount = json_encode($request->discount);
         $card->price = json_encode($request->price);
 
@@ -167,6 +174,7 @@ class CardRepository
 
         $card->name = $request->name_card;
         $card->card_type = $request->type_card;
+        $card->sub_card_type_id = $request->sub_card_type;
         $card->price = json_encode($request->price);
         $card->discount = json_encode($request->discount);
 

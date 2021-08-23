@@ -17,7 +17,7 @@ class CreateCardsTable extends Migration
             $table->id();
             $table->string('name')->nullable();
             $table->string('card_type')->nullable();
-            $table->integer('sub_card_type_id')->nullable();
+            $table->string('sub_card_type_id')->nullable();
             $table->string('price')->nullable();
             $table->string('image')->nullable();
             $table->string('discount')->default(0);

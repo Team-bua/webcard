@@ -9,23 +9,47 @@
         <p style="color:red; font-size: 13px; margin-left: 10px">{{ $message }}</p>
         @enderror
     </div>
-    <div class="form-group">
-        <label class="form-control-label" for="basic-url">Loại thẻ</label>
-        <select class="form-control" id="type_card" name="type_card" style="width: 200px;" required>
-            @if($card_types && !isset($card))
-            @foreach($card_types as $t)
-            <option>{{ $t->name }}</option>
-            @endforeach
-            @elseif ($card)
-            @foreach($card_types as $t)
-            @if($t->name == $card->card_type)
-            <option value="{{ $card->card_type }}" selected>{{ $card->card_type }}</option>
-            @else
-            <option value="{{ $t->name }}">{{ $t->name }}</option>
-            @endif
-            @endforeach
-            @endif
-        </select>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="form-control-label" for="basic-url">Loại thẻ</label>
+                <select class="form-control" id="type_card" name="type_card" style="width: 200px;" required>
+                    @if($card_types && !isset($card))
+                    @foreach($card_types as $t)
+                    <option>{{ $t->name }}</option>
+                    @endforeach
+                    @elseif ($card)
+                    @foreach($card_types as $t)
+                    @if($t->name == $card->card_type)
+                    <option value="{{ $card->card_type }}" selected>{{ $card->card_type }}</option>
+                    @else
+                    <option value="{{ $t->name }}">{{ $t->name }}</option>
+                    @endif
+                    @endforeach
+                    @endif
+                </select>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="form-control-label" for="basic-url">Thương hiệu</label>
+                <select class="form-control" id="sub_card_type" name="sub_card_type" style="width: 200px;" required>
+                    @if($sub_card_type && !isset($card))
+                    @foreach($sub_card_type as $t)
+                    <option>{{ $t->name }}</option>
+                    @endforeach
+                    @elseif ($card)
+                    @foreach($sub_card_type as $t)
+                    @if($t->name == $card->card_type_id)
+                    <option value="{{ $card->card_type_id }}" selected>{{ $card->card_type_id }}</option>
+                    @else
+                    <option value="{{ $t->name }}">{{ $t->name }}</option>
+                    @endif
+                    @endforeach
+                    @endif
+                </select>
+            </div>
+        </div>
     </div>
     <!-- <div class="form-group">
         <label class="form-control-label" for="basic-url">Giảm giá</label>

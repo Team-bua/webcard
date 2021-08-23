@@ -23,7 +23,8 @@ class CardController extends Controller
     public function AddCard()
     {
         $card_types = $this->repository->getCardTypeForCard();
-        return view('layout_admin.cards.create', compact('card_types'));
+        $sub_card_type = $this->repository->getSubCardType();
+        return view('layout_admin.cards.create', compact('card_types', 'sub_card_type'));
     }
 
     public function EditCardStore($id)
@@ -68,7 +69,8 @@ class CardController extends Controller
     {
         $card = $this->repository->getCardToEdit($id);
         $card_types = $this->repository->getCardTypeForCard();
-        return view('layout_admin.cards.edit', compact('card_types', 'card'));
+        $sub_card_type = $this->repository->getSubCardType();
+        return view('layout_admin.cards.edit', compact('card_types', 'card', 'sub_card_type'));
     }
 
     public function GetCardToIndex()
