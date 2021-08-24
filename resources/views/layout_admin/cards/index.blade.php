@@ -67,7 +67,7 @@
                                             </div>
                                         </td>
                                         <td class="align-middle text-center">
-                                            <span class="text-secondary text-xs font-weight-bold">{{ $card->sub_card_type_id }}</span>
+                                            <span class="text-secondary text-xs font-weight-bold">{{ $card->sub_card_type->name }}</span>
                                         </td>
                                         <td class="align-middle text-center text-sm">
                                             <ul style="list-style-type: none; padding: 0; margin: 0;">

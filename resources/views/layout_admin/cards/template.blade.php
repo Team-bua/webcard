@@ -40,10 +40,10 @@
                     @endforeach
                     @elseif ($card)
                     @foreach($sub_card_type as $t)
-                    @if($t->name == $card->card_type_id)
-                    <option value="{{ $card->card_type_id }}" selected>{{ $card->card_type_id }}</option>
+                    @if($t->id == $card->sub_card_type_id)
+                    <option value="{{ $card->sub_card_type_id }}" selected>{{ $card->sub_card_type->name }}</option>
                     @else
-                    <option value="{{ $t->name }}">{{ $t->name }}</option>
+                    <option value="{{ $t->id }}">{{ $t->name }}</option>
                     @endif
                     @endforeach
                     @endif
