@@ -15,4 +15,9 @@ class SubCardType extends Model
     {
         return $this->hasMany(Card::class,'sub_card_type_id', 'id');
     }
+
+    public function card_type()
+    {
+        return $this->belongsTo(CardType::class,'card_type_id', 'id');
+    }
 }

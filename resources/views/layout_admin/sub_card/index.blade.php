@@ -43,7 +43,7 @@
                                     @foreach ($sub_card_type as $sub_card)
                                     <tr>
                                         <td class="align-middle text-center">
-                                            <p class="text-xs font-weight-bold mb-0">{{ $sub_card->card_type_id }}</p>
+                                            <p class="text-xs font-weight-bold mb-0">{{ $sub_card->card_type->name }}</p>
                                         </td>
                                         <td class="align-middle text-center text-sm">
                                             <p class="text-xs font-weight-bold mb-0">{{ $sub_card->name }}</p>
