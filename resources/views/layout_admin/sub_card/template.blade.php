@@ -23,5 +23,9 @@
         <span class="input-group-text"><i class="fa fa-paint-brush"></i></span>
         <input type="text" class="form-control" id="name" name="name" value="{{ isset($sub_card_type->name) ? $sub_card_type->name : '' }}" placeholder="Tên thương hiệu">                                   
         </div>
+         @error('name')
+            <p style="color:red; font-size: 13px; margin-left: 5px">{{ $message }}</p>
+        @enderror
     </div>
+   
 </div>

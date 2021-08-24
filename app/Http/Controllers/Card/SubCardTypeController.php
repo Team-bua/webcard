@@ -31,6 +31,15 @@ class SubCardTypeController extends Controller
 
     public function store(Request $request)
     {
+        $this->validate(
+            $request,
+            [
+                'name' => 'required',
+            ],
+            [
+                'name.required' => 'Vui lòng nhập tên thương hiệu',
+            ]
+        );
         $this->repository->store($request);
         return redirect()->back()->with('information', 'Thêm thương hiệu thành công');
     }
@@ -44,6 +53,15 @@ class SubCardTypeController extends Controller
 
     public function update(Request $request, $id)
     {
+        $this->validate(
+            $request,
+            [
+                'name' => 'required',
+            ],
+            [
+                'name.required' => 'Vui lòng nhập tên thương hiệu',
+            ]
+        );
         $this->repository->update($request, $id);
        return redirect()->back()->with('information', 'Cập nhật thương hiệu thành công');
     }
