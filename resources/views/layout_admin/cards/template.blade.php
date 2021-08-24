@@ -16,7 +16,7 @@
                 <select class="form-control" id="type_card" name="type_card" style="width: 200px;" required>
                     @if($card_types && !isset($card))
                     @foreach($card_types as $t)
-                    <option>{{ $t->name }}</option>
+                    <option value="{{ $t->id }}">{{ $t->name }}</option>
                     @endforeach
                     @elseif ($card)
                     @foreach($card_types as $t)
@@ -36,7 +36,7 @@
                 <select class="form-control" id="sub_card_type" name="sub_card_type" style="width: 200px;" required>
                     @if($sub_card_type && !isset($card))
                     @foreach($sub_card_type as $t)
-                    <option>{{ $t->name }}</option>
+                    <option value="{{ $t->id }}">{{ $t->name }}</option>
                     @endforeach
                     @elseif ($card)
                     @foreach($sub_card_type as $t)

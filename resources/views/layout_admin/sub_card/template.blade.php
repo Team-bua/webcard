@@ -4,19 +4,19 @@
         <select class="form-control" id="type_card" name="type_card" style="width: 200px;" required>
             @if($card_types && !isset($sub_card_type))
             @foreach($card_types as $t)
-            <option>{{ $t->name }}</option>
+            <option value="{{ $t->id }}">{{ $t->name }}</option>
             @endforeach
             @elseif ($sub_card_type)
             @foreach($card_types as $t)
-            @if($t->name == $sub_card_type->card_type_id)
+            @if($t->id == $sub_card_type->card_type_id)
             <option value="{{ $sub_card_type->card_type_id }}" selected>{{ $sub_card_type->card_type_id }}</option>
             @else
-            <option value="{{ $t->name }}">{{ $t->name }}</option>
+            <option value="{{ $t->id }}">{{ $t->name }}</option>
             @endif
             @endforeach
             @endif
         </select>
-    </div>
+    </div>  
     <div class="form-group">
         <label class="form-control-label" for="basic-url">Tên thương hiệu</label>
         <div class="input-group">
