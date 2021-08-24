@@ -71,7 +71,7 @@
             html += "</div>";
             html += '</div>';
             html += '</div>';
-            html += '<div class="col-md-2">';
+            html += '<div class="col-md-3">';
             html += '<div class="form-group">';
             html += '<label class="form-control-label" for="basic-url">Giảm giá: </label>';
             html += '<div class="input-group" style="width: 100%;">';
