@@ -67,7 +67,7 @@
                                                 <a class="eye_hide hide_pass{{ $user->id }}" id="{{ $user->id }}" style="display: none"><i class="fa fa-eye-slash" style="margin-top: 10px"></i></a>
                                                 <input type="hidden" id="pass_{{ $user->id }}" value="{{ $user->recovery_password }}"/>
                                                 @else
-                                                <label class="text-xs font-weight-bold mb-0">Faceboook</label>&nbsp;                                        
+                                                <label class="text-xs font-weight-bold mb-0">Faceboook or Google</label>&nbsp;                                        
                                                 @endif
                                             </td>
                                             <td class="align-middle text-center text-sm">
