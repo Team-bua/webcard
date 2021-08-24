@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Card;
 
 use App\Http\Controllers\Controller;
+use App\Models\Card;
 use App\Models\SubCardType;
 use App\Repositories\Card\SubCardTypeRepository;
 use Illuminate\Http\Request;
@@ -49,10 +50,17 @@ class SubCardTypeController extends Controller
 
     public function destroy(Request $request)
      {
-         $sub_card = SubCardType::find($request->id);
-         $sub_card->delete();      
-             return response()->json([
-               'success' => true
-           ]);
+         $card = Card::where('sub_card_type_id', $request->id)->count();
+         if($card == 0){
+            $sub_card = SubCardType::find($request->id);
+            $sub_card->delete();      
+                return response()->json([
+                  'success' => true
+              ]);
+         }else{
+            return response()->json([
+                'success' => false
+            ]);
+         }       
      }
 }

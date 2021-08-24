@@ -105,6 +105,11 @@
                                     'Xóa thành công.',
                                     'success'
                                 )
+                            }else {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Thẻ vẫn còn tồn tại!',
+                                })
                             }
                         }
                     })
