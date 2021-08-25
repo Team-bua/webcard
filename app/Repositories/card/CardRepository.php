@@ -74,10 +74,9 @@ class CardRepository
         if(isset(Auth::user()->id)){
             if(in_array($request->subject, json_decode($card->price)) == true && in_array($request->discount_num, json_decode($card->discount)) == true){
                 if($request->discount_code != null){
-                    $discount_info = Discount::where('code', $request->discount_code)->first();
-                    
+                    $discount_info = Discount::where('code', $request->discount_code)->first();  
                     if($discount_info != null){
-                        $discount_code_in_bill = $discount_info->name;
+                        $discount_code_in_bill = $request->discount_code;
                         if($discount_info->discount_type == 'Cố định')
                         {
                             $discount_info_in_bill = number_format($discount_info->price).' VNĐ';
