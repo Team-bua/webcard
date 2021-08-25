@@ -59,7 +59,7 @@
       $('#fImages').click();
     });
 
-    $("div.alert").delay(2000).slideUp();
+    $("div.alert").delay(3000).slideUp();
   </script>
   <script type="text/javascript">
     $(document).ready(function () {
