@@ -76,7 +76,7 @@
                                                 <p class="text-xs font-weight-bold mb-0">{{ isset($bill->discount_code) ? $bill->discount_code : '' }}</p>
                                             </td>
                                             <td class="align-middle text-center text-sm">
-                                                <p class="text-xs font-weight-bold mb-0">{{ isset($bill->discount_info) ? $bill->discount_info : '' }} %</p>
+                                                <p class="text-xs font-weight-bold mb-0">{{ isset($bill->discount_info) ? $bill->discount_info : '' }}</p>
                                             </td>
                                             <td class="align-middle text-center">
                                                 <span class="text-secondary text-xs font-weight-bold">{{ date('d/m/Y', strtotime(str_replace('/', '-', $bill->created_at))) }}</span>
