@@ -80,13 +80,32 @@ class CardRepository
                     if($discount_info != null){
                         if($discount_info->discount_type == 'Cố định')
                         {
-                            $discount = $request->subject - $discount_info->price;
+                            $dc = $request->subject * $request->discount_num / 100;
+                            $dc_code = $discount_info->price;
+                            if($dc < $dc_code)
+                            {
+                                $discount = $request->subject - $dc_code;  
+                            }
+                            else
+                            {
+                                $discount = $request->subject - $dc;
+                            }
                             $discount_info->status = 1;
                             $discount_info->save();
+                            
                         }
                         else if($discount_info->discount_type == 'Phần trăm')
                         {
-                            $discount = $request->subject - ($request->subject * $discount_info->price / 100);
+                            $dc = $request->subject * $request->discount_num / 100;
+                            $dc_code = $request->subject * $discount_info->price / 100;
+                            if($dc < $dc_code)
+                            {
+                                $discount = $request->subject - $dc_code;  
+                            }
+                            else
+                            {
+                                $discount = $request->subject - $dc;
+                            }
                             $discount_info->status = 1;
                             $discount_info->save();
                         }
