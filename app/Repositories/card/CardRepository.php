@@ -76,10 +76,10 @@ class CardRepository
                 if($request->discount_code != null){
                     $discount_info = Discount::where('code', $request->discount_code)->first();
                     $discount_code_in_bill = $discount_info->name;
-                    $discount_info_in_bill = $discount_info->price;
                     if($discount_info != null){
                         if($discount_info->discount_type == 'Cố định')
                         {
+                            $discount_info_in_bill = number_format($discount_info->price).' VNĐ';
                             $dc = $request->subject * $request->discount_num / 100;
                             $dc_code = $discount_info->price;
                             if($dc < $dc_code)
@@ -96,6 +96,7 @@ class CardRepository
                         }
                         else if($discount_info->discount_type == 'Phần trăm')
                         {
+                            $discount_info_in_bill = $discount_info->price.' %';
                             $dc = $request->subject * $request->discount_num / 100;
                             $dc_code = $request->subject * $discount_info->price / 100;
                             if($dc < $dc_code)
@@ -128,7 +129,7 @@ class CardRepository
                         } 
                     }
                 }else{
-                    $discount_info_in_bill = $request->discount_num;
+                    $discount_info_in_bill = $request->discount_num.' %';
                     $discount = $request->subject - ($request->subject * $request->discount_num / 100);
                 } 
                 $card_codes = CardStore::where('name', strtolower($card->name))
