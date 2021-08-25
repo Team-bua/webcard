@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Models\Card;
+use App\Models\CardType;
+use App\Models\SubCardType;
 use App\Models\Test;
 use App\Models\User;
 use App\Repositories\FrontendRepository;
@@ -107,7 +109,18 @@ class FrontendController extends Controller
     public function getCardToView()
     {
         $cards = Card::all();
-        return view('layout_index.page.card', compact('cards'));
+        $card_type = CardType::all();
+        $arr_sub_card_type = [];
+        $sub_card_type_all = SubCardType::all();
+        $i = 0;
+        foreach ($sub_card_type_all as $sub_type){
+            foreach ($card_type as $type){
+                if($sub_type->card_type_id == $type->id){
+                    $arr_sub_card_type[$type->name.'-'.$i++] =  $sub_type->name;
+                }    
+            }
+        }
+        return view('layout_index.page.card', compact('cards', 'card_type', 'arr_sub_card_type'));
     }
 
     public function transtionInfo(Request $request)
