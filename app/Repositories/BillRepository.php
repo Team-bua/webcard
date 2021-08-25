@@ -101,4 +101,13 @@ class BillRepository
         }
         return redirect()->back()->with('information', 'Duyệt tất cả đơn hàng thành công');
     }
+    
+    public function deleteCardBill($request)
+    {
+        $card_bill = CardBill::find($request->id);
+        $card_bill->delete();      
+        return response()->json([
+          'success' => true
+      ]);
+    }
 }

@@ -57,6 +57,7 @@
                             <button class="btn bg-gradient-primary mt-4 w-12" id="btn_check" style="float: right;;margin-bottom:5px;margin-left:5px;">
                                 <i class="fa fa-check">&nbsp; Duyệt tất cả đơn </i></button>
                             <table class="table table-flush" id="datatable-basic">
+                                <thead class="thead-light">
                                     <tr>         
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Duyệt</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Xem</th>                               
@@ -68,7 +69,9 @@
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Trạng thái</th>                                        
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Xem</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Ngày</th>
-                                    </tr>                              
+                                        <th class="text-secondary"></th>
+                                    </tr>  
+                                </thead>                            
                                 <tbody>
                                     @if($bills)
                                     @foreach($bills as $bill)
@@ -128,6 +131,11 @@
                                         </td>
                                         <td class="align-middle text-center">
                                             <span class="text-secondary text-xs font-weight-bold">{{ date('H:i d/m/Y', strtotime(str_replace('/', '-', $bill->created_at))) }}</span>
+                                        </td>
+                                        <td class="align-middle">
+                                            <a href="javascript:;" delete_id="{{ $bill->id }}" class="text-secondary font-weight-bold text-xs simpleConfirm" >
+                                                <span class="badge bg-gradient-danger">Xóa</span>
+                                            </a>
                                         </td>
                                     </tr>
                                     <div class="col-md-4">
@@ -229,6 +237,41 @@
             }
         })
     }
+
+    $(document).on('click', '.simpleConfirm', function(e) {
+            e.preventDefault();
+            var id = $(this).attr('delete_id');
+            var that = $(this);
+            swal.fire({
+                title: "Bạn có muốn xóa hóa đơn này?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Xóa ngay!',
+                cancelButtonText: 'Hủy'
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        method: 'get',
+                        url: "{{ route('cardbill.destroy') }}",
+                        data: {
+                            id: id
+                        },
+                        success: function(data) {
+                            if (data.success == true) {
+                                that.parent().parent().remove();
+                                Swal.fire(
+                                    'Xóa!',
+                                    'Xóa thành công.',
+                                    'success'
+                                )
+                            }
+                        }
+                    })
+                }
+            });
+        });
     
 </script>
 <script type="text/javascript">

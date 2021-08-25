@@ -104,4 +104,9 @@ class BillController extends Controller
     {
        return $this->repository->updateStatusAll($request);
     }
+
+    public function deleteCardBill(Request $request)
+    {
+        return $this->repository->deleteCardBill($request);
+    }
 }
