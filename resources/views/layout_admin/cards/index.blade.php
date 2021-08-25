@@ -135,7 +135,7 @@
                                                                 <input type="hidden" class="form-control" id="card_price_form" name="card_price_form" rows="3">
                                                             </div>
                                                             <div class="form-group">
-                                                                <label for="exampleFormControlTextarea1">Mã thẻ</label>
+                                                                <label for="exampleFormControlTextarea1">Mã thẻ(ID|MãThẻ hoặc MãVoucher)</label>
                                                                 <textarea class="form-control" id="code" name="code" rows="3"></textarea>
                                                             </div>
                                                         </div>
