@@ -265,7 +265,6 @@ h1 a {
                                 <tr style="text-align: left">
                                     <td>Mã giảm giá</td>            
                                     <td><b><input id="discount_code_use" type="text" class="form-control" style="width: 150px;" placeholder="Mã giảm giá. . . "></b></td>
-                                    <td id="total"></td>
                                 </tr>
                                 <tr style="text-align: left">
                                     <td><b>Tổng tiền :</b></td>
