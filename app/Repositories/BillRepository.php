@@ -100,6 +100,7 @@ class BillRepository
             $check_err = 0;
             $card_stores = CardStore::where('name', strtolower($bill->card_type))
                 ->where('price', $bill->card_price)
+                ->where('status', 0)
                 ->limit($bill->card_total)
                 ->get();
             if ($card_stores != null && count($card_stores->all()) >= $bill->card_total) {

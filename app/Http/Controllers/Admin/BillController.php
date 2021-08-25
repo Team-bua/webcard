@@ -97,6 +97,7 @@ class BillController extends Controller
         $card_bill = CardBill::findOrFail($request->id);
         $card_stores = CardStore::where('name', strtolower($card_bill->card_type))
                                 ->where('price', $card_bill->card_price)
+                                ->where('status', 0)
                                 ->limit($card_bill->card_total)
                                 ->get();
         if($card_stores != null && count($card_stores->all()) >= $card_bill->card_total){

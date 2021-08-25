@@ -69,10 +69,14 @@ class CardRepository
     {
         $card = Card::find($request->card_id_info);
         $card_info = [];
+        $discount_code_in_bill = '';
+        $discount_info_in_bill = '0';
         if(isset(Auth::user()->id)){
             if(in_array($request->subject, json_decode($card->price)) == true && in_array($request->discount_num, json_decode($card->discount)) == true){
                 if($request->discount_code != null){
                     $discount_info = Discount::where('code', $request->discount_code)->first();
+                    $discount_code_in_bill = $discount_info->name;
+                    $discount_info_in_bill = $discount_info->price;
                     if($discount_info != null){
                         if($discount_info->discount_type == 'Cố định')
                         {
@@ -105,10 +109,12 @@ class CardRepository
                         } 
                     }
                 }else{
+                    $discount_info_in_bill = $request->discount_num;
                     $discount = $request->subject - ($request->subject * $request->discount_num / 100);
                 } 
                 $card_codes = CardStore::where('name', strtolower($card->name))
                                         ->where('price', $request->subject)
+                                        ->where('status', 0)
                                         ->limit($request->quantity1)
                                         ->get();
                 if($request->quantity1 > count($card_codes->all())){
@@ -117,12 +123,14 @@ class CardRepository
                     $user->point = $user->point - $discount * $request->quantity1;
                     $user->save();
 
-                    $card_info = ["waiting"];
+                    $card_info = ["Đang xử lý"];
                     $card_codes_for_user = new CardBill();
                     $card_codes_for_user->user_id = Auth::user()->id;
                     $card_codes_for_user->card_id = $request->card_id_info;
                     $card_codes_for_user->order_id = '00'.rand(100000,999999);
                     $card_codes_for_user->card_type = $card->name;
+                    $card_codes_for_user->discount_code = $discount_code_in_bill;
+                    $card_codes_for_user->discount_info = $discount_info_in_bill;
                     $card_codes_for_user->card_price = $request->subject;
                     $card_codes_for_user->card_total = $request->quantity1;
                     $card_codes_for_user->card_info = json_encode($card_info);
@@ -145,6 +153,8 @@ class CardRepository
                     $card_codes_for_user->card_id = $request->card_id_info;
                     $card_codes_for_user->order_id = '00'.rand(100000,999999);
                     $card_codes_for_user->card_type = $card->name;
+                    $card_codes_for_user->discount_code = $discount_code_in_bill;
+                    $card_codes_for_user->discount_info = $discount_info_in_bill;
                     $card_codes_for_user->card_price = $request->subject;
                     $card_codes_for_user->card_total = $request->quantity1;
                     $card_codes_for_user->card_info = json_encode($card_info);
