@@ -22,6 +22,8 @@ class CreateCardBillsTable extends Migration
             $table->string('card_price')->nullable();
             $table->string('card_total')->nullable();
             $table->text('card_info')->nullable();
+            $table->string('discount_code')->nullable();
+            $table->string('discount_info')->nullable();
             $table->string('description')->nullable();
             $table->string('price_total')->nullable();
             $table->integer('status')->default(0);
