@@ -35,8 +35,8 @@ class CardBillExport implements FromCollection,WithHeadings,ShouldAutoSize,WithH
                             ->when(($this->date != null && isset(explode(' đến ',$this->date)[1]) == false), function ($query){
                                 $query->whereDate('card_bills.created_at', '=', date('Y-m-d', strtotime(str_replace('/', '-',$this->date))));
                             })
-                            ->select('card_bills.card_type', 'users.name', 'card_bills.order_id', 'card_bills.card_total', 'card_bills.price_total', 'card_bills.status',
-                                    'card_bills.card_info', DB::raw("DATE_FORMAT(card_bills.created_at, '%H:%i %d-%m-%Y') as created"))
+                            ->select('card_bills.card_type', 'users.name', 'card_bills.order_id', 'card_bills.card_price', 'card_bills.card_total', 'card_bills.price_total', 'card_bills.status',
+                                    'card_bills.card_info', 'card_bills.discount_code', 'card_bills.discount_info', DB::raw("DATE_FORMAT(card_bills.created_at, '%H:%i %d-%m-%Y') as created"))
                             ->get();
         foreach($card_bill as $bill){
             if($bill->status == 0){
@@ -53,7 +53,7 @@ class CardBillExport implements FromCollection,WithHeadings,ShouldAutoSize,WithH
     public function headings():array 
     {
         
-        return ['Tên thẻ', 'Khách hàng', 'Mã đơn hàng', 'Số lượng', 'Tổng tiền', 'Trạng thái', 'Thông tin thẻ', 'Ngày'];
+        return ['Tên thẻ', 'Khách hàng', 'Mã đơn hàng','Đơn giá', 'Số lượng', 'Tổng tiền', 'Trạng thái', 'Thông tin thẻ', 'Mã giảm giá', 'Khuyến mãi','Ngày'];
         
     }
     

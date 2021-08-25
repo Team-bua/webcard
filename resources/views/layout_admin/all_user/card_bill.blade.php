@@ -75,10 +75,10 @@
                                                             <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModalMessage{{ $card_bill->id }}"><i class="fa fa-eye" style="margin-top: 10px"></i></a>                             
                                                         </td>
                                                         <td class="align-middle text-center text-sm">
-                                                            <p class="text-xs font-weight-bold mb-0"></p>
+                                                            <p class="text-xs font-weight-bold mb-0">{{ isset($card_bill->discount_code) ? $card_bill->discount_code : '' }}</p>
                                                         </td>
                                                         <td class="align-middle text-center text-sm">
-                                                            <p class="text-xs font-weight-bold mb-0"></p>
+                                                            <p class="text-xs font-weight-bold mb-0">{{ isset($card_bill->discount_info) ? $card_bill->discount_info : '' }}</p>
                                                         </td>
                                                         <td class="align-middle text-center">
                                                             <span class="text-secondary text-xs font-weight-bold">{{ date('H:i d/m/Y', strtotime(str_replace('/', '-', $card_bill->created_at))) }}</span>

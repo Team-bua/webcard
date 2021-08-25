@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Card;
 use App\Http\Controllers\Controller;
 use App\Models\Card;
 use App\Models\SubCardType;
-use App\Repositories\Card\SubCardTypeRepository;
+use App\Repositories\card\SubCardTypeRepository;
 use Illuminate\Http\Request;
 
 class SubCardTypeController extends Controller

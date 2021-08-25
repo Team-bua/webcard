@@ -23,7 +23,7 @@
                 @if (session('information'))
                     <div class="alert alert-success"><b>{{ session('information') }}</b></div>
                 @elseif (session('warning'))
-                <div class="alert alert-warning"><b>{{ session('warning') }}</b></div>
+                    <div class="alert alert-warning"><b>{{ session('warning') }}</b></div>
                 @endif
                 <div class="card mb-4">
                     
