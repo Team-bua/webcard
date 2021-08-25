@@ -151,43 +151,33 @@ h1 a {
                 <input style="display: none" type="text" name="quantity1" id="quantity1" value="1">
                 <input style="display: none" type="text" id="discount" value="">
                 <input style="display: none" type="text" id="discount_num" name="discount_num" value="">
+                <input style="display: none" type="text" id="discount_code" name="discount_code" value="">
             </form>
             <div class="row" style="margin-top: 20px">
                 <div class="col-lg-3 col-md-8 col-sm-12 col-xs-12" >
                     <h6 class="text_td_thegame_ud" style="margin-top: 0px">Danh sách loại thẻ</h6>
+                    <ul class="accordion" style="margin-top: -25px">
+                        <li>
+                          <div class="link" onclick="getAllCard()">Tất cả thẻ</div>
+                        </li>
+                    </ul>
                     <ul id="accordion" class="accordion" style="margin-top: -25px">
+                        @if(isset($card_type))
+                        @foreach($card_type as $type)
                         <li>
-                          <div class="link">Web Design<i class="uil uil-angle-down"></i></div>
+                          <div class="link" onclick='getCard("{{$type->name}}")'>{{ $type->name }}<i class="uil uil-angle-down"></i></div>
                           <ul class="submenu">
-                            <li><a href="#">Photoshop</a></li>
-                            <li><a href="#">HTML</a></li>
-                            <li><a href="#">CSS</a></li>
+                            @if(isset($arr_sub_card_type))
+                            @for($i = 0; $i < count($arr_sub_card_type); $i++)
+                            @if(isset($arr_sub_card_type[$type->name.'-'.$i]))
+                            <li><a href="#" onclick="getCardDetail('{{ str_replace(' ', '', $arr_sub_card_type[$type->name.'-'.$i])}}')">{{$arr_sub_card_type[$type->name.'-'.$i]}}</a></li>
+                            @endif
+                            @endfor
+                            @endif
                           </ul>
                         </li>
-                        <li>
-                          <div class="link">Coding<i class="uil uil-angle-down"></i></div>
-                          <ul class="submenu">
-                            <li><a href="#">Javascript</a></li>
-                            <li><a href="#">jQuery</a></li>
-                            <li><a href="#">Ruby</a></li>
-                          </ul>
-                        </li>
-                        <li>
-                          <div class="link">Devices<i class="uil uil-angle-down"></i></div>
-                          <ul class="submenu">
-                            <li><a href="#">Tablet</a></li>
-                            <li><a href="#">Mobile</a></li>
-                            <li><a href="#">Desktop</a></li>
-                          </ul>
-                        </li>
-                        <li>
-                          <div class="link">Global<i class="uil uil-angle-down"></i></div>
-                          <ul class="submenu">
-                            <li><a href="#">Google</a></li>
-                            <li><a href="#">Bing</a></li>
-                            <li><a href="#">Yahoo</a></li>
-                          </ul>
-                        </li>
+                        @endforeach
+                        @endif
                       </ul>
                 </div>
                 <div class="col-lg-6 col-md-8 col-sm-12 col-xs-12">
@@ -196,7 +186,7 @@ h1 a {
                                 <ul class="list_all_the_game_udrt">
                                     @if (isset($cards))
                                         @foreach ($cards as $card)
-                                            <li id="cateId_{{ $card->id }}" class="cateId">
+                                            <li id="cateId_{{ $card->id }}" class="cateId {{$card->card_type}} {{ str_replace(' ', '', $card->sub_card_type_id)}}">
                                                 <a href="#" onclick="cate('{{ $card->id }}', '{{ $card->name }}')"
                                                     class="cate" id="{{ $card->id }}">
                                                     <img class="lazyload" src="{{ asset($card->image) }}"
@@ -276,6 +266,12 @@ h1 a {
                                     <td><b>Tổng tiền :</b></td>
                                     <td id="total"></td>
                                 </tr>
+                                <tr style="text-align: left">
+                                    <td><b>Mã giảm giá :</b></td>
+                                    <td><b><input type="text" id="discount_code_use"></b></td>
+                                    <td id="total"></td>
+                                </tr>
+                                
                             </tbody>
                         </table>
                     </div>
@@ -290,6 +286,35 @@ h1 a {
 @endsection
 @section('script')
     <script>
+        function getAllCard() {
+            $('.cateId').removeAttr("style");
+            $('.cardInfo').attr("style", "display:none");
+            $('#card_info').html('');
+            $('#quantity2').html('');
+            $('#discount_num2').html('');
+            $('#price').html('');
+            $('#total').html('');
+        }
+        function getCard(name) {
+            $('.cateId').attr("style", "display:none");
+            $('.cardInfo').attr("style", "display:none");
+            $('.'+ name).removeAttr("style");
+            $('#card_info').html('');
+            $('#quantity2').html('');
+            $('#discount_num2').html('');
+            $('#price').html('');
+            $('#total').html('');
+        }
+        function getCardDetail(name) {
+            $('.cateId').attr("style", "display:none");
+            $('.cardInfo').attr("style", "display:none");
+            $('.'+ name).removeAttr("style");
+            $('#card_info').html('');
+            $('#quantity2').html('');
+            $('#discount_num2').html('');
+            $('#price').html('');
+            $('#total').html('');
+        }
         function cate(number, name) {
             var card_id = number;
             $('.cate').removeAttr("style");
@@ -321,6 +346,7 @@ h1 a {
                     timer: 2000
                 })
             } else {
+                $('#discount_code').attr("value", $('#discount_code_use').val());    
                 $('#form').submit();
             }
         }
