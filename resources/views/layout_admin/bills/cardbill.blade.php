@@ -26,8 +26,15 @@
                 <div class="alert alert-warning"><b>{{ session('warning') }}</b></div>
                 @endif
                 <div class="card mb-4">
-                    <form action="">
+                    
                         <div class="card-header pb-0">
+                            <form action="{{ route('cardbill.update.status.all') }}" method="post" id="form_check">
+                                @csrf
+                                <input type="hidden" name="date_check" id="date_check">
+                            </form>
+                            <button class="btn bg-gradient-primary mt-4 w-12" id="btn_check" style="float: left;margin-bottom:5px;margin-left:5px;">
+                                <i class="fa fa-check">&nbsp; Duyệt tất cả đơn </i></button>
+                            <form action="">
                             <button type="submit" name="search" class="btn bg-gradient-primary mt-2 " style="float: right;margin-left:5px">
                                 <i class="fa fa-search"></i></button>
                             <input class="form-control datepicker" id="date_picker" name="date" style="width: 20%; float: right; margin-top: 10px" placeholder="Please select date" type="text"
@@ -48,16 +55,12 @@
                                     <option value="2">Đã thanh toán</option>
                                 @endif
                             </select>
+                        </form>
                         </div>
-                    </form>
+                    
                     <div class="card-body px-0 pt-0 pb-2">
                         <div class="table-responsive p-0">
-                            <form action="{{ route('cardbill.update.status.all') }}" method="post" id="form_check">
-                                @csrf
-                                <input type="hidden" name="date_check" id="date_check">
-                            </form>
-                            <button class="btn bg-gradient-primary mt-4 w-12" id="btn_check" style="float: right;;margin-bottom:5px;margin-left:5px;">
-                                <i class="fa fa-check">&nbsp; Duyệt tất cả đơn </i></button>
+                           
                             <table class="table table-flush" id="datatable-basic">
                                 <thead class="thead-light">
                                     <tr>         
@@ -71,6 +74,8 @@
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Tổng tiền</th>                                        
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Trạng thái</th>                                        
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Xem</th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Mã giảm giá</th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Khuyến mãi</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Ngày</th>
                                         <th class="text-secondary"></th>
                                     </tr>  
@@ -125,13 +130,19 @@
                                         </td>
                                         <td class="align-middle text-center text-sm" id="load{{ $bill->id }}">
                                             @if($bill->status == 1)
-                                            <span class="badge badge-sm bg-gradient-success">Đã thanh toán</span>
+                                            <span class="badge badge-sm bg-gradient-success">Đã giao</span>
                                             @else
-                                            <span class="badge badge-sm bg-gradient-danger">Chưa thanh toán</span>
+                                            <span class="badge badge-sm bg-gradient-danger">Đang xử lý</span>
                                             @endif
                                         </td>
                                         <td>
                                             <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModalMessage{{ $bill->id }}"><i class="fa fa-eye" style="margin-top: 10px"></i></a>                             
+                                        </td>
+                                        <td class="align-middle text-center text-sm">
+                                            <p class="text-xs font-weight-bold mb-0">{{ isset($bill->discount_code) ? $bill->discount_code : '' }}</p>
+                                        </td>
+                                        <td class="align-middle text-center text-sm">
+                                            <p class="text-xs font-weight-bold mb-0">{{ isset($bill->discount_info) ? $bill->discount_info : '' }}</p>
                                         </td>
                                         <td class="align-middle text-center">
                                             <span class="text-secondary text-xs font-weight-bold">{{ date('H:i d/m/Y', strtotime(str_replace('/', '-', $bill->created_at))) }}</span>
