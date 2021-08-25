@@ -117,7 +117,7 @@ class BillRepository
                 $check_err++;
             }       
         }
-        if($check_err != 0){
+        if($check_err == 0){
             return redirect()->back()->with('information', 'Duyệt tất cả đơn hàng thành công');
         }
         else{
