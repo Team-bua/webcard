@@ -26,6 +26,7 @@
                                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Xem</th>
                                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Thẻ</th>
                                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Mã đơn hàng</th>
+                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Đơn giá</th>
                                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Số lượng</th>
                                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Tổng tiền</th>                                        
                                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Trạng thái</th>
@@ -57,6 +58,9 @@
                                             </td>
                                             <td><p class="text-xs font-weight-bold mb-0">{{ $bill->order_id }}</p></td>
                                             <td class="align-middle text-center text-sm">
+                                                <p class="text-xs font-weight-bold mb-0">{{ number_format($bill->card_price) }} VNĐ</p>
+                                            </td>      
+                                            <td class="align-middle text-center text-sm">
                                                 <p class="text-xs font-weight-bold mb-0">{{ $bill->card_total }}</p>
                                             </td>
                                             <td class="align-middle text-center text-sm">
@@ -64,9 +68,9 @@
                                             </td>                                          
                                             <td class="align-middle text-center text-sm">
                                                 @if($bill->status == 1)
-                                                <span class="badge badge-sm bg-gradient-success">Đã thanh toán</span>
+                                                <span class="badge badge-sm bg-gradient-success">Đã giao</span>
                                                 @else
-                                                <span class="badge badge-sm bg-gradient-danger">Chưa thanh toán</span>
+                                                <span class="badge badge-sm bg-gradient-danger">Đang xử lý</span>
                                                 @endif
                                             </td>
                                             <td >
