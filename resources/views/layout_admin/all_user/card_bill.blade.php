@@ -23,6 +23,8 @@
                                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Tổng tiền</th>                                        
                                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Trạng thái</th>
                                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Xem</th>
+                                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Mã giảm giá</th>
+                                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Khuyến mãi</th>
                                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Ngày</th>
                                                     </tr>
                                                 </thead>
@@ -71,6 +73,12 @@
                                                         </td>
                                                         <td>
                                                             <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModalMessage{{ $card_bill->id }}"><i class="fa fa-eye" style="margin-top: 10px"></i></a>                             
+                                                        </td>
+                                                        <td class="align-middle text-center text-sm">
+                                                            <p class="text-xs font-weight-bold mb-0"></p>
+                                                        </td>
+                                                        <td class="align-middle text-center text-sm">
+                                                            <p class="text-xs font-weight-bold mb-0"></p>
                                                         </td>
                                                         <td class="align-middle text-center">
                                                             <span class="text-secondary text-xs font-weight-bold">{{ date('H:i d/m/Y', strtotime(str_replace('/', '-', $card_bill->created_at))) }}</span>
