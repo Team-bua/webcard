@@ -263,12 +263,12 @@ h1 a {
                                     <td id="discount_num2"></td>
                                 </tr>
                                 <tr style="text-align: left">
-                                    <td><b>Tổng tiền :</b></td>
+                                    <td>Mã giảm giá</td>            
+                                    <td><b><input id="discount_code_use" type="text" class="form-control" style="width: 150px;" placeholder="Mã giảm giá. . . "></b></td>
                                     <td id="total"></td>
                                 </tr>
                                 <tr style="text-align: left">
-                                    <td><b>Mã giảm giá :</b></td>
-                                    <td><b><input type="text" id="discount_code_use"></b></td>
+                                    <td><b>Tổng tiền :</b></td>
                                     <td id="total"></td>
                                 </tr>
                                 
