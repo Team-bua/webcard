@@ -22,6 +22,8 @@
             <div class="col-12">
                 @if (session('information'))
                     <div class="alert alert-success"><b>{{ session('information') }}</b></div>
+                @elseif (session('warning'))
+                <div class="alert alert-warning"><b>{{ session('warning') }}</b></div>
                 @endif
                 <div class="card mb-4">
                     <form action="">
@@ -54,8 +56,8 @@
                                 @csrf
                                 <input type="hidden" name="date_check" id="date_check">
                             </form>
-                            <button class="btn bg-gradient-primary mt-4 w-12" id="btn_check" style="float: right;;margin-bottom:5px;margin-left:5px;">
-                                <i class="fa fa-check">&nbsp; Duyệt tất cả đơn </i></button>
+                            <!-- <button class="btn bg-gradient-primary mt-4 w-12" id="btn_check" style="float: right;;margin-bottom:5px;margin-left:5px;">
+                                <i class="fa fa-check">&nbsp; Duyệt tất cả đơn </i></button> -->
                             <table class="table table-flush" id="datatable-basic">
                                 <thead class="thead-light">
                                     <tr>         
@@ -64,6 +66,7 @@
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Thẻ</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Khách hàng</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Mã đơn hàng</th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Đơn giá</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Số lượng</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Tổng tiền</th>                                        
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Trạng thái</th>                                        
@@ -113,6 +116,7 @@
                                             </div>
                                         </td>
                                         <td class="align-middle text-center text-sm"><p class="text-xs font-weight-bold mb-0">{{ $bill->order_id }}</p></td>
+                                        <td class="align-middle text-center text-sm"><p class="text-xs font-weight-bold mb-0">{{ number_format($bill->card_price) }} VNĐ</p></td>
                                         <td class="align-middle text-center text-sm">
                                             <p class="text-xs font-weight-bold mb-0">{{ $bill->card_total }}</p>
                                         </td>
@@ -233,6 +237,13 @@
                         timer: 2000
                     })
                     $('#load'+el.value).html(`<span class="badge badge-sm bg-gradient-success">Đã thanh toán</span>`);
+                }else if(data == 0){
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Số thẻ còn lại trong kho không đủ để duyệt hoá đơn!',
+                        showConfirmButton: false,
+                        timer: 2000
+                    })
                 }
             }
         })

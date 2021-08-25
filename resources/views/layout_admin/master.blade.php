@@ -81,6 +81,30 @@
               timer: 2000
           })
         }
+        else if(exist && msg == '3') {
+          Swal.fire({
+              icon: 'error',
+              title: 'Số thẻ còn lại trong kho không đủ để duyệt hoá đơn!',
+              showConfirmButton: false,
+              timer: 2000
+          })
+        }
+        else if(exist && msg == '4') {
+          Swal.fire({
+              icon: 'error',
+              title: 'Số tiền còn lại của khách hàng không đủ!',
+              showConfirmButton: false,
+              timer: 2000
+          })
+        }
+        else if(exist && msg == '6') {
+          Swal.fire({
+              icon: 'success',
+              title: 'Đơn hàng của quý khách sẽ được cập nhật sau do số thẻ hiện tại đã hết!',
+              showConfirmButton: false,
+              timer: 2000
+          })
+        }
     })
   </script>
   @can('user')

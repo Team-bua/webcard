@@ -186,7 +186,7 @@ h1 a {
                                 <ul class="list_all_the_game_udrt">
                                     @if (isset($cards))
                                         @foreach ($cards as $card)
-                                            <li id="cateId_{{ $card->id }}" class="cateId {{$card->card_type}} {{ str_replace(' ', '', $card->sub_card_type_id)}}">
+                                            <li id="cateId_{{ $card->id }}" class="cateId {{$card->card_type}} {{ str_replace(' ', '', $card->sub_card_type->name)}}">
                                                 <a href="#" onclick="cate('{{ $card->id }}', '{{ $card->name }}')"
                                                     class="cate" id="{{ $card->id }}">
                                                     <img class="lazyload" src="{{ asset($card->image) }}"

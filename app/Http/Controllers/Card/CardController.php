@@ -101,7 +101,6 @@ class CardController extends Controller
 
     public function BuyCard(Request $request)
     {
-        dd($request->all());
         $total = $request->subject * $request->quantity1;
         if (Auth::check()) {
             if (Auth::user()->point - $total < 0) {

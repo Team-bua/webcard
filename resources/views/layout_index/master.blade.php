@@ -65,7 +65,9 @@
     $(document).ready(function () {
       var msg = "{{Session::get('message')}}";
       var exist = "{{Session::has('message')}}";
-      console.log(msg, exist);
+      var warning_msg = "{{Session::get('warning')}}";
+      var warning = "{{Session::has('warning')}}";
+
       if (exist && msg == '1') {
           Swal.fire({
               icon: 'success',
@@ -105,8 +107,8 @@
         }
         else if(exist && msg == '6') {
             Swal.fire({
-                icon: 'error',
-                title: 'Số thẻ hiện tại không đủ!',
+                icon: 'success',
+                title: 'Đơn hàng của quý khách sẽ được cập nhật sau!',
                 showConfirmButton: false,
                 timer: 2500
             })
@@ -115,6 +117,15 @@
             Swal.fire({
                 icon: 'error',
                 title: 'Opps, Something went wrong!!',
+                showConfirmButton: false,
+                timer: 2500
+            })
+        }
+
+        if(warning && warning_msg != null){
+          Swal.fire({
+                icon: 'error',
+                title: warning_msg,
                 showConfirmButton: false,
                 timer: 2500
             })

@@ -6,6 +6,7 @@ use App\Models\Card;
 use App\Models\CardBill;
 use App\Models\CardStore;
 use App\Models\CardType;
+use App\Models\Discount;
 use App\Models\SubCardType;
 use App\Models\User;
 use Carbon\Carbon;
@@ -70,18 +71,70 @@ class CardRepository
         $card_info = [];
         if(isset(Auth::user()->id)){
             if(in_array($request->subject, json_decode($card->price)) == true && in_array($request->discount_num, json_decode($card->discount)) == true){
-                $discount = $request->subject - ($request->subject * $request->discount_num / 100);
+                if($request->discount_code != null){
+                    $discount_info = Discount::where('code', $request->discount_code)->first();
+                    if($discount_info != null){
+                        if($discount_info->discount_type == 'Cố định')
+                        {
+                            $discount = $request->subject - $discount_info->price;
+                            $discount_info->status = 1;
+                            $discount_info->save();
+                        }
+                        else if($discount_info->discount_type == 'Phần trăm')
+                        {
+                            $discount = $request->subject - ($request->subject * $discount_info->price / 100);
+                            $discount_info->status = 1;
+                            $discount_info->save();
+                        }
+                    }
+                    else 
+                    {
+                        $user = User::find(Auth::user()->id);
+                        if($user->check_discount_code != 1){
+                            $user->check_discount_code -= 1; 
+                            $user->save();
+                            return redirect()->back()->with('warning', 'Sai mã khuyến mãi. Bạn chỉ còn lại ' .$user->check_discount_code. ' lần nhập sai');
+                        }
+                        else
+                        {
+                            $user->check_discount_code -= 1;
+                            $user->banned_status = 1;
+                            $user->save();
+                            Auth::logout();  
+                            return redirect()->route('index')->with('message', '4');              
+                        } 
+                    }
+                }else{
+                    $discount = $request->subject - ($request->subject * $request->discount_num / 100);
+                } 
                 $card_codes = CardStore::where('name', strtolower($card->name))
                                         ->where('price', $request->subject)
                                         ->limit($request->quantity1)
                                         ->get();
                 if($request->quantity1 > count($card_codes->all())){
-                    return redirect()->back()->with('message', '6');
+                    
+                    $user = User::find(Auth::user()->id);
+                    $user->point = $user->point - $discount * $request->quantity1;
+                    $user->save();
+
+                    $card_info = ["waiting"];
+                    $card_codes_for_user = new CardBill();
+                    $card_codes_for_user->user_id = Auth::user()->id;
+                    $card_codes_for_user->card_id = $request->card_id_info;
+                    $card_codes_for_user->order_id = '00'.rand(100000,999999);
+                    $card_codes_for_user->card_type = $card->name;
+                    $card_codes_for_user->card_price = $request->subject;
+                    $card_codes_for_user->card_total = $request->quantity1;
+                    $card_codes_for_user->card_info = json_encode($card_info);
+                    $card_codes_for_user->price_total = $discount * $request->quantity1;
+                    $card_codes_for_user->save();
+                    return redirect()->route('orderhistory')->with('message', '6');
                 }else{
                     foreach($card_codes as $card_code){
                         $card_info[] = $card_code->name.'|'.$card_code->price.'|'.$card_code->seri_number.'|'.$card_code->code;
                         $card_delete = CardStore::find($card_code->id);
-                        $card_delete->delete();
+                        $card_delete->status = 1;
+                        $card_delete->save();
                     }
                     $user = User::find(Auth::user()->id);
                     $user->point = $user->point - $discount * $request->quantity1;

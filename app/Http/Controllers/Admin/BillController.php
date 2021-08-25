@@ -6,6 +6,7 @@ use App\Exports\CardBillExport;
 use App\Exports\RechargeBillExport;
 use App\Http\Controllers\Controller;
 use App\Models\CardBill;
+use App\Models\CardStore;
 use App\Repositories\BillRepository;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
@@ -92,12 +93,28 @@ class BillController extends Controller
 
     public function updateStatus(Request $request)
     {
+        $card_store_info = [];
         $card_bill = CardBill::findOrFail($request->id);
-        $card_bill->status = $request->status;
-        if($card_bill->save()){
+        $card_stores = CardStore::where('name', strtolower($card_bill->card_type))
+                                ->where('price', $card_bill->card_price)
+                                ->limit($card_bill->card_total)
+                                ->get();
+        if($card_stores != null && count($card_stores->all()) >= $card_bill->card_total){
+            foreach ($card_stores as $card_code){
+                $card_store_info[] = $card_code->name.'|'.$card_code->price.'|'.$card_code->seri_number.'|'.$card_code->code;
+                $card_code->status = 1;
+                $card_code->save();
+            }
+            $card_bill->card_info = json_encode($card_store_info);
+            $card_bill->status = $request->status;
+            $card_bill->save();
             return 1;
         }
-        return 0;
+        else
+        {
+            return 0;
+        }
+        
     }
 
     public function updateStatusAll(Request $request)
