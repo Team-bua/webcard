@@ -56,8 +56,8 @@
                                 @csrf
                                 <input type="hidden" name="date_check" id="date_check">
                             </form>
-                            <!-- <button class="btn bg-gradient-primary mt-4 w-12" id="btn_check" style="float: right;;margin-bottom:5px;margin-left:5px;">
-                                <i class="fa fa-check">&nbsp; Duyệt tất cả đơn </i></button> -->
+                            <button class="btn bg-gradient-primary mt-4 w-12" id="btn_check" style="float: right;;margin-bottom:5px;margin-left:5px;">
+                                <i class="fa fa-check">&nbsp; Duyệt tất cả đơn </i></button>
                             <table class="table table-flush" id="datatable-basic">
                                 <thead class="thead-light">
                                     <tr>         
