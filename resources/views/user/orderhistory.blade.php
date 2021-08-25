@@ -9,17 +9,17 @@
                         <div class="card-header pb-0">
                             <h4>Lịch sử mua hàng</h4>
                         </div>
+                        <form action="">
+                            <div class="card-header pb-0">
+                                <button type="submit" name="search" class="btn bg-gradient-primary mt-2 " style="float: right;margin-left:5px">
+                                    <i class="fa fa-search"></i></button>
+                                <input class="form-control datepicker" name="date" style="width: 25%; float: right; margin-top: 10px" placeholder="Please select date" type="text"
+                                value="{{ date('d/m/Y', strtotime($first_day)) . ' to ' . date('d/m/Y', strtotime($last_day)) }}" >
+                                <input type="text" name="name" class="form-control" placeholder="Mã đơn hàng" style="width: 20%; float: right; margin-top: 10px; margin-right: 5px" aria-describedby="basic-addon1">
+                            </div>
+                        </form>
                         <div class="card-body px-0 pt-0 pb-2">                           
                             <div class="table-responsive p-0">
-                                <form action="">
-                                    <div class="card-header pb-0">
-                                        <button type="submit" name="search" class="btn bg-gradient-primary mt-2 " style="float: right;margin-left:5px">
-                                            <i class="fa fa-search"></i></button>
-                                        <input class="form-control datepicker" name="date" style="width: 25%; float: right; margin-top: 10px" placeholder="Please select date" type="text"
-                                        value="{{ date('d/m/Y', strtotime($first_day)) . ' to ' . date('d/m/Y', strtotime($last_day)) }}" >
-                                        <input type="text" name="name" class="form-control" placeholder="Mã đơn hàng" style="width: 20%; float: right; margin-top: 10px; margin-right: 5px" aria-describedby="basic-addon1">
-                                    </div>
-                                </form>
                                 <table class="table table-flush" id="datatable-basic">
                                     <thead class="thead-light">
                                         <tr>
@@ -76,7 +76,7 @@
                                                 <p class="text-xs font-weight-bold mb-0">{{ isset($bill->discount_code) ? $bill->discount_code : '' }}</p>
                                             </td>
                                             <td class="align-middle text-center text-sm">
-                                                <p class="text-xs font-weight-bold mb-0">{{ isset($bill->discount_info) ? $bill->discount_info : '' }}</p>
+                                                <p class="text-xs font-weight-bold mb-0">{{ isset($bill->discount_info) ? $bill->discount_info : '' }} %</p>
                                             </td>
                                             <td class="align-middle text-center">
                                                 <span class="text-secondary text-xs font-weight-bold">{{ date('d/m/Y', strtotime(str_replace('/', '-', $bill->created_at))) }}</span>

@@ -212,7 +212,6 @@
     })
 
     function updateStatus(el){
-        var count = "{{ $count }}";
         if(el.checked){
             var status = 1;
             $(el).attr('disabled', true);
