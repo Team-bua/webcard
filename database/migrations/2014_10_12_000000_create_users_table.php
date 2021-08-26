@@ -25,6 +25,7 @@ class CreateUsersTable extends Migration
             $table->integer('point')->default(0);
             $table->integer('check_discount_code')->default(5);
             $table->integer('check_recharge_code')->default(5);
+            $table->string('reason')->nullable();
             $table->string('facebook_link')->nullable();
             $table->string('provider')->nullable();
             $table->string('provider_id')->nullable();
