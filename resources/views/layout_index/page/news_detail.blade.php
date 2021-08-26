@@ -39,9 +39,9 @@
                 <ul class="image-list">
                     @foreach ($news_other as $new)
                     <li>
-                        <figure class="rounded"><a href="blog-post.html"><img src="{{ asset($new->avatar) }}" alt=""></a></figure>
+                        <figure class="rounded"><a href="{{ route('news.detail', $new->id) }}"><img src="{{ asset($new->avatar) }}" alt=""></a></figure>
                         <div class="post-content">
-                          <h6 class="mb-2"> <a class="link-dark" href="blog-post.html">{{ $new->tittle }}</a> </h6>
+                          <h6 class="mb-2"> <a class="link-dark" href="{{ route('news.detail', $new->id) }}">{{ $new->tittle }}</a> </h6>
                           <ul class="post-meta">
                             <li class="post-date"><i class="uil uil-calendar-alt"></i><span>{{ date('H:i d/m/Y', strtotime(str_replace('/', '-', $new->created_at))) }}</span></li>
                           </ul>
@@ -57,9 +57,9 @@
                 <ul class="image-list">
                     @foreach ($views_news as $new)
                     <li>
-                        <figure class="rounded"><a href="blog-post.html"><img src="{{ asset($new->avatar) }}" alt=""></a></figure>
+                        <figure class="rounded"><a href="{{ route('news.detail', $new->id) }}"><img src="{{ asset($new->avatar) }}" alt=""></a></figure>
                         <div class="post-content">
-                          <h6 class="mb-2"> <a class="link-dark" href="blog-post.html">{{ $new->tittle }}</a> </h6>
+                          <h6 class="mb-2"> <a class="link-dark" href="{{ route('news.detail', $new->id) }}">{{ $new->tittle }}</a> </h6>
                           <ul class="post-meta">
                             <li class="post-date"><i class="uil uil-calendar-alt"></i><span>{{ date('H:i d/m/Y', strtotime(str_replace('/', '-', $new->created_at))) }}</span></li>
                             <li class="post-comments"><a href="#"><i class="uil uil-eye"></i>{{ $new->view }}</a></li>
