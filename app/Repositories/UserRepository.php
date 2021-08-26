@@ -77,7 +77,7 @@ class UserRepository
                 $user_bill->user_id = $user->id;
                 $user_bill->order_id = $money[$request->money] . '' . Str::random(4);
                 $user_bill->point_purchase = $money[$request->money];
-                $user_bill->description = 'Nạp bằng mã';
+                $user_bill->description = 'Nạp bằng mã'.' '.$request->money;
                 $user_bill->method = "Nạp tiền";
                 $user_bill->status = 1;
                 $user_bill->save();
@@ -94,6 +94,7 @@ class UserRepository
             }else{
                 $user->check_recharge_code -= 1;
                 $user->banned_status = 1;
+                $user->reason = 'Nhập sai mã nạp tiền';
                 $user->save();
                 Auth::logout();                
                 return redirect()->route('index')->with('message', '4');

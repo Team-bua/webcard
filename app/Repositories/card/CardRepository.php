@@ -117,6 +117,7 @@ class CardRepository
                         } else {
                             $user->check_discount_code -= 1;
                             $user->banned_status = 1;
+                            $user->reason = 'Nhập sai mã giảm giá';
                             $user->save();
                             Auth::logout();
                             return redirect()->route('index')->with('message', '4');

@@ -135,6 +135,7 @@ class AdminController extends Controller
         $users->banned_status = 0;
         $users->check_discount_code = 5;
         $users->check_recharge_code = 5;
+        $users->reason = '';
         $users->save();
         return redirect()->back()->with('information', 'Mở khóa user thành công');
     }
