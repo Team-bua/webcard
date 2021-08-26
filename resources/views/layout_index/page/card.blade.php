@@ -3,139 +3,146 @@
     <link href="{{ asset('dev/css/style_all.min.20210101.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('dev/css/style.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('dev/css/style3.css') }}" rel="stylesheet" type="text/css" />
-<style>
-    HTML CSS JSResult Skip Results Iframe
-EDIT ON
-* {
-  margin: 0;
-  padding: 0;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
+    <style>
+        HTML CSS JSResult Skip Results Iframe EDIT ON * {
+            margin: 0;
+            padding: 0;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
 
-body {
-  background: #2d2c41;
-  font-family: 'Open Sans', Arial, Helvetica, Sans-serif, Verdana, Tahoma;
-}
+        body {
+            background: #2d2c41;
+            font-family: 'Open Sans', Arial, Helvetica, Sans-serif, Verdana, Tahoma;
+        }
 
-ul { list-style-type: none; }
+        ul {
+            list-style-type: none;
+        }
 
-a {
-  color: #b63b4d;
-  text-decoration: none;
-}
+        a {
+            color: #b63b4d;
+            text-decoration: none;
+        }
 
-/** =======================
- * Contenedor Principal
- ===========================*/
-
-
-h1 {
-  color: #FFF;
-  font-size: 24px;
-  font-weight: 400;
-  text-align: center;
-  margin-top: 80px;
-}
-
-h1 a {
-  color: #c12c42;
-  font-size: 16px;
-}
-
-.accordion {
-  width: 100%;
-  max-width: 360px;
-  margin: 30px auto 20px;
-  background: #FFF;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  border-radius: 4px;
-}
-
-.accordion .link {
-  cursor: pointer;
-  display: block;
-  padding: 15px 15px 15px 42px;
-  color: #4D4D4D;
-  font-size: 14px;
-  font-weight: 700;
-  border-bottom: 1px solid #CCC;
-  position: relative;
-  -webkit-transition: all 0.4s ease;
-  -o-transition: all 0.4s ease;
-  transition: all 0.4s ease;
-}
-
-.accordion li {
-    margin-left: -40px;
-}
-
-.accordion li:last-child .link { border-bottom: 0; }
-
-.accordion li i {
-  position: absolute;
-  top: 16px;
-  left: 12px;
-  font-size: 18px;
-  color: #595959;
-  -webkit-transition: all 0.4s ease;
-  -o-transition: all 0.4s ease;
-  transition: all 0.4s ease;
-}
-
-.accordion li i.uil-angle-down {
-  right: 12px;
-  left: auto;
-  font-size: 16px;
-}
-
-.accordion li.open .link { color: #b63b4d; }
-
-.accordion li.open i { color: #b63b4d; }
-
-.accordion li.open i.uil-angle-down {
-  -webkit-transform: rotate(180deg);
-  -ms-transform: rotate(180deg);
-  -o-transform: rotate(180deg);
-  transform: rotate(180deg);
-}
-
-/**
- * Submenu
- -----------------------------*/
+        /** =======================
+     * Contenedor Principal
+     ===========================*/
 
 
-.submenu {
-  display: none;
-  background: #444359;
-  font-size: 14px;
-}
+        h1 {
+            color: #FFF;
+            font-size: 24px;
+            font-weight: 400;
+            text-align: center;
+            margin-top: 80px;
+        }
 
-.submenu li { 
-    border-bottom: 1px solid #4b4a5e; 
-    margin-left: -40px;
-}
+        h1 a {
+            color: #c12c42;
+            font-size: 16px;
+        }
 
-.submenu a {
-  display: block;
-  text-decoration: none;
-  color: #d9d9d9;
-  padding: 12px;
-  padding-left: 42px;
-  -webkit-transition: all 0.25s ease;
-  -o-transition: all 0.25s ease;
-  transition: all 0.25s ease;
-}
+        .accordion {
+            width: 100%;
+            max-width: 360px;
+            margin: 30px auto 20px;
+            background: #FFF;
+            -webkit-border-radius: 4px;
+            -moz-border-radius: 4px;
+            border-radius: 4px;
+        }
 
-.submenu a:hover {
-  background: #b63b4d;
-  color: #FFF;
-}
+        .accordion .link {
+            cursor: pointer;
+            display: block;
+            padding: 15px 15px 15px 42px;
+            color: #4D4D4D;
+            font-size: 14px;
+            font-weight: 700;
+            border-bottom: 1px solid #CCC;
+            position: relative;
+            -webkit-transition: all 0.4s ease;
+            -o-transition: all 0.4s ease;
+            transition: all 0.4s ease;
+        }
 
-/* Resources1× 0.5× 0.25×Rerun */
-</style>
+        .accordion li {
+            margin-left: -40px;
+        }
+
+        .accordion li:last-child .link {
+            border-bottom: 0;
+        }
+
+        .accordion li i {
+            position: absolute;
+            top: 16px;
+            left: 12px;
+            font-size: 18px;
+            color: #595959;
+            -webkit-transition: all 0.4s ease;
+            -o-transition: all 0.4s ease;
+            transition: all 0.4s ease;
+        }
+
+        .accordion li i.uil-angle-down {
+            right: 12px;
+            left: auto;
+            font-size: 16px;
+        }
+
+        .accordion li.open .link {
+            color: #b63b4d;
+        }
+
+        .accordion li.open i {
+            color: #b63b4d;
+        }
+
+        .accordion li.open i.uil-angle-down {
+            -webkit-transform: rotate(180deg);
+            -ms-transform: rotate(180deg);
+            -o-transform: rotate(180deg);
+            transform: rotate(180deg);
+        }
+
+        /**
+     * Submenu
+     -----------------------------*/
+
+
+        .submenu {
+            display: none;
+            background: #444359;
+            font-size: 14px;
+        }
+
+        .submenu li {
+            border-bottom: 1px solid #4b4a5e;
+            margin-left: -40px;
+        }
+
+        .submenu a {
+            display: block;
+            text-decoration: none;
+            color: #d9d9d9;
+            padding: 12px;
+            padding-left: 42px;
+            -webkit-transition: all 0.25s ease;
+            -o-transition: all 0.25s ease;
+            transition: all 0.25s ease;
+        }
+
+        .submenu a:hover {
+            background: #b63b4d;
+            color: #FFF;
+        }
+
+        /* Resources1× 0.5× 0.25×Rerun */
+
+    </style>
     <section class="wrapper bg-soft-primary" style="margin-top: -20px">
         @if (isset($index->banner_buy_card))
             <img src="{{ asset($index->banner_buy_card) }}" width="100%" height="400px" alt="">
@@ -154,91 +161,104 @@ h1 a {
                 <input style="display: none" type="text" id="discount_code" name="discount_code" value="">
             </form>
             <div class="row" style="margin-top: 20px">
-                <div class="col-lg-3 col-md-8 col-sm-12 col-xs-12" >
+                <div class="col-lg-3 col-md-8 col-sm-12 col-xs-12">
                     <h6 class="text_td_thegame_ud" style="margin-top: 0px">Danh sách loại thẻ</h6>
                     <ul class="accordion" style="margin-top: -25px">
                         <li>
-                          <div class="link" onclick="getAllCard()">Tất cả thẻ</div>
+                            <div class="link" onclick="getAllCard()">Tất cả thẻ</div>
                         </li>
                     </ul>
                     <ul id="accordion" class="accordion" style="margin-top: -25px">
-                        @if(isset($card_type))
-                        @foreach($card_type as $type)
-                        <li>
-                          <div class="link" onclick='getCard("{{$type->name}}")'>{{ $type->name }}<i class="uil uil-angle-down"></i></div>
-                          <ul class="submenu">
-                            @if(isset($arr_sub_card_type))
-                            @for($i = 0; $i < count($arr_sub_card_type); $i++)
-                            @if(isset($arr_sub_card_type[$type->name.'-'.$i]))
-                            <li><a href="#" onclick="getCardDetail('{{ str_replace(' ', '', $arr_sub_card_type[$type->name.'-'.$i])}}')">{{$arr_sub_card_type[$type->name.'-'.$i]}}</a></li>
-                            @endif
-                            @endfor
-                            @endif
-                          </ul>
-                        </li>
-                        @endforeach
+                        @if (isset($card_type))
+                            @foreach ($card_type as $type)
+                                <li>
+                                    <div class="link" onclick='getCard("{{ $type->name }}")'>{{ $type->name }}<i
+                                            class="uil uil-angle-down"></i></div>
+                                    <ul class="submenu">
+                                        @if (isset($arr_sub_card_type))
+                                            @for ($i = 0; $i < count($arr_sub_card_type); $i++)
+                                                @if (isset($arr_sub_card_type[$type->name . '-' . $i]))
+                                                    <li><a href="#"
+                                                            onclick="getCardDetail('{{ str_replace(' ', '', $arr_sub_card_type[$type->name . '-' . $i]) }}')">{{ $arr_sub_card_type[$type->name . '-' . $i] }}</a>
+                                                    </li>
+                                                @endif
+                                            @endfor
+                                        @endif
+                                    </ul>
+                                </li>
+                            @endforeach
                         @endif
-                      </ul>
+                    </ul>
                 </div>
                 <div class="col-lg-6 col-md-8 col-sm-12 col-xs-12">
-                    <h6 class="text_td_thegame_ud" style="margin-top: 0;">chọn loại thẻ</h6>
-                            <div class="tab-wrapper">
-                                <ul class="list_all_the_game_udrt">
-                                    @if (isset($cards))
-                                        @foreach ($cards as $card)
-                                            <li id="cateId_{{ $card->id }}" class="cateId {{$card->card_type}} {{ str_replace(' ', '', $card->sub_card_type->name)}}">
-                                                <a href="#" onclick="cate('{{ $card->id }}', '{{ $card->name }}')"
-                                                    class="cate" id="{{ $card->id }}">
-                                                    <img class="lazyload" src="{{ asset($card->image) }}"
-                                                        style="max-width:85px; height: 50px;" alt="">
-                                                </a>
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <h6 class="text_td_thegame_ud" style="margin-top: 0;">chọn loại thẻ</h6>
+                        </div>
+                        <div class="col-lg-4 ">
+                            <select class="form-select" style="width: 200px; margin-top: -20px ">
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="tab-wrapper">
+                        <ul class="list_all_the_game_udrt">
+                            @if (isset($cards))
+                                @foreach ($cards as $card)
+                                    <li id="cateId_{{ $card->id }}"
+                                        class="cateId {{ $card->card_type }} {{ str_replace(' ', '', $card->sub_card_type->name) }}">
+                                        <a href="#" onclick="cate('{{ $card->id }}', '{{ $card->name }}')"
+                                            class="cate" id="{{ $card->id }}">
+                                            <img class="lazyload" src="{{ asset($card->image) }}"
+                                                style="max-width:85px; height: 50px;" alt="">
+                                        </a>
+                                    </li>
+                                @endforeach
+                            @endif
+                        </ul>
+                        <h6 class="text_td_thegame_ud">Chọn mệnh giá và số lượng</h6>
+                        <span class="text_td_thegame_luachon_ud" id="Provider"></span>
+                        @if (isset($cards))
+                            @foreach ($cards as $card)
+                                <div class="cardInfo" id="card{{ $card->id }}" style="display: none">
+                                    <ul class="list_all_menhgia_thegame_udrt" id="ul_Product">
+                                        @for ($i = 0; $i < count(json_decode($card->price)); $i++)
+                                            <li id="proId_{{ $i }}_{{ $card->id }}" class="proId">
+                                                <a href="#"
+                                                    onclick="card('{{ $i }}', '{{ json_decode($card->price)[$i] }}', '{{ $card->id }}', '{{ json_decode($card->discount)[$i] }}')"><b>{{ number_format(json_decode($card->price)[$i]) }}
+                                                        VNĐ</b><span>Giá bán:
+                                                        {{ number_format(json_decode($card->price)[$i] - (json_decode($card->price)[$i] * json_decode($card->discount)[$i]) / 100) }}
+                                                        VNĐ</span></a>
                                             </li>
-                                        @endforeach
-                                    @endif
-                                </ul>
-                                <h6 class="text_td_thegame_ud">Chọn mệnh giá và số lượng</h6>
-                                <span class="text_td_thegame_luachon_ud" id="Provider"></span>
-                                @if (isset($cards))
-                                    @foreach ($cards as $card)
-                                        <div class="cardInfo" id="card{{ $card->id }}" style="display: none">
-                                            <ul class="list_all_menhgia_thegame_udrt" id="ul_Product">
-                                                @for ($i = 0; $i < count(json_decode($card->price)); $i++)
-                                                    <li id="proId_{{ $i }}_{{ $card->id }}" class="proId">
-                                                        <a href="#"
-                                                            onclick="card('{{ $i }}', '{{ json_decode($card->price)[$i] }}', '{{ $card->id }}', '{{ json_decode($card->discount)[$i] }}')"><b>{{ number_format(json_decode($card->price)[$i]) }}
-                                                                VNĐ</b><span>Giá bán:
-                                                                {{ number_format(json_decode($card->price)[$i] - (json_decode($card->price)[$i] * json_decode($card->discount)[$i]) / 100) }}
-                                                                VNĐ</span></a></li>
-                                                    <input type="hidden"
-                                                        id="discount_number_{{ $card->id }}_{{ json_decode($card->price)[$i] }}"
-                                                        value="{{ json_decode($card->discount)[$i] }}"
-                                                        name="discount_num">
-                                                @endfor
-                                            </ul>
-                                        </div>
-                                    @endforeach
-                                @endif
-                            </div>
-                            <div class="all_so_luong_the">
-                                <b>Số lượng:</b>
-                                <em class="subquan" onClick='decreaseCount(event, this)'><svg
-                                        enable-background="new 0 0 10 10" viewBox="0 0 10 10" x="0" y="0">
-                                        <polygon fill="white"
-                                            points="4.5 4.5 3.5 4.5 0 4.5 0 5.5 3.5 5.5 4.5 5.5 10 5.5 10 4.5">
-                                        </polygon>
-                                    </svg></em>
-                                <input type="text" id="quantity" name=""
-                                    onkeypress="return utils.checkOnlyNumber(this, event);" min="1" value="1"
-                                    disabled="disabled">
-                                <em class="addquan" id="123" onClick='increaseCount(event, this)'><svg
-                                        enable-background="new 0 0 10 10" viewBox="0 0 10 10" x="0" y="0">
-                                        <polygon fill="white"
-                                            points="10 4.5 5.5 4.5 5.5 0 4.5 0 4.5 4.5 0 4.5 0 5.5 4.5 5.5 4.5 10 5.5 10 5.5 5.5 10 5.5">
-                                        </polygon>
-                                    </svg></em>
-                            </div>
-                            <div class="clear"></div>
-                            <h6 class="text_td_thegame_ud" style="margin-bottom:0;"></h6>
+                                            <input type="hidden"
+                                                id="discount_number_{{ $card->id }}_{{ json_decode($card->price)[$i] }}"
+                                                value="{{ json_decode($card->discount)[$i] }}" name="discount_num">
+                                        @endfor
+                                    </ul>
+                                </div>
+                            @endforeach
+                        @endif
+                    </div>
+                    <div class="all_so_luong_the">
+                        <b>Số lượng:</b>
+                        <em class="subquan" onClick='decreaseCount(event, this)'><svg enable-background="new 0 0 10 10"
+                                viewBox="0 0 10 10" x="0" y="0">
+                                <polygon fill="white" points="4.5 4.5 3.5 4.5 0 4.5 0 5.5 3.5 5.5 4.5 5.5 10 5.5 10 4.5">
+                                </polygon>
+                            </svg></em>
+                        <input type="text" id="quantity" name="" onkeypress="return utils.checkOnlyNumber(this, event);"
+                            min="1" value="1" disabled="disabled">
+                        <em class="addquan" id="123" onClick='increaseCount(event, this)'><svg
+                                enable-background="new 0 0 10 10" viewBox="0 0 10 10" x="0" y="0">
+                                <polygon fill="white"
+                                    points="10 4.5 5.5 4.5 5.5 0 4.5 0 4.5 4.5 0 4.5 0 5.5 4.5 5.5 4.5 10 5.5 10 5.5 5.5 10 5.5">
+                                </polygon>
+                            </svg></em>
+                    </div>
+                    <div class="clear"></div>
+                    <h6 class="text_td_thegame_ud" style="margin-bottom:0;"></h6>
                 </div>
                 <!--/column -->
                 <div class="col-lg-3 col-md-8 col-sm-12 col-xs-12">
@@ -263,14 +283,15 @@ h1 a {
                                     <td id="discount_num2"></td>
                                 </tr>
                                 <tr style="text-align: left">
-                                    <td>Mã giảm giá</td>            
-                                    <td><b><input id="discount_code_use" type="text" class="form-control" style="width: 150px;" placeholder="Mã giảm giá. . . "></b></td>
+                                    <td>Mã giảm giá</td>
+                                    <td><b><input id="discount_code_use" type="text" class="form-control"
+                                                style="width: 150px;" placeholder="Mã giảm giá. . . "></b></td>
                                 </tr>
                                 <tr style="text-align: left">
                                     <td><b>Tổng tiền :</b></td>
                                     <td id="total"></td>
                                 </tr>
-                                
+
                             </tbody>
                         </table>
                     </div>
@@ -294,26 +315,29 @@ h1 a {
             $('#price').html('');
             $('#total').html('');
         }
+
         function getCard(name) {
             $('.cateId').attr("style", "display:none");
             $('.cardInfo').attr("style", "display:none");
-            $('.'+ name).removeAttr("style");
+            $('.' + name).removeAttr("style");
             $('#card_info').html('');
             $('#quantity2').html('');
             $('#discount_num2').html('');
             $('#price').html('');
             $('#total').html('');
         }
+
         function getCardDetail(name) {
             $('.cateId').attr("style", "display:none");
             $('.cardInfo').attr("style", "display:none");
-            $('.'+ name).removeAttr("style");
+            $('.' + name).removeAttr("style");
             $('#card_info').html('');
             $('#quantity2').html('');
             $('#discount_num2').html('');
             $('#price').html('');
             $('#total').html('');
         }
+
         function cate(number, name) {
             var card_id = number;
             $('.cate').removeAttr("style");
@@ -345,7 +369,7 @@ h1 a {
                     timer: 2000
                 })
             } else {
-                $('#discount_code').attr("value", $('#discount_code_use').val());    
+                $('#discount_code').attr("value", $('#discount_code_use').val());
                 $('#form').submit();
             }
         }
@@ -404,23 +428,26 @@ h1 a {
                 // Variables privadas
                 var links = this.el.find('.link');
                 // Evento
-                links.on('click', {el: this.el, multiple: this.multiple}, this.dropdown)
+                links.on('click', {
+                    el: this.el,
+                    multiple: this.multiple
+                }, this.dropdown)
             }
 
             Accordion.prototype.dropdown = function(e) {
                 var $el = e.data.el;
                 $this = $(this),
-                $next = $this.next();
+                    $next = $this.next();
 
                 $next.slideToggle();
                 $this.parent().toggleClass('open');
 
                 if (!e.data.multiple) {
-                $el.find('.submenu').not($next).slideUp().parent().removeClass('open');
+                    $el.find('.submenu').not($next).slideUp().parent().removeClass('open');
                 };
-            } 
+            }
 
             var accordion = new Accordion($('#accordion'), false);
-            });
+        });
     </script>
 @stop
