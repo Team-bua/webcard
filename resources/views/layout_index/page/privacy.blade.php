@@ -16,7 +16,7 @@
                             <div class="content is-full">
                                 <p><b>I. Sự chấp thuận</b></p>
                                 <ul>
-                                    <li>Bằng việc trao cho chúng tôi thông tin cá nhân của bạn, sử dụng Webcard bạn đồng ý
+                                    <li>Bằng việc trao cho chúng tôi thông tin cá nhân của bạn, sử dụng mintritel bạn đồng ý
                                         thông tin cá nhân của bạn sẽ được thu thập, sử dụng như được nêu trong Chính Sách
                                         này. Nếu bạn không đồng ý với Chính Sách này, bạn dừng cung cấp cho chúng tôi bất cứ
                                         thông tin cá nhân nào và/hoặc sử dụng các quyền như được nêu tại Mục 7 dưới đây.
@@ -34,7 +34,7 @@
                                     <li>Cá Nhân Hóa: Chúng tôi có thể tổ hợp dữ liệu được thu thập để có một cái nhìn hoàn
                                         chỉnh hơn về một người tiêu dùng và từ đó cho phép chúng tôi phục vụ tốt hơn với sự
                                         cá nhân hóa mạnh hơn ở các khía cạnh, bao gồm nhưng không giới hạn: (i) để cải thiện
-                                        và cá nhân hóa trải nghiệm của bạn trên Webcard (ii) để cải thiện các tiện ích, dịch
+                                        và cá nhân hóa trải nghiệm của bạn trên mintritel (ii) để cải thiện các tiện ích, dịch
                                         vụ, điều chỉnh chúng phù hợp với các nhu cầu được cá thể hóa và đi đến những ý tưởng
                                         dịch vụ mới (iii) để phục vụ bạn với những giới thiệu, quảng cáo được điều chỉnh phù
                                         hợp với sự quan tâm của bạn.</li>
@@ -43,7 +43,7 @@
                                 <p>Chúng tôi thu thập thông tin cá nhân của bạn khi:</p>
                                 <ul>
                                     <li>Cung cấp các dịch vụ đến Khách hàng.</li>
-                                    <li>Gửi các thông báo về các hoạt động trao đổi thông tin giữa Khách hàng và Webcard.</li>
+                                    <li>Gửi các thông báo về các hoạt động trao đổi thông tin giữa Khách hàng và mintritel.</li>
                                     <li>Ngăn ngừa các hoạt động phá hủy tài khoản người dùng của Khách hàng hoặc các hoạt
                                         động giả mạo Khách hàng.</li>
                                     <li>Liên lạc và giải quyết với Khách hàng trong những trường hợp đặc biệt.</li>
@@ -51,7 +51,7 @@
                                     <li>Giải quyết các vấn đề, tranh chấp phát sinh liên quan đến việc sử dụng website.</li>
                                     <li>Ngăn chặn những hoạt động vi phạm pháp luật Việt Nam.</li>
                                     <li>Không sử dụng thông tin cá nhân của Khách hàng ngoài mục đích xác nhận và liên hệ có
-                                        liên quan đến giao dịch tại Webcard.</li>
+                                        liên quan đến giao dịch tại mintritel.</li>
                                 </ul>
                                 <p>Ngoài ra, không ai có quyền xâm phạm vào thông tin cá nhân của Khách hàng.</p>
                                 <p><b>IV. Không Chia Sẻ Thông Tin Cá Nhân Khách Hàng</b></p>
@@ -62,7 +62,7 @@
                                         và chỉ giới hạn trong phạm vi thông tin cần thiết cũng như áp dụng các quy định đảm
                                         bảo an ninh, bảo mật các thông tin cá nhân.</li>
                                     <li>Chúng tôi có thể sử dụng dịch vụ từ một nhà cung cấp dịch vụ là bên thứ ba để thực
-                                        hiện một số hoạt động liên quan đến Webcard và khi đó bên thứ ba này có thể truy cập
+                                        hiện một số hoạt động liên quan đến mintritel và khi đó bên thứ ba này có thể truy cập
                                         hoặc xử lý các thông tin cá nhân trong quá trình cung cấp các dịch vụ đó. Chúng tôi
                                         yêu cầu các bên thứ ba này tuân thủ mọi luật lệ về bảo vệ thông tin cá nhân liên
                                         quan và các yêu cầu về an ninh liên quan đến thông tin cá nhân.</li>

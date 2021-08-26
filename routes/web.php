@@ -8,6 +8,7 @@ use App\Http\Controllers\Discount\DiscountController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\LoginController;
 use App\Http\Controllers\Frontend\SettingController;
+use App\Http\Controllers\News\NewsController;
 use App\Http\Controllers\Partners\PartnersController;
 use App\Http\Controllers\Recharge\RechargeCodeController;
 use App\Http\Controllers\ShowBill\ShowBillController;
@@ -100,6 +101,13 @@ Route::group(['middleware' => 'user'], function () {
     Route::get('/brand-edit/{id}',[SubCardTypeController::class,'edit'])->name('brand.edit');
     Route::post('/brand-update/{id}',[SubCardTypeController::class,'update'])->name('brand.update');
     Route::get('/brand-destroy',[SubCardTypeController::class,'destroy'])->name('brand.destroy');
+    //View news
+    Route::get('/news-index',[NewsController::class,'index'])->name('news.index');
+    Route::get('/news-create',[NewsController::class,'create'])->name('news.create');
+    Route::post('/news-save',[NewsController::class,'store'])->name('news.store');
+    Route::get('/news-edit/{id}',[NewsController::class,'edit'])->name('news.edit');
+    Route::post('/news-update/{id}',[NewsController::class,'update'])->name('news.update');
+    Route::get('/news-destroy',[NewsController::class,'destroy'])->name('news.destroy');
 });
 
 Route::group(['middleware' => 'login'], function () {
@@ -128,6 +136,10 @@ Route::get('/',[FrontendController::class,'getIndex'])->name('index');
 Route::get('/contact',[FrontendController::class,'contact'])->name('contact');
 //About
 Route::get('/about',[FrontendController::class,'about'])->name('about');
+//News
+Route::get('/news',[FrontendController::class,'news'])->name('news');
+//News Detail 
+Route::get('/news-detail/{id}',[FrontendController::class,'newsDetail'])->name('news.detail');
 //Terms of use
 Route::get('/terms-of-use',[FrontendController::class,'termOfUse'])->name('termOfUse');
 //Privacy

@@ -62,6 +62,21 @@ class FrontendController extends Controller
         return view('layout_index.page.privacy');
     }
 
+    public function news()
+    {
+        $news = $this->repository->getNews();
+        return view('layout_index.page.news', compact('news'));
+    }
+
+    public function newsDetail($id)
+    {
+        $news_detail = $this->repository->getNewsDetail($id);
+        $news_other = $this->repository->getNewsOther();
+        $this->repository->countView($id);
+        $views_news = $this->repository->getHighestViews();
+        return view('layout_index.page.news_detail', compact('news_detail', 'news_other', 'views_news'));
+    }
+
     public function signUp()
     {
         return view('layout_index.page.signup');

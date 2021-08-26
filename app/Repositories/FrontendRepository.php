@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Models\Bill;
 use App\Models\Index;
+use App\Models\News;
 use App\Models\Partners;
 use App\Models\Product;
 use App\Models\Slide;
@@ -80,6 +81,35 @@ class FrontendRepository
     public function getPartners()
     {
         return Partners::all();
+    }
+
+    public function getNews()
+    {
+        return News::orderBy('created_at', 'desc')->get();
+    }
+
+    public function getNewsDetail($id)
+    {
+        return News::find($id);
+    }
+
+    public function getNewsOther()
+    {
+        return News::orderBy('created_at', 'desc')->limit(4)->get();
+    }
+
+    public function countView($id)
+    {
+        $news = News::find($id);
+        if (isset($news)) {
+            $news->view += 1;
+            $news->save();
+        }
+    }
+
+    public function getHighestViews()
+    {
+        return News::orderBy('view', 'desc')->limit(5)->get();
     }
 
 }
