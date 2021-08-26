@@ -159,6 +159,8 @@
                 <input style="display: none" type="text" id="discount" value="">
                 <input style="display: none" type="text" id="discount_num" name="discount_num" value="">
                 <input style="display: none" type="text" id="discount_code" name="discount_code" value="">
+                <input id="discount_code_input2" type="hidden" class="form-control" style="width: 150px;" placeholder="Mã giảm giá. . . " value="0">
+                <input id="discount_code_type2" type="hidden" class="form-control" style="width: 150px;" placeholder="Mã giảm giá. . . " value="0">
             </form>
             <div class="row" style="margin-top: 20px">
                 <div class="col-lg-3 col-md-8 col-sm-12 col-xs-12">
@@ -196,10 +198,13 @@
                             <h6 class="text_td_thegame_ud" style="margin-top: 0;">chọn loại thẻ</h6>
                         </div>
                         <div class="col-lg-4 ">
-                            <select class="form-select" style="width: 200px; margin-top: -20px ">
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                            <select class="form-select" id="select_sub_card_type" style="width: 200px; margin-top: -20px ">
+                                <option value="0">Tất cả thẻ</option>
+                                @if(isset($sub_card_type_all))
+                                    @foreach($sub_card_type_all as $sub_card_type)
+                                        <option value="{{ str_replace(' ', '', $sub_card_type->name) }}">{{ $sub_card_type->name }}</option>
+                                    @endforeach
+                                @endif
                             </select>
                         </div>
                     </div>
@@ -286,7 +291,14 @@
                                     <td>Mã giảm giá</td>
                                     <td><b><input id="discount_code_use" type="text" class="form-control"
                                                 style="width: 150px;" placeholder="Mã giảm giá. . . "></b></td>
+                                    
                                 </tr>
+                                <tr style="text-align: left">
+                                    <td>Giảm giá (theo mã) :</td>
+                                    <td id="discount_code2"></td>
+                                    
+                                </tr>
+                                
                                 <tr style="text-align: left">
                                     <td><b>Tổng tiền :</b></td>
                                     <td id="total"></td>
@@ -294,7 +306,7 @@
 
                             </tbody>
                         </table>
-                    </div>
+                    </div>                   
                     <a href="#" onClick='submitForm()' class="link_thanhtoan_naptien">Thanh toán ngay</a>
 
                 </div>
@@ -306,6 +318,119 @@
 @endsection
 @section('script')
     <script>
+        $(document).ready(function() {      
+            $('#select_sub_card_type').on('change', function() {
+                var selected_sub_card = $('#select_sub_card_type').val();
+                if (selected_sub_card == 0) {
+                    $('.cateId').removeAttr("style");
+                    $('.cardInfo').attr("style", "display:none");
+                    $('#card_info').html('');
+                    $('#quantity2').html('');
+                    $('#discount_num2').html('');
+                    $('#price').html('');
+                    $('#total').html('');
+                }
+                else
+                {
+                    $('.cateId').attr("style", "display:none");
+                    $('.cardInfo').attr("style", "display:none");
+                    $('.' + selected_sub_card).removeAttr("style");
+                    $('#card_info').html('');
+                    $('#quantity2').html('');
+                    $('#discount_num2').html('');
+                    $('#price').html('');
+                    $('#total').html('');
+                }
+            })
+
+            $('#discount_code_use').on('keyup', function () {
+                var discount_value = $('#discount_code_use').val();      
+                
+                $.ajax({
+                    url: "{{ route('check.discount.code') }}",
+                    method: 'GET',
+                    data: {
+                        discount_code: discount_value
+                          },
+                    success: function (data) 
+                    {
+                        if(data.success == true){
+                            if(data.type == 'Cố định'){
+                                $('#discount_code2').html(data.discount+' VNĐ');
+                                $('#discount_code_input2').attr('value', data.discount.replace(',', ''));
+                                $('#discount_code_type2').attr('value', 'VNĐ');
+                                 
+                                var price = $('#subject').val();
+                                var quantity = $('#quantity1').val();
+                                var discount_num = $('#discount_num').val();
+
+                                if(discount_num == '' && price != ''){
+
+                                    $('#total').html(Number( quantity * (price - data.discount.replace(',', ''))).toString().replace(
+                                    /(\d)(?=(\d{3})+(?!\d))/g, '$1,') + ' VNĐ');
+                                }
+                                else if(discount_num != '' && price != ''){
+                                    if((price * discount_num / 100) > data.discount.replace(',', '')){
+                                        $('#total').html(Number( quantity * (price - price * discount_num / 100)).toString().replace(
+                                        /(\d)(?=(\d{3})+(?!\d))/g, '$1,') + ' VNĐ');
+                                    }
+                                    else
+                                    {
+                                        $('#total').html(Number( quantity * (price - data.discount.replace(',', ''))).toString().replace(
+                                        /(\d)(?=(\d{3})+(?!\d))/g, '$1,') + ' VNĐ');
+                                    }
+                                }   
+                                
+                            }
+                            else if(data.type == 'Phần trăm') 
+                            {
+                                $('#discount_code2').html(data.discount+' %');
+                                $('#discount_code_input2').attr('value', data.discount.replace(',', ''));
+                                $('#discount_code_type2').attr('value', '%');
+                                
+                                var price = $('#subject').val();
+                                var quantity = $('#quantity1').val();
+                                var discount_num = $('#discount_num').val();
+
+                                if(discount_num == '' && price != ''){
+
+                                    $('#total').html(Number( quantity * (price - price * data.discount / 100)).toString().replace(
+                                    /(\d)(?=(\d{3})+(?!\d))/g, '$1,') + ' VNĐ');
+                                }
+                                else if(discount_num != '' && price != ''){
+                                    if((price * discount_num / 100) > (price * data.discount / 100)){
+                                        $('#total').html(Number( quantity * (price - price * discount_num / 100)).toString().replace(
+                                        /(\d)(?=(\d{3})+(?!\d))/g, '$1,') + ' VNĐ');
+                                    }
+                                    else
+                                    {
+                                        $('#total').html(Number( quantity * (price - price * data.discount / 100)).toString().replace(
+                                        /(\d)(?=(\d{3})+(?!\d))/g, '$1,') + ' VNĐ');
+                                    }
+                                }
+                            }
+                            
+                        }
+                        else
+                        {
+                            $('#discount_code2').html('');
+                            $('#discount_code_input2').attr('value', '');
+                            $('#discount_code_type2').attr('value', '');
+
+                            var price = $('#subject').val();
+                            var quantity = $('#quantity1').val();
+                            var discount_num = $('#discount_num').val();
+
+                            if(price != ''){
+                                $('#total').html(Number( quantity * (price - price * discount_num / 100)).toString().replace(
+                                /(\d)(?=(\d{3})+(?!\d))/g, '$1,') + ' VNĐ');
+                            }
+                        }
+                    }
+                })
+            })
+            
+        })
         function getAllCard() {
             $('.cateId').removeAttr("style");
             $('.cardInfo').attr("style", "display:none");
@@ -376,14 +501,48 @@
 
         function card(id, price, id_card, discount) {
             var quantity = $('#quantity1').val();
+            var discount_code_value = $('#discount_code_input2').val();
+            var discount_code_type = $('#discount_code_type2').val();
+
             $('.ac_chon_mg_these').removeClass('ac_chon_mg_these');
             $('#proId_' + id + '_' + id_card + '').attr('class', 'ac_chon_mg_these');
             $('#subject').attr("value", price);
             $('#discount').attr("value", price - price * discount / 100)
             $('#discount_num').attr("value", $('#discount_number_' + id_card + '_' + price + '').val());
             $('#price').html(Number(price).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,') + ' VNĐ');
-            $('#total').html(Number(quantity * (price - price * discount / 100)).toString().replace(
+
+            if(discount_code_value == 0 && discount_code_type == 0)
+            {
+                $('#total').html(Number(quantity * (price - price * discount / 100)).toString().replace(
                 /(\d)(?=(\d{3})+(?!\d))/g, '$1,') + ' VNĐ');
+            }
+            else if(discount_code_value != 0 && discount_code_type == '%')
+            {
+                if((price * discount / 100) > (price * discount_code_value / 100))
+                {
+                    $('#total').html(Number(quantity * (price - price * discount / 100)).toString().replace(
+                    /(\d)(?=(\d{3})+(?!\d))/g, '$1,') + ' VNĐ');
+                }
+                else
+                {
+                    $('#total').html(Number(quantity * (price - price * discount_code_value / 100)).toString().replace(
+                    /(\d)(?=(\d{3})+(?!\d))/g, '$1,') + ' VNĐ');
+                }
+            }
+            else if(discount_code_value != 0 && discount_code_type == 'VNĐ')
+            {
+                if((price * discount / 100) > discount_code_value)
+                {
+                    $('#total').html(Number(quantity * (price - price * discount / 100)).toString().replace(
+                    /(\d)(?=(\d{3})+(?!\d))/g, '$1,') + ' VNĐ');
+                }
+                else
+                {
+                    $('#total').html(Number(quantity * (price - discount_code_value)).toString().replace(
+                    /(\d)(?=(\d{3})+(?!\d))/g, '$1,') + ' VNĐ');
+                }
+            }
+            
             $('#discount_num2').html($('#discount_number_' + id_card + '_' + price + '').val() + ' %');
             $('#quantity2').html(quantity);
         }

@@ -7,6 +7,7 @@ use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Models\Card;
 use App\Models\CardType;
+use App\Models\Discount;
 use App\Models\SubCardType;
 use App\Models\Test;
 use App\Models\User;
@@ -121,6 +122,32 @@ class FrontendController extends Controller
         return redirect()->route('index');
     }
 
+    public function CheckDiscountCode(Request $request)
+    {
+        if($request->ajax())
+        {   
+            $discount_value_code = Discount::where('code', $request->discount_code)
+                                    ->where('status', 0)
+                                    ->first();
+            if($discount_value_code != null){
+                $code = number_format($discount_value_code->price);
+                $type = $discount_value_code->discount_type;
+                return response()->json([
+                    'success' => true,
+                    'discount' => $code,
+                    'type' => $type
+                ]);
+            }
+            else
+            {
+                return response()->json([
+                    'success' => false,
+                ]);
+            }
+        }
+        
+    }
+
     public function getCardToView()
     {
         $cards = Card::all();
@@ -135,7 +162,7 @@ class FrontendController extends Controller
                 }    
             }
         }
-        return view('layout_index.page.card', compact('cards', 'card_type', 'arr_sub_card_type'));
+        return view('layout_index.page.card', compact('cards', 'card_type', 'arr_sub_card_type', 'sub_card_type_all'));
     }
 
     public function transtionInfo(Request $request)

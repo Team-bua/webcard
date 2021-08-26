@@ -158,6 +158,8 @@ Route::get('/card',[FrontendController::class,'getCardToView'])->name('card');
 Route::get('/buy-card',[CardController::class,'BuyCard'])->name('buy_card');
 //transaction
 Route::post('handler-bank-transfer',[FrontendController::class,'transtionInfo'])->name('transtion.info');
+//check discount code
+Route::get('/check-discount-code',[FrontendController::class,'CheckDiscountCode'])->name('check.discount.code');
 //Test
 // Route::get('/test', function(){
 //     return view('show_bill.show_card_bill');
