@@ -16,12 +16,7 @@ class BillRepository
     public function getCardBill($request)
     {
         $date = date('Y-m-d');
-        $all_bill = CardBill::when(($request->date == null), function ($query) use ($date) {
-            $query->where(function ($q) use ($date) {
-                $q->whereDate('created_at', '=', $date);
-            });
-        })
-            ->when(($request->date != null && isset(explode(' to ', $request->date)[1]) == true), function ($query) use ($request) {
+        $all_bill = CardBill::when(($request->date != null && isset(explode(' to ', $request->date)[1]) == true), function ($query) use ($request) {
                 $query->where(function ($q) use ($request) {
                     $q->whereRaw('DATE(card_bills.created_at) BETWEEN "' . date('Y-m-d', strtotime(str_replace('/', '-', explode(' to ', $request->date)[0]))) . '" 
                             AND "' . date('Y-m-d', strtotime(str_replace('/', '-', explode(' to ', $request->date)[1]))) . '"');

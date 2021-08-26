@@ -43,16 +43,16 @@
                             <select class="form-control" name="status" style="width: 20%; float: right; margin-top: 10px; margin-right: 5px">
                                 @if($status == 0)
                                     <option value="0" selected>Tất cả trạng thái </option>
-                                    <option value="1">Chưa thanh toán</option>
-                                    <option value="2" >Đã thanh toán</option>
+                                    <option value="1">Chờ xử lý</option>
+                                    <option value="2" >Đã giao hàng</option>
                                 @elseif($status == 2)
                                     <option value="0">Tất cả trạng thái </option>
-                                    <option value="1">Chưa thanh toán</option>
-                                    <option value="2" selected>Đã thanh toán</option>
+                                    <option value="1">Chờ xử lý</option>
+                                    <option value="2" selected>Đã giao hàng</option>
                                 @elseif($status == 1)
                                     <option value="0">Tất cả trạng thái </option>
-                                    <option value="1" selected>Chưa thanh toán</option>
-                                    <option value="2">Đã thanh toán</option>
+                                    <option value="1" selected>Chờ xử lý</option>
+                                    <option value="2">Đã giao hàng</option>
                                 @endif
                             </select>
                         </form>
