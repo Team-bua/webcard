@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="shortcut icon" href="{{ asset('dev/img/favicon.png') }}">
+  <link rel="shortcut icon" href="{{ asset('dev/img/mttel.png') }}">
   <title>Chuyên cung cấp các loại Card game || Voucher</title>
   <link rel="stylesheet" href="{{ asset('dev/css/plugins.css') }}">
   <link rel="stylesheet" href="{{ asset('dev/css/style.css') }}"> 

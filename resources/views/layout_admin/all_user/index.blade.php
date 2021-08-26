@@ -37,6 +37,7 @@
                                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Số dư</th>
                                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Đơn hàng</th>
                                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Đơn nạp</th>
+                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Lý do khóa</th>
                                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Khóa user</th>
                                             <th class="text-secondary"></th>
                                         </tr>
@@ -81,6 +82,9 @@
                                             </td>
                                             <td class="align-middle text-center text-sm">
                                                 <a href="{{ route('users.recharge_bills', $user->id) }}"><i class="fa fa-eye" style="margin-top: 10px"></i></a>                             
+                                            </td>
+                                            <td class="align-middle text-center text-sm">
+                                                <p class="text-xs font-weight-bold mb-0"></p>
                                             </td>
                                             <td class="align-middle text-center text-sm">
                                                 @if($user->banned_status == 0)

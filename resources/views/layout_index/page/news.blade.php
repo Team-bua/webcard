@@ -45,7 +45,7 @@
                                                     <div class="post-header">
                                                         <!-- /.post-category -->
                                                         <h2 class="post-title h3 mt-1 mb-3"><a class="link-dark"
-                                                                href="blog-post.html">{{ $new->tittle }}</a></h2>
+                                                                href="{{ route('news.detail', $new->id) }}">{{ $new->tittle }}</a></h2>
                                                     </div>
                                                     <!-- /.post-header -->
                                                     <div class="post-content" style="display: -webkit-box;width:280px;line-height:25px;overflow: hidden; text-align: justify; text-overflow: ellipsis;-webkit-line-clamp:3;-webkit-box-orient: vertical;">

@@ -36,7 +36,7 @@ class BillController extends Controller
         $date =  date('Y-m-d');
         if($request->date == null)
         {
-            $first_day = date('Y-m-d', strtotime($date));
+            $first_day = date('Y-m-1', strtotime($date));
             $last_day = date('Y-m-d', strtotime($date));            
         }
         else if(isset(explode(' to ', $request->date)[1]) == false)
