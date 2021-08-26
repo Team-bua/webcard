@@ -12,8 +12,6 @@
 		</li>
 		<li class="nav-item"><a class="nav-link" href="{{ route('card') }}">Mua thẻ</a>
 		</li>
-		<li class="nav-item"><a class="nav-link" href="#">Hướng dẫn</a>
-		</li>
 		<li class="nav-item"><a class="nav-link" href="{{ route('news') }}">Tin tức</a>
 		</li>
 		<li class="nav-item"><a class="nav-link" href="{{ route('contact') }}">Liên hệ</a>

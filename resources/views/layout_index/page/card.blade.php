@@ -194,18 +194,20 @@
                 </div>
                 <div class="col-lg-6 col-md-8 col-sm-12 col-xs-12">
                     <div class="row">
-                        <div class="col-lg-8">
+                        <div class="col-lg-7">
                             <h6 class="text_td_thegame_ud" style="margin-top: 0;">chọn loại thẻ</h6>
                         </div>
-                        <div class="col-lg-4 ">
-                            <select class="form-select" id="select_sub_card_type" style="width: 200px; margin-top: -20px ">
+                        <div class="col-lg-5 ">
+                            <input id="select_sub_card_type" type="text" class="form-control"
+                                                style="margin-top: -20px " placeholder="Tìm kiếm. . . "></b>
+                            {{-- <select class="form-select" id="select_sub_card_type" style="width: 200px; margin-top: -20px ">
                                 <option value="0">Tất cả thẻ</option>
                                 @if(isset($sub_card_type_all))
                                     @foreach($sub_card_type_all as $sub_card_type)
                                         <option value="{{ str_replace(' ', '', $sub_card_type->name) }}">{{ $sub_card_type->name }}</option>
                                     @endforeach
                                 @endif
-                            </select>
+                            </select> --}}
                         </div>
                     </div>
                     <div class="tab-wrapper">
