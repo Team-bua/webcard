@@ -103,11 +103,7 @@ class CardController extends Controller
     {
         $total = $request->subject * $request->quantity1;
         if (Auth::check()) {
-            if (Auth::user()->point - $total < 0) {
-                return redirect()->back()->with('message', '5');
-            } else {
                 return $this->repository->BuyCard($request);
-            }
         } else {
             return redirect()->route('signin');
         }
