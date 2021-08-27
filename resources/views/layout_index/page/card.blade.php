@@ -163,7 +163,7 @@
                 <input id="discount_code_type2" type="hidden" class="form-control" style="width: 150px;" placeholder="Mã giảm giá. . . " value="0">
             </form>
             <div class="row" style="margin-top: 20px">
-                <div class="col-lg-3 col-md-8 col-sm-12 col-xs-12">
+                <div class="col-lg-2 col-md-8 col-sm-12 col-xs-12">
                     <h6 class="text_td_thegame_ud" style="margin-top: 0px">Danh sách loại thẻ</h6>
                     <ul class="accordion" style="margin-top: -25px">
                         <li>
@@ -268,7 +268,7 @@
                     <h6 class="text_td_thegame_ud" style="margin-bottom:0;"></h6>
                 </div>
                 <!--/column -->
-                <div class="col-lg-3 col-md-8 col-sm-12 col-xs-12">
+                <div class="col-lg-4 col-md-8 col-sm-12 col-xs-12">
                     <h6 class="text_td_thegame_ud" style="margin-top: 0;">Chi tiết giao dịch</h6>
                     <div class="table-responsive">
                         <table class="table align-items-center mb-0">
@@ -290,9 +290,9 @@
                                     <td id="discount_num2"></td>
                                 </tr>
                                 <tr style="text-align: left">
-                                    <td>Mã giảm giá</td>
+                                    <td>Mã giảm giá :</td>
                                     <td><b><input id="discount_code_use" type="text" class="form-control"
-                                                style="width: 150px;" placeholder="Mã giảm giá. . . "></b></td>
+                                                style="width: 200px;" placeholder="Mã giảm giá. . . "></b></td>
                                     
                                 </tr>
                                 <tr style="text-align: left">
@@ -321,7 +321,7 @@
 @section('script')
     <script>
         $(document).ready(function() {      
-            $('#select_sub_card_type').on('change', function() {
+            $('#select_sub_card_type').on('keyup', function() {
                 var selected_sub_card = $('#select_sub_card_type').val();
                 if (selected_sub_card == 0) {
                     $('.cateId').removeAttr("style");
