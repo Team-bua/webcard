@@ -8,6 +8,7 @@ use App\Http\Controllers\Discount\DiscountController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\LoginController;
 use App\Http\Controllers\Frontend\SettingController;
+use App\Http\Controllers\LinkController;
 use App\Http\Controllers\News\NewsController;
 use App\Http\Controllers\Partners\PartnersController;
 use App\Http\Controllers\Recharge\RechargeCodeController;
@@ -109,6 +110,13 @@ Route::group(['middleware' => 'user'], function () {
     Route::get('/news-edit/{id}',[NewsController::class,'edit'])->name('news.edit');
     Route::post('/news-update/{id}',[NewsController::class,'update'])->name('news.update');
     Route::get('/news-destroy',[NewsController::class,'destroy'])->name('news.destroy');
+    //View link
+    Route::get('/link-index',[LinkController::class,'index'])->name('link.index');
+    Route::get('/link-create',[LinkController::class,'create'])->name('link.create');
+    Route::post('/link-save',[LinkController::class,'store'])->name('link.store');
+    Route::get('/link-edit/{id}',[LinkController::class,'edit'])->name('link.edit');
+    Route::post('/link-update/{id}',[LinkController::class,'update'])->name('link.update');
+    Route::get('/link-destroy',[LinkController::class,'destroy'])->name('link.destroy');
 });
 
 Route::group(['middleware' => 'login'], function () {

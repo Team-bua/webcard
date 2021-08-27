@@ -192,7 +192,7 @@
                         @endif
                     </ul>
                 </div>
-                <div class="col-lg-6 col-md-8 col-sm-12 col-xs-12">
+                <div class="col-lg-7 col-md-8 col-sm-12 col-xs-12">
                     <div class="row">
                         <div class="col-lg-7">
                             <h6 class="text_td_thegame_ud" style="margin-top: 0;">chọn loại thẻ</h6>
@@ -225,7 +225,7 @@
                                     <ul class="list_all_menhgia_thegame_udrt" id="ul_Product">
                                         @for ($i = 0; $i < count(json_decode($card->price)); $i++)
                                             <li id="proId_{{ $i }}_{{ $card->id }}" class="proId">
-                                                <a href="#" style="width: 100%;"
+                                                <a href="#"
                                                     onclick="card('{{ $i }}', '{{ json_decode($card->price)[$i] }}', '{{ $card->id }}', '{{ json_decode($card->discount)[$i] }}')"><b>{{ number_format(json_decode($card->price)[$i]) }}
                                                         VNĐ</b><span>Giá bán:
                                                         {{ number_format(json_decode($card->price)[$i] - (json_decode($card->price)[$i] * json_decode($card->discount)[$i]) / 100) }}
@@ -260,7 +260,7 @@
                     <h6 class="text_td_thegame_ud" style="margin-bottom:0;"></h6>
                 </div>
                 <!--/column -->
-                <div class="col-lg-4 col-md-8 col-sm-12 col-xs-12">
+                <div class="col-lg-3 col-md-8 col-sm-12 col-xs-12">
                     <h6 class="text_td_thegame_ud" style="margin-top: 0;">Chi tiết giao dịch</h6>
                     <div class="table-responsive">
                         <table class="table align-items-center mb-0">
@@ -284,7 +284,7 @@
                                 <tr style="text-align: left">
                                     <td>Mã giảm giá :</td>
                                     <td><b><input id="discount_code_use" type="text" class="form-control"
-                                                style="width: 200px;" placeholder="Mã giảm giá. . . "></b></td>
+                                                style="width: 150px;" placeholder="Mã giảm giá. . . "></b></td>
                                     
                                 </tr>
                                 <tr style="text-align: left">
