@@ -97,11 +97,11 @@
                                         <td>
                                             <div class="d-flex px-2 py-1">
                                                 <div>
-                                                    <img src="{{ asset($bill->card_bill->image) }}" class="avatar avatar-sm me-3" alt="user1">
+                                                    <img src="{{ asset( isset($bill) ? $bill->card_bill->image : 'dashboard/assets/img/no_img.jpg') }}" class="avatar avatar-sm me-3" alt="user1">
                                                 </div>
                                                 <div class="d-flex flex-column justify-content-center">
-                                                    <h6 class="mb-0 text-sm">{{$bill->card_bill->name }}</h6>
-                                                    <p class="text-xs text-secondary mb-0">{{ $bill->card_bill->card_type }}</p>
+                                                    <h6 class="mb-0 text-sm">{{ isset($bill) ? $bill->card_bill->name : '' }}</h6>
+                                                    <p class="text-xs text-secondary mb-0">{{ isset($bill) ? $bill->card_bill->card_type : ''}}</p>
                                                 </div>
                                             </div>
                                         </td>

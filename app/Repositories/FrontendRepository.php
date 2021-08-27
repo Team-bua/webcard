@@ -95,7 +95,7 @@ class FrontendRepository
 
     public function getNewsOther()
     {
-        return News::orderBy('created_at', 'desc')->limit(4)->get();
+        return News::orderBy('id', 'desc')->limit(4)->get();
     }
 
     public function countView($id)

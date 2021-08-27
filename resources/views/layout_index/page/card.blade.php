@@ -225,7 +225,7 @@
                                     <ul class="list_all_menhgia_thegame_udrt" id="ul_Product">
                                         @for ($i = 0; $i < count(json_decode($card->price)); $i++)
                                             <li id="proId_{{ $i }}_{{ $card->id }}" class="proId">
-                                                <a href="#"
+                                                <a href="#" style="width: 100%;"
                                                     onclick="card('{{ $i }}', '{{ json_decode($card->price)[$i] }}', '{{ $card->id }}', '{{ json_decode($card->discount)[$i] }}')"><b>{{ number_format(json_decode($card->price)[$i]) }}
                                                         VNĐ</b><span>Giá bán:
                                                         {{ number_format(json_decode($card->price)[$i] - (json_decode($card->price)[$i] * json_decode($card->discount)[$i]) / 100) }}
