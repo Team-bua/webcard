@@ -124,12 +124,11 @@ class FrontendController extends Controller
 
     public function CheckDiscountCode(Request $request)
     {
-        if($request->ajax())
-        {   
+        if ($request->ajax()) {
             $discount_value_code = Discount::where('code', $request->discount_code)
-                                    ->where('status', 0)
-                                    ->first();
-            if($discount_value_code != null){
+                ->where('status', 0)
+                ->first();
+            if ($discount_value_code != null) {
                 $code = number_format($discount_value_code->price);
                 $type = $discount_value_code->discount_type;
                 return response()->json([
@@ -137,15 +136,48 @@ class FrontendController extends Controller
                     'discount' => $code,
                     'type' => $type
                 ]);
-            }
-            else
-            {
+            } else {
                 return response()->json([
                     'success' => false,
                 ]);
             }
         }
-        
+    }
+
+    public function LiveSearchCard(Request $request)
+    {
+        if ($request->ajax()) {
+            $output = null;
+            $query = $request->key;
+            if ($query != '') {
+                $data = Card::where('name', 'like', '%' . $query . '%')
+                    ->get();
+                foreach ($data as $d) {
+                    $sub_card = SubCardType::find($d->sub_card_type_id);
+                    $d->sub_card_name = str_replace(' ', '', $sub_card->name);
+                }
+            } else {
+                $data = Card::all();
+                foreach ($data as $d) {
+                    $sub_card = SubCardType::find($d->sub_card_type_id);
+                    $d->sub_card_name = str_replace(' ', '', $sub_card->name);
+                }
+            }
+            if (count($data) > 0) {
+                foreach ($data as $dt) {
+                    $cate = "cate('$dt->id', '$dt->name')";
+                    $output .= '<li id="cateId_' . $dt->id . '" class="cateId  ' . $dt->card_type . ' ' . $dt->sub_card_name . '">
+                    <a href="#" onclick="' . $cate . '" class="cate" id="' . $dt->id . '">
+                    <img class="lazyload" src="' . asset($dt->image) . '" style="max-width:85px; height: 50px;" alt="">
+                    </a>
+                    </li>';
+                }
+            }
+            return response()->json([
+                'success' => true,
+                'data_ul' => $output,
+            ]);
+        }
     }
 
     public function getCardToView()
@@ -155,11 +187,11 @@ class FrontendController extends Controller
         $arr_sub_card_type = [];
         $sub_card_type_all = SubCardType::all();
         $i = 0;
-        foreach ($sub_card_type_all as $sub_type){
-            foreach ($card_type as $type){
-                if($sub_type->card_type_id == $type->id){
-                    $arr_sub_card_type[$type->name.'-'.$i++] =  $sub_type->name;
-                }    
+        foreach ($sub_card_type_all as $sub_type) {
+            foreach ($card_type as $type) {
+                if ($sub_type->card_type_id == $type->id) {
+                    $arr_sub_card_type[$type->name . '-' . $i++] =  $sub_type->name;
+                }
             }
         }
         return view('layout_index.page.card', compact('cards', 'card_type', 'arr_sub_card_type', 'sub_card_type_all'));
@@ -172,7 +204,5 @@ class FrontendController extends Controller
         $data->test = json_encode($res_json);
         $data->save();
         $this->repository->Test($data->test, $data->id);
-
     }
-    
 }

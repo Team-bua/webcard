@@ -198,16 +198,8 @@
                             <h6 class="text_td_thegame_ud" style="margin-top: 0;">chọn loại thẻ</h6>
                         </div>
                         <div class="col-lg-5 ">
-                            <input id="select_sub_card_type" type="text" class="form-control"
+                            <input id="search_sub_card_type" type="text" class="form-control"
                                                 style="margin-top: -20px " placeholder="Tìm kiếm. . . "></b>
-                            {{-- <select class="form-select" id="select_sub_card_type" style="width: 200px; margin-top: -20px ">
-                                <option value="0">Tất cả thẻ</option>
-                                @if(isset($sub_card_type_all))
-                                    @foreach($sub_card_type_all as $sub_card_type)
-                                        <option value="{{ str_replace(' ', '', $sub_card_type->name) }}">{{ $sub_card_type->name }}</option>
-                                    @endforeach
-                                @endif
-                            </select> --}}
                         </div>
                     </div>
                     <div class="tab-wrapper">
@@ -343,6 +335,25 @@
                     $('#price').html('');
                     $('#total').html('');
                 }
+            })
+
+            $('#search_sub_card_type').on('keyup', function () {
+                var keyword = $(this).val();
+                console.log(keyword);
+
+                $.ajax({
+                    url: "{{ route('live.search.card') }}",
+                    method: 'GET',
+                    data: {
+                        key: keyword,
+                    },
+                    success: function (data){
+                        if(data.success == true){
+                            $('.list_all_the_game_udrt').html(data.data_ul);
+                        }
+                        
+                    }
+                })
             })
 
             $('#discount_code_use').on('keyup', function () {
