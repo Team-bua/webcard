@@ -43,7 +43,7 @@
 
   <script>
     var chatbox = document.getElementById('fb-customer-chat');
-    chatbox.setAttribute("page_id", "102755492063301");
+    chatbox.setAttribute("page_id", "297352531046398");
     chatbox.setAttribute("attribution", "biz_inbox");
 
     window.fbAsyncInit = function() {
