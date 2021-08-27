@@ -128,4 +128,13 @@ class BillRepository
           'success' => true
       ]);
     }
+
+    public function deleteRechargeBill($request)
+    {
+        $recharge_bill = UserBill::find($request->id);
+        $recharge_bill->delete();      
+        return response()->json([
+          'success' => true
+      ]);
+    }
 }
