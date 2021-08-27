@@ -61,6 +61,7 @@ Route::group(['middleware' => 'user'], function () {
     //recharge bill
     Route::get('/recharge-bill',[BillController::class,'rechargeBill'])->name('rechargebill');
     Route::post('/recharge-bill/exportRechargeBill',[BillController::class,'exportRechargeBill'])->name('rechargebill.export');
+    Route::get('/recharge-bill-delete',[BillController::class,'deleteRechargeBill'])->name('rechargebill.destroy');
     //View bank
     Route::get('/bank-info',[AdminController::class,'getBankInfo'])->name('bankinfo');
     Route::post('/update-bank-info/{id}',[AdminController::class,'updateBankInfo'])->name('update.bankinfo');

@@ -43,6 +43,7 @@
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Nội dung</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Ngày</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Trạng thái</th>
+                                        <th class="text-secondary"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -86,6 +87,11 @@
                                             <span class="badge badge-sm bg-gradient-danger">Chưa thanh toán</span>
                                             @endif
                                         </td>
+                                        <td class="align-middle">
+                                            <a href="javascript:;" delete_id="{{ $bill->id }}" class="text-secondary font-weight-bold text-xs simpleConfirm" >
+                                                <span class="badge bg-gradient-danger">Xóa</span>
+                                            </a>
+                                        </td>
                                     </tr>
                                     @endforeach
                                     @endif
@@ -118,6 +124,41 @@
         $('#date_export').attr('value',$('#date_picker').val());
         $('#form_export').submit();
     })
+
+    $(document).on('click', '.simpleConfirm', function(e) {
+            e.preventDefault();
+            var id = $(this).attr('delete_id');
+            var that = $(this);
+            swal.fire({
+                title: "Bạn có muốn xóa hóa đơn này?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Xóa ngay!',
+                cancelButtonText: 'Hủy'
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        method: 'get',
+                        url: "{{ route('rechargebill.destroy') }}",
+                        data: {
+                            id: id
+                        },
+                        success: function(data) {
+                            if (data.success == true) {
+                                that.parent().parent().remove();
+                                Swal.fire(
+                                    'Xóa!',
+                                    'Xóa thành công.',
+                                    'success'
+                                )
+                            }
+                        }
+                    })
+                }
+            });
+        });
 </script>
 <script type="text/javascript">
     if (document.querySelector('.datepicker')) {
