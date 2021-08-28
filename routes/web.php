@@ -112,9 +112,7 @@ Route::group(['middleware' => 'user'], function () {
     Route::get('/news-destroy',[NewsController::class,'destroy'])->name('news.destroy');
     //View link
     Route::get('/link-index',[LinkController::class,'index'])->name('link.index');
-    Route::get('/link-create',[LinkController::class,'create'])->name('link.create');
     Route::post('/link-save',[LinkController::class,'store'])->name('link.store');
-    Route::get('/link-edit/{id}',[LinkController::class,'edit'])->name('link.edit');
     Route::post('/link-update/{id}',[LinkController::class,'update'])->name('link.update');
     Route::get('/link-destroy',[LinkController::class,'destroy'])->name('link.destroy');
     Route::get('/nhan-qua/{link}',[LinkController::class,'linkSubjectIndex'])->name('link.subject');

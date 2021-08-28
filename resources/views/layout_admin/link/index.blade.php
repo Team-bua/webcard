@@ -76,54 +76,6 @@
                                     </tr>
                                     @endforeach
                                     @endif
-
-                                    <!-- Edit Modal -->
-                                    <!-- <div class="modal fade" id="edit_link" tabindex="-1" role="dialog" aria-labelledby="exampleModalMessageTitle" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Cập nhật link</h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">×</span>
-                                                    </button>
-                                                </div>
-                                                <form action="#" method="post" enctype="multipart/form-data">
-                                                    @csrf
-                                                    <div class="modal-body">
-                                                        <div class="form-group">
-                                                            <div class="form-group" style="width: 70%;">
-                                                                <label class="form-control-label" for="basic-url">Loại thẻ</label>
-                                                                <div class="input-group">
-                                                                    <select class="form-control" id="subject_type" name="subject_type" style="width: 200px;" required>
-                                                                        @if(isset($subject_types))
-                                                                        @foreach ($subject_types as $type)
-                                                                        <option id="{{ $type->id }}" value="{{ $type->name }}">{{ $type->name }}</option>
-                                                                        @endforeach
-                                                                        @endif
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group" style="width: 70%;">
-                                                                <label class="form-control-label" for="basic-url">Nội dung</label>
-                                                                <textarea class="form-control" id="subject" name="subject" rows="3"></textarea> <br>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="submit" class="btn bg-gradient-secondary">Cập nhật</button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> -->
                                     <!-- Addd Modal -->
                                     <div class="modal fade" id="add_link" tabindex="-1" role="dialog" aria-labelledby="exampleModalMessageTitle" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -150,6 +102,26 @@
                                                                     </select>
                                                                 </div>
                                                             </div>
+                                                            <div class="form-group" style="width: 70%; display: none" id="type_discount">
+                                                                <label class="form-control-label" for="basic-url">Loại giảm giá</label>
+                                                                <div class="input-group">
+                                                                    <select class="form-control" id="discount_type" name="discount_type" style="width: 200px;" required>
+                                                                        @if(isset($types))
+                                                                         @foreach ($types as $type)
+                                                                             <option id="{{ $type->id }}" value="{{ $type->name }}">{{ $type->name }}</option>
+                                                                         @endforeach
+                                                                        @endif
+                                                                     </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group" style="width: 70%; display: none" id="discount">
+                                                                <label class="form-control-label" for="basic-url">Giá</label>
+                                                                <div class="input-group">
+                                                                    <span class="input-group-text"><i class="fa fa-quidditch"></i></span>
+                                                                    <input type="number" class="form-control" id="discount" name="discount" min="0" maxlength="150" required>
+                                                                    <span class="input-group-text" id="show_add">VNĐ</span>
+                                                                </div>
+                                                            </div>    
                                                             <div class="form-group" style="width: 70%;">
                                                                 <label class="form-control-label" for="basic-url">Nội dung</label>
                                                                 <textarea class="form-control" id="subject" name="subject" rows="3"></textarea> <br>
@@ -171,6 +143,30 @@
     const dataTableBasic = new simpleDatatables.DataTable("#datatable-basic", {
         searchable: true,
         fixedHeight: true
+    });
+
+    $('#subject_type').on('change', function() {
+       if(this.value == 'Thẻ'){
+           $('#type_discount').attr('style', 'display: none');
+           $('#discount').attr('style', 'display: none');
+       }else if(this.value == 'Mã giảm giá'){
+           $('#type_discount').attr('style', 'width: 70%;');
+           $('#discount').attr('style', 'width: 70%;');
+       }else if(this.value == 'Mã nạp tiền'){
+           $('#type_discount').attr('style', 'display: none');
+           $('#discount').attr('style', 'width: 70%;');
+           $('#show_add').html('VNĐ');
+       }
+        
+    });
+
+    $('#discount_type').on('change', function() {
+       if(this.value == 'Cố định'){
+           $('#show_add').html('VNĐ');
+       }else if(this.value == 'Phần trăm'){
+           $('#show_add').html('%');
+       }
+        
     });
 
     function copyToClipboard(element) {
@@ -195,7 +191,7 @@
         var id = $(this).attr('delete_id');
         var that = $(this);
         swal.fire({
-            title: "Bạn có muốn xóa mã này?",
+            title: "Bạn có muốn link mã này?",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -212,12 +208,12 @@
                     },
                     success: function(data) {
                         if (data.success == true) {
+                            that.parent().parent().remove();
                             Swal.fire(
                                 'Xóa!',
                                 'Xóa thành công.',
                                 'success'
                             )
-                            window.location.reload();
                         } else {
                             Swal.fire({
                                 icon: 'error',
