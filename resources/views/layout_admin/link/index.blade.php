@@ -30,76 +30,92 @@
                                 <i class="fa fa-plus">&nbsp; Thêm link </i></button>
                         </a>
                     </div>
-                    <div class="card-body px-0 pt-0 pb-2">          
+                    <div class="card-body px-0 pt-0 pb-2">
                         <div class="table-responsive p-0">
                             <table class="table table-flush" id="datatable-basic">
                                 <thead class="thead-light">
                                     <tr>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Loại thẻ</th>
-                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Link</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Nội dung</th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Link</th>
                                         <th class="text-secondary"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
+
+                                    @if(isset($subject_links))
+                                    @foreach($subject_links as $subject)
                                     <tr>
                                         <td class="align-middle text-center">
-                                            <span class="text-secondary text-xs font-weight-bold"></span>
+                                            <span class="text-secondary text-xs font-weight-bold">{{ isset($subject->type_subject) ?  $subject->type_subject : ''}}</span>
+                                        </td>
+
+                                        <td class="align-middle text-center">
+                                            @if($subject->type_subject == 'Thẻ')
+                                            <span class="text-secondary text-xs font-weight-bold">
+                                                @for($i = 0; $i < count(json_decode($subject->subject)); $i++)
+                                                    {{ json_decode($subject->subject)[$i]   }}
+                                                    @endfor
+                                            </span>
+                                            @else
+                                            <span class="text-secondary text-xs font-weight-bold">{{ isset($subject->subject) ?  $subject->subject : ''}}</span>
+                                            @endif
                                         </td>
                                         <td class="align-middle text-center">
-                                            <a href="#"><span class="badge bg-gradient-primary">Copy</span></a>
-                                        </td>
-                                        <td class="align-middle text-center">
-                                            <span class="text-secondary text-xs font-weight-bold"></span>
+                                            <input type="hidden" id="subject_{{ $subject->id }}" value="{{ route('link.subject', $subject->link_subject) }}">
+                                            <a href="#" onclick="copyToClipboard('#subject_{{ $subject->id }}')"><span class="badge bg-gradient-primary">Copy</span></a>
                                         </td>
                                         <td class="align-middle">
-                                            <a data-bs-toggle="modal" data-bs-target="#edit_link" class="text-secondary font-weight-bold text-xs" >
+                                            <!-- <a data-bs-toggle="modal" data-bs-target="#edit_link" class="text-secondary font-weight-bold text-xs" >
                                                 <span class="badge bg-gradient-info">Sửa</span>
-                                            </a> ||
-                                            <a href="javascript:;" delete_id="#" class="text-secondary font-weight-bold text-xs simpleConfirm" >
+                                            </a> || -->
+                                            <a href="javascript:;" delete_id="{{ $subject->id }}" class="text-secondary font-weight-bold text-xs simpleConfirm">
                                                 <span class="badge bg-gradient-danger">Xóa</span>
                                             </a>
                                         </td>
-                                    </tr> 
+                                    </tr>
+                                    @endforeach
+                                    @endif
+
                                     <!-- Edit Modal -->
-                                    <div class="modal fade" id="edit_link" tabindex="-1" role="dialog" aria-labelledby="exampleModalMessageTitle" aria-hidden="true">
+                                    <!-- <div class="modal fade" id="edit_link" tabindex="-1" role="dialog" aria-labelledby="exampleModalMessageTitle" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Cập nhật link</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">×</span>
-                                            </button>
-                                            </div> 
-                                            <form action="#" method="post" enctype="multipart/form-data">
-                                                @csrf
-                                                <div class="modal-body">               
-                                                    <div class="form-group">       
-                                                        <div class="form-group" style="width: 70%;">
-                                                            <label class="form-control-label" for="basic-url">Loại thẻ</label>
-                                                            <div class="input-group">
-                                                                <select class="form-control" id="discount_type" name="discount_type" style="width: 200px;" required>
-                                                                @if(isset($types))
-                                                                    @foreach ($types as $type)
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Cập nhật link</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">×</span>
+                                                    </button>
+                                                </div>
+                                                <form action="#" method="post" enctype="multipart/form-data">
+                                                    @csrf
+                                                    <div class="modal-body">
+                                                        <div class="form-group">
+                                                            <div class="form-group" style="width: 70%;">
+                                                                <label class="form-control-label" for="basic-url">Loại thẻ</label>
+                                                                <div class="input-group">
+                                                                    <select class="form-control" id="subject_type" name="subject_type" style="width: 200px;" required>
+                                                                        @if(isset($subject_types))
+                                                                        @foreach ($subject_types as $type)
                                                                         <option id="{{ $type->id }}" value="{{ $type->name }}">{{ $type->name }}</option>
-                                                                    @endforeach
-                                                                @endif
-                                                                </select>
+                                                                        @endforeach
+                                                                        @endif
+                                                                    </select>
+                                                                </div>
                                                             </div>
-                                                        </div> 
-                                                        <div class="form-group" style="width: 70%;">
-                                                            <label class="form-control-label" for="basic-url">Nội dung</label>
-                                                            <textarea class="form-control" id="discount_code" name="discount_code" rows="3" ></textarea> <br>                        
-                                                        </div>                           
-                                                    </div>       
-                                                </div>
-                                                <div class="modal-footer">
-                                                <button type="submit" class="btn bg-gradient-secondary">Cập nhật</button>
-                                                </div>
-                                            </form>
+                                                            <div class="form-group" style="width: 70%;">
+                                                                <label class="form-control-label" for="basic-url">Nội dung</label>
+                                                                <textarea class="form-control" id="subject" name="subject" rows="3"></textarea> <br>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="submit" class="btn bg-gradient-secondary">Cập nhật</button>
+                                                    </div>
+                                                </form>
+                                            </div>
                                         </div>
-                                        </div>
-                                    </div>                                           
+                                    </div>
                                 </tbody>
                             </table>
                         </div>
@@ -107,55 +123,72 @@
                 </div>
             </div>
         </div>
-    </div>
-     <!-- Addd Modal -->
-    <div class="modal fade" id="add_link" tabindex="-1" role="dialog" aria-labelledby="exampleModalMessageTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Thêm link</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">×</span>
-              </button>
-            </div> 
-            <form action="{{ route('link.store') }}" method="post" enctype="multipart/form-data">
-                @csrf
-                <div class="modal-body">               
-                    <div class="form-group">       
-                        <div class="form-group" style="width: 70%;">
-                            <label class="form-control-label" for="basic-url">Loại thẻ</label>
-                            <div class="input-group">
-                                <select class="form-control" id="discount_type" name="discount_type" style="width: 200px;" required>
-                                   @if(isset($types))
-                                    @foreach ($types as $type)
-                                        <option id="{{ $type->id }}" value="{{ $type->name }}">{{ $type->name }}</option>
-                                    @endforeach
-                                   @endif
-                                </select>
-                            </div>
-                        </div> 
-                        <div class="form-group" style="width: 70%;">
-                            <label class="form-control-label" for="basic-url">Nội dung</label>
-                            <textarea class="form-control" id="discount_code" name="discount_code" rows="3" ></textarea> <br>                        
-                        </div>                           
-                    </div>       
-                </div>
-                <div class="modal-footer">
-                <button type="submit" class="btn bg-gradient-secondary">Thêm</button>
-                </div>
-            </form>
-          </div>
-        </div>
-    </div>
+    </div> -->
+                                    <!-- Addd Modal -->
+                                    <div class="modal fade" id="add_link" tabindex="-1" role="dialog" aria-labelledby="exampleModalMessageTitle" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Thêm link</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">×</span>
+                                                    </button>
+                                                </div>
+                                                <form action="{{ route('link.store') }}" method="post" enctype="multipart/form-data">
+                                                    @csrf
+                                                    <div class="modal-body">
+                                                        <div class="form-group">
+                                                            <div class="form-group" style="width: 70%;">
+                                                                <label class="form-control-label" for="basic-url">Loại thẻ</label>
+                                                                <div class="input-group">
+                                                                    <select class="form-control" id="subject_type" name="subject_type" style="width: 200px;" required>
+                                                                        @if(isset($subject_types))
+                                                                        @foreach ($subject_types as $type)
+                                                                        <option id="{{ $type->id }}" value="{{ $type->name }}">{{ $type->name }}</option>
+                                                                        @endforeach
+                                                                        @endif
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group" style="width: 70%;">
+                                                                <label class="form-control-label" for="basic-url">Nội dung</label>
+                                                                <textarea class="form-control" id="subject" name="subject" rows="3"></textarea> <br>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="submit" class="btn bg-gradient-secondary">Thêm</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
 </main>
 @endsection
 @section('script')
 <script src="{{ asset('dashboard/assets/js/plugins/datatables.js') }}" type="text/javascript"></script>
 <script type="text/javascript">
     const dataTableBasic = new simpleDatatables.DataTable("#datatable-basic", {
-      searchable: true,
-      fixedHeight: true
+        searchable: true,
+        fixedHeight: true
     });
+
+    function copyToClipboard(element) {
+        var link_subject = $(element).val();
+        navigator.clipboard.writeText(link_subject);
+
+        Swal.fire({
+            icon: 'success',
+            title: 'Copy link thành công!',
+            showConfirmButton: false,
+            timer: 2000
+        })
+        // var $temp = $("<input>");
+        // $("body").append($temp);
+        // $temp.val($(element).text()).select();
+        // document.execCommand("copy");
+        // $temp.remove();
+    }
 
     $(document).on('click', '.simpleConfirm', function(e) {
         e.preventDefault();
@@ -173,7 +206,7 @@
             if (result.value) {
                 $.ajax({
                     method: 'get',
-                    url: "{{ route('discount.destroy') }}",
+                    url: "{{ route('link.destroy') }}",
                     data: {
                         id: id
                     },
@@ -185,6 +218,13 @@
                                 'success'
                             )
                             window.location.reload();
+                        } else {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops, lỗi sever!',
+                                showConfirmButton: false,
+                                timer: 2000
+                            })
                         }
                     }
                 })
@@ -192,34 +232,34 @@
         });
     });
 
-    $(document).on('click', '.delete_all', function(e) {
-        e.preventDefault();
-        swal.fire({
-            title: "Bạn có muốn xóa tất cả mã đã sử dụng không?",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Xóa ngay!',
-            cancelButtonText: 'Hủy'
-        }).then((result) => {
-            if (result.value) {
-                $.ajax({
-                    method: 'get',
-                    url: "{{ route('discount.destroy.all') }}",
-                    success: function(data) {
-                        if (data.success == true) {
-                            Swal.fire(
-                                'Xóa!',
-                                'Xóa thành công.',
-                                'success'
-                            )
-                            window.location.reload();
-                        }
-                    }
-                })
-            }
-        });
-    })
+    // $(document).on('click', '.delete_all', function(e) {
+    //     e.preventDefault();
+    //     swal.fire({
+    //         title: "Bạn có muốn xóa tất cả mã đã sử dụng không?",
+    //         icon: 'warning',
+    //         showCancelButton: true,
+    //         confirmButtonColor: '#3085d6',
+    //         cancelButtonColor: '#d33',
+    //         confirmButtonText: 'Xóa ngay!',
+    //         cancelButtonText: 'Hủy'
+    //     }).then((result) => {
+    //         if (result.value) {
+    //             $.ajax({
+    //                 method: 'get',
+    //                 url: "{{ route('discount.destroy.all') }}",
+    //                 success: function(data) {
+    //                     if (data.success == true) {
+    //                         Swal.fire(
+    //                             'Xóa!',
+    //                             'Xóa thành công.',
+    //                             'success'
+    //                         )
+    //                         window.location.reload();
+    //                     }
+    //                 }
+    //             })
+    //         }
+    //     });
+    // })
 </script>
 @endsection

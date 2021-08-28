@@ -117,6 +117,7 @@ Route::group(['middleware' => 'user'], function () {
     Route::get('/link-edit/{id}',[LinkController::class,'edit'])->name('link.edit');
     Route::post('/link-update/{id}',[LinkController::class,'update'])->name('link.update');
     Route::get('/link-destroy',[LinkController::class,'destroy'])->name('link.destroy');
+    Route::get('/nhan-qua/{link}',[LinkController::class,'linkSubjectIndex'])->name('link.subject');
 });
 
 Route::group(['middleware' => 'login'], function () {

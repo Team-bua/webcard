@@ -15,10 +15,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(CardTableSeeder::class);
-        $this->call(ProductTypeTableSeeder::class);
-        $this->call(AdminTableSeeder::class);
-        $this->call(TransactionTableSeeder::class);
+        // $this->call(CardTableSeeder::class);
+        // $this->call(ProductTypeTableSeeder::class);
+        // $this->call(AdminTableSeeder::class);
+        // $this->call(TransactionTableSeeder::class);
+        $this->call(TypeSubjectTableSeeder::class);
+        $this->call(TypeSubject2TableSeeder::class);
+        $this->call(TypeSubject3TableSeeder::class);
     }
 }
 
@@ -56,6 +59,40 @@ class AdminTableSeeder extends Seeder
                 'name' => 'Admin',
                 'email' => 'admin@webcard.com',
                 'password' => Hash::make('admin@123'),
+            ],
+        ]);
+    }
+}
+
+class TypeSubjectTableSeeder extends Seeder
+{
+    public function run()
+    {
+        DB::table('subject_type')->insert([
+            [
+                'name' => 'Thẻ'
+            ],
+        ]);
+    }
+}
+class TypeSubject2TableSeeder extends Seeder
+{
+    public function run()
+    {
+        DB::table('subject_type')->insert([
+            [
+                'name' => 'Mã giảm giá'
+            ],
+        ]);
+    }
+}
+class TypeSubject3TableSeeder extends Seeder
+{
+    public function run()
+    {
+        DB::table('subject_type')->insert([
+            [
+                'name' => 'Mã nạp tiền'
             ],
         ]);
     }
