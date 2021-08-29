@@ -18,6 +18,7 @@ class CreateLinkSubjectTable extends Migration
             $table->string('type_subject');
             $table->string('link_subject');
             $table->string('subject');
+            $table->integer('status')->default(0);
             $table->timestamps();
         });
     }

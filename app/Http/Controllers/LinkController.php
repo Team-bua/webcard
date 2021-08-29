@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\LinkExport;
 use App\Models\Discount;
 use App\Models\DiscountType;
 use App\Models\Link;
@@ -9,6 +10,7 @@ use App\Models\RechargeCode;
 use App\Models\SubjectType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Maatwebsite\Excel\Facades\Excel;
 
 class LinkController extends Controller
 {
@@ -17,7 +19,7 @@ class LinkController extends Controller
     {
         $types = DiscountType::all();
         $subject_types = SubjectType::all();
-        $subject_links = Link::all();
+        $subject_links = Link::where('status', 0)->get();
         return view('layout_admin.link.index', compact('subject_types', 'subject_links', 'types'));
     }
 
@@ -33,14 +35,30 @@ class LinkController extends Controller
         for ($i = 0; $i < count($subject_json); $i++) {
             $code = $subject_json[$i];
             $subject = new Link();
-            if($request->subject_type == 'Thẻ'){               
+            if($request->subject_type == 'Thẻ'){    
+                $subject_code = explode('|', $code);   
+                if(count($subject_code) < 3){
+                    $arr_subject = '|'.$subject_code[0].'|'.$subject_code[1];
+                }else{
+                    $arr_subject = $code;
+                }
                 $subject->type_subject = $request->subject_type;
                 $subject->link_subject = Str::random(40);
-                $subject->subject = json_encode($code);
+                $subject->subject = $arr_subject;
+                $subject->save();                   
+            }elseif($request->subject_type == 'Voucher'){
+                $subject_code = explode('|', $code);   
+                if(count($subject_code) < 2){
+                    $arr_vou = '|'.$subject_code[0];
+                }else{
+                    $arr_vou = $code;
+                }
+                $subject->type_subject = $request->subject_type;
+                $subject->link_subject = Str::random(40);
+                $subject->subject = $arr_vou;
                 $subject->save();
             }
-            elseif($request->subject_type == 'Mã giảm giá')
-            {
+            elseif($request->subject_type == 'Mã giảm giá'){
                 $subject->type_subject = $request->subject_type;
                 $subject->link_subject = Str::random(40);
                 $subject->subject = $code;
@@ -52,8 +70,7 @@ class LinkController extends Controller
                 $discount->price = $request->discount;
                 $discount->save();
             }           
-            elseif($request->subject_type == 'Mã nạp tiền')
-            {
+            elseif($request->subject_type == 'Mã nạp tiền'){
                 $subject->type_subject = $request->subject_type;
                 $subject->link_subject = Str::random(40);
                 $subject->subject = $code;
@@ -92,5 +109,10 @@ class LinkController extends Controller
                 'success' => false,
             ]);
         }
+    }
+
+    public function exportLink(Request $request)
+    {
+        return Excel::download(new LinkExport(), 'Thông tin link quà tặng.xlsx');       
     }
 }

@@ -51,19 +51,14 @@
                                         </td>
 
                                         <td class="align-middle text-center">
-                                            @if($subject->type_subject == 'Thẻ')
-                                            <span class="text-secondary text-xs font-weight-bold">
-                                                @for($i = 0; $i < count(json_decode($subject->subject)); $i++)
-                                                    {{ json_decode($subject->subject)[$i]   }}
-                                                    @endfor
-                                            </span>
-                                            @else
+
+                                        
                                             <span class="text-secondary text-xs font-weight-bold">{{ isset($subject->subject) ?  $subject->subject : ''}}</span>
-                                            @endif
+                                     
                                         </td>
                                         <td class="align-middle text-center">
                                             <input type="hidden" id="subject_{{ $subject->id }}" value="{{ route('link.subject', $subject->link_subject) }}">
-                                            <a href="#" onclick="copyToClipboard('#subject_{{ $subject->id }}')"><span class="badge bg-gradient-primary">Copy</span></a>
+                                            <a href="javascript:" onclick="copyToClipboard('#subject_{{ $subject->id }}')"><span class="badge bg-gradient-primary">Copy</span></a>
                                         </td>
                                         <td class="align-middle">
                                             <!-- <a data-bs-toggle="modal" data-bs-target="#edit_link" class="text-secondary font-weight-bold text-xs" >
@@ -76,65 +71,75 @@
                                     </tr>
                                     @endforeach
                                     @endif
-                                    <!-- Addd Modal -->
-                                    <div class="modal fade" id="add_link" tabindex="-1" role="dialog" aria-labelledby="exampleModalMessageTitle" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Thêm link</h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">×</span>
-                                                    </button>
-                                                </div>
-                                                <form action="{{ route('link.store') }}" method="post" enctype="multipart/form-data">
-                                                    @csrf
-                                                    <div class="modal-body">
-                                                        <div class="form-group">
-                                                            <div class="form-group" style="width: 70%;">
-                                                                <label class="form-control-label" for="basic-url">Loại thẻ</label>
-                                                                <div class="input-group">
-                                                                    <select class="form-control" id="subject_type" name="subject_type" style="width: 200px;" required>
-                                                                        @if(isset($subject_types))
-                                                                        @foreach ($subject_types as $type)
-                                                                        <option id="{{ $type->id }}" value="{{ $type->name }}">{{ $type->name }}</option>
-                                                                        @endforeach
-                                                                        @endif
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group" style="width: 70%; display: none" id="type_discount">
-                                                                <label class="form-control-label" for="basic-url">Loại giảm giá</label>
-                                                                <div class="input-group">
-                                                                    <select class="form-control" id="discount_type" name="discount_type" style="width: 200px;" required>
-                                                                        @if(isset($types))
-                                                                         @foreach ($types as $type)
-                                                                             <option id="{{ $type->id }}" value="{{ $type->name }}">{{ $type->name }}</option>
-                                                                         @endforeach
-                                                                        @endif
-                                                                     </select>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group" style="width: 70%; display: none" id="discount">
-                                                                <label class="form-control-label" for="basic-url">Giá</label>
-                                                                <div class="input-group">
-                                                                    <span class="input-group-text"><i class="fa fa-quidditch"></i></span>
-                                                                    <input type="number" class="form-control" id="discount" name="discount" min="0" maxlength="150" required>
-                                                                    <span class="input-group-text" id="show_add">VNĐ</span>
-                                                                </div>
-                                                            </div>    
-                                                            <div class="form-group" style="width: 70%;">
-                                                                <label class="form-control-label" for="basic-url">Nội dung</label>
-                                                                <textarea class="form-control" id="subject" name="subject" rows="3"></textarea> <br>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="submit" class="btn bg-gradient-secondary">Thêm</button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
+                                </tbody>
+                            </table>
+                        </div>
+                        <form action="{{ route('link.export') }}" method="post" id="form_export">
+                            @csrf
+                            <div class="col-lg-4 mt-md-0 mt-3" style="margin-left: 20px">
+                                <button class="btn bg-gradient-info mt-lg-7 mb-0" type="submit" name="button" id="btn_export">Xuất Excel</button>
+                            </div>
+                        </form>
+                       
+<!-- Addd Modal -->
+<div class="modal fade" id="add_link" tabindex="-1" role="dialog" aria-labelledby="exampleModalMessageTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Thêm link</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <form action="{{ route('link.store') }}" method="post" enctype="multipart/form-data">
+                @csrf
+                <div class="modal-body">
+                    <div class="form-group">
+                        <div class="form-group" style="width: 70%;">
+                            <label class="form-control-label" for="basic-url">Loại thẻ</label>
+                            <div class="input-group">
+                                <select class="form-control" id="subject_type" name="subject_type" style="width: 200px;" required>
+                                    @if(isset($subject_types))
+                                    @foreach ($subject_types as $type)
+                                    <option id="{{ $type->id }}" value="{{ $type->name }}">{{ $type->name }}</option>
+                                    @endforeach
+                                    @endif
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group" style="width: 70%; display: none" id="type_discount">
+                            <label class="form-control-label" for="basic-url">Loại giảm giá</label>
+                            <div class="input-group">
+                                <select class="form-control" id="discount_type" name="discount_type" style="width: 200px;" required>
+                                    @if(isset($types))
+                                        @foreach ($types as $type)
+                                            <option id="{{ $type->id }}" value="{{ $type->name }}">{{ $type->name }}</option>
+                                        @endforeach
+                                    @endif
+                                    </select>
+                            </div>
+                        </div>
+                        <div class="form-group" style="width: 70%; display: none" id="discount">
+                            <label class="form-control-label" for="basic-url">Giá</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fa fa-quidditch"></i></span>
+                                <input type="number" class="form-control" id="discount" name="discount" min="0" maxlength="150" >
+                                <span class="input-group-text" id="show_add">VNĐ</span>
+                            </div>
+                        </div>    
+                        <div class="form-group" style="width: 70%;">
+                            <label class="form-control-label" for="basic-url">Nội dung</label>
+                            <textarea class="form-control" id="subject" name="subject" rows="3"></textarea> <br>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn bg-gradient-secondary">Thêm</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 </main>
 @endsection
 @section('script')
@@ -146,7 +151,7 @@
     });
 
     $('#subject_type').on('change', function() {
-       if(this.value == 'Thẻ'){
+       if(this.value == 'Thẻ' || this.value == 'Voucher'){
            $('#type_discount').attr('style', 'display: none');
            $('#discount').attr('style', 'display: none');
        }else if(this.value == 'Mã giảm giá'){

@@ -80,7 +80,7 @@
                                             <ul style="list-style-type: none; padding: 0; margin: 0;">
                                                 @for($i = 0; $i < count(json_decode($card->price)); $i++)
                                                     <li  style="margin-bottom:5px">
-                                                        <p class="text-xs font-weight-bold mb-0"><a href="#" onclick="myclick('{{number_format(json_decode($card->price)[$i])}}', '{{ $card->name }}', '{{ $card->card_type }}')"><span class="badge badge-sm bg-gradient-success" style="font-size: 12px;"><i class="fa fa-plus"></i></span></a></p>
+                                                        <p class="text-xs font-weight-bold mb-0"><a href="javascript:" onclick="myclick('{{number_format(json_decode($card->price)[$i])}}', '{{ $card->name }}', '{{ $card->card_type }}')"><span class="badge badge-sm bg-gradient-success" style="font-size: 12px;"><i class="fa fa-plus"></i></span></a></p>
                                                     </li>
                                                     @endfor
                                             </ul>
