@@ -29,6 +29,9 @@ use Illuminate\Support\Facades\Route;
 //Admin
 Route::group(['middleware' => 'user'], function () {
     Route::get('/admin',[AdminController::class,'getAdmin'])->name('admin');
+    Route::get('/admin-info',[AdminController::class,'getAdminInfo'])->name('admin.info');
+    Route::post('/admin-info-update',[AdminController::class,'updateInfo'])->name('admin.info.update');
+    Route::post('/admin-changepass',[AdminController::class,'changePass'])->name('admin.changepass');
     Route::post('/admin',[AdminController::class,'getAdmin'])->name('admin.search');
     //View card
     Route::get('/view-card',[CardController::class,'GetCardToIndex'])->name('viewcard');

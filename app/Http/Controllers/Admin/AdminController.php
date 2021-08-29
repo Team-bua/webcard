@@ -16,6 +16,7 @@ use Carbon\Carbon;
 use Carbon\CarbonPeriod;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
@@ -174,6 +175,43 @@ class AdminController extends Controller
         $bank->bank_number = $request->bank_number;
         $bank->save();
         return redirect()->back()->with('information', 'Cập nhật thông tin thành công');     
+    }
+
+    public function getAdminInfo(Request $request)
+    {
+        $admin = User::where('role',1)->first();
+        return view('layout_admin.change_pass', compact('admin'));
+    }
+
+    public function updateInfo(Request $request)
+    {
+        $admin = User::find(1);
+        $admin->name = $request->name;
+        $admin->phone = $request->phone;
+        $admin->save();
+        return redirect()->back()->with('information', 'Cập nhật thông tin thành công');
+    }
+
+    public function changePass(Request $request)
+    {
+        $this->validate(
+            $request,
+            [
+                'new_password' => 'required|min:5|max:25',
+                'confirm_password' => 'required|same:new_password',
+            ],
+            [
+                'new_password.required' => 'Vui lòng nhập mật khẩu',              
+                'new_password.min' => 'Thấp nhất 5 ký tự',
+                'new_password.max' => 'Giới hạn 25 ký tự',
+                'confirm_password.required' => 'Vui lòng nhập lại mật khẩu',
+                'confirm_password.same' => 'Xác nhận mật khẩu không chính xác',
+            ]
+        );
+        $admin = User::find(1);
+        $admin->password = Hash::make($request->new_password);
+        $admin->save();
+        return redirect()->back()->with('changepass', 'Cập nhật mật khẩu thành công');
     }
 
 }
