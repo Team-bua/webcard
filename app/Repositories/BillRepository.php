@@ -93,6 +93,7 @@ class BillRepository
             ->get();
         foreach ($card_bill as $bill) {
             $check_err = 0;
+            $card_store_info = [];
             $card_stores = CardStore::where('name', strtolower($bill->card_type))
                 ->where('price', $bill->card_price)
                 ->where('status', 0)
