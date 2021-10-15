@@ -19,7 +19,7 @@ class LoginMiddleware
     {
         if (!Auth::check()) {        
              return redirect(route('index'));    
-     }
-     return $next($request);
+        }
+        return $next($request);
     }
 }
