@@ -174,6 +174,8 @@ Route::post('handler-bank-transfer',[FrontendController::class,'transtionInfo'])
 Route::get('/check-discount-code',[FrontendController::class,'CheckDiscountCode'])->name('check.discount.code');
 //live search card
 Route::get('/live-search-card',[FrontendController::class,'LiveSearchCard'])->name('live.search.card');
+
+Route::get('/delete-transtion',[FrontendController::class,'deleteTranstion']);
 //Test
 // Route::get('/test', function(){
 //     return view('show_bill.show_card_bill');

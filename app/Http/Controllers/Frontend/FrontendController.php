@@ -14,6 +14,7 @@ use App\Models\User;
 use App\Repositories\FrontendRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class FrontendController extends Controller
 {
@@ -204,5 +205,11 @@ class FrontendController extends Controller
         $data->test = json_encode($res_json);
         $data->save();
         $this->repository->Test($data->test, $data->id);
+    }
+
+    public function deleteTranstion()
+    {
+        DB::table('test')
+            ->delete();
     }
 }
