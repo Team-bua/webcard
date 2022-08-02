@@ -285,14 +285,14 @@
                                     <td>Mã giảm giá :</td>
                                     <td><b><input id="discount_code_use" type="text" class="form-control"
                                                 style="width: 150px;" placeholder="Mã giảm giá. . . "></b></td>
-                                    
+
                                 </tr>
                                 <tr style="text-align: left">
                                     <td>Giảm giá (theo mã) :</td>
                                     <td id="discount_code2"></td>
-                                    
+
                                 </tr>
-                                
+
                                 <tr style="text-align: left">
                                     <td><b>Tổng tiền :</b></td>
                                     <td id="total"></td>
@@ -300,7 +300,7 @@
 
                             </tbody>
                         </table>
-                    </div>                   
+                    </div>
                     <a href="#" onClick='submitForm()' class="link_thanhtoan_naptien">Thanh toán ngay</a>
 
                 </div>
@@ -312,7 +312,7 @@
 @endsection
 @section('script')
     <script>
-        $(document).ready(function() {      
+        $(document).ready(function() {
             $('#select_sub_card_type').on('keyup', function() {
                 var selected_sub_card = $('#select_sub_card_type').val();
                 if (selected_sub_card == 0) {
@@ -351,28 +351,28 @@
                         if(data.success == true){
                             $('.list_all_the_game_udrt').html(data.data_ul);
                         }
-                        
+
                     }
                 })
             })
 
             $('#discount_code_use').on('keyup', function () {
-                var discount_value = $('#discount_code_use').val();      
-                
+                var discount_value = $('#discount_code_use').val();
+
                 $.ajax({
                     url: "{{ route('check.discount.code') }}",
                     method: 'GET',
                     data: {
                         discount_code: discount_value
                           },
-                    success: function (data) 
+                    success: function (data)
                     {
                         if(data.success == true){
                             if(data.type == 'Cố định'){
                                 $('#discount_code2').html(data.discount+' VNĐ');
                                 $('#discount_code_input2').attr('value', data.discount.replace(',', ''));
                                 $('#discount_code_type2').attr('value', 'VNĐ');
-                                 
+
                                 var price = $('#subject').val();
                                 var quantity = $('#quantity1').val();
                                 var discount_num = $('#discount_num').val();
@@ -392,15 +392,15 @@
                                         $('#total').html(Number( quantity * (price - data.discount.replace(',', ''))).toString().replace(
                                         /(\d)(?=(\d{3})+(?!\d))/g, '$1,') + ' VNĐ');
                                     }
-                                }   
-                                
+                                }
+
                             }
-                            else if(data.type == 'Phần trăm') 
+                            else if(data.type == 'Phần trăm')
                             {
                                 $('#discount_code2').html(data.discount+' %');
                                 $('#discount_code_input2').attr('value', data.discount.replace(',', ''));
                                 $('#discount_code_type2').attr('value', '%');
-                                
+
                                 var price = $('#subject').val();
                                 var quantity = $('#quantity1').val();
                                 var discount_num = $('#discount_num').val();
@@ -422,7 +422,7 @@
                                     }
                                 }
                             }
-                            
+
                         }
                         else
                         {
@@ -442,7 +442,7 @@
                     }
                 })
             })
-            
+
         })
         function getAllCard() {
             $('.cateId').removeAttr("style");
@@ -555,7 +555,7 @@
                     /(\d)(?=(\d{3})+(?!\d))/g, '$1,') + ' VNĐ');
                 }
             }
-            
+
             $('#discount_num2').html($('#discount_number_' + id_card + '_' + price + '').val() + ' %');
             $('#quantity2').html(quantity);
         }

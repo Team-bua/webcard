@@ -99,7 +99,6 @@
       flatpickr('.datepicker', {
         mode: "range",
         dateFormat: 'd/m/Y'
-      });       
+      });
     }
   </script>
-@endsection

@@ -26,19 +26,19 @@ class AdminController extends Controller
         if($request->date == null)
         {
             $first_day = date('Y-m-01', strtotime($date));
-            $last_day = date('Y-m-t', strtotime($date));            
+            $last_day = date('Y-m-t', strtotime($date));
         }
         else if(isset(explode(' to ', $request->date)[1]) == false)
         {
             $first_day = date('Y-m-d', strtotime(str_replace('/', '-', $request->date)));
-            $last_day = date('Y-m-d', strtotime(str_replace('/', '-', $request->date)));  
+            $last_day = date('Y-m-d', strtotime(str_replace('/', '-', $request->date)));
         }
         else
         {
             $first_day = date('Y-m-d', strtotime(str_replace('/', '-', explode(' to ', $request->date)[0])));
             $last_day = date('Y-m-d', strtotime(str_replace('/', '-', explode(' to ', $request->date)[1])));
         }
-        
+
         $period = CarbonPeriod::create($first_day, $last_day);
         foreach($period as $date)
         {
@@ -66,14 +66,14 @@ class AdminController extends Controller
         foreach ($dates as $day) {
             $total = 0;
             foreach ($revenueMonthDone as $key => $revenue) {
-                
+
                 if ($revenue['day'] == $day) {
                     $total = $revenue['totalMoney'];
                     break;
                 }
             }
-            
-            
+
+
             $arrRevenueMonthDone[] = (int) $total;
             $total = 0;
             foreach ($revenueMonthPending as $key => $revenue) {
@@ -107,19 +107,19 @@ class AdminController extends Controller
                     ->orderBy('created_at','desc')->get();
         return view('layout_admin.all_user.index', compact('users'));
     }
-    
+
     public function showCardBill(Request $request)
     {
         $card_bills = CardBill::where('user_id', $request->id)->orderBy('created_at', 'desc')->get();
         $user_info = User::where('id', $request->id)->first();
-        return view('layout_admin.all_user.card_bill', compact('card_bills','user_info')); 
+        return view('layout_admin.all_user.card_bill', compact('card_bills','user_info'));
     }
 
     public function showRechargeBill(Request $request)
     {
         $recharge_bills = UserBill::where('user_id', $request->id)->orderBy('created_at', 'desc')->get();
         $user_info = User::where('id', $request->id)->first();
-        return view('layout_admin.all_user.recharge_bill', compact('recharge_bills','user_info')); 
+        return view('layout_admin.all_user.recharge_bill', compact('recharge_bills','user_info'));
     }
 
     public function banned($id)
@@ -146,13 +146,13 @@ class AdminController extends Controller
         $users = User::find($id);
         $users->point = $request->money;
         $users->save();
-        return redirect()->back()->with('information', 'Cập nhật tiền thành công');     
+        return redirect()->back()->with('information', 'Cập nhật tiền thành công');
     }
 
     public function getBankInfo(Request $request)
     {
         $bank = AdminTransaction::find(1);
-        return view('layout_admin.bank_info', compact('bank'));     
+        return view('layout_admin.bank_info', compact('bank'));
     }
 
 
@@ -164,7 +164,7 @@ class AdminController extends Controller
         if (isset($img)) {
             if($bank->bank_image){
                 unlink(public_path($bank->bank_image));
-            }           
+            }
             $img_name = 'upload/bank/img/' . $date . '/' . Str::random(10) . rand() . '.' . $img->getClientOriginalExtension();
             $destinationPath = public_path('upload/bank/img/' . $date);
             $img->move($destinationPath, $img_name);
@@ -174,7 +174,7 @@ class AdminController extends Controller
         $bank->bank_name = $request->bank_name;
         $bank->bank_number = $request->bank_number;
         $bank->save();
-        return redirect()->back()->with('information', 'Cập nhật thông tin thành công');     
+        return redirect()->back()->with('information', 'Cập nhật thông tin thành công');
     }
 
     public function getAdminInfo(Request $request)
@@ -201,7 +201,7 @@ class AdminController extends Controller
                 'confirm_password' => 'required|same:new_password',
             ],
             [
-                'new_password.required' => 'Vui lòng nhập mật khẩu',              
+                'new_password.required' => 'Vui lòng nhập mật khẩu',
                 'new_password.min' => 'Thấp nhất 5 ký tự',
                 'new_password.max' => 'Giới hạn 25 ký tự',
                 'confirm_password.required' => 'Vui lòng nhập lại mật khẩu',
